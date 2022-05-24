@@ -3,6 +3,7 @@ import java.util.List;
 
 public class CalculatorFunctions {
     private List<String> inputs;
+    private List<String> inputsLatext;
     private CalculatorState state;
     public CalculatorFunctions(){
         inputs = new LinkedList<>();
@@ -16,24 +17,43 @@ public class CalculatorFunctions {
                     state = CalculatorState.CALCULATION;
                 }
                 // TODO do sth
+                inputs.add(input);
+                inputsLatext.add(input);
             }
 
             case "." -> {
                 // TODO do sth
+                inputs.add(".");
+                inputsLatext.add("\\cdot");
             }
 
             case "+", "-", "*", "/" -> {
+                if (state == CalculatorState.SOLUTION){
+                    state = CalculatorState.CALCULATION;
+                }
+                inputs.add(input);
+                inputsLatext.add(input);
                 // TODO do sth
-
             }
 
             case "cos", "sin", "tan" -> {
+                if (state == CalculatorState.SOLUTION){
+                    state = CalculatorState.CALCULATION;
+                }
+                inputs.add(input);
+                inputsLatext.add("\\" + input);
                 // TODO do sth
+            }
+
+            case "log" -> {
+                inputs.add(input);
+                inputsLatext.add("\\log{x}"); //TODO do sth
             }
 
             case "=" -> {
                 state = CalculatorState.SOLUTION;
                 calculateOperation();
+                //inputs.add(input);
             }
 
             case "delOneSign" -> {
