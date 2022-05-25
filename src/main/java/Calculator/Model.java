@@ -1,8 +1,6 @@
 package Calculator;
 
-import javax.swing.*;
 import java.awt.Image;
-import java.util.Iterator;
 import java.util.LinkedList;
 
 public class Model {
@@ -21,7 +19,9 @@ public class Model {
         expression = "";
         latexString = "";
         LinkedList<String> expressionsElementsList = new LinkedList<String>();
+        expressionsElementsList.add("");
         LinkedList<String> latexElementsList = new LinkedList<String>();
+        latexElementsList.add("");
         answer = 0;
     }
     public void UpdateLinks(View v, Controller c)
@@ -30,7 +30,7 @@ public class Model {
         controller = c;
     }
     public void ExtendExpression(String extension) {
-        expressionsElementsList.add(expressionsElementsList.size(),extension);
+        expressionsElementsList.add(extension);
         GenerateNewExpression();
     }
     public void ShortenExpression() {
@@ -38,7 +38,7 @@ public class Model {
         GenerateNewExpression();
     }
     public void ExtendLatex(String extension) {
-        latexElementsList.add(latexElementsList.size(),extension);
+        latexElementsList.add(extension);
         GenerateNewLatex();
     }
     public void ShortenLatex(int last_to_shorten) {
@@ -69,20 +69,10 @@ public class Model {
     }
     public void GenerateNewExpression()
     {
-        expression = "";
-        Iterator<String> expressionIterator = expressionsElementsList.iterator();
-        while(expressionIterator.hasNext())
-        {
-            expression = expression + expressionIterator.next();
-        }
+        expression = expressionsElementsList.toString();
     }
     public void GenerateNewLatex()
     {
-        latexString = "";
-        Iterator<String> latexIterator = latexElementsList.iterator();
-        while(latexIterator.hasNext())
-        {
-            latexString = latexString + latexIterator.next();
-        }
+        latexString = latexElementsList.toString();
     }
 }

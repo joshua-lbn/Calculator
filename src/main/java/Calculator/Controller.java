@@ -55,7 +55,6 @@ public class Controller {
             case "delOneSign" -> {
                 //model.ShortenExpression();
                 //model.ShortenLatex();
-                // TODO Jannis
             }
             case "delAll" -> {
                 //model.ClearExpression();
