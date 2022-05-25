@@ -1,5 +1,8 @@
 package Calculator;
-
+/*
+* Hier werden die Buttons ausgewertet und initialisiert und auf der View (Oberfläche)
+* angezeigt
+ */
 public class ButtonListener implements java.awt.event.ActionListener {
     private View view;
     public ButtonListener(View v)
