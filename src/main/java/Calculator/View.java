@@ -1,6 +1,8 @@
 package Calculator;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.ImageObserver;
+import java.awt.image.ImageProducer;
 
 public class View extends JFrame{
     private Model model;
@@ -21,7 +23,6 @@ public class View extends JFrame{
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         spacer1.setLayout(new java.awt.GridLayout(2, 1));
-
 
         label = new javax.swing.JLabel();
         spacer1.add(label);
@@ -64,6 +65,7 @@ public class View extends JFrame{
     }
     public void UpdateIconView(Image i)
     {
+        i = i.getScaledInstance(-1, label.getHeight(), Image.SCALE_SMOOTH);
         label.setIcon(new ImageIcon(i));
     }
     public void UpdateView()
