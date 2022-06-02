@@ -26,19 +26,18 @@ public class Controller {
         GenerateLatexView(model.GetLatexExpression());
         view.UpdateIconView(model.GetImage());
     }
+    /*
+    Die Eingaben werden in der Liste hinzugefügt
+     */
     public void Update(String input){
         switch(input){
-            case "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" -> {
+            case "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+", "-", "*", "/" -> {
                 model.ExtendExpression(input);
                 model.ExtendLatex(input);
             }
             case "." -> {
                 model.ExtendExpression(".");
                 model.ExtendLatex("\\cdot");
-            }
-            case "+", "-", "*", "/" -> {
-                model.ExtendExpression(input);
-                model.ExtendLatex(input);
             }
             case "cos", "sin", "tan" -> {
                 model.ExtendExpression(input);

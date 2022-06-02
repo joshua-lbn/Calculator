@@ -1,7 +1,10 @@
 package Calculator;
 import javax.swing.*;
 import java.awt.*;
-
+/*
+Klasse View stellt das Image, bzw. die Oberfläche unseres Taschenrechners da. Hier werden die einzelnen Buttons, bzw.
+das Label definiert.
+ */
 public class View extends JFrame{
     private Model model;
     private Controller controller;
@@ -15,8 +18,11 @@ public class View extends JFrame{
     protected javax.swing.JButton Button14 = new javax.swing.JButton();
     protected javax.swing.JButton Button15 = new javax.swing.JButton();
 
-
-    public View() {
+/*
+Im Konstruktor wird das Fenster geöffnet und die Buttons und das Label auf unserem JFrame angeordnet. Außerdem wird
+hier ein Buttonlistener erstellt und die Buttons übermittelt
+ */
+    public View() { //Rechenoperationen als Feld speichern und abrufen
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,11 +67,18 @@ public class View extends JFrame{
         this.getContentPane().add(spacer1);
         pack();
         setVisible (true);
+        //ToDo 'Ans'
     }
+    /*
+    Hier wird das Image im Label in Icons angezeigt
+     */
     public void UpdateIconView(Image i)
     {
         label.setIcon(new ImageIcon(i));
     }
+    /*
+    controller updated die View
+     */
     public void UpdateView()
     {
         controller.UpdateView();

@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e01ba51-84bb-425d-83d7-45271fdd1757" name="Changes" comment="*&#10;* Hier werden die Buttons ausgewertet und initialisiert und auf der View (Oberfläche)&#10;* angezeigt&#10; */" />
+    <list default="true" id="6e01ba51-84bb-425d-83d7-45271fdd1757" name="Changes" comment="*&#10;* Hier werden die Buttons ausgewertet und initialisiert und auf der View (Oberfläche)&#10;* angezeigt&#10; */">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/ButtonListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/ButtonListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/View.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -108,7 +114,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653485758054</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="*&#10;* Hier werden die Buttons ausgewertet und initialisiert und auf der View (Oberfläche)&#10;* angezeigt&#10; */">
+      <created>1653485981576</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1653485981576</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
