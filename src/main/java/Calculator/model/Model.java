@@ -63,7 +63,7 @@ public class Model {
      */
     public void ShortenExpression() {
         expressionsElementsList.remove(expressionsElementsList.size());
-        GenerateNewExpression();
+        expression = GenerateNewExpression();
     }
 
     /**
@@ -87,8 +87,8 @@ public class Model {
      * Methode zur Verkürzung des Ausdrucks-Strings: letztes Element wird aus der Liste entfernt und mithilfe der Liste der String neu generiert
      */
     public void ShortenLatex() {
-        latexElementsList.remove(latexElementsList.size());
-        GenerateNewLatex();
+        latexElementsList.removeLast();
+        latexString = GenerateNewLatex();
     }
 
     /**
@@ -154,23 +154,19 @@ public class Model {
 
     /**
      * Methode zur Generierung des Expression-Strings aus der Liste
+     *
+     * @return Generierte Expression
      */
-    public void GenerateNewExpression() {
-        expression = "";
-        Iterator iterator = expressionsElementsList.iterator();
-        while (iterator.hasNext()) {
-            expression = expression + iterator.next();
-        }
+    public String GenerateNewExpression() {
+        return expressionsElementsList.stream().reduce("", (a, b) -> a + b);
     }
 
     /**
      * Methode zur Generierung des Latex-Strings aus der Liste
+     *
+     * @return Generierte Expression
      */
-    public void GenerateNewLatex() {
-        latexString = "";
-        Iterator iterator = latexElementsList.iterator();
-        while (iterator.hasNext()) {
-            latexString = latexString + iterator.next();
-        }
+    public String GenerateNewLatex() {
+        return latexElementsList.stream().reduce("", (a, b) -> a + b);
     }
 }
