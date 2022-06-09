@@ -11,7 +11,6 @@ import java.util.LinkedList;
  * Model-Klasse mit allen gespeicherten Daten
  */
 public class Model {
-    // Referenzen zu Controller und View für Methoden
     private View view;
     private Controller controller;
     // String mit Rechenausdruck
@@ -32,8 +31,8 @@ public class Model {
         expression = "";
         latexString = "";
         // Listen initialisieren
-        expressionsElementsList = new LinkedList<String>();
-        latexElementsList = new LinkedList<String>();
+        expressionsElementsList = new LinkedList<>();
+        latexElementsList = new LinkedList<>();
         // Letzte Antwort als 0 initialisieren
         answer = 0;
     }
@@ -56,7 +55,7 @@ public class Model {
      */
     public void ExtendExpression(String extension) {
         expressionsElementsList.add(extension);
-        expression = expression + extension;
+        expression += extension;
     }
 
     /**
@@ -81,7 +80,7 @@ public class Model {
      */
     public void ExtendLatex(String extension) {
         latexElementsList.add(extension);
-        latexString = latexString + extension;
+        latexString += extension;
     }
 
     /**

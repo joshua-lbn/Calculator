@@ -8,9 +8,7 @@ import Calculator.view.View;
  * Controller-Klasse mit Programmier-Logik
  */
 public class Controller {
-    // Referenz auf die Klasse LatexRenderer, die das Bild zum Latex-String generiert
     private LatexRenderer latexRenderer;
-    // Referenzen auf Model und View
     private Model model;
     private View view;
     private CalculatorState calculatorState;
@@ -35,16 +33,20 @@ public class Controller {
     }
 
     /**
-     * Methode zur Erweiterung der Model-Strings anhand der Eingabe, die der View weitergibt
+     * Methode zur Erweiterung der Model-Strings anhand der Eingabe, die der View weitergibt.
+     * Beginnt nach einer Berechnung eine neue Eingabe
      *
      * @param input Eingabe-String
      */
     public void Update(String input) {
+        // Wenn eine Berechnung fertig ist und eine neue Berechnung angefangen wird,
+        // soll die alte Berechnung gelöscht werden
         if (!input.equals("=") && calculatorState == CalculatorState.SOLUTION) {
             model.ClearExpression();
             model.ClearLatex();
             calculatorState = CalculatorState.CALCULATION;
         }
+
         switch (input) {
             // Zahleneingabe: einfach einfuegen
             case "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" -> {
@@ -74,6 +76,7 @@ public class Controller {
             // Ist-Gleich: Berechnung anstossen
             case "=" -> {
                 calculatorState = CalculatorState.SOLUTION;
+                // TODO Berechnung implementieren
                 //calculateOperation();
                 //model.SetAnswer();
                 //model.ClearExpression();
