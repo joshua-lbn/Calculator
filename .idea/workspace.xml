@@ -4,17 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e01ba51-84bb-425d-83d7-45271fdd1757" name="Changes" comment="//Test">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Calculator/controller/CalculationState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/ButtonListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/ButtonListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/controller/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/LatexRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/LatexRenderer.java" afterDir="false" />
+    <list default="true" id="6e01ba51-84bb-425d-83d7-45271fdd1757" name="Changes" comment="CalculationState">
       <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/model/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/View.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CalculatorState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/controller/CalculatorState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/controller/CalculationState.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/model/Model.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/ButtonListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/ButtonListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/LatexRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/LatexRenderer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,7 +146,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653485758054</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="CalculationState">
+      <created>1654802877239</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1654802877240</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -182,6 +184,7 @@
     <MESSAGE value="update Funktion" />
     <MESSAGE value="//Test" />
     <MESSAGE value="*&#10;* Hier werden die Buttons ausgewertet und initialisiert und auf der View (Oberfläche)&#10;* angezeigt&#10; */" />
-    <option name="LAST_COMMIT_MESSAGE" value="*&#10;* Hier werden die Buttons ausgewertet und initialisiert und auf der View (Oberfläche)&#10;* angezeigt&#10; */" />
+    <MESSAGE value="CalculationState" />
+    <option name="LAST_COMMIT_MESSAGE" value="CalculationState" />
   </component>
 </project>

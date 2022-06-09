@@ -27,8 +27,7 @@ public class Model {
     // Latex-Ausdruck in Bildform zur Darstellung
     private Image latexImage;
 
-    public Model()
-    {
+    public Model() {
         // Beide Strings als leer initialisieren
         expression = "";
         latexString = "";
@@ -38,24 +37,28 @@ public class Model {
         // Letzte Antwort als 0 initialisieren
         answer = 0;
     }
+
     /**
      * Methode zur Setzung der Referenzen auf View und Controller in Main
+     *
      * @param v View-Instanz
      * @param c Controller-Instanz
      */
-    public void UpdateLinks(View v, Controller c)
-    {
+    public void UpdateLinks(View v, Controller c) {
         view = v;
         controller = c;
     }
+
     /**
      * Methode zur Erweiterung des Ausdrucks-Strings: Element wird in Liste eingefuegt und anschliessend der String erweitert
+     *
      * @param extension Zu erweiternder Ausdruck
      */
     public void ExtendExpression(String extension) {
         expressionsElementsList.add(extension);
         expression = expression + extension;
     }
+
     /**
      * Methode zur Verkürzung des Ausdrucks-Strings: letztes Element wird aus der Liste entfernt und mithilfe der Liste der String neu generiert
      */
@@ -67,18 +70,20 @@ public class Model {
     /**
      * Methode zur Räumung des Expression-Stringes
      */
-    public void ClearExpression()
-    {
+    public void ClearExpression() {
         expression = "";
     }
+
     /**
      * Methode zur Erweiterung des Latex-Strings: Element wird in Liste eingefuegt und anschliessend der String erweitert
+     *
      * @param extension Zu erweiternder Ausdruck
      */
     public void ExtendLatex(String extension) {
         latexElementsList.add(extension);
         latexString = latexString + extension;
     }
+
     /**
      * Methode zur Verkürzung des Ausdrucks-Strings: letztes Element wird aus der Liste entfernt und mithilfe der Liste der String neu generiert
      */
@@ -86,82 +91,86 @@ public class Model {
         latexElementsList.remove(latexElementsList.size());
         GenerateNewLatex();
     }
+
     /**
      * Methode zur Räumung des Latex-Strings
      */
-    public void ClearLatex()
-    {
+    public void ClearLatex() {
         latexString = "";
     }
+
     /**
      * Getter für die Answer-Variable, die als Antwortspeicher dient
+     *
      * @return Gespeicherte Antwort
      */
     public double GetAnswer() {
         return answer;
     }
+
     /**
      * Setter für die Answer-Variable, die als Antwortspeicher dient
+     *
      * @param gottenAnswer Ausgerechneter Wert
      */
     public void SetAnswer(double gottenAnswer) {
         answer = gottenAnswer;
     }
+
     /**
      * Getter für die Image-Variable, welche den Latex-String in Bildform enthält
+     *
      * @return Latex-Bild
      */
-    public Image GetImage()
-    {
+    public Image GetImage() {
         return latexImage;
     }
+
     /**
      * Setter für die Image-Variable, welche den Latex-String in Bildform enthält
+     *
      * @param i Zu speicherndes Bild
      */
-    public void SetImage(Image i)
-    {
+    public void SetImage(Image i) {
         latexImage = i;
     }
 
     /**
      * Getter für die LatexString-Variable, die den Latex-Ausdruck in Textform enthält
+     *
      * @return String mit Latex-Ausdruck
      */
-    public String GetLatexExpression()
-    {
+    public String GetLatexExpression() {
         return latexString;
     }
+
     /**
      * Getter für die Expression-Variable, die den normalen Ausdruck in Textform enthält
+     *
      * @return String mit Ausdruck
      */
-    public String GetExpression()
-    {
+    public String GetExpression() {
         return expression;
     }
 
     /**
      * Methode zur Generierung des Expression-Strings aus der Liste
      */
-    public void GenerateNewExpression()
-    {
+    public void GenerateNewExpression() {
         expression = "";
         Iterator iterator = expressionsElementsList.iterator();
-        while(iterator.hasNext())
-        {
+        while (iterator.hasNext()) {
             expression = expression + iterator.next();
         }
     }
+
     /**
      * Methode zur Generierung des Latex-Strings aus der Liste
      */
-    public void GenerateNewLatex()
-    {
+    public void GenerateNewLatex() {
         latexString = "";
         Iterator iterator = latexElementsList.iterator();
-        while(iterator.hasNext())
-        {
+        while (iterator.hasNext()) {
             latexString = latexString + iterator.next();
         }
     }

@@ -14,13 +14,13 @@ public class LatexRenderer {
     /**
      * Leerer Constructor
      */
-    public LatexRenderer()
-    {
+    public LatexRenderer() {
         // nothing to initialize
     }
 
     /**
      * Methode zur Erstellung eines neuen Latex-Bildes anhand eines Strings
+     *
      * @param latexString Eingabe-String
      * @return Generiertes Bild
      */

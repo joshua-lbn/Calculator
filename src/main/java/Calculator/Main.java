@@ -9,8 +9,7 @@ import Calculator.view.View;
  * Erstellt die drei Hauptkomponenten nach dem MVC-Modell und gibt ihnen jeweils die Referenzen auf die anderen Hauptkomponenten
  */
 public class Main {
-    public static void main(String args[])
-    {
+    public static void main(String args[]) {
         // Drei Hauptkomponenten deklarieren und initialisieren
         Model model = new Model();
         View view = new View();
