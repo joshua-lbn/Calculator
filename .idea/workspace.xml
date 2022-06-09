@@ -4,7 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e01ba51-84bb-425d-83d7-45271fdd1757" name="Changes" comment="*&#10;* Hier werden die Buttons ausgewertet und initialisiert und auf der View (Oberfläche)&#10;* angezeigt&#10; */" />
+    <list default="true" id="6e01ba51-84bb-425d-83d7-45271fdd1757" name="Changes" comment="//Test">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Calculator/controller/CalculationState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/ButtonListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/ButtonListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/LatexRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/LatexRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/model/Model.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/View.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CalculatorState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/controller/CalculatorState.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,6 +30,24 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="origin/current" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -36,7 +65,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Calculator.Main">
     <configuration name="CalculatorGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="CalculatorGUI" />
       <module name="Calculator" />
@@ -44,8 +73,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Calculator.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Calculator.Main" />
+      <module name="Calculator" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Calculator.view.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Calculator.Main" />
         <item itemvalue="Application.CalculatorGUI" />
       </list>
     </recent_temporary>

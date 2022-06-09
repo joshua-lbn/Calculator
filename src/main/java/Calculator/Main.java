@@ -1,5 +1,9 @@
 package Calculator;
 
+import Calculator.controller.Controller;
+import Calculator.model.Model;
+import Calculator.view.View;
+
 /**
  * Die Hauptklasse, welche als erstes ausgeführt wird
  * Erstellt die drei Hauptkomponenten nach dem MVC-Modell und gibt ihnen jeweils die Referenzen auf die anderen Hauptkomponenten

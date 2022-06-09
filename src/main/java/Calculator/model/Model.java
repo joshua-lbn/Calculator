@@ -1,4 +1,7 @@
-package Calculator;
+package Calculator.model;
+
+import Calculator.controller.Controller;
+import Calculator.view.View;
 
 import java.awt.Image;
 import java.util.Iterator;
