@@ -4,9 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e01ba51-84bb-425d-83d7-45271fdd1757" name="Changes" comment="Updates">
+    <list default="true" id="6e01ba51-84bb-425d-83d7-45271fdd1757" name="Changes" comment="update Funktion">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/controller/LatexRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/controller/LatexRenderer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/model/Model.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/ButtonListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/ButtonListener.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,8 +21,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -51,12 +56,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Application.Calculator.Main">
     <configuration name="CalculatorGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="CalculatorGUI" />
@@ -70,7 +76,7 @@
       <module name="Calculator" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Calculator.view.*" />
+          <option name="PATTERN" value="Calculator.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -78,12 +84,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Model" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="Calculator.model.Model" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Calculator.model.Model" />
       <module name="Calculator" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Calculator.model.*" />
+          <option name="PATTERN" value="Calculator.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -94,7 +100,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Calculator.Main" />
-        <item itemvalue="Application.Model" />
+        <item itemvalue="Application.Calculator.model.Model" />
         <item itemvalue="Application.CalculatorGUI" />
       </list>
     </recent_temporary>
@@ -206,12 +212,12 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Init commit" />
     <MESSAGE value="Test" />
-    <MESSAGE value="update Funktion" />
     <MESSAGE value="//Test" />
     <MESSAGE value="*&#10;* Hier werden die Buttons ausgewertet und initialisiert und auf der View (Oberfläche)&#10;* angezeigt&#10; */" />
     <MESSAGE value="CalculationState" />
     <MESSAGE value="Update" />
     <MESSAGE value="Updates" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updates" />
+    <MESSAGE value="update Funktion" />
+    <option name="LAST_COMMIT_MESSAGE" value="update Funktion" />
   </component>
 </project>

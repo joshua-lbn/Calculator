@@ -4,7 +4,6 @@ import Calculator.controller.Controller;
 import Calculator.view.View;
 
 import java.awt.Image;
-import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
@@ -22,7 +21,7 @@ public class Model {
     // Liste mit durch Eingaben eingefügten Elementen in Latex-Form
     private LinkedList<String> latexElementsList;
     // Antwort der letzten Rechnung (s. Ans-Taste)
-    private double answer;
+    private double ans;
     // Latex-Ausdruck in Bildform zur Darstellung
     private Image latexImage;
 
@@ -34,7 +33,7 @@ public class Model {
         expressionsElementsList = new LinkedList<>();
         latexElementsList = new LinkedList<>();
         // Letzte Antwort als 0 initialisieren
-        answer = 0;
+        ans = 0;
     }
 
     /**
@@ -104,7 +103,7 @@ public class Model {
      * @return Gespeicherte Antwort
      */
     public double GetAnswer() {
-        return answer;
+        return ans;
     }
 
     /**
@@ -113,7 +112,11 @@ public class Model {
      * @param gottenAnswer Ausgerechneter Wert
      */
     public void SetAnswer(double gottenAnswer) {
-        answer = gottenAnswer;
+        ClearExpression();
+        ClearLatex();
+        ans = gottenAnswer;
+        ExtendExpression(Double.toString(ans));
+        ExtendLatex(Double.toString(ans));
     }
 
     /**

@@ -20,5 +20,11 @@
             <artifactId>jlatexmath</artifactId>
             <version>1.0.7</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.mariuszgromada.math/MathParser.org-mXparser -->
+        <dependency>
+            <groupId>org.mariuszgromada.math</groupId>
+            <artifactId>MathParser.org-mXparser</artifactId>
+            <version>5.0.6</version>
+        </dependency>
     </dependencies>
 </project>
