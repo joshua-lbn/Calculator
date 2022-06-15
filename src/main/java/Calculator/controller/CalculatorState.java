@@ -1,5 +1,8 @@
 package Calculator.controller;
 
-public enum CalculatorState {
+/**
+ * Definition der States des Rechners.
+ */
+enum CalculatorState {
     SOLUTION, CALCULATION
 }
