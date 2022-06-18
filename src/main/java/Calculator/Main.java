@@ -6,7 +6,7 @@ import Calculator.view.View;
 
 /**
  * Die Hauptklasse, welche als erstes ausgeführt wird.
- * Sie erstellt die drei Hauptkomponenten nach dem MVC-Modell und gibt ihnen jeweils die Referenzen auf die anderen Hauptkomponenten
+ * Sie erstellt die drei Hauptkomponenten nach dem MVC-Modell und gibt ihnen jeweils die Referenzen auf die anderen Hauptkomponenten.
  */
 public class Main {
     public static void main(String[] args) {

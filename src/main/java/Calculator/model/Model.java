@@ -7,7 +7,7 @@ import java.awt.Image;
 import java.util.LinkedList;
 
 /**
- * Model-Klasse mit allen gespeicherten Daten
+ * Model-Klasse mit allen gespeicherten Daten.
  */
 public class Model {
     private View view;
@@ -37,19 +37,7 @@ public class Model {
     }
 
     /**
-     * Methode zur Setzung der Referenzen auf View und Controller in Main
-     *
-     * @param v View-Instanz
-     * @param c Controller-Instanz
-     */
-    public void UpdateLinks(View v, Controller c) {
-        view = v;
-        controller = c;
-    }
-
-    /**
-     * Methode zur Erweiterung des Ausdrucks-Strings: Element wird in Liste eingefuegt und anschliessend der String erweitert
-     *
+     * Methode zur Erweiterung des Ausdrucks-Strings: Element wird in Liste eingefuegt und anschliessend der String erweitert.
      * @param extension Zu erweiternder Ausdruck
      */
     public void ExtendExpression(String extension) {
@@ -58,23 +46,24 @@ public class Model {
     }
 
     /**
-     * Methode zur Verkürzung des Ausdrucks-Strings: letztes Element wird aus der Liste entfernt und mithilfe der Liste der String neu generiert
+     * Methode zur Verkürzung des Ausdrucks-Strings: letztes Element wird aus der Liste entfernt und mithilfe der Liste der String neu generiert.
      */
     public void ShortenExpression() {
-        expressionsElementsList.remove(expressionsElementsList.size());
-        expression = GenerateNewExpression();
+        if(expressionsElementsList.size() != 0) {
+            expressionsElementsList.removeLast();
+            expression = GenerateNewExpression();
+        }
     }
 
     /**
-     * Methode zur Räumung des Expression-Stringes
+     * Methode zur Räumung des Expression-Strings.
      */
     public void ClearExpression() {
         expression = "";
     }
 
     /**
-     * Methode zur Erweiterung des Latex-Strings: Element wird in Liste eingefuegt und anschliessend der String erweitert
-     *
+     * Methode zur Erweiterung des Latex-Strings: Element wird in Liste eingefuegt und anschliessend der String erweitert.
      * @param extension Zu erweiternder Ausdruck
      */
     public void ExtendLatex(String extension) {
@@ -83,45 +72,47 @@ public class Model {
     }
 
     /**
-     * Methode zur Verkürzung des Ausdrucks-Strings: letztes Element wird aus der Liste entfernt und mithilfe der Liste der String neu generiert
+     * Methode zur Verkürzung des Ausdrucks-Strings: letztes Element wird aus der Liste entfernt und mithilfe der Liste der String neu generiert.
      */
     public void ShortenLatex() {
-        latexElementsList.removeLast();
-        latexString = GenerateNewLatex();
+        if(latexElementsList.size() != 0) {
+            latexElementsList.removeLast();
+            latexString = GenerateNewLatex();
+        }
     }
 
     /**
-     * Methode zur Räumung des Latex-Strings
+     * Methode zur Leerung des Latex-Strings.
      */
     public void ClearLatex() {
         latexString = "";
     }
 
     /**
-     * Getter für die Answer-Variable, die als Antwortspeicher dient
-     *
-     * @return Gespeicherte Antwort
+     * Getter für die Answer-Variable, die als Antwortspeicher dient.
+     * @return Gespeicherte Antwort als String
      */
-    public double GetAnswer() {
-        return ans;
+    public String GetAnswer() {
+        return Double.toString(ans);
     }
 
     /**
-     * Setter für die Answer-Variable, die als Antwortspeicher dient
-     *
+     * Setter für die Answer-Variable, die als Antwortspeicher dient.
      * @param gottenAnswer Ausgerechneter Wert
      */
     public void SetAnswer(double gottenAnswer) {
+        // Strings leeren
         ClearExpression();
         ClearLatex();
+        // Antwort speichern
         ans = gottenAnswer;
+        // Antwort zu Strings hinzufuegen
         ExtendExpression(Double.toString(ans));
         ExtendLatex(Double.toString(ans));
     }
 
     /**
-     * Getter für die Image-Variable, welche den Latex-String in Bildform enthält
-     *
+     * Getter für die Image-Variable, welche den Latex-String in Bildform enthält.
      * @return Latex-Bild
      */
     public Image GetImage() {
@@ -129,8 +120,7 @@ public class Model {
     }
 
     /**
-     * Setter für die Image-Variable, welche den Latex-String in Bildform enthält
-     *
+     * Setter für die Image-Variable, welche den Latex-String in Bildform enthält.
      * @param i Zu speicherndes Bild
      */
     public void SetImage(Image i) {
@@ -138,8 +128,7 @@ public class Model {
     }
 
     /**
-     * Getter für die LatexString-Variable, die den Latex-Ausdruck in Textform enthält
-     *
+     * Getter für die LatexString-Variable, die den Latex-Ausdruck in Textform enthält.
      * @return String mit Latex-Ausdruck
      */
     public String GetLatexExpression() {
@@ -147,8 +136,7 @@ public class Model {
     }
 
     /**
-     * Getter für die Expression-Variable, die den normalen Ausdruck in Textform enthält
-     *
+     * Getter für die Expression-Variable, die den normalen Ausdruck in Textform enthält.
      * @return String mit Ausdruck
      */
     public String GetExpression() {
@@ -156,8 +144,7 @@ public class Model {
     }
 
     /**
-     * Methode zur Generierung des Expression-Strings aus der Liste
-     *
+     * Methode zur Generierung des Expression-Strings aus der Liste.
      * @return Generierte Expression
      */
     public String GenerateNewExpression() {
@@ -165,11 +152,20 @@ public class Model {
     }
 
     /**
-     * Methode zur Generierung des Latex-Strings aus der Liste
-     *
+     * Methode zur Generierung des Latex-Strings aus der Liste.
      * @return Generierte Expression
      */
     public String GenerateNewLatex() {
         return latexElementsList.stream().reduce("", (a, b) -> a + b);
+    }
+
+    /**
+     * Methode zur Setzung der Referenzen auf View und Controller in Main.
+     * @param v View-Instanz
+     * @param c Controller-Instanz
+     */
+    public void UpdateLinks(View v, Controller c) {
+        view = v;
+        controller = c;
     }
 }

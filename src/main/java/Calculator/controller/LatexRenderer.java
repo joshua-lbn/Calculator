@@ -7,18 +7,18 @@ import org.scilab.forge.jlatexmath.TeXConstants;
 import org.scilab.forge.jlatexmath.TeXFormula;
 
 /**
- * Klasse zur Erstellung des Latex-Bildes mithilfe des JLatexMath-Maven-Moduls
- * Programmtechnisch an den Controller gegliedert
+ * Klasse zur Erstellung des Latex-Bildes mithilfe des JLatexMath-Maven-Moduls.
+ * Programmtechnisch an den Controller gegliedert.
  */
 public class LatexRenderer {
     /**
-     * Leerer Constructor
+     * Leerer Konstruktor.
      */
     public LatexRenderer() {
     }
 
     /**
-     * Methode zur Erstellung eines neuen Latex-Bildes anhand eines Strings
+     * Methode zur Erstellung eines neuen Latex-Bildes anhand eines Strings.
      * @param latexString Eingabe-String
      * @return Generiertes Bild
      */
