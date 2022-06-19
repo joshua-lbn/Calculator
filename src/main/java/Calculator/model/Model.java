@@ -56,10 +56,11 @@ public class Model {
     }
 
     /**
-     * Methode zur Räumung des Expression-Strings.
+     * Methode zur Räumung des Expression-Strings und seiner Liste.
      */
     public void ClearExpression() {
         expression = "";
+        expressionsElementsList.clear();
     }
 
     /**
@@ -82,10 +83,11 @@ public class Model {
     }
 
     /**
-     * Methode zur Leerung des Latex-Strings.
+     * Methode zur Leerung des Latex-Strings und seiner Liste.
      */
     public void ClearLatex() {
         latexString = "";
+        latexElementsList.clear();
     }
 
     /**

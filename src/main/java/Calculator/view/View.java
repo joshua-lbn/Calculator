@@ -54,7 +54,7 @@ public class View extends JFrame{
         jButtonsLeft = new JButton[textsLeft.length];
         textsMiddle = new String[]{",", "="};
         jButtonsMiddle = new JButton[textsMiddle.length];
-        textsRight = new String[]{"cos(", "sin(", "tan(", "lg(", "(", ")"};
+        textsRight = new String[]{"sin(", "cos(", "tan(", "lg(", "(", ")"};
         jButtonsRight = new JButton[textsRight.length];
         // Instanz der Beiklasse "ButtonListener", um auf Klicks zu reagieren
         ButtonListener bl = new ButtonListener(this);

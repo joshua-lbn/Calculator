@@ -55,21 +55,21 @@ public class ButtonListener implements java.awt.event.ActionListener {
         }
         for (int i = 0; i < jButtonsLeft.length; i++) {
             if (e.getSource() == jButtonsLeft[i]) {
-                view.Update(textsLeft[i].toString());
+                view.Update(textsLeft[i]);
                 view.UpdateView();
                 return;
             }
         }
         for (int i = 0; i < jButtonsMiddle.length; i++) {
             if (e.getSource() == jButtonsMiddle[i]) {
-                view.Update(textsMiddle[i].toString());
+                view.Update(textsMiddle[i]);
                 view.UpdateView();
                 return;
             }
         }
         for (int i = 0; i < jButtonsRight.length; i++) {
             if (e.getSource() == jButtonsRight[i]) {
-                view.Update(textsRight[i].toString());
+                view.Update(textsRight[i]);
                 view.UpdateView();
                 return;
             }

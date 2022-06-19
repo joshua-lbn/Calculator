@@ -53,12 +53,12 @@ public class Controller {
         // Trigonometrie: Expression einfach einfuegen, in Latex als Kommando einfuegen
         else if (input.equals("sin(") || input.equals("cos(") || input.equals("tan(")) {
             model.ExtendExpression(input);
-            model.ExtendLatex("\\" + input);
+            model.ExtendLatex("\\" + input.substring(0,3) + "{(");
         }
         // Logarithmus: Expression einfach einfuegen, in Latex Sonderkommando
         else if (input.equals("lg(")) {
             model.ExtendExpression(input);
-            model.ExtendLatex("\\log_{10}(");
+            model.ExtendLatex("\\log_{10}{(");
         }
         // Ist-Gleich: Berechnung anstossen
         else if (input.equals("=")) {
