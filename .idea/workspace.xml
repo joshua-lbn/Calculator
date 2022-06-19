@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6e01ba51-84bb-425d-83d7-45271fdd1757" name="Changes" comment="update Funktion">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/controller/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/controller/LatexRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/controller/LatexRenderer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/model/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/ButtonListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/ButtonListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/View.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,13 +52,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Application.Calculator.Main">
     <configuration name="CalculatorGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="CalculatorGUI" />

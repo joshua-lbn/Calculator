@@ -100,6 +100,7 @@ public class Controller {
         // Latex-Bild anhand der Liste im Model generieren
         GenerateLatexView(model.GetLatexExpression());
         // Latex-Bild aus Model, da in GenerateLatexView() dort gespeichert, an View weitergeben
+        view.UpdateTest(model.ListSize()/8);
         view.UpdateIconView(model.GetImage());
     }
 

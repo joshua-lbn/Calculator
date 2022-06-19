@@ -20,6 +20,11 @@ public class View extends JFrame{
     private javax.swing.JPanel jPanel4 = new javax.swing.JPanel();
     // Label mit Ausgabe bzw. Anzeige des Ausdruckes
     private javax.swing.JLabel label = new javax.swing.JLabel();
+
+    private javax.swing.JLabel[] test;
+
+    private javax.swing.JPanel test3 = new javax.swing.JPanel();
+
     // Arrays mit Knoepfen
     private javax.swing.JButton[] jButtonsNumber;
     private javax.swing.JButton[] jButtonsLeft;
@@ -102,6 +107,96 @@ public class View extends JFrame{
     public void UpdateView()
     {
         controller.UpdateView();
+    }
+
+    public void UpdateTest(int a){
+
+
+        spacer1.remove(label);
+
+        spacer1.removeAll();
+        test3.removeAll();
+
+        jPanel1.removeAll();
+        jPanel2.removeAll();
+        jPanel3.removeAll();
+        jPanel4.removeAll();
+
+
+// Bei Schliessen Programm beenden
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        // Erstellung des Layouts durch Schachtelung der Panels und Hinzufuegen des Labels
+        spacer1.setLayout(new java.awt.GridLayout(2, 1));
+        label = new javax.swing.JLabel();
+        //------------------------------------------------
+
+
+
+        test = new JLabel[a*2];
+
+        test3.setLayout(new java.awt.GridLayout(a*2+1, 1));
+
+
+
+        spacer1.add(test3);
+
+        for ( int i = 0; i < a; i++ ) {
+            test[i] = new javax.swing.JLabel();
+            test3.add(test[i]);
+        }
+        test3.add(label);
+        for ( int i = 0; i < a; i++ ) {
+            test[i] = new javax.swing.JLabel();
+            test3.add(test[i]);
+        }
+
+
+        //------------------------------------------------
+        jPanel1.setLayout( new java.awt.GridLayout( 1, 3 ) );
+        spacer1.add (jPanel1);
+        jPanel2.setLayout( new java.awt.GridLayout( 3, 2 ) );
+        jPanel1.add (jPanel2);
+        jPanel3.setLayout( new java.awt.GridLayout( 4, 3 ) );
+        jPanel1.add (jPanel3);
+        jPanel4.setLayout( new java.awt.GridLayout( 4, 2 ) );
+        jPanel1.add (jPanel4);
+        // Definierung der Beschriftungen und Deklarierung der Button-Arrays nach Anzahl der Texte
+        jButtonsNumber = new JButton[10];
+        textsLeft = new String[]{"DEL", "AC", "+", "-", "*", "/", "Ans", "x^"};
+        jButtonsLeft = new JButton[textsLeft.length];
+        textsMiddle = new String[]{",", "="};
+        jButtonsMiddle = new JButton[textsMiddle.length];
+        textsRight = new String[]{"cos(", "sin(", "tan(", "lg(", "(", ")"};
+        jButtonsRight = new JButton[textsRight.length];
+        // Instanz der Beiklasse "ButtonListener", um auf Klicks zu reagieren
+        ButtonListener bl = new ButtonListener(this);
+        // Generierung der einzelnen Knoepfe: ueber jeder Knopf-Array iterieren und dabei Knoepfe mit Beschriftungen aus Texte-Array erstellen, ButtonListener uebergeben und Knoepfe ins Layout hinzufuegen
+        for ( int i = 0; i < jButtonsNumber.length; i++ ) {
+            jButtonsNumber[i] = new javax.swing.JButton(Integer.toString((Integer)i));
+            jButtonsNumber[i].addActionListener(bl);
+            jPanel3.add(jButtonsNumber[i]);
+        }
+        for ( int i = 0; i < jButtonsLeft.length; i++ ) {
+            jButtonsLeft[i] = new javax.swing.JButton ( "" + textsLeft[i] + "" );
+            jButtonsLeft[i].addActionListener ( bl );
+            jPanel4.add ( jButtonsLeft[i] );
+        }
+        for ( int i = 0; i < jButtonsMiddle.length; i++) {
+            jButtonsMiddle[i] = new javax.swing.JButton("" + textsMiddle[i] + "");
+            jPanel3.add(jButtonsMiddle[i]);
+            jButtonsMiddle[i].addActionListener(bl);
+        }
+        for ( int i = 0; i < jButtonsRight.length; i++ ) {
+            jButtonsRight[i] = new javax.swing.JButton ( "" + textsRight[i] + "" );
+            jButtonsRight[i].addActionListener ( bl );
+            jPanel2.add ( jButtonsRight[i] );
+        }
+        // Hinzufuegen des Gesamtlayouts in die ContentPane (das "Fenster")
+        this.getContentPane().add(spacer1);
+        // Fenster als dynamisch skalierbar definieren
+        pack();
+        // Fenster sichtbar setzen
+        setVisible (true);
     }
 
     /**

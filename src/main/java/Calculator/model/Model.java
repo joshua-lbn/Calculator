@@ -17,7 +17,7 @@ public class Model {
     // String mit Latex-Ausdruck
     private String latexString;
     // Liste mit durch Eingaben eingefügten Elementen (des Ausdrucks)
-    private LinkedList<String> expressionsElementsList;
+    private static LinkedList<String> expressionsElementsList;
     // Liste mit durch Eingaben eingefügten Elementen in Latex-Form
     private LinkedList<String> latexElementsList;
     // Antwort der letzten Rechnung (s. Ans-Taste)
@@ -170,4 +170,5 @@ public class Model {
         view = v;
         controller = c;
     }
+    public static int ListSize(){return expressionsElementsList.size();}
 }
