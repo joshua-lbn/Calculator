@@ -12,12 +12,15 @@ public class Controller {
     private LatexRenderer latexRenderer;
     private Parser parser;
 
+    private CalculatorState state;
+
     /**
      * Konstruktor: Latex-Renderer und Parser initialisieren sowie den State setzen.
      */
     public Controller() {
         latexRenderer = new LatexRenderer();
         parser = new Parser();
+        state = CalculatorState.CALCULATION;
     }
 
     /**
@@ -26,6 +29,13 @@ public class Controller {
      * @param input Eingabe-String
      */
     public void Update(String input) {
+        // Wenn eine Berechnung fertig ist und eine neue Berechnung angefangen wird,
+        // soll die alte Berechnung gelöscht werden
+        if (!input.equals("=") && state == CalculatorState.SOLUTION) {
+            model.ClearExpression();
+            model.ClearLatex();
+            state = CalculatorState.CALCULATION;
+        }
         // Zahleneingabe und Grundoperatoren: einfach einfuegen
         if(input.matches("[0123456789+\\-*/]")) {
             model.ExtendExpression(input);
@@ -62,6 +72,7 @@ public class Controller {
         }
         // Ist-Gleich: Berechnung anstossen
         else if (input.equals("=")) {
+            state = CalculatorState.SOLUTION;
             // Parser berechnet aktuellen Ausdruck im Model und Setter leert expression sowie latexString und fügt Ergebnis ein
             model.SetAnswer(parser.Calculate(model.GetExpression()));
             // Anzeige aktualisieren

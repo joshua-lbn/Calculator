@@ -1,6 +1,10 @@
 package Calculator.view;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.LinkedList;
+import java.util.List;
 
 /*
  * ButtonListener-Klasse zum Auswerden der Interaktionen mit der grafischen Oberflaeche.
@@ -46,6 +50,7 @@ public class ButtonListener implements java.awt.event.ActionListener {
         * der View der Befehl gegeben, nach Änderung der Darstellung (durch den Controller) diese zu aktualisieren.
         * die weitere Ausfuehrung der Methode aus Effizienzgruenden abgebrochen.
         */
+
         for (int i = 0; i < jButtonsNumber.length; i++) {
             if (e.getSource() == jButtonsNumber[i]) {
                 view.Update("" + (i) + "");
@@ -75,4 +80,6 @@ public class ButtonListener implements java.awt.event.ActionListener {
             }
         }
     }
+
+
 }
