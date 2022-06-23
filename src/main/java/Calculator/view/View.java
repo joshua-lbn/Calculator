@@ -30,10 +30,13 @@ public class View extends JFrame{
     private javax.swing.JButton[] jButtonsLeft;
     private javax.swing.JButton[] jButtonsMiddle;
     private javax.swing.JButton[] jButtonsRight;
+    private javax.swing.JButton[] jButtonsCursor
     // Array mit Beschriftung der Knoepfe
+    ;
     private String [ ] textsLeft;
     private String [ ] textsMiddle;
     private String [ ] textsRight;
+    private String [ ] textsCursor;
 
     /**
      * Konstruktor: Initialisierung der vollen Oberflaeche.
@@ -61,6 +64,8 @@ public class View extends JFrame{
         jButtonsMiddle = new JButton[textsMiddle.length];
         textsRight = new String[]{"sin(", "cos(", "tan(", "lg(", "(", ")"};
         jButtonsRight = new JButton[textsRight.length];
+        textsCursor = new String[]{"<-", "->"};
+        jButtonsCursor = new JButton[textsCursor.length];
         // Instanz der Beiklasse "ButtonListener", um auf Klicks zu reagieren
         ButtonListener bl = new ButtonListener(this);
         // Generierung der einzelnen Knoepfe: ueber jeder Knopf-Array iterieren und dabei Knoepfe mit Beschriftungen aus Texte-Array erstellen, ButtonListener uebergeben und Knoepfe ins Layout hinzufuegen
@@ -83,6 +88,11 @@ public class View extends JFrame{
             jButtonsRight[i] = new javax.swing.JButton ( "" + textsRight[i] + "" );
             jButtonsRight[i].addActionListener ( bl );
             jPanel2.add ( jButtonsRight[i] );
+        }
+        for ( int i = 0; i < jButtonsCursor.length; i++ ) {
+            jButtonsCursor[i] = new javax.swing.JButton ( "" + textsCursor[i] + "" );
+            jButtonsCursor[i].addActionListener ( bl );
+            jPanel2.add ( jButtonsCursor[i] );
         }
         // Hinzufuegen des Gesamtlayouts in die ContentPane (das "Fenster")
         this.getContentPane().add(spacer1);
