@@ -38,6 +38,15 @@ public class View extends JFrame{
     private String [ ] textsRight;
     private String [ ] textsCursor;
 
+    //-----------------------------
+    private javax.swing.JMenuItem kegel = new javax.swing.JMenuItem();
+    private javax.swing.JMenu rechner = new javax.swing.JMenu();
+    private javax.swing.JMenu zahlensystem = new javax.swing.JMenu();
+    private javax.swing.JMenu volumen = new javax.swing.JMenu();
+    private javax.swing.JMenuBar bar = new javax.swing.JMenuBar();
+
+    //-----------------------------
+
     /**
      * Konstruktor: Initialisierung der vollen Oberflaeche.
      */
@@ -50,7 +59,7 @@ public class View extends JFrame{
         spacer1.add(label);
         jPanel1.setLayout( new java.awt.GridLayout( 1, 3 ) );
         spacer1.add (jPanel1);
-        jPanel2.setLayout( new java.awt.GridLayout( 3, 2 ) );
+        jPanel2.setLayout( new java.awt.GridLayout( 4, 2 ) );
         jPanel1.add (jPanel2);
         jPanel3.setLayout( new java.awt.GridLayout( 4, 3 ) );
         jPanel1.add (jPanel3);
@@ -94,8 +103,29 @@ public class View extends JFrame{
             jButtonsCursor[i].addActionListener ( bl );
             jPanel2.add ( jButtonsCursor[i] );
         }
+        //-----------------------------
+
+        bar = new javax.swing.JMenuBar();
+
+
+        rechner = new javax.swing.JMenu("Rechner");
+        zahlensystem = new javax.swing.JMenu("Zahlensystem ");
+        volumen = new javax.swing.JMenu("Volumen ");
+        kegel = new javax.swing.JMenuItem("Kegel");
+
+        volumen.add(kegel);
+
+        bar.add(rechner);
+        bar.add(zahlensystem);
+        bar.add(volumen);
+
+
+
+
+        //-----------------------------
         // Hinzufuegen des Gesamtlayouts in die ContentPane (das "Fenster")
         this.getContentPane().add(spacer1);
+        this.getRootPane().setJMenuBar(bar);
         // Fenster als dynamisch skalierbar definieren
         pack();
         // Fenster sichtbar setzen
@@ -164,7 +194,7 @@ public class View extends JFrame{
         //------------------------------------------------
         jPanel1.setLayout( new java.awt.GridLayout( 1, 3 ) );
         spacer1.add (jPanel1);
-        jPanel2.setLayout( new java.awt.GridLayout( 3, 2 ) );
+        jPanel2.setLayout( new java.awt.GridLayout( 4, 2 ) );
         jPanel1.add (jPanel2);
         jPanel3.setLayout( new java.awt.GridLayout( 4, 3 ) );
         jPanel1.add (jPanel3);
@@ -178,6 +208,8 @@ public class View extends JFrame{
         jButtonsMiddle = new JButton[textsMiddle.length];
         textsRight = new String[]{"cos(", "sin(", "tan(", "lg(", "(", ")"};
         jButtonsRight = new JButton[textsRight.length];
+        textsCursor = new String[]{"<-", "->"};
+        jButtonsCursor = new JButton[textsCursor.length];
         // Instanz der Beiklasse "ButtonListener", um auf Klicks zu reagieren
         ButtonListener bl = new ButtonListener(this);
         // Generierung der einzelnen Knoepfe: ueber jeder Knopf-Array iterieren und dabei Knoepfe mit Beschriftungen aus Texte-Array erstellen, ButtonListener uebergeben und Knoepfe ins Layout hinzufuegen
@@ -201,8 +233,36 @@ public class View extends JFrame{
             jButtonsRight[i].addActionListener ( bl );
             jPanel2.add ( jButtonsRight[i] );
         }
+        for ( int i = 0; i < jButtonsCursor.length; i++ ) {
+            jButtonsCursor[i] = new javax.swing.JButton ( "" + textsCursor[i] + "" );
+            jButtonsCursor[i].addActionListener ( bl );
+            jPanel2.add ( jButtonsCursor[i] );
+        }
+
+        //-----------------------------
+
+        bar = new javax.swing.JMenuBar();
+
+
+        rechner = new javax.swing.JMenu("Rechner");
+        zahlensystem = new javax.swing.JMenu("Zahlensystem ");
+        volumen = new javax.swing.JMenu("Volumen ");
+        kegel = new javax.swing.JMenuItem("Kegel");
+
+        volumen.add(kegel);
+
+        bar.add(rechner);
+        bar.add(zahlensystem);
+        bar.add(volumen);
+
+
+
+
+        //-----------------------------
+
         // Hinzufuegen des Gesamtlayouts in die ContentPane (das "Fenster")
         this.getContentPane().add(spacer1);
+        this.getRootPane().setJMenuBar(bar);
         // Fenster als dynamisch skalierbar definieren
         pack();
         // Fenster sichtbar setzen
