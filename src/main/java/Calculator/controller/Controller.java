@@ -1,10 +1,9 @@
 package Calculator.controller;
 
+import Calculator.model.CalculatorState;
 import Calculator.model.Model;
 import Calculator.view.View;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 /**
  * Controller-Klasse mit Programmierlogik.
  */
@@ -14,7 +13,6 @@ public class Controller {
     private LatexRenderer latexRenderer;
     private Parser parser;
 
-    private CalculatorState state;
     boolean ShifttasteGedrückt;
 
     /**
@@ -23,9 +21,7 @@ public class Controller {
     public Controller() {
         latexRenderer = new LatexRenderer();
         parser = new Parser();
-        state = CalculatorState.CALCULATION;
         //panelLevel.setFocusable(true);
-
     }
 
     /**
@@ -34,12 +30,23 @@ public class Controller {
      * @param input Eingabe-String
      */
     public void Update(String input) {
-        // Wenn eine Berechnung fertig ist und eine neue Berechnung angefangen wird,
-        // soll die alte Berechnung gelöscht werden
-        if (!input.equals("=") && state == CalculatorState.SOLUTION) {
-            model.ClearExpression();
-            model.ClearLatex();
-            state = CalculatorState.CALCULATION;
+        /*
+         * Wenn eine Berechnung fertig ist (somit der Taschenrechner im Loesungsanzeige-Zustand ist) und eine
+         * neue Berechnung angefangen wird, soll die alte Berechnung gelöscht werden
+         *
+         */
+        if (model.GetState() == CalculatorState.SOLUTION) {
+            // Falls "Ist-Gleich"-Taste gedrueckt: nichts tun, da bereits Berechnung ausgefuerht
+            if(input.equals("=")) {
+            }
+            // Eigentliche Methode
+            else {
+                // Beide Eingabestrings loeschen
+                model.ClearExpression();
+                model.ClearLatex();
+                // Zustand auf Berechnung setzen
+                model.SetState(CalculatorState.CALCULATION);
+            }
         }
         // Zahleneingabe und Grundoperatoren: einfach einfuegen
         if(input.matches("[0123456789+\\-*/]")) {
@@ -47,11 +54,11 @@ public class Controller {
             model.ExtendLatex(input);
         }
         // Klammern: in Expression einfach einfuegen, in Latex mit geschweiften Klammern umrunden
-        if(input.equals("(")) {
+        else if(input.equals("(")) {
             model.ExtendExpression(input);
             model.ExtendLatex("{(");
         }
-        if(input.equals(")")) {
+        else if(input.equals(")")) {
             model.ExtendExpression(input);
             model.ExtendLatex(")}");
         }
@@ -77,11 +84,12 @@ public class Controller {
         }
         // Ist-Gleich: Berechnung anstossen
         else if (input.equals("=")) {
-            state = CalculatorState.SOLUTION;
             // Parser berechnet aktuellen Ausdruck im Model und Setter leert expression sowie latexString und fügt Ergebnis ein
             model.SetAnswer(parser.Calculate(model.GetExpression()));
             // Anzeige aktualisieren
             UpdateView();
+            // Zustand auf Loesungsanzeige setzen
+            model.SetState(CalculatorState.SOLUTION);
         }
         // Ans: in Expression und Latex Dezimalwert aus Antwortspeicher einfuegen
         else if (input.equals("Ans")) {
@@ -93,10 +101,17 @@ public class Controller {
             model.ShortenExpression();
             model.ShortenLatex();
         }
-        // Komplettloeschung: beide Strings komplett leeren
+        // Komplettloeschung: beide Strings komplett leeren und Cursor zuruecksetzen
         else if (input.equals("AC")) {
             model.ClearExpression();
             model.ClearLatex();
+        }
+        // Cursortasten: Aenderungen im Model anstossen
+        else if (input.equals("<-")) {
+            model.CursorLeft();
+        }
+        else if (input.equals("->")) {
+            model.CursorRight();
         }
     }
 
@@ -128,6 +143,7 @@ public class Controller {
     public void UpdateLinks(Model m, View v) {
         model = m;
         view = v;
+        model.SetState(CalculatorState.CALCULATION);
         //view.addKeyListener1(this);
     }
 }

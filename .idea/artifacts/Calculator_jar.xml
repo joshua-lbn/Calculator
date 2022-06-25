@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Calculator:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Calculator_jar</output-path>
+    <root id="archive" name="Calculator.jar">
+      <element id="module-output" name="Calculator" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/scilab/forge/jlatexmath-font-cyrillic/1.0.7/jlatexmath-font-cyrillic-1.0.7.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/scilab/forge/jlatexmath-font-greek/1.0.7/jlatexmath-font-greek-1.0.7.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/mariuszgromada/math/MathParser.org-mXparser/5.0.6/MathParser.org-mXparser-5.0.6.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/scilab/forge/jlatexmath/1.0.7/jlatexmath-1.0.7.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

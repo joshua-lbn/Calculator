@@ -11,7 +11,7 @@ import java.awt.event.KeyListener;
 /**
  * View-Klasse mit grafischer Benutzeroberflaeche.
  */
-public class View extends JFrame implements KeyListener {
+public class View extends JFrame {
     private Model model;
     private Controller controller;
     // JPanels fuer das Layout
@@ -32,13 +32,13 @@ public class View extends JFrame implements KeyListener {
     private javax.swing.JButton[] jButtonsLeft;
     private javax.swing.JButton[] jButtonsMiddle;
     private javax.swing.JButton[] jButtonsRight;
-    private javax.swing.JButton[] jButtonsCursor
-            // Array mit Beschriftung der Knoepfe
-            ;
+    private javax.swing.JButton[] jButtonsCursor;
+    // Arrays mit Beschriftungen der Knoepfe
     private String[] textsLeft;
     private String[] textsMiddle;
     private String[] textsRight;
     private String[] textsCursor;
+    private ProcessKeyInput processKeyInput;
 
     //-----------------------------
     private javax.swing.JMenuItem kegel = new javax.swing.JMenuItem();
@@ -49,7 +49,7 @@ public class View extends JFrame implements KeyListener {
 
     //-----------------------------
     //Flag für Shifttaste
-     boolean ShifttasteGedrückt;
+    boolean shifttasteGedrueckt;
 
     /**
      * Konstruktor: Initialisierung der vollen Oberflaeche.
@@ -57,7 +57,8 @@ public class View extends JFrame implements KeyListener {
      */
     public View() {
         //fügt KeyListener hinzu und ermöglicht Zugriff auf das Frame
-       this.addKeyListener(this);
+        processKeyInput = new ProcessKeyInput(this);
+       this.addKeyListener(processKeyInput);
        this.setFocusable(true);
         // Bei Schliessen Programm beenden
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -83,9 +84,9 @@ public class View extends JFrame implements KeyListener {
         jButtonsRight = new JButton[textsRight.length];
         textsCursor = new String[]{"<-", "->"};
         jButtonsCursor = new JButton[textsCursor.length];
-        // Instanz der Beiklasse "ButtonListener", um auf Klicks zu reagieren
-        ButtonListener bl = new ButtonListener(this);
-        // Generierung der einzelnen Knoepfe: ueber jeder Knopf-Array iterieren und dabei Knoepfe mit Beschriftungen aus Texte-Array erstellen, ButtonListener uebergeben und Knoepfe ins Layout hinzufuegen
+        // Instanz der Beiklasse "ProcessButtonInput", um auf Klicks zu reagieren
+        ProcessButtonInput bl = new ProcessButtonInput(this);
+        // Generierung der einzelnen Knoepfe: ueber jeder Knopf-Array iterieren und dabei Knoepfe mit Beschriftungen aus Texte-Array erstellen, ProcessButtonInput uebergeben und Knoepfe ins Layout hinzufuegen
         for (int i = 0; i < jButtonsNumber.length; i++) {
             jButtonsNumber[i] = new javax.swing.JButton(Integer.toString((Integer) i));
             jButtonsNumber[i].addActionListener(bl);
@@ -140,7 +141,7 @@ public class View extends JFrame implements KeyListener {
     }
 
     /**
-     * Methode zur Uebergabe des neu hinzugefuegten Zeichens (aus dem ButtonListener) an den Controller.
+     * Methode zur Uebergabe des neu hinzugefuegten Zeichens (aus dem ProcessButtonInput) an den Controller.
      *
      * @param s Neues Zeichen
      */
@@ -217,9 +218,9 @@ public void addKeyListener1(KeyListener Kl)
         jButtonsRight = new JButton[textsRight.length];
         textsCursor = new String[]{"<-", "->"};
         jButtonsCursor = new JButton[textsCursor.length];
-        // Instanz der Beiklasse "ButtonListener", um auf Klicks zu reagieren
-        ButtonListener bl = new ButtonListener(this);
-        // Generierung der einzelnen Knoepfe: ueber jeder Knopf-Array iterieren und dabei Knoepfe mit Beschriftungen aus Texte-Array erstellen, ButtonListener uebergeben und Knoepfe ins Layout hinzufuegen
+        // Instanz der Beiklasse "ProcessButtonInput", um auf Klicks zu reagieren
+        ProcessButtonInput bl = new ProcessButtonInput(this);
+        // Generierung der einzelnen Knoepfe: ueber jeder Knopf-Array iterieren und dabei Knoepfe mit Beschriftungen aus Texte-Array erstellen, ProcessButtonInput uebergeben und Knoepfe ins Layout hinzufuegen
         for (int i = 0; i < jButtonsNumber.length; i++) {
             jButtonsNumber[i] = new javax.swing.JButton(Integer.toString((Integer) i));
             jButtonsNumber[i].addActionListener(bl);
@@ -349,6 +350,24 @@ public void addKeyListener1(KeyListener Kl)
     }
 
     /**
+     * Getter-Methode für JButton[] jButtonsCursor
+     *
+     * @return JButton[] jButtonsCursor
+     */
+    protected JButton[] GetJButtonsCursor() {
+        return jButtonsCursor;
+    }
+
+    /**
+     * Getter-Methode für String[] textsCursor
+     *
+     * @return String[] textsCursor
+     */
+    protected String[] GetTextsCursor() {
+        return textsCursor;
+    }
+
+    /**
      * Methode zur Setzung der Referenzen auf Model und Controller in Main
      *
      * @param m Model-Instanz
@@ -358,21 +377,21 @@ public void addKeyListener1(KeyListener Kl)
         model = m;
         controller = c;
     }
-    @Override
+    /* @Override
     public void keyPressed(KeyEvent e) {
         //Prüfung, ob Shifttaste gedrückt...
         if (e.getKeyCode() == KeyEvent.VK_SHIFT) {
-            ShifttasteGedrückt = true;
-        } else if (ShifttasteGedrückt == true && e.getKeyCode() == KeyEvent.VK_7) {
+            shifttasteGedrueckt = true;
+        } else if (shifttasteGedrueckt == true && e.getKeyCode() == KeyEvent.VK_7) {
             Update("/");
             UpdateView();
-        }else if (ShifttasteGedrückt == true && e.getKeyCode() == KeyEvent.VK_8) {
+        }else if (shifttasteGedrueckt == true && e.getKeyCode() == KeyEvent.VK_8) {
             this.Update("(");
             this.UpdateView();
-        } else if (ShifttasteGedrückt == true && e.getKeyCode() == KeyEvent.VK_9) {
+        } else if (shifttasteGedrueckt == true && e.getKeyCode() == KeyEvent.VK_9) {
             this.Update(")");
             this.UpdateView();
-        }else if (ShifttasteGedrückt && e.getKeyCode() == KeyEvent.VK_PLUS) {
+        }else if (shifttasteGedrueckt && e.getKeyCode() == KeyEvent.VK_PLUS) {
             this.Update("*");
             this.UpdateView();
         } else if (e.getKeyCode() == KeyEvent.VK_PLUS) {
@@ -381,7 +400,7 @@ public void addKeyListener1(KeyListener Kl)
         } else if (e.getKeyCode() == KeyEvent.VK_MINUS) {
             this.Update("-");
             this.UpdateView();
-        } else if (ShifttasteGedrückt && e.getKeyCode() == KeyEvent.VK_0) {
+        } else if (shifttasteGedrueckt && e.getKeyCode() == KeyEvent.VK_0) {
             this.Update("=");
             this.UpdateView();
         }else if (e.getKeyCode() == KeyEvent.VK_0 || e.getKeyCode() == KeyEvent.VK_NUMPAD0) {
@@ -460,10 +479,11 @@ public void addKeyListener1(KeyListener Kl)
     @Override
     public void keyReleased(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_SHIFT) {
-            ShifttasteGedrückt = false;
+            shifttasteGedrueckt = false;
         }
 
     }
+    */
 }
 
 

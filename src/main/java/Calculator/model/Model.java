@@ -15,7 +15,7 @@ public class Model {
     // String mit Rechenausdruck
     private String expression;
     // String mit Latex-Ausdruck
-    private String latexString;
+    private String latex;
     // Liste mit durch Eingaben eingefügten Elementen (des Ausdrucks)
     private static LinkedList<String> expressionsElementsList;
     // Liste mit durch Eingaben eingefügten Elementen in Latex-Form
@@ -24,16 +24,21 @@ public class Model {
     private double ans;
     // Latex-Ausdruck in Bildform zur Darstellung
     private Image latexImage;
+    private int cursorPosition;
+    private String cursorSymbolLatex;
+    private CalculatorState state;
 
     public Model() {
         // Beide Strings als leer initialisieren
         expression = "";
-        latexString = "";
+        latex = "";
         // Listen initialisieren
         expressionsElementsList = new LinkedList<>();
         latexElementsList = new LinkedList<>();
         // Letzte Antwort als 0 initialisieren
         ans = 0;
+        cursorSymbolLatex = "|";
+        CursorBack();
     }
 
     /**
@@ -41,16 +46,16 @@ public class Model {
      * @param extension Zu erweiternder Ausdruck
      */
     public void ExtendExpression(String extension) {
-        expressionsElementsList.add(extension);
-        expression += extension;
+        expressionsElementsList.add(cursorPosition, extension);
+        expression = GenerateNewExpression();
     }
 
     /**
      * Methode zur Verkürzung des Ausdrucks-Strings: letztes Element wird aus der Liste entfernt und mithilfe der Liste der String neu generiert.
      */
     public void ShortenExpression() {
-        if(expressionsElementsList.size() != 0) {
-            expressionsElementsList.removeLast();
+        if(expressionsElementsList.size() > 0) {
+            expressionsElementsList.remove(cursorPosition-1);
             expression = GenerateNewExpression();
         }
     }
@@ -68,26 +73,39 @@ public class Model {
      * @param extension Zu erweiternder Ausdruck
      */
     public void ExtendLatex(String extension) {
-        latexElementsList.add(extension);
-        latexString += extension;
+        latexElementsList.add(cursorPosition, extension);
+        cursorPosition += 1;
+        latex = GenerateNewLatex();
     }
 
     /**
      * Methode zur Verkürzung des Ausdrucks-Strings: letztes Element wird aus der Liste entfernt und mithilfe der Liste der String neu generiert.
      */
     public void ShortenLatex() {
-        if(latexElementsList.size() != 0) {
-            latexElementsList.removeLast();
-            latexString = GenerateNewLatex();
+        if(latexElementsList.size() > 1) {
+            latexElementsList.remove(cursorPosition-1);
+            cursorPosition -= 1;
+            latex = GenerateNewLatex();
         }
     }
 
     /**
-     * Methode zur Leerung des Latex-Strings und seiner Liste.
+     * Methode zur Leerung des Latex-Strings und seiner Liste, wobei der Cursor an dne Zeilenanfang zurueckkehrt.
      */
     public void ClearLatex() {
-        latexString = "";
+        latex = "";
         latexElementsList.clear();
+        CursorBack();
+    }
+
+    /**
+     * Methode zur Leerung des Latex-Strings und seiner Liste ohne Cursor zur Ergebnisanzeige.
+     */
+    public void ClearLatexSolution() {
+        latex = "";
+        latexElementsList.clear();
+        // Um Ergebnis an erster Stelle einzufuegen, muss die Einfuegeposition zurueckgesetzt werden
+        cursorPosition = 0;
     }
 
     /**
@@ -105,7 +123,7 @@ public class Model {
     public void SetAnswer(double gottenAnswer) {
         // Strings leeren
         ClearExpression();
-        ClearLatex();
+        ClearLatexSolution();
         // Antwort speichern
         ans = gottenAnswer;
         // Antwort zu Strings hinzufuegen
@@ -134,7 +152,7 @@ public class Model {
      * @return String mit Latex-Ausdruck
      */
     public String GetLatexExpression() {
-        return latexString;
+        return latex;
     }
 
     /**
@@ -162,6 +180,56 @@ public class Model {
     }
 
     /**
+     * Methode, um den Cursor um eine Position nach links zu verschieben.
+     */
+    public void CursorLeft()
+    {
+        if(cursorPosition > 0)
+        {
+            latexElementsList.remove(cursorPosition);
+            cursorPosition -= 1;
+            latexElementsList.add(cursorPosition, cursorSymbolLatex);
+            expression = GenerateNewExpression();
+            latex = GenerateNewLatex();
+        }
+    }
+
+    /**
+     * Methode, um den Cursor um eine Position nach rechts zu verschieben.
+     */
+    public void CursorRight() {
+        if (cursorPosition < latexElementsList.size() - 1) {
+            latexElementsList.remove(cursorPosition);
+            cursorPosition += 1;
+            latexElementsList.add(cursorPosition, cursorSymbolLatex);
+            latex = GenerateNewLatex();
+        }
+    }
+
+    /**
+     * Methode, um den Cursor wieder in den Ursprungszustand zu versetzen.
+     */
+    public void CursorBack() {
+        cursorPosition = 0;
+        latexElementsList.add(cursorSymbolLatex);
+        latex = GenerateNewLatex();
+    }
+
+    /**
+     * Methode, um den Zustand des Taschenrechners zu erhalten.
+     */
+    public CalculatorState GetState() {
+        return state;
+    }
+
+    /**
+     * Methode, um den Zustand des Taschenrechners zu setzen.
+     */
+    public void SetState(CalculatorState newState) {
+        state = newState;
+    }
+
+    /**
      * Methode zur Setzung der Referenzen auf View und Controller in Main.
      * @param v View-Instanz
      * @param c Controller-Instanz
@@ -170,5 +238,7 @@ public class Model {
         view = v;
         controller = c;
     }
-    public static int ListSize(){return expressionsElementsList.size();}
+    public static int ListSize() {
+        return expressionsElementsList.size();
+    }
 }
