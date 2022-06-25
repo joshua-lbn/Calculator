@@ -3,6 +3,8 @@ package Calculator.controller;
 import Calculator.model.Model;
 import Calculator.view.View;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 /**
  * Controller-Klasse mit Programmierlogik.
  */
@@ -13,6 +15,7 @@ public class Controller {
     private Parser parser;
 
     private CalculatorState state;
+    boolean ShifttasteGedrückt;
 
     /**
      * Konstruktor: Latex-Renderer und Parser initialisieren sowie den State setzen.
@@ -21,6 +24,8 @@ public class Controller {
         latexRenderer = new LatexRenderer();
         parser = new Parser();
         state = CalculatorState.CALCULATION;
+        //panelLevel.setFocusable(true);
+
     }
 
     /**
@@ -123,5 +128,7 @@ public class Controller {
     public void UpdateLinks(Model m, View v) {
         model = m;
         view = v;
+        //view.addKeyListener1(this);
     }
 }
+
