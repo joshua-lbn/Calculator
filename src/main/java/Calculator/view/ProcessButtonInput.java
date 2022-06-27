@@ -19,6 +19,8 @@ public class ProcessButtonInput implements java.awt.event.ActionListener {
     private String[] textsRight;
     private JButton[] jButtonsCursor;
     private String[] textsCursor;
+    private JButton[] jButtonMode;
+    private String[] textsMode;
 
     /**
      * Konstruktor, der die übergebene View-Instanz speichert und die lokalen Attribute aus der View ueber Getter erhaelt.
@@ -38,6 +40,8 @@ public class ProcessButtonInput implements java.awt.event.ActionListener {
         textsRight = view.GetTextsRight();
         jButtonsCursor = view.GetJButtonsCursor();
         textsCursor = view.GetTextsCursor();
+        jButtonMode = view.GetJButtonMode();
+        textsMode = view.GetTextsMode();
     }
 
     /**
@@ -85,6 +89,12 @@ public class ProcessButtonInput implements java.awt.event.ActionListener {
             if (e.getSource() == jButtonsCursor[i]) {
                 view.Update(textsCursor[i]);
                 view.UpdateView();
+                return;
+            }
+        }
+        for (int i = 0; i < jButtonMode.length; i++) {
+            if (e.getSource() == jButtonMode[i]) {
+                view.SwitchMode();
                 return;
             }
         }

@@ -26,19 +26,22 @@ public class View extends JFrame {
     private javax.swing.JLabel[] test;
 
     private javax.swing.JPanel test3 = new javax.swing.JPanel();
-
+    //private javax.swing.JButton mode1 = new javax.swing.JButton();
     // Arrays mit Knoepfen
     private javax.swing.JButton[] jButtonsNumber;
     private javax.swing.JButton[] jButtonsLeft;
     private javax.swing.JButton[] jButtonsMiddle;
     private javax.swing.JButton[] jButtonsRight;
     private javax.swing.JButton[] jButtonsCursor;
+    private javax.swing.JButton[] jButtonMode;
     // Arrays mit Beschriftungen der Knoepfe
     private String[] textsLeft;
     private String[] textsMiddle;
     private String[] textsRight;
     private String[] textsCursor;
+    private String[] textsMode;
     private ProcessKeyInput processKeyInput;
+    private Mode mode;
 
     //-----------------------------
     private javax.swing.JMenuItem kegel = new javax.swing.JMenuItem();
@@ -68,7 +71,7 @@ public class View extends JFrame {
         spacer1.add(label);
         jPanel1.setLayout(new java.awt.GridLayout(1, 3));
         spacer1.add(jPanel1);
-        jPanel2.setLayout(new java.awt.GridLayout(4, 2));
+        jPanel2.setLayout(new java.awt.GridLayout(3, 3));
         jPanel1.add(jPanel2);
         jPanel3.setLayout(new java.awt.GridLayout(4, 3));
         jPanel1.add(jPanel3);
@@ -84,6 +87,10 @@ public class View extends JFrame {
         jButtonsRight = new JButton[textsRight.length];
         textsCursor = new String[]{"<-", "->"};
         jButtonsCursor = new JButton[textsCursor.length];
+        textsMode = new String[]{"L"};
+        jButtonMode = new JButton[textsMode.length];
+        mode = mode.LIGHTMODE;
+
         // Instanz der Beiklasse "ProcessButtonInput", um auf Klicks zu reagieren
         ProcessButtonInput bl = new ProcessButtonInput(this);
         // Generierung der einzelnen Knoepfe: ueber jeder Knopf-Array iterieren und dabei Knoepfe mit Beschriftungen aus Texte-Array erstellen, ProcessButtonInput uebergeben und Knoepfe ins Layout hinzufuegen
@@ -111,6 +118,11 @@ public class View extends JFrame {
             jButtonsCursor[i] = new javax.swing.JButton("" + textsCursor[i] + "");
             jButtonsCursor[i].addActionListener(bl);
             jPanel2.add(jButtonsCursor[i]);
+        }
+        for (int i = 0; i < jButtonMode.length; i++) {
+            jButtonMode[i] = new javax.swing.JButton("" + textsMode[i] + "");
+            jButtonMode[i].addActionListener(bl);
+            jPanel2.add(jButtonMode[i]);
         }
         //-----------------------------
 
@@ -202,7 +214,7 @@ public void addKeyListener1(KeyListener Kl)
         //------------------------------------------------
         jPanel1.setLayout(new java.awt.GridLayout(1, 3));
         spacer1.add(jPanel1);
-        jPanel2.setLayout(new java.awt.GridLayout(4, 2));
+        jPanel2.setLayout(new java.awt.GridLayout(3, 3));
         jPanel1.add(jPanel2);
         jPanel3.setLayout(new java.awt.GridLayout(4, 3));
         jPanel1.add(jPanel3);
@@ -218,6 +230,8 @@ public void addKeyListener1(KeyListener Kl)
         jButtonsRight = new JButton[textsRight.length];
         textsCursor = new String[]{"<-", "->"};
         jButtonsCursor = new JButton[textsCursor.length];
+        textsMode = new String[]{"L"};
+        jButtonMode = new JButton[textsMode.length];
         // Instanz der Beiklasse "ProcessButtonInput", um auf Klicks zu reagieren
         ProcessButtonInput bl = new ProcessButtonInput(this);
         // Generierung der einzelnen Knoepfe: ueber jeder Knopf-Array iterieren und dabei Knoepfe mit Beschriftungen aus Texte-Array erstellen, ProcessButtonInput uebergeben und Knoepfe ins Layout hinzufuegen
@@ -246,7 +260,11 @@ public void addKeyListener1(KeyListener Kl)
             jButtonsCursor[i].addActionListener(bl);
             jPanel2.add(jButtonsCursor[i]);
         }
-
+        for (int i = 0; i < jButtonMode.length; i++) {
+            jButtonMode[i] = new javax.swing.JButton("" + textsMode[i] + "");
+            jButtonMode[i].addActionListener(bl);
+            jPanel2.add(jButtonMode[i]);
+        }
         //-----------------------------
 
         bar = new javax.swing.JMenuBar();
@@ -270,6 +288,81 @@ public void addKeyListener1(KeyListener Kl)
         this.getContentPane().add(spacer1);
         this.getRootPane().setJMenuBar(bar);
         // Fenster als dynamisch skalierbar definieren
+        if (mode == mode.LIGHTMODE) {
+            for (int i = 0; i < jButtonsNumber.length; i++) {
+                jButtonsNumber[i].setBackground(Color.white);
+                jButtonsNumber[i].setForeground(Color.black);
+            }
+            for (int i = 0; i < jButtonsLeft.length; i++) {
+                jButtonsLeft[i].setBackground(Color.white);
+                jButtonsLeft[i].setForeground(Color.black);
+            }
+            for (int i = 0; i < jButtonsMiddle.length; i++) {
+                jButtonsMiddle[i].setBackground(Color.white);
+                jButtonsMiddle[i].setForeground(Color.black);
+            }
+            for (int i = 0; i < jButtonsRight.length; i++) {
+                jButtonsRight[i].setBackground(Color.white);
+                jButtonsRight[i].setForeground(Color.black);
+            }
+            for (int i = 0; i < jButtonsCursor.length; i++) {
+                jButtonsCursor[i].setBackground(Color.white);
+                jButtonsCursor[i].setForeground(Color.black);
+            }
+            for (int i = 0; i < jButtonMode.length; i++) {
+                jButtonMode[i].setBackground(Color.white);
+                jButtonMode[i].setForeground(Color.black);
+            }
+            spacer1.setBackground(Color.white);
+            bar.setBackground(Color.white);
+            volumen.setForeground(Color.black);
+            kegel.setForeground(Color.black);
+            rechner.setForeground(Color.black);
+            zahlensystem.setForeground(Color.black);
+            jPanel1.setBackground(Color.white);
+            jPanel2.setBackground(Color.white);
+            jPanel3.setBackground(Color.white);
+            jPanel4.setBackground(Color.white);
+            jButtonMode[0].setText("L");
+
+        }
+        else {
+            for (int i = 0; i < jButtonsNumber.length; i++) {
+                jButtonsNumber[i].setBackground(Color.black);
+                jButtonsNumber[i].setForeground(Color.white);
+            }
+            for (int i = 0; i < jButtonsLeft.length; i++) {
+                jButtonsLeft[i].setBackground(Color.black);
+                jButtonsLeft[i].setForeground(Color.white);
+            }
+            for (int i = 0; i < jButtonsMiddle.length; i++) {
+                jButtonsMiddle[i].setBackground(Color.black);
+                jButtonsMiddle[i].setForeground(Color.white);
+            }
+            for (int i = 0; i < jButtonsRight.length; i++) {
+                jButtonsRight[i].setBackground(Color.black);
+                jButtonsRight[i].setForeground(Color.white);
+            }
+            for (int i = 0; i < jButtonsCursor.length; i++) {
+                jButtonsCursor[i].setBackground(Color.black);
+                jButtonsCursor[i].setForeground(Color.white);
+            }
+            for (int i = 0; i < jButtonMode.length; i++) {
+                jButtonMode[i].setBackground(Color.black);
+                jButtonMode[i].setForeground(Color.white);
+            }
+            spacer1.setBackground(Color.black);
+            bar.setBackground(Color.black);
+            volumen.setForeground(Color.white);
+            kegel.setForeground(Color.white);
+            rechner.setForeground(Color.white);
+            zahlensystem.setForeground(Color.white);
+            jPanel1.setBackground(Color.black);
+            jPanel2.setBackground(Color.black);
+            jPanel3.setBackground(Color.black);
+            jPanel4.setBackground(Color.black);
+            jButtonMode[0].setText("D");
+        }
         pack();
         // Fenster sichtbar setzen
         setVisible(true);
@@ -365,6 +458,94 @@ public void addKeyListener1(KeyListener Kl)
      */
     protected String[] GetTextsCursor() {
         return textsCursor;
+    }
+
+    protected JButton[] GetJButtonMode() {
+        return jButtonMode;
+    }
+
+    protected String[] GetTextsMode() {
+        return textsMode;
+    }
+
+    protected void SwitchMode() {
+        if (mode == mode.DARKMODE) {
+            mode = mode.LIGHTMODE;
+            for (int i = 0; i < jButtonsNumber.length; i++) {
+                jButtonsNumber[i].setBackground(Color.white);
+                jButtonsNumber[i].setForeground(Color.black);
+            }
+            for (int i = 0; i < jButtonsLeft.length; i++) {
+                jButtonsLeft[i].setBackground(Color.white);
+                jButtonsLeft[i].setForeground(Color.black);
+            }
+            for (int i = 0; i < jButtonsMiddle.length; i++) {
+                jButtonsMiddle[i].setBackground(Color.white);
+                jButtonsMiddle[i].setForeground(Color.black);
+            }
+            for (int i = 0; i < jButtonsRight.length; i++) {
+                jButtonsRight[i].setBackground(Color.white);
+                jButtonsRight[i].setForeground(Color.black);
+            }
+            for (int i = 0; i < jButtonsCursor.length; i++) {
+                jButtonsCursor[i].setBackground(Color.white);
+                jButtonsCursor[i].setForeground(Color.black);
+            }
+            for (int i = 0; i < jButtonMode.length; i++) {
+                jButtonMode[i].setBackground(Color.white);
+                jButtonMode[i].setForeground(Color.black);
+            }
+            spacer1.setBackground(Color.white);
+            bar.setBackground(Color.white);
+            volumen.setForeground(Color.black);
+            kegel.setForeground(Color.black);
+            rechner.setForeground(Color.black);
+            zahlensystem.setForeground(Color.black);
+            jPanel1.setBackground(Color.white);
+            jPanel2.setBackground(Color.white);
+            jPanel3.setBackground(Color.white);
+            jPanel4.setBackground(Color.white);
+            jButtonMode[0].setText("L");
+
+        }
+        else {
+            mode = mode.DARKMODE;
+            for (int i = 0; i < jButtonsNumber.length; i++) {
+                jButtonsNumber[i].setBackground(Color.black);
+                jButtonsNumber[i].setForeground(Color.white);
+            }
+            for (int i = 0; i < jButtonsLeft.length; i++) {
+                jButtonsLeft[i].setBackground(Color.black);
+                jButtonsLeft[i].setForeground(Color.white);
+            }
+            for (int i = 0; i < jButtonsMiddle.length; i++) {
+                jButtonsMiddle[i].setBackground(Color.black);
+                jButtonsMiddle[i].setForeground(Color.white);
+            }
+            for (int i = 0; i < jButtonsRight.length; i++) {
+                jButtonsRight[i].setBackground(Color.black);
+                jButtonsRight[i].setForeground(Color.white);
+            }
+            for (int i = 0; i < jButtonsCursor.length; i++) {
+                jButtonsCursor[i].setBackground(Color.black);
+                jButtonsCursor[i].setForeground(Color.white);
+            }
+            for (int i = 0; i < jButtonMode.length; i++) {
+                jButtonMode[i].setBackground(Color.black);
+                jButtonMode[i].setForeground(Color.white);
+            }
+            spacer1.setBackground(Color.black);
+            bar.setBackground(Color.black);
+            volumen.setForeground(Color.white);
+            kegel.setForeground(Color.white);
+            rechner.setForeground(Color.white);
+            zahlensystem.setForeground(Color.white);
+            jPanel1.setBackground(Color.black);
+            jPanel2.setBackground(Color.black);
+            jPanel3.setBackground(Color.black);
+            jPanel4.setBackground(Color.black);
+            jButtonMode[0].setText("D");
+        }
     }
 
     /**
