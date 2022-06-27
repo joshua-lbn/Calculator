@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e01ba51-84bb-425d-83d7-45271fdd1757" name="Changes" comment="Cursor Darstellung">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/Mode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="6e01ba51-84bb-425d-83d7-45271fdd1757" name="Changes" comment="Mode">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/ProcessButtonInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/ProcessButtonInput.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/ProcessKeyInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/ProcessKeyInput.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/View.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -53,7 +51,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="29VfzMkRBzX21tK3VKBMMlEthK3" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -197,7 +195,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655747473360</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Mode">
+      <created>1656347031470</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1656347031470</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -232,6 +237,7 @@
     <MESSAGE value="Updates" />
     <MESSAGE value="update Funktion" />
     <MESSAGE value="CalculatorState" />
-    <option name="LAST_COMMIT_MESSAGE" value="CalculatorState" />
+    <MESSAGE value="Mode" />
+    <option name="LAST_COMMIT_MESSAGE" value="Mode" />
   </component>
 </project>
