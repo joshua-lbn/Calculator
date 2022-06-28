@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6e01ba51-84bb-425d-83d7-45271fdd1757" name="Changes" comment="Eingabe per Tastatur, bei Circumflex noch nicht stimmig, Grund unbekannt">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/ViewCalculator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/ViewNumeralSystem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/ProcessButtonInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/ProcessButtonInput.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/ProcessKeyInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/ProcessKeyInput.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/View.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

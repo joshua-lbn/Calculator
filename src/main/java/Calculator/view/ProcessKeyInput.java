@@ -2,8 +2,6 @@ package Calculator.view;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
-
 /**
  * ProcessKeyInput-Klasse zum Auswerten der Interaktionen mit der grafischen Oberflaeche ueber die Tastatur.
  * Programmtechnisch an die View-Klasse gegliedert.
@@ -15,14 +13,15 @@ public class ProcessKeyInput implements KeyListener {
         view = v;
     } //Methode in view nötig //in ProcessButtonInput
 
-    /* KeyPressed prueft die gedrückten Tasten, Aufruf beim Druecken einer Taste,
+    /** @keyPressed prueft die gedrückten Tasten, Aufruf beim Druecken einer Taste,
     * diese werden dann an die view weitergegeben und ausgegeben
      */
+
     public void keyPressed(KeyEvent e) {
-        if (e.isShiftDown() && e.getKeyCode() == KeyEvent.VK_7) {
+        if (e.isShiftDown() && (e.getKeyCode() == KeyEvent.VK_7 || e.getKeyCode() ==KeyEvent.VK_PERIOD)) {
             view.Update("/");
             view.UpdateView();
-        } else if (e.isShiftDown() && e.getKeyCode() == KeyEvent.VK_8) {
+        }else if (e.isShiftDown() && e.getKeyCode() == KeyEvent.VK_8) {
             view.Update("(");
             view.UpdateView();
         } else if (e.isShiftDown() && e.getKeyCode() == KeyEvent.VK_9) {
@@ -107,16 +106,18 @@ public class ProcessKeyInput implements KeyListener {
             view.Update("Ans");
             view.UpdateView();
         } else if(e.getKeyCode() == KeyEvent.VK_B) {
-            view.SetLightmode();
+            //view.SetLightmode();
         } else if(e.getKeyCode() == KeyEvent.VK_D) {
-            view.SetDarkmode();
+            //view.SetDarkmode();
         }
 
 
 
     }
     //nicht nötig
+    @Override
   public void keyReleased(KeyEvent e) {}
     //nicht nötig
+    @Override
     public void keyTyped(KeyEvent e) {}
 }
