@@ -4,16 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e01ba51-84bb-425d-83d7-45271fdd1757" name="Changes" comment="Lightmode &amp; Darkmode + KeyEvent für modes">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/Test1.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/Test1.java" afterDir="false" />
+    <list default="true" id="6e01ba51-84bb-425d-83d7-45271fdd1757" name="Changes" comment="Eingabe per Tastatur, bei Circumflex noch nicht stimmig, Grund unbekannt">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/controller/LatexRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/controller/LatexRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/ProcessButtonInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/ProcessButtonInput.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/ProcessKeyInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/ProcessKeyInput.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/controller/LatexRenderer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/model/Model.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/View.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/ViewCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/ViewCalculator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,19 +62,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW": "true",
-    "last_opened_file_path": "D:/InfoHefteinträge/Calculator",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/InfoHefteinträge/Calculator&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;
   }
-}]]></component>
-  <component name="RunManager" selected="Application.Test1">
+}</component>
+  <component name="RunManager" selected="Application.Calculator.Main">
     <configuration name="CalculatorGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="CalculatorGUI" />
       <module name="Calculator" />
@@ -126,8 +123,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Test1" />
         <item itemvalue="Application.Calculator.Main" />
+        <item itemvalue="Application.Test1" />
         <item itemvalue="Application.Calculator.model.Model" />
         <item itemvalue="Application.CalculatorGUI" />
       </list>

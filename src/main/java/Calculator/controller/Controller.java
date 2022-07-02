@@ -10,18 +10,13 @@ import Calculator.view.View;
 public class Controller {
     private Model model;
     private View view;
-    private LatexRenderer latexRenderer;
     private Parser parser;
 
-    boolean ShifttasteGedrückt;
-
     /**
-     * Konstruktor: Latex-Renderer und Parser initialisieren sowie den State setzen.
+     * Konstruktor: Parser initialisieren.
      */
     public Controller() {
-        latexRenderer = new LatexRenderer();
         parser = new Parser();
-        //panelLevel.setFocusable(true);
     }
 
     /**
@@ -31,7 +26,7 @@ public class Controller {
      */
     public void Update(String input) {
         /*
-         * Wenn eine Berechnung fertig ist (somit der Taschenrechner im Loesungsanzeige-Zustand ist) und eine
+         * Wenn eine Berechnung fertig ist (somit ist Taschenrechner im Loesungsanzeige-Zustand) und eine
          * neue Berechnung angefangen wird, soll die alte Berechnung gelöscht werden
          *
          */
@@ -43,68 +38,87 @@ public class Controller {
             else {
                 // Beide Eingabestrings loeschen
                 model.ClearExpression();
-                model.ClearLatex();
+                model.ClearHTML();
                 // Zustand auf Berechnung setzen
                 model.SetState(CalculatorState.CALCULATION);
             }
         }
-        // Zahleneingabe und Grundoperatoren: einfach einfuegen
-        if(input.matches("[0123456789+\\-*/]")) {
+        // Zahleneingabe, Kommas und Trigonometrie: in beide einfach einfuegen
+        if(input.matches("[0123456789()]") || input.equals("sin(") || input.equals("cos(") || input.equals("tan(")) {
             model.ExtendExpression(input);
-            model.ExtendLatex(input);
+            model.ExtendHTML(input);
         }
-        // Klammern: in Expression einfach einfuegen, in Latex mit geschweiften Klammern umrunden
-        else if(input.equals("(")) {
+        // Grundoperatoren: in Expression einfach einfuegen, in HTML mit Sonderzeichen
+        else if(input.equals("+"))
+        {
             model.ExtendExpression(input);
-            model.ExtendLatex("{(");
+            model.ExtendHTML("&#43;");
         }
-        else if(input.equals(")")) {
+        else if(input.equals("-"))
+        {
             model.ExtendExpression(input);
-            model.ExtendLatex(")}");
+            model.ExtendHTML("&#8722;");
         }
-        // Komma: Expression und Latex mit Punkt
+        else if(input.equals("*"))
+        {
+            model.ExtendExpression(input);
+            model.ExtendHTML("&#215;");
+        }
+        else if(input.equals("/"))
+        {
+            model.ExtendExpression(input);
+            model.ExtendHTML("&#247;");
+        }
+        // Komma: Expression mit Punkt und HTML mit Komma
         else if (input.equals(",")) {
             model.ExtendExpression(".");
-            model.ExtendLatex(".");
+            model.ExtendHTML(",");
         }
-        // Exponent: nur "Hoch"-Zeichen einfuegen
+        /* Exponent: Exponent in Klammern in Expression einfuegen; in HTML erst erkennen, ob nun geoeffnet oder
+         * geschlossen, dann einfuegen der entsprechenden Zeichens und Aendern des Modus
+         */
         else if (input.equals("x^")) {
-            model.ExtendExpression("^");
-            model.ExtendLatex("^");
+            if(model.GetExponentMode())
+            {
+                model.ExtendExpression(")");
+                model.ExtendHTML("</sup>");
+                model.ChangeExponentMode();
+            }
+            else if(!model.GetExponentMode())
+            {
+                model.ExtendExpression("^(");
+                model.ExtendHTML("<sup>");
+                model.ChangeExponentMode();
+            }
         }
-        // Trigonometrie: Expression einfach einfuegen, in Latex als Kommando einfuegen
-        else if (input.equals("sin(") || input.equals("cos(") || input.equals("tan(")) {
-            model.ExtendExpression(input);
-            model.ExtendLatex("\\" + input.substring(0,3) + "{(");
-        }
-        // Logarithmus: Expression einfach einfuegen, in Latex Sonderkommando
+        // Logarithmus: Expression einfach einfuegen, in HTML Sonderkommando
         else if (input.equals("lg(")) {
             model.ExtendExpression(input);
-            model.ExtendLatex("\\log_{10}{(");
+            model.ExtendHTML("log<sub>10</sub>(");
         }
         // Ist-Gleich: Berechnung anstossen
         else if (input.equals("=")) {
-            // Parser berechnet aktuellen Ausdruck im Model und Setter leert expression sowie latexString und fügt Ergebnis ein
+            // Parser berechnet aktuellen Ausdruck im Model und Setter leert expression sowie HTML-String und fügt Ergebnis ein
             model.SetAnswer(parser.Calculate(model.GetExpression()));
             // Anzeige aktualisieren
-            UpdateView();
+            view.UpdateView();
             // Zustand auf Loesungsanzeige setzen
             model.SetState(CalculatorState.SOLUTION);
         }
-        // Ans: in Expression und Latex Dezimalwert aus Antwortspeicher einfuegen
+        // Ans: in beide Strings Dezimalwert aus Antwortspeicher einfuegen
         else if (input.equals("Ans")) {
             model.ExtendExpression(model.GetAnswer());
-            model.ExtendLatex(model.GetAnswer());
+            model.ExtendHTML(model.GetAnswer());
         }
         // Einfachkorrektur: in beiden Strings das zuletzt eingefuegte Element entfernen
         else if (input.equals("DEL")) {
             model.ShortenExpression();
-            model.ShortenLatex();
+            model.ShortenHTML();
         }
         // Komplettloeschung: beide Strings komplett leeren und Cursor zuruecksetzen
         else if (input.equals("AC")) {
             model.ClearExpression();
-            model.ClearLatex();
+            model.ClearHTML();
         }
         // Cursortasten: Aenderungen im Model anstossen
         else if (input.equals("<-")) {
@@ -116,35 +130,17 @@ public class Controller {
     }
 
     /**
-     * Methode zur Generierung des Bildes anhand des Latex-Strings.
-     * @param latexString Latex-String zur Generierung
-     */
-    public void GenerateLatexView(String latexString) {
-        // Speicherung der Antwort, die der LatexRenderer gibt, im Model
-        model.SetImage(latexRenderer.RenderLatex(latexString));
-    }
-
-    /**
-     * Methode zum Aktualisieren des Latex-Bildes i, View.
-     */
-    public void UpdateView() {
-        // Latex-Bild anhand der Liste im Model generieren
-        GenerateLatexView(model.GetLatexExpression());
-        // Latex-Bild aus Model, da in GenerateLatexView() dort gespeichert, an View weitergeben
-        view.UpdateTest(model.ListSize()/8);
-        view.UpdateIconView(model.GetImage());
-    }
-
-    /**
      * Methode zur Setzung der Referenzen auf Model und View in Main.
+     * Auch Ausfuehrung von Code, welcher im Konstruktur waere, jedoch die Links zu den anderen Klassen benoetigt.
      * @param m Model-Instanz
      * @param v View-Instanz
      */
     public void UpdateLinks(Model m, View v) {
         model = m;
         view = v;
+        // Fortgefuehrter Konstruktor
         model.SetState(CalculatorState.CALCULATION);
-        //view.addKeyListener1(this);
+        view.UpdateView();
     }
 }
 

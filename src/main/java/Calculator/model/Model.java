@@ -3,7 +3,6 @@ package Calculator.model;
 import Calculator.controller.Controller;
 import Calculator.view.View;
 
-import java.awt.Image;
 import java.util.LinkedList;
 
 /**
@@ -14,31 +13,32 @@ public class Model {
     private Controller controller;
     // String mit Rechenausdruck
     private String expression;
-    // String mit Latex-Ausdruck
-    private String latex;
+    // String mit HTML-Ausdruck
+    private String html;
     // Liste mit durch Eingaben eingefügten Elementen (des Ausdrucks)
-    private static LinkedList<String> expressionsElementsList;
-    // Liste mit durch Eingaben eingefügten Elementen in Latex-Form
-    private LinkedList<String> latexElementsList;
+    private LinkedList<String> expressionsElementsList;
+    // Liste mit durch Eingaben eingefügten Elementen in HTML-Form
+    private LinkedList<String> htmlElementsList;
     // Antwort der letzten Rechnung (s. Ans-Taste)
     private double ans;
-    // Latex-Ausdruck in Bildform zur Darstellung
-    private Image latexImage;
+    // HTML-Ausdruck in Bildform zur Darstellung
     private int cursorPosition;
-    private String cursorSymbolLatex;
+    private String cursorSymbolHTML;
     private CalculatorState state;
+    private boolean exponentMode;
 
     public Model() {
         // Beide Strings als leer initialisieren
         expression = "";
-        latex = "";
+        html = "";
         // Listen initialisieren
         expressionsElementsList = new LinkedList<>();
-        latexElementsList = new LinkedList<>();
+        htmlElementsList = new LinkedList<>();
         // Letzte Antwort als 0 initialisieren
         ans = 0;
-        cursorSymbolLatex = "|";
+        cursorSymbolHTML = "&#10073;";
         CursorBack();
+        exponentMode = false;
     }
 
     /**
@@ -46,8 +46,11 @@ public class Model {
      * @param extension Zu erweiternder Ausdruck
      */
     public void ExtendExpression(String extension) {
-        expressionsElementsList.add(cursorPosition, extension);
-        expression = GenerateNewExpression();
+        if(expressionsElementsList.size() < 101)
+        {
+            expressionsElementsList.add(cursorPosition, extension);
+            expression = GenerateNewExpression();
+        }
     }
 
     /**
@@ -69,41 +72,41 @@ public class Model {
     }
 
     /**
-     * Methode zur Erweiterung des Latex-Strings: Element wird in Liste eingefuegt und anschliessend der String erweitert.
+     * Methode zur Erweiterung des HTML-Strings: Element wird in Liste eingefuegt und anschliessend der String erweitert.
      * @param extension Zu erweiternder Ausdruck
      */
-    public void ExtendLatex(String extension) {
-        latexElementsList.add(cursorPosition, extension);
+    public void ExtendHTML(String extension) {
+        htmlElementsList.add(cursorPosition, extension);
         cursorPosition += 1;
-        latex = GenerateNewLatex();
+        html = GenerateNewHTML();
     }
 
     /**
      * Methode zur Verkürzung des Ausdrucks-Strings: letztes Element wird aus der Liste entfernt und mithilfe der Liste der String neu generiert.
      */
-    public void ShortenLatex() {
-        if(latexElementsList.size() > 1) {
-            latexElementsList.remove(cursorPosition-1);
+    public void ShortenHTML() {
+        if(htmlElementsList.size() > 1) {
+            htmlElementsList.remove(cursorPosition-1);
             cursorPosition -= 1;
-            latex = GenerateNewLatex();
+            html = GenerateNewHTML();
         }
     }
 
     /**
-     * Methode zur Leerung des Latex-Strings und seiner Liste, wobei der Cursor an dne Zeilenanfang zurueckkehrt.
+     * Methode zur Leerung des HTML-Strings und seiner Liste, wobei der Cursor an dne Zeilenanfang zurueckkehrt.
      */
-    public void ClearLatex() {
-        latex = "";
-        latexElementsList.clear();
+    public void ClearHTML() {
+        html = "";
+        htmlElementsList.clear();
         CursorBack();
     }
 
     /**
-     * Methode zur Leerung des Latex-Strings und seiner Liste ohne Cursor zur Ergebnisanzeige.
+     * Methode zur Leerung des HTML-Strings und seiner Liste ohne Cursor zur Ergebnisanzeige.
      */
-    public void ClearLatexSolution() {
-        latex = "";
-        latexElementsList.clear();
+    public void ClearHTMLSolution() {
+        html = "";
+        htmlElementsList.clear();
         // Um Ergebnis an erster Stelle einzufuegen, muss die Einfuegeposition zurueckgesetzt werden
         cursorPosition = 0;
     }
@@ -123,36 +126,39 @@ public class Model {
     public void SetAnswer(double gottenAnswer) {
         // Strings leeren
         ClearExpression();
-        ClearLatexSolution();
+        ClearHTMLSolution();
         // Antwort speichern
         ans = gottenAnswer;
         // Antwort zu Strings hinzufuegen
         ExtendExpression(Double.toString(ans));
-        ExtendLatex(Double.toString(ans));
+        ExtendHTML(Double.toString(ans));
     }
 
     /**
-     * Getter für die Image-Variable, welche den Latex-String in Bildform enthält.
-     * @return Latex-Bild
+     * Getter für die HTML-String-Variable, die den HTML-Ausdruck in Textform enthält.
+     * Dabei werden die umschliessenden <HTML>-Tags mit eingefuegt.
+     * @return String mit HTML-Ausdruck
      */
-    public Image GetImage() {
-        return latexImage;
+    public String GetHTMLExpression() {
+        return "<html><pre style=\"font-family: Consolas; font-size: " + CalculateSize() + "px\">" + html + "</pre></html>";
     }
 
     /**
-     * Setter für die Image-Variable, welche den Latex-String in Bildform enthält.
-     * @param i Zu speicherndes Bild
+     * Methode, um die aktuelle Schriftgroesse in Abhaengigkeit von der Fenstergroeße zu berechnen.
+     * @return Neue Schriftgroesse
      */
-    public void SetImage(Image i) {
-        latexImage = i;
+    public int CalculateSize()
+    {
+        return Math.round(35 * view.GetWindowHeight() / 300);
     }
 
     /**
-     * Getter für die LatexString-Variable, die den Latex-Ausdruck in Textform enthält.
-     * @return String mit Latex-Ausdruck
+     * Methode, um die Laenge der HTML-Liste zu erhalten.
+     * @return Laenge der Liste
      */
-    public String GetLatexExpression() {
-        return latex;
+    public int GetHTMLElementsListSize()
+    {
+        return htmlElementsList.size();
     }
 
     /**
@@ -172,11 +178,11 @@ public class Model {
     }
 
     /**
-     * Methode zur Generierung des Latex-Strings aus der Liste.
+     * Methode zur Generierung des HTML-Strings aus der Liste.
      * @return Generierte Expression
      */
-    public String GenerateNewLatex() {
-        return latexElementsList.stream().reduce("", (a, b) -> a + b);
+    public String GenerateNewHTML() {
+        return htmlElementsList.stream().reduce("", (a, b) -> a + b);
     }
 
     /**
@@ -186,11 +192,11 @@ public class Model {
     {
         if(cursorPosition > 0)
         {
-            latexElementsList.remove(cursorPosition);
+            htmlElementsList.remove(cursorPosition);
             cursorPosition -= 1;
-            latexElementsList.add(cursorPosition, cursorSymbolLatex);
+            htmlElementsList.add(cursorPosition, cursorSymbolHTML);
             expression = GenerateNewExpression();
-            latex = GenerateNewLatex();
+            html = GenerateNewHTML();
         }
     }
 
@@ -198,11 +204,11 @@ public class Model {
      * Methode, um den Cursor um eine Position nach rechts zu verschieben.
      */
     public void CursorRight() {
-        if (cursorPosition < latexElementsList.size() - 1) {
-            latexElementsList.remove(cursorPosition);
+        if (cursorPosition < htmlElementsList.size() - 1) {
+            htmlElementsList.remove(cursorPosition);
             cursorPosition += 1;
-            latexElementsList.add(cursorPosition, cursorSymbolLatex);
-            latex = GenerateNewLatex();
+            htmlElementsList.add(cursorPosition, cursorSymbolHTML);
+            html = GenerateNewHTML();
         }
     }
 
@@ -211,8 +217,17 @@ public class Model {
      */
     public void CursorBack() {
         cursorPosition = 0;
-        latexElementsList.add(cursorSymbolLatex);
-        latex = GenerateNewLatex();
+        htmlElementsList.add(cursorSymbolHTML);
+        html = GenerateNewHTML();
+    }
+
+    /**
+     * Methode, um die Position des Cursors in der Liste zu erhalten.
+     * @return Position als int
+     */
+    public int GetCursorPosition()
+    {
+        return cursorPosition;
     }
 
     /**
@@ -230,6 +245,25 @@ public class Model {
     }
 
     /**
+     * Methode, um den Exponentenmodus zu erhalten.
+     * Genutzt im Controller, um zu erkennen, ob nun <sup> oder </sup> verwendet werden sollte, d.h. ob nun der
+     * Exponent "geoeffnet" oder "geschlossen" wird.
+     */
+    public boolean GetExponentMode()
+    {
+        return exponentMode;
+    }
+
+    /**
+     * Methode, um den Exponentenmodus zu aendern.
+     * Genutzt im Controller, um den Modus umzuschalten.
+     */
+    public void ChangeExponentMode()
+    {
+        exponentMode = !exponentMode;
+    }
+
+    /**
      * Methode zur Setzung der Referenzen auf View und Controller in Main.
      * @param v View-Instanz
      * @param c Controller-Instanz
@@ -237,8 +271,5 @@ public class Model {
     public void UpdateLinks(View v, Controller c) {
         view = v;
         controller = c;
-    }
-    public static int ListSize() {
-        return expressionsElementsList.size();
     }
 }

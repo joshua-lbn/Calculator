@@ -5,8 +5,8 @@ import Calculator.model.Model;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 
 /**
  * View-Klasse mit grafischer Benutzeroberflaeche.
@@ -21,10 +21,8 @@ public class View extends JFrame {
     private javax.swing.JPanel jPanel3 = new javax.swing.JPanel();
     private javax.swing.JPanel jPanel4 = new javax.swing.JPanel();
     // Label mit Ausgabe bzw. Anzeige des Ausdruckes
-    private javax.swing.JLabel label = new javax.swing.JLabel();
-
+    private javax.swing.JTextPane jTextPane = new javax.swing.JTextPane();
     private javax.swing.JLabel[] test;
-
     private javax.swing.JPanel test3 = new javax.swing.JPanel();
     //private javax.swing.JButton mode1 = new javax.swing.JButton();
     // Arrays mit Knoepfen
@@ -42,16 +40,21 @@ public class View extends JFrame {
     private String[] textsMode;
     private ProcessKeyInput processKeyInput;
     private Mode mode;
+    private JScrollPane jScrollPane;
 
     //-----------------------------
     private javax.swing.JMenuItem cone = new javax.swing.JMenuItem();
     private javax.swing.JMenuItem  square = new javax.swing.JMenuItem();
     private javax.swing.JMenuItem cylinder = new javax.swing.JMenuItem();
     private javax.swing.JMenuItem sphere = new javax.swing.JMenuItem();
-    private javax.swing.JMenu rechner = new javax.swing.JMenu();
-    private javax.swing.JMenu zahlensystem = new javax.swing.JMenu();
-    private javax.swing.JMenu volumen = new javax.swing.JMenu();
+    private javax.swing.JMenu calculator = new javax.swing.JMenu();
+    private javax.swing.JMenu numeralSystems = new javax.swing.JMenu();
+    private javax.swing.JMenu volumes = new javax.swing.JMenu();
     private javax.swing.JMenuBar bar = new javax.swing.JMenuBar();
+    private javax.swing.JMenuItem decimal = new javax.swing.JMenuItem();
+    private javax.swing.JMenuItem binary = new javax.swing.JMenuItem();
+    private javax.swing.JMenuItem hexadecimal = new javax.swing.JMenuItem();
+    private int fontSize;
 
     //-----------------------------
     //Flag für Shifttaste
@@ -59,19 +62,19 @@ public class View extends JFrame {
 
     /**
      * Konstruktor: Initialisierung der vollen Oberflaeche.
-     * Hinzufügen des KeyListeners und Zugriff zulassen
+     * Hinzufügen des ProcessKeyInput.
      */
     public View() {
-        //fügt KeyListener hinzu und ermöglicht Zugriff auf das Frame
-        processKeyInput = new ProcessKeyInput(this);
-       this.addKeyListener(processKeyInput);
-       this.setFocusable(true);
         // Bei Schliessen Programm beenden
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         // Erstellung des Layouts durch Schachtelung der Panels und Hinzufuegen des Labels
         spacer1.setLayout(new java.awt.GridLayout(2, 1));
-        label = new javax.swing.JLabel();
-        spacer1.add(label);
+        jTextPane = new javax.swing.JTextPane();
+        jTextPane.setContentType("text/html");
+        jTextPane.setEditable(false);
+        jTextPane.setFocusable(false);
+        jScrollPane = new JScrollPane (jTextPane);
+        spacer1.add(jScrollPane);
         jPanel1.setLayout(new java.awt.GridLayout(1, 3));
         spacer1.add(jPanel1);
         jPanel2.setLayout(new java.awt.GridLayout(3, 3));
@@ -96,6 +99,9 @@ public class View extends JFrame {
 
         // Instanz der Beiklasse "ProcessButtonInput", um auf Klicks zu reagieren
         ProcessButtonInput bl = new ProcessButtonInput(this);
+        //fügt KeyListener hinzu und ermöglicht Zugriff auf das Frame
+        processKeyInput = new ProcessKeyInput(this);
+        this.addKeyListener(processKeyInput);
         // Generierung der einzelnen Knoepfe: ueber jeder Knopf-Array iterieren und dabei Knoepfe mit Beschriftungen aus Texte-Array erstellen, ProcessButtonInput uebergeben und Knoepfe ins Layout hinzufuegen
         for (int i = 0; i < jButtonsNumber.length; i++) {
             jButtonsNumber[i] = new javax.swing.JButton(Integer.toString((Integer) i));
@@ -131,64 +137,74 @@ public class View extends JFrame {
 
         bar = new javax.swing.JMenuBar();
 
-
-        rechner = new javax.swing.JMenu("Rechner");
-        zahlensystem = new javax.swing.JMenu("Zahlensystem ");
-        volumen = new javax.swing.JMenu("Volumen ");
+        calculator = new javax.swing.JMenu("Rechner");
+        numeralSystems = new javax.swing.JMenu("Zahlensystem ");
+        volumes = new javax.swing.JMenu("Volumen ");
         cone = new javax.swing.JMenuItem("Kegel");
         square = new javax.swing.JMenuItem("Quader");
         cylinder = new javax.swing.JMenuItem("Zylinder");
         sphere = new javax.swing.JMenuItem("Kugel");
+        binary =new javax.swing.JMenuItem("Binär");
+        decimal =new javax.swing.JMenuItem("Dezimal");
+        hexadecimal =new javax.swing.JMenuItem("Hexadezimal");
 
-        cone.addActionListener( bl );
-        square.addActionListener( bl );
-        cylinder.addActionListener( bl );
-        sphere.addActionListener( bl );
+        cone.addActionListener(bl);
+        square.addActionListener(bl);
+        cylinder.addActionListener(bl);
+        sphere.addActionListener(bl);
+        numeralSystems.add(decimal);
+        numeralSystems.add(binary);
+        numeralSystems.add(hexadecimal);
 
-        volumen.add(cone);
-        volumen.add(square);
-        volumen.add(cylinder);
-        volumen.add(sphere);
+        volumes.add(cone);
+        volumes.add(square);
+        volumes.add(cylinder);
+        volumes.add(sphere);
 
-        bar.add(rechner);
-        bar.add(zahlensystem);
-        bar.add(volumen);
+        bar.add(calculator);
+        bar.add(numeralSystems);
+        bar.add(volumes);
 
         SetLightmode();
-        //-----------------------------
         // Hinzufuegen des Gesamtlayouts in die ContentPane (das "Fenster")
         this.getContentPane().add(spacer1);
         this.getRootPane().setJMenuBar(bar);
         // Fenster als dynamisch skalierbar definieren
         pack();
         // Fenster sichtbar setzen
+        setSize(600,300);
         setVisible(true);
-        //this.addKeyListener(this);
+        setFocusable(true);
+        requestFocus();
     }
 
     /**
      * Methode zur Uebergabe des neu hinzugefuegten Zeichens (aus dem ProcessButtonInput) an den Controller.
-     *
      * @param s Neues Zeichen
      */
     public void Update(String s) {
         controller.Update(s);
     }
-public void addKeyListener1(KeyListener Kl)
-{
-    addKeyListener(Kl);
-}
+
     /**
-     * Methode, um den Controller zum Generieren eines neuen Bildes bzw. Ausgabe aufzufordern.
+     * Methode, um den neue HTML-Ausdruck aus dem Model ins Fenster einzufuegen.
      */
     public void UpdateView() {
-        controller.UpdateView();
+        jTextPane.setText(model.GetHTMLExpression());
+        requestFocus();
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                jScrollPane.getHorizontalScrollBar().setValue(Math.round(model.GetCursorPosition() * jTextPane.getWidth() / model.GetHTMLElementsListSize()));
+            }
+        });
     }
 
-    public void UpdateTest(int a) {
+    // Veraltet! Bitte nicht mehr verwenden.
+    /* public void UpdateTest(int a) {
 
 
-        spacer1.remove(label);
+        spacer1.remove(jTextPane);
 
         spacer1.removeAll();
         test3.removeAll();
@@ -199,11 +215,15 @@ public void addKeyListener1(KeyListener Kl)
         jPanel4.removeAll();
 
 
-// Bei Schliessen Programm beenden
+        // Bei Schliessen Programm beenden
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         // Erstellung des Layouts durch Schachtelung der Panels und Hinzufuegen des Labels
         spacer1.setLayout(new java.awt.GridLayout(2, 1));
-        label = new javax.swing.JLabel();
+        jTextPane = new javax.swing.JTextPane();
+        jTextPane.setContentType("text/html");
+        JScrollPane scrollPane = new JScrollPane (jTextPane, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        //scrollPane.setBounds(0,0,200,300);
+        this.getContentPane().add(scrollPane);
         //------------------------------------------------
 
 
@@ -218,7 +238,7 @@ public void addKeyListener1(KeyListener Kl)
             test[i] = new javax.swing.JLabel();
             test3.add(test[i]);
         }
-        test3.add(label);
+        test3.add(jTextPane);
         for (int i = 0; i < a; i++) {
             test[i] = new javax.swing.JLabel();
             test3.add(test[i]);
@@ -291,6 +311,11 @@ public void addKeyListener1(KeyListener Kl)
         square = new javax.swing.JMenuItem("Quader");
         cylinder = new javax.swing.JMenuItem("Zylinder");
         sphere = new javax.swing.JMenuItem("Kugel");
+        kegel = new javax.swing.JMenuItem("Kegel");
+        kegel=new javax.swing.JMenuItem("Kegel");
+        dezimal=new javax.swing.JMenuItem("Dezimal");
+        binaer =new javax.swing.JMenuItem("Binär");
+        hexa =new javax.swing.JMenuItem("Hexa");
 
         cone.addActionListener( bl );
         square.addActionListener( bl );
@@ -300,6 +325,11 @@ public void addKeyListener1(KeyListener Kl)
         volumen.add(square);
         volumen.add(cylinder);
         volumen.add(sphere);
+        zahlensysteme.add(dezimal);
+        zahlensysteme.add(binaer);
+        zahlensysteme.add(hexa);
+
+        volumen.add(kegel);
 
         bar.add(rechner);
         bar.add(zahlensystem);
@@ -321,22 +351,10 @@ public void addKeyListener1(KeyListener Kl)
         pack();
         // Fenster sichtbar setzen
         setVisible(true);
-    }
-
-    /**
-     * Methode, um eine neue Darstellung im Fenster zu setzen.
-     * @param i Neue Darstellung bzw. Bild
-     */
-    public void UpdateIconView(Image i) {
-        // Bild skalieren
-        i = i.getScaledInstance(-1, label.getHeight(), Image.SCALE_SMOOTH);
-        // Bild als ImageIcon im Label setzen
-        label.setIcon(new ImageIcon(i));
-    }
+    } */
 
     /**
      * Getter-Methode für JButton[] jButtonsNumber
-     *
      * @return JButton[] jButtonsNumber
      */
     protected JButton[] GetJButtonsNumber() {
@@ -474,10 +492,10 @@ public void addKeyListener1(KeyListener Kl)
         }
         spacer1.setBackground(Color.white);
         bar.setBackground(Color.white);
-        volumen.setForeground(Color.black);
+        volumes.setForeground(Color.black);
         cone.setForeground(Color.black);
-        rechner.setForeground(Color.black);
-        zahlensystem.setForeground(Color.black);
+        calculator.setForeground(Color.black);
+        numeralSystems.setForeground(Color.black);
         jPanel1.setBackground(Color.white);
         jPanel2.setBackground(Color.white);
         jPanel3.setBackground(Color.white);
@@ -513,15 +531,20 @@ public void addKeyListener1(KeyListener Kl)
         }
         spacer1.setBackground(Color.black);
         bar.setBackground(Color.black);
-        volumen.setForeground(Color.white);
+        volumes.setForeground(Color.white);
         cone.setForeground(Color.white);
-        rechner.setForeground(Color.white);
-        zahlensystem.setForeground(Color.white);
+        calculator.setForeground(Color.white);
+        numeralSystems.setForeground(Color.white);
         jPanel1.setBackground(Color.black);
         jPanel2.setBackground(Color.black);
         jPanel3.setBackground(Color.black);
         jPanel4.setBackground(Color.black);
         jButtonMode[0].setText("L");
+    }
+
+    public int GetWindowHeight()
+    {
+        return getHeight();
     }
 
     /**
@@ -533,114 +556,22 @@ public void addKeyListener1(KeyListener Kl)
     public void UpdateLinks(Model m, Controller c) {
         model = m;
         controller = c;
-    }
-    /* @Override
-    public void keyPressed(KeyEvent e) {
-        //Prüfung, ob Shifttaste gedrückt...
-        if (e.getKeyCode() == KeyEvent.VK_SHIFT) {
-            shifttasteGedrueckt = true;
-        } else if (shifttasteGedrueckt == true && e.getKeyCode() == KeyEvent.VK_7) {
-            Update("/");
-            UpdateView();
-        }else if (shifttasteGedrueckt == true && e.getKeyCode() == KeyEvent.VK_8) {
-            this.Update("(");
-            this.UpdateView();
-        } else if (shifttasteGedrueckt == true && e.getKeyCode() == KeyEvent.VK_9) {
-            this.Update(")");
-            this.UpdateView();
-        }else if (shifttasteGedrueckt && e.getKeyCode() == KeyEvent.VK_PLUS) {
-            this.Update("*");
-            this.UpdateView();
-        } else if (e.getKeyCode() == KeyEvent.VK_PLUS) {
-            this.Update("+");
-            this.UpdateView();
-        } else if (e.getKeyCode() == KeyEvent.VK_MINUS) {
-            this.Update("-");
-            this.UpdateView();
-        } else if (shifttasteGedrueckt && e.getKeyCode() == KeyEvent.VK_0) {
-            this.Update("=");
-            this.UpdateView();
-        }else if (e.getKeyCode() == KeyEvent.VK_0 || e.getKeyCode() == KeyEvent.VK_NUMPAD0) {
-            Update("" + 0 + "");
-            UpdateView();
-        }
-           else if (e.getKeyCode() == KeyEvent.VK_1 || e.getKeyCode() == KeyEvent.VK_NUMPAD1) {
-                Update("" + 1 + "");
+        addComponentListener(new ComponentListener() {
+            @Override
+            public void componentResized(ComponentEvent e) {
                 UpdateView();
-            } else if (e.getKeyCode() == KeyEvent.VK_2 || e.getKeyCode() == KeyEvent.VK_NUMPAD2) {
-                Update("" + 2 + "");
-                UpdateView();
-            } else if (e.getKeyCode() == KeyEvent.VK_3 || e.getKeyCode() == KeyEvent.VK_NUMPAD3) {
-                Update("" + 3 + "");
-                UpdateView();
-            } else if (e.getKeyCode() == KeyEvent.VK_4 || e.getKeyCode() == KeyEvent.VK_NUMPAD4) {
-                Update("" + 4 + "");
-                UpdateView();
-            } else if (e.getKeyCode() == KeyEvent.VK_5 || e.getKeyCode() == KeyEvent.VK_NUMPAD5) {
-                Update("" + 5 + "");
-                UpdateView();
-            } else if (e.getKeyCode() == KeyEvent.VK_6 || e.getKeyCode() == KeyEvent.VK_NUMPAD6) {
-                Update("" + 6 + "");
-                UpdateView();
-            } else if (e.getKeyCode() == KeyEvent.VK_7 || e.getKeyCode() == KeyEvent.VK_NUMPAD7) {
-                Update("" + 7 + "");
-                UpdateView();
-            } else if (e.getKeyCode() == KeyEvent.VK_8 || e.getKeyCode() == KeyEvent.VK_NUMPAD8) {
-                Update("" + 8 + "");
-                UpdateView();
-            } else if (e.getKeyCode() == KeyEvent.VK_9 || e.getKeyCode() == KeyEvent.VK_NUMPAD9) {
-                Update("" + 9 + "");
-                UpdateView();
-            } else if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-                Update("DEL");
-                UpdateView();
-                model.ClearLatex();
-            } else if (e.getKeyCode() == KeyEvent.VK_S) {
-                Update("sin(");
-                UpdateView();
-            } else if (e.getKeyCode() == KeyEvent.VK_T) {
-                Update("tan(");
-                UpdateView();
-            } else if (e.getKeyCode() == KeyEvent.VK_C) {
-                this.Update("cos(");
-                this.UpdateView();
-            } else if (e.getKeyCode() == KeyEvent.VK_DELETE) {
-                this.Update("AC");
-                this.UpdateView();
-            } else if (e.getKeyCode() == KeyEvent.VK_L) {
-                this.Update("lg(");
-                this.UpdateView();
-            } else if(e.getKeyCode() == KeyEvent.VK_CIRCUMFLEX) {
-                Update("x^");
-                UpdateView();
-            } else if(e.getKeyCode() == KeyEvent.VK_COMMA) {
-                Update(",");
-                UpdateView();
-            } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                this.Update("CURSOR-RIGHT");
-                this.UpdateView();
-            } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                this.Update("CURSOR_LEFT");
-                this.UpdateView();
             }
-
-        }
-
-
-    //keine Nutzung
-    @Override
-    public void keyTyped(KeyEvent e) {
-
+            @Override
+            public void componentMoved(ComponentEvent e) {
+            }
+            @Override
+            public void componentShown(ComponentEvent e) {
+            }
+            @Override
+            public void componentHidden(ComponentEvent e) {
+            }
+        });
     }
-//Wenn Shifttaste losgelassen wird
-    @Override
-    public void keyReleased(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_SHIFT) {
-            shifttasteGedrueckt = false;
-        }
-
-    }
-    */
 }
 
 
