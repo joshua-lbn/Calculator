@@ -19,6 +19,12 @@ public class ProcessButtonInput implements java.awt.event.ActionListener {
     private String[] textsRight;
     private JButton[] jButtonsCursor;
     private String[] textsCursor;
+    private JButton[] jButtonMode;
+    private String[] textsMode;
+    private JMenuItem jMenuItemCone;
+    private JMenuItem jMenuItemSquare ;
+    private JMenuItem jMenuItemCylinder;
+    private JMenuItem jMenuItemSphere;
 
     /**
      * Konstruktor, der die übergebene View-Instanz speichert und die lokalen Attribute aus der View ueber Getter erhaelt.
@@ -38,6 +44,12 @@ public class ProcessButtonInput implements java.awt.event.ActionListener {
         textsRight = view.GetTextsRight();
         jButtonsCursor = view.GetJButtonsCursor();
         textsCursor = view.GetTextsCursor();
+        jButtonMode = view.GetJButtonMode();
+        textsMode = view.GetTextsMode();
+        jMenuItemCone = view.GetJMenuItemCone();
+        jMenuItemSquare = view.GetJMenuItemSquare();
+        jMenuItemCylinder = view.GetJMenuItemCylinder();
+        jMenuItemSphere = view.GetJMenuItemSphere();
     }
 
     /**
@@ -88,6 +100,32 @@ public class ProcessButtonInput implements java.awt.event.ActionListener {
                 return;
             }
         }
+        for (int i = 0; i < jButtonMode.length; i++) {
+            if (e.getSource() == jButtonMode[i]) {
+                view.SwitchMode();
+                return;
+            }
+        }
+        for (int i = 0; i < 1; i++) {
+            if (e.getSource() == jMenuItemCone) {
+                System.out.println("cone");
+                return;
+            }
+        }
+
+        if (e.getSource() == jMenuItemCylinder) {
+            System.out.println("zylinder");
+            return;
+        }
+        if (e.getSource() == jMenuItemSquare) {
+            System.out.println("Quader");
+            return;
+        }
+        if (e.getSource() == jMenuItemSphere) {
+            System.out.println("cone");
+            return;
+        }
+        System.out.println("Test");
     }
 }
 

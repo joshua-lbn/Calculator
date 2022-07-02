@@ -110,9 +110,6 @@ public class ProcessKeyInput implements KeyListener {
         } else if(e.getKeyCode() == KeyEvent.VK_D) {
             //view.SetDarkmode();
         }
-
-
-
     }
     //nicht nötig
     @Override

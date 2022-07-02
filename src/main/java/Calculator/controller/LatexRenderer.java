@@ -3,6 +3,8 @@ package Calculator.controller;
 import java.awt.Image;
 import java.awt.Color;
 
+import Calculator.view.Mode;
+import Calculator.view.View;
 import org.scilab.forge.jlatexmath.TeXConstants;
 import org.scilab.forge.jlatexmath.TeXFormula;
 
