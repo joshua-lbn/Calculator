@@ -1,4 +1,4 @@
-package Calculator.controller;
+/*package Calculator.controller;
 import java.util.Scanner;
 
 public static void convertDecToBin(){
@@ -11,7 +11,7 @@ public static void convertDecToBin(){
 
         /*
          * While Schleife soll die Anzahl der Stellen bestimmen
-         */
+
         while (decNumberTwo != 0){
             decNumberTwo=decNumberTwo / 2;//Zahl wird solange durch 2 dividiert bis 0 herauskommt
             binaryPlace++;//Erhöhung der Zählvariablen
@@ -21,7 +21,7 @@ public static void convertDecToBin(){
 
         /*
          * For Schleife füllt das Array mit den Restwerten
-         */
+
         for (int i = 0; i < binaryPlace; i++){
             numbers[i]=decNumber % 2; //Speichern der Restwerte im Array
             decNumber = decNumber / 2; //Die Zahl wird immer wieder durch 2 dividiert
@@ -29,7 +29,7 @@ public static void convertDecToBin(){
 
         /*
          * Die zweite for-Schleife liest das Array von hinten nach vorne
-         */
+
         for (int i = binaryPlace - 1; i >= 0; i--){
             System.out.print(numbers[i]);
         }
@@ -39,4 +39,6 @@ public static void convertDecToBin(){
         convertDecToBin();
     }
 }
+
+ */
 
