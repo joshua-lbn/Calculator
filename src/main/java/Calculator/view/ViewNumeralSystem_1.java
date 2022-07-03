@@ -1,6 +1,10 @@
 package Calculator.view;
 
 import javax.swing.*;
+import javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Klasse mit der Darstellung des Zahlensystemsumrechners.
@@ -29,8 +33,16 @@ public class ViewNumeralSystem extends JFrame {
         this.pack();
         // Sichtbar setzen
         this.setVisible(true);
-        }
-
+        convertButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                double decimalNumber = Double.parseDouble(decimalTextfield.getText());
+                binaryTextField.setText("Test erfolgreich");
+                hexaTextField.setText("Test erfolgreich");
+                //Hier Methode zum umrechnen
+            }
+        });
+}
     // Uebergangsweise zum Testen: main-Methode zum Ausfuehren
     public static void main (String[] args)
     {
