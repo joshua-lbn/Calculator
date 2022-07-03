@@ -11,7 +11,7 @@ public class Parser {
     Expression e;
 
     /**
-     * Konstruktor, der die Expression initialisiert.
+     * Konstruktor: Expression initialisieren.
      */
     public Parser()
     {

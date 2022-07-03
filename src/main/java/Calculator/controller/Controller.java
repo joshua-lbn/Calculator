@@ -36,8 +36,7 @@ public class Controller {
             }
             // Eigentliche Methode
             else {
-                // Beide Eingabestrings loeschen
-                model.ClearExpression();
+                // Anzeigestring loeschen
                 model.ClearHTML();
                 // Zustand auf Berechnung setzen
                 model.SetState(CalculatorState.CALCULATION);

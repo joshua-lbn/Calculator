@@ -21,12 +21,23 @@ public class Model {
     private LinkedList<String> htmlElementsList;
     // Antwort der letzten Rechnung (s. Ans-Taste)
     private double ans;
-    // HTML-Ausdruck in Bildform zur Darstellung
-    private int cursorPosition;
-    private String cursorSymbolHTML;
+    // Zustand des Rechners
     private CalculatorState state;
-    private boolean exponentMode;
+    // Position des Cursors als Zahl
+    private int cursorPosition;
+    // Symbol fuer den Cursor in der HTML-Darstellung
+    private String cursorSymbolHTML;
 
+    // Fuer die Eingabe: Modus, ob gerade im Exponenten oder normale Eingabe
+    private boolean exponentMode;
+    // Farbmodus des Rechners
+    private ColorMode colorMode;
+    // Speicherung der Farbe der HTML-Darstellung in Abhaengigkeit vom Farbmodus
+    private String colorExtension;
+
+    /**
+     * Konstruktor: Ausdruecke als leer initialisieren.
+     */
     public Model() {
         // Beide Strings als leer initialisieren
         expression = "";
@@ -36,9 +47,14 @@ public class Model {
         htmlElementsList = new LinkedList<>();
         // Letzte Antwort als 0 initialisieren
         ans = 0;
+        // Cursor-Symbol setzen
         cursorSymbolHTML = "&#10073;";
+        // Cursor an den Ursprungszustand zurueckkehren lassen
         CursorBack();
+        // Exponentenmodus ausstellen
         exponentMode = false;
+        // Den hellen Modus aktivieren
+        SetLightmode();
     }
 
     /**
@@ -127,11 +143,28 @@ public class Model {
         // Strings leeren
         ClearExpression();
         ClearHTMLSolution();
-        // Antwort speichern
-        ans = gottenAnswer;
-        // Antwort zu Strings hinzufuegen
-        ExtendExpression(Double.toString(ans));
-        ExtendHTML(Double.toString(ans));
+        // Pruefen, ob Antwort ein Sonderfall ist
+        if(Double.toString(gottenAnswer).equals("NaN"))
+        {
+            // Ans nicht setzen, da sonst keine korrekte Eingabe gespeichert
+            ExtendHTML("Kein g\u00FCltiger Ausdruck");
+        }
+        else if(Double.toString(gottenAnswer).equals("Infinity"))
+        {
+            ExtendHTML("Positiv unendlich");
+        }
+        else if(Double.toString(gottenAnswer).equals("-Infinity"))
+        {
+            ExtendHTML("Negativ unendlich");
+        }
+        // Bei korrekter Rueckgabe
+        else
+        {
+            // Antwort setzen
+            ans = gottenAnswer;
+            // In Anzeige einfuegen
+            ExtendHTML(Double.toString(ans).replace(".",","));
+        }
     }
 
     /**
@@ -140,7 +173,7 @@ public class Model {
      * @return String mit HTML-Ausdruck
      */
     public String GetHTMLExpression() {
-        return "<html><pre style=\"font-family: Consolas; font-size: " + CalculateSize() + "px\">" + html + "</pre></html>";
+        return "<html><pre style=\"font-family: Consolas; font-size: " + CalculateSize() + "px; color: " + colorExtension + ";\">" + html + "</pre></html>";
     }
 
     /**
@@ -261,6 +294,39 @@ public class Model {
     public void ChangeExponentMode()
     {
         exponentMode = !exponentMode;
+    }
+
+    /**
+     * Methode, um den Farbmodus zu erhalten.
+     * @return Farbmodus
+     */
+    public ColorMode GetColorMode()
+    {
+        return colorMode;
+    }
+
+    /**
+     * Methode, um den hellen Modus zu setzen.
+     * Tatsaechliche Umsetzung in der View.
+     */
+    public void SetLightmode()
+    {
+        // Modus setzen
+        colorMode = ColorMode.LIGHTMODE;
+        // HTML-Farbe setzen
+        colorExtension = "black";
+    }
+
+    /**
+     * Methode, um den hellen Modus zu setzen.
+     * Tatsaechliche Umsetzung in der View.
+     */
+    public void SetDarkmode()
+    {
+        // Modus setzen
+        colorMode = ColorMode.DARKMODE;
+        // HTML-Farbe setzen
+        colorExtension = "white";
     }
 
     /**

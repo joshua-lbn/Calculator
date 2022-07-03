@@ -20,12 +20,10 @@ public class ProcessButtonInput implements java.awt.event.ActionListener {
     private String[] textsRight;
     private JButton[] jButtonsCursor;
     private String[] textsCursor;
-    private JButton[] jButtonMode;
-    private String[] textsMode;
+    private JButton[] jButtonsMode;
 
     /**
-     * Konstruktor, der die übergebene View-Instanz speichert und die lokalen Attribute aus der View ueber Getter erhaelt.
-     *
+     * Konstruktor: übergebene View-Instanz speichern und lokale Attribute aus der View ueber Getter erhalten.
      * @param v View-Instanz
      */
     public ProcessButtonInput(View v) {
@@ -41,20 +39,19 @@ public class ProcessButtonInput implements java.awt.event.ActionListener {
         textsRight = view.GetTextsRight();
         jButtonsCursor = view.GetJButtonsCursor();
         textsCursor = view.GetTextsCursor();
-        jButtonMode = view.GetJButtonMode();
-        textsMode = view.GetTextsMode();
+        jButtonsMode = view.GetJButtonMode();
     }
 
     /**
      * Methode, welche bei Knopfdrucken aufgerufen wird.
-     *
      * @param e Das "Event" bzw. Ereignis, welches verarbeitet werden soll
      */
     public void actionPerformed(java.awt.event.ActionEvent e) {
         /*
-         * Alle JNumberButtons und im weiteren Verlauf die anderen Arrays werden geprueft.
+         * Alle JNumberButtons und im weiteren Verlauf die anderen Arrays bzw. Knoepfe werden geprueft.
          * Bei Uebereinstimmung des Eventursprungs mit einem Knopf wird:
-         * der View der Befehl gegeben, die hinzugefuegten Zeichen an den Controller zu geben, sodass sie hinzugefuegt werden koennen.
+         * der View der Befehl gegeben, die hinzugefuegten Zeichen an den Controller zu geben, sodass sie hinzugefuegt
+         * werden koennen.
          * der View der Befehl gegeben, nach Änderung der Darstellung (durch den Controller) diese zu aktualisieren.
          * die weitere Ausfuehrung der Methode aus Effizienzgruenden abgebrochen.
          */
@@ -93,31 +90,28 @@ public class ProcessButtonInput implements java.awt.event.ActionListener {
                 return;
             }
         }
-        for (int i = 0; i < jButtonMode.length; i++) {
-            if (e.getSource() == jButtonMode[i]) {
+        for (int i = 0; i < jButtonsMode.length; i++) {
+            if (e.getSource() == jButtonsMode[i]) {
                 view.SwitchMode();
+                view.UpdateView();
                 return;
             }
         }
-
         if (e.getSource() == view.GetJMenuItemCone()) {
             System.out.println("Kegel");
             return;
         }
-
+        if (e.getSource() == view.GetJMenuItemSquare()) {
+            Frame frame = new ViewVolumeSquare();
+            frame.setVisible(true);
+            return;
+        }
         if (e.getSource() == view.GetJMenuItemCylinder()) {
             System.out.println("Zylinder");
             return;
         }
-
         if (e.getSource() == view.GetJMenuItemSphere()) {
             System.out.println("sphere");
-            return;
-        }
-
-        if (e.getSource() == view.GetJMenuItemSquare()) {
-            Frame frame = new squareVolume();
-            frame.setVisible(true);
             return;
         }
     }
