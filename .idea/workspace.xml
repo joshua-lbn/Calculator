@@ -1,29 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ArtifactsWorkspaceSettings">
-    <artifacts-to-build>
-      <artifact name="Calculator:jar" />
-    </artifacts-to-build>
-  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e01ba51-84bb-425d-83d7-45271fdd1757" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/controller/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/controller/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/controller/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/model/CalculatorState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/model/CalculatorState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/model/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/Mode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/model/ColorMode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/ProcessButtonInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/ProcessButtonInput.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/ProcessKeyInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/ProcessKeyInput.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/View.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/ViewCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/ViewCalculator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/ViewNumeralSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/ViewNumeralSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/squareVolume.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/ViewVolumeSquare.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/squareVolume.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/ViewVolumeSquare.java" afterDir="false" />
-    </list>
+    <list default="true" id="6e01ba51-84bb-425d-83d7-45271fdd1757" name="Changes" comment="Hinzufügen der Menüpunkte zu den Zahlensystemen, neue view hierfür (in groben Zügen), Kürzen des codes" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -74,20 +55,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW&quot;: &quot;true&quot;,
-    &quot;UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/InfoHefteinträge/Calculator&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW": "true",
+    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW": "false",
+    "last_opened_file_path": "D:/InfoHefteinträge/Calculator",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
   }
-}</component>
-  <component name="RunManager" selected="Application.Calculator.view.ViewNumeralSystem">
+}]]></component>
+  <component name="RunManager" selected="Application.squareVolume">
     <configuration name="CalculatorGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="CalculatorGUI" />
       <module name="Calculator" />
@@ -126,7 +107,7 @@
       <module name="Calculator" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Calculator.model.*" />
+          <option name="PATTERN" value="Calculator.view.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -134,12 +115,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ViewVolumeSquare" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Calculator.view.ViewVolumeSquare" />
+    <configuration name="squareVolume" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Calculator.view.squareVolume" />
       <module name="Calculator" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Calculator.model.*" />
+          <option name="PATTERN" value="Calculator.view.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -149,9 +130,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Calculator.view.ViewNumeralSystem" />
+        <item itemvalue="Application.squareVolume" />
         <item itemvalue="Application.Calculator.Main" />
-        <item itemvalue="Application.ViewVolumeSquare" />
+        <item itemvalue="Application.Calculator.view.ViewNumeralSystem" />
         <item itemvalue="Application.Calculator.model.Model" />
         <item itemvalue="Application.CalculatorGUI" />
       </list>
@@ -257,7 +238,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656348021847</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Hinzufügen der Menüpunkte zu den Zahlensystemen, neue view hierfür (in groben Zügen), Kürzen des codes">
+      <created>1656856849147</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1656856849147</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -294,7 +282,8 @@
     <MESSAGE value="CalculatorState" />
     <MESSAGE value="Mode" />
     <MESSAGE value="Lightmode &amp; Darkmode + KeyEvent für modes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Lightmode &amp; Darkmode + KeyEvent für modes" />
+    <MESSAGE value="Hinzufügen der Menüpunkte zu den Zahlensystemen, neue view hierfür (in groben Zügen), Kürzen des codes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Hinzufügen der Menüpunkte zu den Zahlensystemen, neue view hierfür (in groben Zügen), Kürzen des codes" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Calculator$Calculator_Main.ic" NAME="Calculator.Main Coverage Results" MODIFIED="1656782262692" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
