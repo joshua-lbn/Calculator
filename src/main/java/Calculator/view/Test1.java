@@ -28,7 +28,7 @@ public class Test1 extends JFrame{
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(mainPanel);
         this.pack();
-        //this.setVisible(true);
+        this.setVisible(true);
         convert.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

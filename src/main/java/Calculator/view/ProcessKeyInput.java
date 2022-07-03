@@ -106,7 +106,7 @@ public class ProcessKeyInput implements KeyListener {
             view.Update("Ans");
             view.UpdateView();
         } else if(e.getKeyCode() == KeyEvent.VK_B) {
-            //view.SetLightmode();
+           //view.SetLightmode();
         } else if(e.getKeyCode() == KeyEvent.VK_D) {
             //view.SetDarkmode();
         }

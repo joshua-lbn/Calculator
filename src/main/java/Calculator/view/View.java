@@ -152,6 +152,9 @@ public class View extends JFrame {
         square.addActionListener(bl);
         cylinder.addActionListener(bl);
         sphere.addActionListener(bl);
+        binary.addActionListener(bl);
+        decimal.addActionListener(bl);
+        hexadecimal.addActionListener(bl);
         numeralSystems.add(decimal);
         numeralSystems.add(binary);
         numeralSystems.add(hexadecimal);
@@ -177,7 +180,6 @@ public class View extends JFrame {
         setFocusable(true);
         requestFocus();
     }
-
     /**
      * Methode zur Uebergabe des neu hinzugefuegten Zeichens (aus dem ProcessButtonInput) an den Controller.
      * @param s Neues Zeichen
@@ -199,160 +201,6 @@ public class View extends JFrame {
             }
         });
     }
-
-    // Veraltet! Bitte nicht mehr verwenden.
-    /* public void UpdateTest(int a) {
-
-
-        spacer1.remove(jTextPane);
-
-        spacer1.removeAll();
-        test3.removeAll();
-
-        jPanel1.removeAll();
-        jPanel2.removeAll();
-        jPanel3.removeAll();
-        jPanel4.removeAll();
-
-
-        // Bei Schliessen Programm beenden
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        // Erstellung des Layouts durch Schachtelung der Panels und Hinzufuegen des Labels
-        spacer1.setLayout(new java.awt.GridLayout(2, 1));
-        jTextPane = new javax.swing.JTextPane();
-        jTextPane.setContentType("text/html");
-        JScrollPane scrollPane = new JScrollPane (jTextPane, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-        //scrollPane.setBounds(0,0,200,300);
-        this.getContentPane().add(scrollPane);
-        //------------------------------------------------
-
-
-        test = new JLabel[a * 2];
-
-        test3.setLayout(new java.awt.GridLayout(a * 2 + 1, 1));
-
-
-        spacer1.add(test3);
-
-        for (int i = 0; i < a; i++) {
-            test[i] = new javax.swing.JLabel();
-            test3.add(test[i]);
-        }
-        test3.add(jTextPane);
-        for (int i = 0; i < a; i++) {
-            test[i] = new javax.swing.JLabel();
-            test3.add(test[i]);
-        }
-
-
-        //------------------------------------------------
-        jPanel1.setLayout(new java.awt.GridLayout(1, 3));
-        spacer1.add(jPanel1);
-        jPanel2.setLayout(new java.awt.GridLayout(3, 3));
-        jPanel1.add(jPanel2);
-        jPanel3.setLayout(new java.awt.GridLayout(4, 3));
-        jPanel1.add(jPanel3);
-        jPanel4.setLayout(new java.awt.GridLayout(4, 2));
-        jPanel1.add(jPanel4);
-        // Definierung der Beschriftungen und Deklarierung der Button-Arrays nach Anzahl der Texte
-        jButtonsNumber = new JButton[10];
-        textsLeft = new String[]{"DEL", "AC", "+", "-", "*", "/", "Ans", "x^"};
-        jButtonsLeft = new JButton[textsLeft.length];
-        textsMiddle = new String[]{",", "="};
-        jButtonsMiddle = new JButton[textsMiddle.length];
-        textsRight = new String[]{"cos(", "sin(", "tan(", "lg(", "(", ")"};
-        jButtonsRight = new JButton[textsRight.length];
-        textsCursor = new String[]{"<-", "->"};
-        jButtonsCursor = new JButton[textsCursor.length];
-        textsMode = new String[]{"L"};
-        jButtonMode = new JButton[textsMode.length];
-        // Instanz der Beiklasse "ProcessButtonInput", um auf Klicks zu reagieren
-        ProcessButtonInput bl = new ProcessButtonInput(this);
-        // Generierung der einzelnen Knoepfe: ueber jeder Knopf-Array iterieren und dabei Knoepfe mit Beschriftungen aus Texte-Array erstellen, ProcessButtonInput uebergeben und Knoepfe ins Layout hinzufuegen
-        for (int i = 0; i < jButtonsNumber.length; i++) {
-            jButtonsNumber[i] = new javax.swing.JButton(Integer.toString((Integer) i));
-            jButtonsNumber[i].addActionListener(bl);
-            jPanel3.add(jButtonsNumber[i]);
-        }
-        for (int i = 0; i < jButtonsLeft.length; i++) {
-            jButtonsLeft[i] = new javax.swing.JButton("" + textsLeft[i] + "");
-            jButtonsLeft[i].addActionListener(bl);
-            jPanel4.add(jButtonsLeft[i]);
-        }
-        for (int i = 0; i < jButtonsMiddle.length; i++) {
-            jButtonsMiddle[i] = new javax.swing.JButton("" + textsMiddle[i] + "");
-            jPanel3.add(jButtonsMiddle[i]);
-            jButtonsMiddle[i].addActionListener(bl);
-        }
-        for (int i = 0; i < jButtonsRight.length; i++) {
-            jButtonsRight[i] = new javax.swing.JButton("" + textsRight[i] + "");
-            jButtonsRight[i].addActionListener(bl);
-            jPanel2.add(jButtonsRight[i]);
-        }
-        for (int i = 0; i < jButtonsCursor.length; i++) {
-            jButtonsCursor[i] = new javax.swing.JButton("" + textsCursor[i] + "");
-            jButtonsCursor[i].addActionListener(bl);
-            jPanel2.add(jButtonsCursor[i]);
-        }
-        for (int i = 0; i < jButtonMode.length; i++) {
-            jButtonMode[i] = new javax.swing.JButton("" + textsMode[i] + "");
-            jButtonMode[i].addActionListener(bl);
-            jPanel2.add(jButtonMode[i]);
-        }
-        //-----------------------------
-
-        bar = new javax.swing.JMenuBar();
-
-
-        rechner = new javax.swing.JMenu("Rechner");
-        zahlensystem = new javax.swing.JMenu("Zahlensystem ");
-        volumen = new javax.swing.JMenu("Volumen ");
-        cone = new javax.swing.JMenuItem("Kegel");
-        square = new javax.swing.JMenuItem("Quader");
-        cylinder = new javax.swing.JMenuItem("Zylinder");
-        sphere = new javax.swing.JMenuItem("Kugel");
-        kegel = new javax.swing.JMenuItem("Kegel");
-        kegel=new javax.swing.JMenuItem("Kegel");
-        dezimal=new javax.swing.JMenuItem("Dezimal");
-        binaer =new javax.swing.JMenuItem("Binär");
-        hexa =new javax.swing.JMenuItem("Hexa");
-
-        cone.addActionListener( bl );
-        square.addActionListener( bl );
-        cylinder.addActionListener( bl );
-        sphere.addActionListener( bl );
-        volumen.add(cone);
-        volumen.add(square);
-        volumen.add(cylinder);
-        volumen.add(sphere);
-        zahlensysteme.add(dezimal);
-        zahlensysteme.add(binaer);
-        zahlensysteme.add(hexa);
-
-        volumen.add(kegel);
-
-        bar.add(rechner);
-        bar.add(zahlensystem);
-        bar.add(volumen);
-
-
-        //-----------------------------
-
-        // Hinzufuegen des Gesamtlayouts in die ContentPane (das "Fenster")
-        this.getContentPane().add(spacer1);
-        this.getRootPane().setJMenuBar(bar);
-        // Fenster als dynamisch skalierbar definieren
-        if (mode == mode.LIGHTMODE) {
-            SetLightmode();
-        }
-        else {
-            SetDarkmode();
-        }
-        pack();
-        // Fenster sichtbar setzen
-        setVisible(true);
-    } */
-
     /**
      * Getter-Methode für JButton[] jButtonsNumber
      * @return JButton[] jButtonsNumber
@@ -455,6 +303,15 @@ public class View extends JFrame {
     }
     protected JMenuItem GetJMenuItemSphere() {
         return sphere;
+    }
+    protected JMenuItem GetJMenuItemHexa() {
+        return hexadecimal;
+    }
+    protected JMenuItem GetJMenuItemDecimal() {
+        return decimal;
+    }
+    protected JMenuItem GetJMenuItemBinary() {
+        return binary;
     }
     protected void SwitchMode() {
         if (mode == mode.DARKMODE) {
@@ -573,5 +430,3 @@ public class View extends JFrame {
         });
     }
 }
-
-
