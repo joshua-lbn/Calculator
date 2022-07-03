@@ -1,8 +1,7 @@
 package Calculator.controller;
 import java.util.Scanner;
 
-public class NumeralSystemConverter {
-    static void convertDecToBin(){
+public static void convertDecToBin(){
         Scanner input = new Scanner(System.in);//Scanner zur Speicherung der Eingabe
         System.out.println("Bitte gib eine Dezimalzahl ein!");//Aufforderung zur Eingabe
 
