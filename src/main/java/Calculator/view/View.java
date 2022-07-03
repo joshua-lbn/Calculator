@@ -15,18 +15,6 @@ import java.awt.event.ComponentListener;
 public class View extends JFrame {
     private Model model;
     private Controller controller;
-    // Obermenue mit Reitern
-    private javax.swing.JMenuBar bar = new javax.swing.JMenuBar();
-    private javax.swing.JMenu calculator = new javax.swing.JMenu();
-    private javax.swing.JMenu numeralSystems = new javax.swing.JMenu();
-    private javax.swing.JMenu volumes = new javax.swing.JMenu();
-    private javax.swing.JMenuItem binary = new javax.swing.JMenuItem();
-    private javax.swing.JMenuItem decimal = new javax.swing.JMenuItem();
-    private javax.swing.JMenuItem hexadecimal = new javax.swing.JMenuItem();
-    private javax.swing.JMenuItem cone = new javax.swing.JMenuItem();
-    private javax.swing.JMenuItem square = new javax.swing.JMenuItem();
-    private javax.swing.JMenuItem cylinder = new javax.swing.JMenuItem();
-    private javax.swing.JMenuItem sphere = new javax.swing.JMenuItem();
     // JPanels fuer das Layout
     private javax.swing.JPanel spacer1 = new javax.swing.JPanel();
     private javax.swing.JPanel jPanel1 = new javax.swing.JPanel();
@@ -49,9 +37,21 @@ public class View extends JFrame {
     private String[] textsRight;
     private String[] textsCursor;
     private String[] textsMode;
-    // Auswerter der Knopf- bzw. Tastaturtastendruecke
-    private ProcessButtonInput processButtonInput;
+    // Auswerter der Knopf-, Menue- bzw. Tastaturtastendruecke
     private ProcessKeyInput processKeyInput;
+    private ProcessButtonInput processButtonInput;
+    // Obermenue mit Reitern
+    private javax.swing.JMenuBar bar = new javax.swing.JMenuBar();
+    private javax.swing.JMenu calculator = new javax.swing.JMenu();
+    private javax.swing.JMenu numeralSystems = new javax.swing.JMenu();
+    private javax.swing.JMenu volumes = new javax.swing.JMenu();
+    private javax.swing.JMenuItem binary = new javax.swing.JMenuItem();
+    private javax.swing.JMenuItem decimal = new javax.swing.JMenuItem();
+    private javax.swing.JMenuItem hexadecimal = new javax.swing.JMenuItem();
+    private javax.swing.JMenuItem cone = new javax.swing.JMenuItem();
+    private javax.swing.JMenuItem square = new javax.swing.JMenuItem();
+    private javax.swing.JMenuItem cylinder = new javax.swing.JMenuItem();
+    private javax.swing.JMenuItem sphere = new javax.swing.JMenuItem();
 
     /**
      * Konstruktor: Initialisierung der vollen Oberflaeche.
@@ -60,10 +60,68 @@ public class View extends JFrame {
     public View() {
         // Bei Schliessen Programm beenden
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        // Instanz der Beiklasse "ProcessButtonInput", um auf Klicks zu reagieren
+        // Erstellung des Layouts durch Schachtelung der Panels und Hinzufuegen des JTextPane
+        spacer1.setLayout(new GridLayout(2, 1));
+        jTextPane = new JTextPane();
+        jTextPane.setContentType("text/html");
+        jTextPane.setEditable(false);
+        jTextPane.setFocusable(false);
+        jScrollPane = new JScrollPane (jTextPane);
+        spacer1.add(jScrollPane);
+        jPanel1.setLayout(new GridLayout(1, 3));
+        spacer1.add(jPanel1);
+        jPanel2.setLayout(new GridLayout(3, 3));
+        jPanel1.add(jPanel2);
+        jPanel3.setLayout(new GridLayout(4, 3));
+        jPanel1.add(jPanel3);
+        jPanel4.setLayout(new GridLayout(4, 2));
+        jPanel1.add(jPanel4);
+        // Definierung der Beschriftungen und Deklarierung der Button-Arrays nach Anzahl der Texte
+        jButtonsNumber = new JButton[10];
+        textsLeft = new String[]{"DEL", "AC", "+", "-", "*", "/", "Ans", "x^"};
+        jButtonsLeft = new JButton[textsLeft.length];
+        textsMiddle = new String[]{",", "="};
+        jButtonsMiddle = new JButton[textsMiddle.length];
+        textsRight = new String[]{"sin(", "cos(", "tan(", "lg(", "(", ")"};
+        jButtonsRight = new JButton[textsRight.length];
+        textsCursor = new String[]{"<-", "->"};
+        jButtonsCursor = new JButton[textsCursor.length];
+        textsMode = new String[]{"L"};
+        jButtonsMode = new JButton[textsMode.length];
+        // Instanz der Beiklasse "ProcessButtonInput", um auf Knopfdrucke zu reagieren
         processButtonInput = new ProcessButtonInput(this);
-        processKeyInput = new ProcessKeyInput(this);
-        addKeyListener(processKeyInput);
+        // Generierung der einzelnen Knoepfe: ueber jeder Knopf-Array iterieren und dabei Knoepfe mit Beschriftungen aus
+        // Texte-Array erstellen, ProcessButtonInput uebergeben und Knoepfe ins Layout hinzufuegen
+        for (int i = 0; i < jButtonsNumber.length; i++) {
+            jButtonsNumber[i] = new javax.swing.JButton(Integer.toString((Integer) i));
+            jButtonsNumber[i].addActionListener(processButtonInput);
+            jPanel3.add(jButtonsNumber[i]);
+        }
+        for (int i = 0; i < jButtonsLeft.length; i++) {
+            jButtonsLeft[i] = new javax.swing.JButton("" + textsLeft[i] + "");
+            jButtonsLeft[i].addActionListener(processButtonInput);
+            jPanel4.add(jButtonsLeft[i]);
+        }
+        for (int i = 0; i < jButtonsMiddle.length; i++) {
+            jButtonsMiddle[i] = new javax.swing.JButton("" + textsMiddle[i] + "");
+            jPanel3.add(jButtonsMiddle[i]);
+            jButtonsMiddle[i].addActionListener(processButtonInput);
+        }
+        for (int i = 0; i < jButtonsRight.length; i++) {
+            jButtonsRight[i] = new javax.swing.JButton("" + textsRight[i] + "");
+            jButtonsRight[i].addActionListener(processButtonInput);
+            jPanel2.add(jButtonsRight[i]);
+        }
+        for (int i = 0; i < jButtonsCursor.length; i++) {
+            jButtonsCursor[i] = new javax.swing.JButton("" + textsCursor[i] + "");
+            jButtonsCursor[i].addActionListener(processButtonInput);
+            jPanel2.add(jButtonsCursor[i]);
+        }
+        for (int i = 0; i < jButtonsMode.length; i++) {
+            jButtonsMode[i] = new javax.swing.JButton("" + textsMode[i] + "");
+            jButtonsMode[i].addActionListener(processButtonInput);
+            jPanel2.add(jButtonsMode[i]);
+        }
         // Erstellung des Obermenues
         bar = new JMenuBar();
         calculator = new JMenu("Rechner");
@@ -93,65 +151,6 @@ public class View extends JFrame {
         bar.add(calculator);
         bar.add(numeralSystems);
         bar.add(volumes);
-        // Erstellung des Layouts durch Schachtelung der Panels und Hinzufuegen des JTextPane
-        spacer1.setLayout(new GridLayout(2, 1));
-        jTextPane = new JTextPane();
-        jTextPane.setContentType("text/html");
-        jTextPane.setEditable(false);
-        jTextPane.setFocusable(false);
-        jScrollPane = new JScrollPane (jTextPane);
-        spacer1.add(jScrollPane);
-        jPanel1.setLayout(new GridLayout(1, 3));
-        spacer1.add(jPanel1);
-        jPanel2.setLayout(new GridLayout(3, 3));
-        jPanel1.add(jPanel2);
-        jPanel3.setLayout(new GridLayout(4, 3));
-        jPanel1.add(jPanel3);
-        jPanel4.setLayout(new GridLayout(4, 2));
-        jPanel1.add(jPanel4);
-        // Definierung der Beschriftungen und Deklarierung der Button-Arrays nach Anzahl der Texte
-        jButtonsNumber = new JButton[10];
-        textsLeft = new String[]{"DEL", "AC", "+", "-", "*", "/", "Ans", "x^"};
-        jButtonsLeft = new JButton[textsLeft.length];
-        textsMiddle = new String[]{",", "="};
-        jButtonsMiddle = new JButton[textsMiddle.length];
-        textsRight = new String[]{"sin(", "cos(", "tan(", "lg(", "(", ")"};
-        jButtonsRight = new JButton[textsRight.length];
-        textsCursor = new String[]{"<-", "->"};
-        jButtonsCursor = new JButton[textsCursor.length];
-        textsMode = new String[]{"L"};
-        jButtonsMode = new JButton[textsMode.length];
-        // Generierung der einzelnen Knoepfe: ueber jeder Knopf-Array iterieren und dabei Knoepfe mit Beschriftungen aus Texte-Array erstellen, ProcessButtonInput uebergeben und Knoepfe ins Layout hinzufuegen
-        for (int i = 0; i < jButtonsNumber.length; i++) {
-            jButtonsNumber[i] = new JButton(Integer.toString((Integer) i));
-            jButtonsNumber[i].addActionListener(processButtonInput);
-            jPanel3.add(jButtonsNumber[i]);
-        }
-        for (int i = 0; i < jButtonsLeft.length; i++) {
-            jButtonsLeft[i] = new JButton("" + textsLeft[i] + "");
-            jButtonsLeft[i].addActionListener(processButtonInput);
-            jPanel4.add(jButtonsLeft[i]);
-        }
-        for (int i = 0; i < jButtonsMiddle.length; i++) {
-            jButtonsMiddle[i] = new JButton("" + textsMiddle[i] + "");
-            jPanel3.add(jButtonsMiddle[i]);
-            jButtonsMiddle[i].addActionListener(processButtonInput);
-        }
-        for (int i = 0; i < jButtonsRight.length; i++) {
-            jButtonsRight[i] = new JButton("" + textsRight[i] + "");
-            jButtonsRight[i].addActionListener(processButtonInput);
-            jPanel2.add(jButtonsRight[i]);
-        }
-        for (int i = 0; i < jButtonsCursor.length; i++) {
-            jButtonsCursor[i] = new JButton("" + textsCursor[i] + "");
-            jButtonsCursor[i].addActionListener(processButtonInput);
-            jPanel2.add(jButtonsCursor[i]);
-        }
-        for (int i = 0; i < jButtonsMode.length; i++) {
-            jButtonsMode[i] = new JButton("" + textsMode[i] + "");
-            jButtonsMode[i].addActionListener(processButtonInput);
-            jPanel2.add(jButtonsMode[i]);
-        }
         // Hinzufuegen des Gesamtlayouts in die ContentPane (das "Fenster")
         this.getRootPane().setJMenuBar(bar);
         this.getContentPane().add(spacer1);
@@ -164,6 +163,9 @@ public class View extends JFrame {
         // Fokussierbar machen und Fokus (fuer Tastatureingabe) anfordern
         setFocusable(true);
         requestFocus();
+        // Instanz der Beiklasse "ProcessKeyInput", um auf Tastendruecke zu reagieren
+        processKeyInput = new ProcessKeyInput(this);
+        addKeyListener(processKeyInput);
     }
 
     /**

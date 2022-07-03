@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Calculator:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e01ba51-84bb-425d-83d7-45271fdd1757" name="Changes" comment="Hinzufügen der Menüpunkte zu den Zahlensystemen, neue view hierfür (in groben Zügen), Kürzen des codes" />
+    <list default="true" id="6e01ba51-84bb-425d-83d7-45271fdd1757" name="Changes" comment="Hinzufügen der Menüpunkte zu den Zahlensystemen, neue view hierfür (in groben Zügen), Kürzen des codes">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/model/Model.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/ProcessButtonInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/ProcessButtonInput.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/View.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -55,49 +65,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW": "true",
-    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW": "false",
-    "last_opened_file_path": "D:/InfoHefteinträge/Calculator",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW&quot;: &quot;true&quot;,
+    &quot;UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/InfoHefteinträge/Calculator&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;
   }
-}]]></component>
-  <component name="RunManager" selected="Application.squareVolume">
+}</component>
+  <component name="RunManager" selected="Application.Main">
     <configuration name="CalculatorGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="CalculatorGUI" />
       <module name="Calculator" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Calculator.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Calculator.Main" />
-      <module name="Calculator" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Calculator.controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Calculator.model.Model" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Calculator.model.Model" />
-      <module name="Calculator" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Calculator.controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -115,8 +99,34 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="squareVolume" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Calculator.view.squareVolume" />
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Calculator.Main" />
+      <module name="Calculator" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Calculator.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Model" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Calculator.model.Model" />
+      <module name="Calculator" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Calculator.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ViewVolumeSquare" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Calculator.view.ViewVolumeSquare" />
       <module name="Calculator" />
       <extension name="coverage">
         <pattern>
@@ -128,12 +138,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Calculator.view.ViewNumeralSystem" />
+      <item itemvalue="Application.CalculatorGUI" />
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.Model" />
+      <item itemvalue="Application.ViewVolumeSquare" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.squareVolume" />
-        <item itemvalue="Application.Calculator.Main" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Calculator.view.ViewNumeralSystem" />
-        <item itemvalue="Application.Calculator.model.Model" />
+        <item itemvalue="Application.ViewVolumeSquare" />
         <item itemvalue="Application.CalculatorGUI" />
       </list>
     </recent_temporary>
@@ -245,7 +261,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656856849147</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Nachjustierung 2">
+      <created>1656861799092</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1656861799092</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -283,10 +306,24 @@
     <MESSAGE value="Mode" />
     <MESSAGE value="Lightmode &amp; Darkmode + KeyEvent für modes" />
     <MESSAGE value="Hinzufügen der Menüpunkte zu den Zahlensystemen, neue view hierfür (in groben Zügen), Kürzen des codes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Hinzufügen der Menüpunkte zu den Zahlensystemen, neue view hierfür (in groben Zügen), Kürzen des codes" />
+    <MESSAGE value="Nachjustierung 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Nachjustierung 2" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Calculator$Calculator_Main.ic" NAME="Calculator.Main Coverage Results" MODIFIED="1656782262692" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>Calculator.controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Calculator$Main.ic" NAME="Main Coverage Results" MODIFIED="1656866699393" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>Calculator.controller.*</FILTER>
     </SUITE>
   </component>

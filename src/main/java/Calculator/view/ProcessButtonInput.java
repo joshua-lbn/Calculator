@@ -45,7 +45,6 @@ public class ProcessButtonInput implements java.awt.event.ActionListener {
 
     /**
      * Methode, welche bei Knopfdrucken aufgerufen wird.
-     *
      * @param e Das "Event" bzw. Ereignis, welches verarbeitet werden soll
      */
     public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -56,7 +55,49 @@ public class ProcessButtonInput implements java.awt.event.ActionListener {
          * der View der Befehl gegeben, nach Änderung der Darstellung (durch den Controller) diese zu aktualisieren.
          * die weitere Ausfuehrung der Methode aus Effizienzgruenden abgebrochen.
          */
-
+        for (int i = 0; i < jButtonsNumber.length; i++) {
+            if (e.getSource() == jButtonsNumber[i]) {
+                view.Update("" + (i) + "");
+                view.UpdateView();
+                return;
+            }
+        }
+        for (int i = 0; i < jButtonsLeft.length; i++) {
+            if (e.getSource() == jButtonsLeft[i]) {
+                view.Update(textsLeft[i]);
+                view.UpdateView();
+                return;
+            }
+        }
+        for (int i = 0; i < jButtonsMiddle.length; i++) {
+            if (e.getSource() == jButtonsMiddle[i]) {
+                view.Update(textsMiddle[i]);
+                view.UpdateView();
+                return;
+            }
+        }
+        for (int i = 0; i < jButtonsRight.length; i++) {
+            if (e.getSource() == jButtonsRight[i]) {
+                view.Update(textsRight[i]);
+                view.UpdateView();
+                return;
+            }
+        }
+        for (int i = 0; i < jButtonsCursor.length; i++) {
+            if (e.getSource() == jButtonsCursor[i]) {
+                view.Update(textsCursor[i]);
+                view.UpdateView();
+                return;
+            }
+        }
+        for (int i = 0; i < jButtonsMode.length; i++) {
+            if (e.getSource() == jButtonsMode[i]) {
+                view.SwitchMode();
+                view.UpdateView();
+                return;
+            }
+        }
+        // Bei JMenuItems das jeweilige Unterfenster oeffnen
         if (e.getSource() == view.GetJMenuItemCone()) {
             System.out.println("Kegel");
             return;
@@ -74,13 +115,7 @@ public class ProcessButtonInput implements java.awt.event.ActionListener {
             System.out.println("sphere");
             return;
         }
-
-
-        /**Bitte nicht löschen @Joshua
-         *
-         */
-
-
+        // Bitte nicht löschen, wird noch verwendet!
         if (e.getSource() == view.GetJMenuItemDecimal()) {
             //System.out.println("decimal");
             ViewNumeralSystem NumeralView = new ViewNumeralSystem();

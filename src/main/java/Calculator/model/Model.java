@@ -92,9 +92,11 @@ public class Model {
      * @param extension Zu erweiternder Ausdruck
      */
     public void ExtendHTML(String extension) {
-        htmlElementsList.add(cursorPosition, extension);
-        cursorPosition += 1;
-        html = GenerateNewHTML();
+        if(htmlElementsList.size() < 101) {
+            htmlElementsList.add(cursorPosition, extension);
+            cursorPosition += 1;
+            html = GenerateNewHTML();
+        }
     }
 
     /**
