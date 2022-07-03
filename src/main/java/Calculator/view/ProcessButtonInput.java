@@ -1,6 +1,7 @@
 package Calculator.view;
 
 import javax.swing.*;
+import java.awt.*;
 
 
 /*
@@ -21,10 +22,6 @@ public class ProcessButtonInput implements java.awt.event.ActionListener {
     private String[] textsCursor;
     private JButton[] jButtonMode;
     private String[] textsMode;
-    //private JMenuItem jMenuItemCone;
-    //private JMenuItem jMenuItemSquare ;
-    //private JMenuItem jMenuItemCylinder;
-    //private JMenuItem jMenuItemSphere;
 
     /**
      * Konstruktor, der die übergebene View-Instanz speichert und die lokalen Attribute aus der View ueber Getter erhaelt.
@@ -46,11 +43,8 @@ public class ProcessButtonInput implements java.awt.event.ActionListener {
         textsCursor = view.GetTextsCursor();
         jButtonMode = view.GetJButtonMode();
         textsMode = view.GetTextsMode();
-        //jMenuItemCone = view.GetJMenuItemCone();
-        //jMenuItemSquare = view.GetJMenuItemSquare();
-        //jMenuItemCylinder = view.GetJMenuItemCylinder();
-        //jMenuItemSphere = view.GetJMenuItemSphere();
     }
+
     /**
      * Methode, welche bei Knopfdrucken aufgerufen wird.
      *
@@ -105,53 +99,28 @@ public class ProcessButtonInput implements java.awt.event.ActionListener {
                 return;
             }
         }
-        /**Ab hier Änderungen für @Joshua
-         * ;)
-         */
-        //for (int i = 0; i < 1; i++) {
-          //  if (e.getSource() == jMenuItemCone) {
-            //    System.out.println("cone");
-              //  return;
-            //}
-        //}
-        if (e.getSource() == view.GetJMenuItemCylinder()) {
-            System.out.println("zylinder");
-            Test1 TestVolumes = new Test1();
-            return;
-        }
-        if (e.getSource() == view.GetJMenuItemSquare()) {
-            System.out.println("Quader");
-            Test1 TestVolumes = new Test1();
-            return;
-        }
+
         if (e.getSource() == view.GetJMenuItemCone()) {
-            System.out.println("cone");
-            Test1 TestVolumes = new Test1();
-            return;
-        }
-        if (e.getSource() == view.GetJMenuItemSphere()) {
-            System.out.println("kugel");
-            Test1 TestVolumes = new Test1();
-            return;
-        }
-        if (e.getSource() == view.GetJMenuItemHexa()) {
-            System.out.println("hexadecimal");
-            ViewNumeralSystem NewView = new ViewNumeralSystem();
-            return;
-        }
-        if (e.getSource() == view.GetJMenuItemDecimal()) {
-            System.out.println("decimal");
-            ViewNumeralSystem NewView = new ViewNumeralSystem();
-            return;
-        }
-        if (e.getSource() == view.GetJMenuItemBinary()) {
-            System.out.println("binary");
-            ViewNumeralSystem NewView = new ViewNumeralSystem();
+            System.out.println("Kegel");
             return;
         }
 
+        if (e.getSource() == view.GetJMenuItemCylinder()) {
+            System.out.println("Zylinder");
+            return;
+        }
+
+        if (e.getSource() == view.GetJMenuItemSphere()) {
+            System.out.println("sphere");
+            return;
+        }
+
+        if (e.getSource() == view.GetJMenuItemSquare()) {
+            Frame frame = new squareVolume();
+            frame.setVisible(true);
+            return;
+        }
     }
 }
-
 
 

@@ -7,12 +7,11 @@
     <list default="true" id="6e01ba51-84bb-425d-83d7-45271fdd1757" name="Changes" comment="Hinzufügen der Menüpunkte zu den Zahlensystemen, neue view hierfür (in groben Zügen), Kürzen des codes">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/ProcessButtonInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/ProcessButtonInput.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/ProcessKeyInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/ProcessKeyInput.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/Test1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/Test1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/View.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/ViewNumeralSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/ViewNumeralSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/Test1.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/squareVolume.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/Test1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/squareVolume.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +76,7 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.Calculator.Main">
+  <component name="RunManager" selected="Application.squareVolume">
     <configuration name="CalculatorGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="CalculatorGUI" />
       <module name="Calculator" />
@@ -111,8 +110,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Test1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Calculator.view.Test1" />
+    <configuration name="Calculator.view.ViewNumeralSystem" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Calculator.view.ViewNumeralSystem" />
       <module name="Calculator" />
       <extension name="coverage">
         <pattern>
@@ -124,8 +123,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ViewNumeralSystem" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Calculator.view.ViewNumeralSystem" />
+    <configuration name="squareVolume" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Calculator.view.squareVolume" />
       <module name="Calculator" />
       <extension name="coverage">
         <pattern>
@@ -139,9 +138,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.squareVolume" />
         <item itemvalue="Application.Calculator.Main" />
-        <item itemvalue="Application.ViewNumeralSystem" />
-        <item itemvalue="Application.Test1" />
+        <item itemvalue="Application.Calculator.view.ViewNumeralSystem" />
         <item itemvalue="Application.Calculator.model.Model" />
         <item itemvalue="Application.CalculatorGUI" />
       </list>

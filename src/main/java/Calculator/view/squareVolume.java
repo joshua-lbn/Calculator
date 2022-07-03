@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-public class Test1 extends JFrame{
+public class squareVolume extends JFrame{
     private JPanel mainPanel;
     private JTextField lengthTextField;
     private JTextField widthTextField;
@@ -18,34 +18,39 @@ public class Test1 extends JFrame{
     private JLabel height;
     private JPanel volumeJPanel;
     private JLabel volume;
-    private JButton convert;
+    private JButton calculate;
     private JPanel volumeOutput;
     private JLabel volumeOutputSquare;
 
 
-    public Test1() {
+    public squareVolume() {
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(mainPanel);
         this.pack();
         this.setVisible(true);
-        convert.addActionListener(new ActionListener() {
+        calculate.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //noch prüfen Buchstaben + negativ
+                //noch prüfen Buchstaben + leere Eingabe
                 // parse Double, da nicht möglich String direkt in Zahl umwandeln
                 double volumeLength = Double.parseDouble(lengthTextField.getText());
                 double volumeWidth = Double.parseDouble(widthTextField.getText());
                 double volumeHeight = Double.parseDouble(heightTextField.getText());
 
-                double volumeResult = volumeLength * volumeWidth * volumeHeight;
-                System.out.println((double) (Math.round(volumeResult*100))/100);
-                volumeOutputSquare.setText("" + (double) (Math.round(volumeResult*100))/100);
+                if (volumeLength <= 0 || volumeWidth <= 0 || volumeHeight <= 0) {
+                    volumeOutputSquare.setText("ungültige Eingabe");
+                }
+                else {
+                    double volumeResult = volumeLength * volumeWidth * volumeHeight;
+                    System.out.println((double) (Math.round(volumeResult * 100)) / 100);
+                    volumeOutputSquare.setText("" + (double) (Math.round(volumeResult * 100)) / 100);
+                }
             }
         });
     }
     public static void main(String[] args) {
-            JFrame frame = new Test1();
+            JFrame frame = new squareVolume();
             frame.setVisible(true);
     }
 }
