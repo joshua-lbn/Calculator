@@ -7,7 +7,7 @@ public class converter {
         System.out.println("Bitte gib eine Dezimalzahl ein!");//Aufforderung zur Eingabe
 
         int decNumber = input.nextInt();//Eingabe wird gespeichert
-        int anzahlStellen=0;//Anzahl der Stellen der Dualzahl
+        int binaryPlace=0;//Anzahl der Stellen der Dualzahl
         int decNumberTwo=decNumber;//Kopie der Zahl, da am Ende der while-Schleife die Zahl Null ist
 
         /*
@@ -15,15 +15,15 @@ public class converter {
          */
         while (decNumberTwo != 0){
             decNumberTwo=decNumberTwo / 2;//Zahl wird solange durch 2 dividiert bis 0 herauskommt
-            anzahlStellen++;//Erhöhung der Zählvariablen
+            binaryPlace++;//Erhöhung der Zählvariablen
         }
 
-        int []numbers = new int [anzahlStellen];//Array mit Länge der Zählvariablen
+        int []numbers = new int [binaryPlace];//Array mit Länge der Zählvariablen
 
         /*
          * For Schleife füllt das Array mit den Restwerten
          */
-        for (int i = 0; i < anzahlStellen; i++){
+        for (int i = 0; i < binaryPlace; i++){
             numbers[i]=decNumber % 2; //Speichern der Restwerte im Array
             decNumber = decNumber / 2; //Die Zahl wird immer wieder durch 2 dividiert
         }
@@ -31,7 +31,7 @@ public class converter {
         /*
          * Die zweite for-Schleife liest das Array von hinten nach vorne
          */
-        for (int i = anzahlStellen - 1; i >= 0; i--){
+        for (int i = binaryPlace - 1; i >= 0; i--){
             System.out.print(numbers[i]);
         }
     }
