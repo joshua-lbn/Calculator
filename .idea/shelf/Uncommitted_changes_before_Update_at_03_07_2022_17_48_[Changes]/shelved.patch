@@ -1,0 +1,129 @@
+Index: src/main/java/Calculator/controller/converter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Calculator.controller;\r\nimport java.util.Scanner;\r\n\r\npublic class converter {\r\n    static double convertDecToBin(){\r\n        Scanner input = new Scanner(System.in);//Scanner zur Speicherung der Eingabe\r\n        System.out.println(\"Bitte gib eine Dezimalzahl ein!\");//Aufforderung zur Eingabe\r\n\r\n        int decNumber = input.nextInt();//Eingabe wird gespeichert\r\n        int binaryPlace=0;//Anzahl der Stellen der Dualzahl\r\n        int decNumberTwo=decNumber;//Kopie der Zahl, da am Ende der while-Schleife die Zahl Null ist\r\n        double result = 0;\r\n        /*\r\n         * While Schleife soll die Anzahl der Stellen bestimmen\r\n         */\r\n        while (decNumberTwo != 0){\r\n            decNumberTwo=decNumberTwo / 2;//Zahl wird solange durch 2 dividiert bis 0 herauskommt\r\n            binaryPlace++;//Erhöhung der Zählvariablen\r\n        }\r\n\r\n        int []numbers = new int [binaryPlace];//Array mit Länge der Zählvariablen\r\n\r\n        /*\r\n         * For Schleife füllt das Array mit den Restwerten\r\n         */\r\n        for (int i = 0; i < binaryPlace; i++){\r\n            numbers[i]=decNumber % 2; //Speichern der Restwerte im Array\r\n            decNumber = decNumber / 2; //Die Zahl wird immer wieder durch 2 dividiert\r\n        }\r\n\r\n        /*\r\n         * Die zweite for-Schleife liest das Array von hinten nach vorne\r\n         */\r\n        for (int i = binaryPlace - 1; i >= 0; i--){\r\n            System.out.print(numbers[i]);\r\n        }\r\n        result = convertDecToBin();\r\n        return result;\r\n    }\r\n\r\n    public static void main(String[] args) {\r\n        convertDecToBin();\r\n    }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Calculator/controller/converter.java b/src/main/java/Calculator/controller/converter.java
+--- a/src/main/java/Calculator/controller/converter.java	(revision 582f7e3e58dd91c346ddf65a3dc2bb68808ddc1d)
++++ b/src/main/java/Calculator/controller/converter.java	(date 1656863248489)
+@@ -2,14 +2,14 @@
+ import java.util.Scanner;
+ 
+ public class converter {
+-    static double convertDecToBin(){
++    static void convertDecToBin(){
+         Scanner input = new Scanner(System.in);//Scanner zur Speicherung der Eingabe
+         System.out.println("Bitte gib eine Dezimalzahl ein!");//Aufforderung zur Eingabe
+ 
+         int decNumber = input.nextInt();//Eingabe wird gespeichert
+         int binaryPlace=0;//Anzahl der Stellen der Dualzahl
+         int decNumberTwo=decNumber;//Kopie der Zahl, da am Ende der while-Schleife die Zahl Null ist
+-        double result = 0;
++
+         /*
+          * While Schleife soll die Anzahl der Stellen bestimmen
+          */
+@@ -34,8 +34,7 @@
+         for (int i = binaryPlace - 1; i >= 0; i--){
+             System.out.print(numbers[i]);
+         }
+-        result = convertDecToBin();
+-        return result;
++
+     }
+ 
+     public static void main(String[] args) {
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"6e01ba51-84bb-425d-83d7-45271fdd1757\" name=\"Changes\" comment=\"Hinzufügen der Menüpunkte zu den Zahlensystemen, neue view hierfür (in groben Zügen), Kürzen des codes\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Calculator/controller/converter.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/Calculator/controller/converter.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Enum\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <favorite-branches>\r\n      <branch-storage>\r\n        <map>\r\n          <entry type=\"REMOTE\">\r\n            <value>\r\n              <list>\r\n                <branch-info repo=\"$PROJECT_DIR$\" source=\"origin/current\" />\r\n              </list>\r\n            </value>\r\n          </entry>\r\n        </map>\r\n      </branch-storage>\r\n    </favorite-branches>\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"master\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"HighlightingSettingsPerFile\">\r\n    <setting file=\"file://$PROJECT_DIR$/src/main/java/Calculator/controller/Controller.java\" root0=\"SKIP_INSPECTION\" />\r\n    <setting file=\"file://$PROJECT_DIR$/src/main/java/Calculator/view/View.java\" root0=\"SKIP_INSPECTION\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"29VfzMkRBzX21tK3VKBMMlEthK3\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW\": \"true\",\r\n    \"UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW\": \"false\",\r\n    \"last_opened_file_path\": \"D:/InfoHefteinträge/Calculator\",\r\n    \"project.structure.last.edited\": \"Project\",\r\n    \"project.structure.proportion\": \"0.0\",\r\n    \"project.structure.side.proportion\": \"0.2\",\r\n    \"settings.editor.selected.configurable\": \"reference.settings.project.maven.repository.indices\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RunManager\" selected=\"Application.squareVolume\">\r\n    <configuration name=\"CalculatorGUI\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"CalculatorGUI\" />\r\n      <module name=\"Calculator\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"Calculator.Main\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"Calculator.Main\" />\r\n      <module name=\"Calculator\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"Calculator.controller.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"Calculator.model.Model\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"Calculator.model.Model\" />\r\n      <module name=\"Calculator\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"Calculator.controller.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"Calculator.view.ViewNumeralSystem\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"Calculator.view.ViewNumeralSystem\" />\r\n      <module name=\"Calculator\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"Calculator.view.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"squareVolume\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"Calculator.view.squareVolume\" />\r\n      <module name=\"Calculator\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"Calculator.view.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.squareVolume\" />\r\n        <item itemvalue=\"Application.Calculator.Main\" />\r\n        <item itemvalue=\"Application.Calculator.view.ViewNumeralSystem\" />\r\n        <item itemvalue=\"Application.Calculator.model.Model\" />\r\n        <item itemvalue=\"Application.CalculatorGUI\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"6e01ba51-84bb-425d-83d7-45271fdd1757\" name=\"Changes\" comment=\"\" />\r\n      <created>1653203437225</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1653203437225</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Init commit\">\r\n      <created>1653203702671</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1653203702671</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"Test\">\r\n      <created>1653204098483</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1653204098483</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"update Funktion\">\r\n      <created>1653206808419</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1653206808419</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"update Funktion\">\r\n      <created>1653367708371</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1653367708371</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"//Test\">\r\n      <created>1653484573040</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1653484573040</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"//Test\">\r\n      <created>1653484858765</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1653484858765</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"*&#10;* Hier werden die Buttons ausgewertet und initialisiert und auf der View (Oberfläche)&#10;* angezeigt&#10; */\">\r\n      <created>1653485758054</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1653485758054</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"CalculationState\">\r\n      <created>1654802877239</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1654802877240</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"Update\">\r\n      <created>1654803007821</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1654803007821</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"Updates\">\r\n      <created>1654803387361</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1654803387361</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00011\" summary=\"CalculatorState\">\r\n      <created>1655747473360</created>\r\n      <option name=\"number\" value=\"00011\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1655747473360</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00012\" summary=\"Mode\">\r\n      <created>1656347031470</created>\r\n      <option name=\"number\" value=\"00012\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1656347031470</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00013\" summary=\"Lightmode &amp; Darkmode + KeyEvent für modes\">\r\n      <created>1656348021847</created>\r\n      <option name=\"number\" value=\"00013\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1656348021847</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00014\" summary=\"Hinzufügen der Menüpunkte zu den Zahlensystemen, neue view hierfür (in groben Zügen), Kürzen des codes\">\r\n      <created>1656856849147</created>\r\n      <option name=\"number\" value=\"00014\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1656856849147</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00015\" summary=\"Hinzufügen der Menüpunkte zu den Zahlensystemen, neue view hierfür (in groben Zügen), Kürzen des codes\">\r\n      <created>1656857154491</created>\r\n      <option name=\"number\" value=\"00015\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1656857154491</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"16\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.History.Properties\">\r\n    <option name=\"COLUMN_ID_ORDER\">\r\n      <list>\r\n        <option value=\"Default.Root\" />\r\n        <option value=\"Default.Author\" />\r\n        <option value=\"Default.Date\" />\r\n        <option value=\"Default.Subject\" />\r\n        <option value=\"Space.CommitStatus\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Init commit\" />\r\n    <MESSAGE value=\"Test\" />\r\n    <MESSAGE value=\"//Test\" />\r\n    <MESSAGE value=\"*&#10;* Hier werden die Buttons ausgewertet und initialisiert und auf der View (Oberfläche)&#10;* angezeigt&#10; */\" />\r\n    <MESSAGE value=\"CalculationState\" />\r\n    <MESSAGE value=\"Update\" />\r\n    <MESSAGE value=\"Updates\" />\r\n    <MESSAGE value=\"update Funktion\" />\r\n    <MESSAGE value=\"CalculatorState\" />\r\n    <MESSAGE value=\"Mode\" />\r\n    <MESSAGE value=\"Lightmode &amp; Darkmode + KeyEvent für modes\" />\r\n    <MESSAGE value=\"Hinzufügen der Menüpunkte zu den Zahlensystemen, neue view hierfür (in groben Zügen), Kürzen des codes\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Hinzufügen der Menüpunkte zu den Zahlensystemen, neue view hierfür (in groben Zügen), Kürzen des codes\" />\r\n  </component>\r\n  <component name=\"com.intellij.coverage.CoverageDataManagerImpl\">\r\n    <SUITE FILE_PATH=\"coverage/Calculator$Calculator_Main.ic\" NAME=\"Calculator.Main Coverage Results\" MODIFIED=\"1656782262692\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"idea\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"false\">\r\n      <FILTER>Calculator.controller.*</FILTER>\r\n    </SUITE>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 582f7e3e58dd91c346ddf65a3dc2bb68808ddc1d)
++++ b/.idea/workspace.xml	(date 1656863248364)
+@@ -5,7 +5,6 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="6e01ba51-84bb-425d-83d7-45271fdd1757" name="Changes" comment="Hinzufügen der Menüpunkte zu den Zahlensystemen, neue view hierfür (in groben Zügen), Kürzen des codes">
+-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/controller/converter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/controller/converter.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+@@ -58,27 +57,20 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "RunOnceActivity.OpenProjectViewOnStart": "true",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW": "true",
+-    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW": "false",
+-    "last_opened_file_path": "D:/InfoHefteinträge/Calculator",
+-    "project.structure.last.edited": "Project",
+-    "project.structure.proportion": "0.0",
+-    "project.structure.side.proportion": "0.2",
+-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW&quot;: &quot;true&quot;,
++    &quot;UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW&quot;: &quot;false&quot;,
++    &quot;last_opened_file_path&quot;: &quot;D:/InfoHefteinträge/Calculator&quot;,
++    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
++    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
++    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
++    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;
+   }
+-}]]></component>
+-  <component name="RunManager" selected="Application.squareVolume">
+-    <configuration name="CalculatorGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+-      <option name="MAIN_CLASS_NAME" value="CalculatorGUI" />
+-      <module name="Calculator" />
+-      <method v="2">
+-        <option name="Make" enabled="true" />
+-      </method>
+-    </configuration>
++}</component>
++  <component name="RunManager" selected="Application.converter">
+     <configuration name="Calculator.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+       <option name="MAIN_CLASS_NAME" value="Calculator.Main" />
+       <module name="Calculator" />
+@@ -111,6 +103,19 @@
+       <extension name="coverage">
+         <pattern>
+           <option name="PATTERN" value="Calculator.view.*" />
++          <option name="ENABLED" value="true" />
++        </pattern>
++      </extension>
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <configuration name="converter" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="Calculator.controller.converter" />
++      <module name="Calculator" />
++      <extension name="coverage">
++        <pattern>
++          <option name="PATTERN" value="Calculator.controller.*" />
+           <option name="ENABLED" value="true" />
+         </pattern>
+       </extension>
+@@ -133,11 +138,11 @@
+     </configuration>
+     <recent_temporary>
+       <list>
++        <item itemvalue="Application.converter" />
+         <item itemvalue="Application.squareVolume" />
+         <item itemvalue="Application.Calculator.Main" />
+         <item itemvalue="Application.Calculator.view.ViewNumeralSystem" />
+         <item itemvalue="Application.Calculator.model.Model" />
+-        <item itemvalue="Application.CalculatorGUI" />
+       </list>
+     </recent_temporary>
+   </component>

@@ -1,0 +1,1492 @@
+Index: src/main/java/Calculator/controller/converter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Calculator.controller;\r\nimport java.util.Scanner;\r\n\r\npublic class converter {\r\n    static double convertDecToBin(){\r\n        Scanner input = new Scanner(System.in);//Scanner zur Speicherung der Eingabe\r\n        System.out.println(\"Bitte gib eine Dezimalzahl ein!\");//Aufforderung zur Eingabe\r\n\r\n        int decNumber = input.nextInt();//Eingabe wird gespeichert\r\n        int binaryPlace=0;//Anzahl der Stellen der Dualzahl\r\n        int decNumberTwo=decNumber;//Kopie der Zahl, da am Ende der while-Schleife die Zahl Null ist\r\n        double result = 0;\r\n        /*\r\n         * While Schleife soll die Anzahl der Stellen bestimmen\r\n         */\r\n        while (decNumberTwo != 0){\r\n            decNumberTwo=decNumberTwo / 2;//Zahl wird solange durch 2 dividiert bis 0 herauskommt\r\n            binaryPlace++;//Erhöhung der Zählvariablen\r\n        }\r\n\r\n        int []numbers = new int [binaryPlace];//Array mit Länge der Zählvariablen\r\n\r\n        /*\r\n         * For Schleife füllt das Array mit den Restwerten\r\n         */\r\n        for (int i = 0; i < binaryPlace; i++){\r\n            numbers[i]=decNumber % 2; //Speichern der Restwerte im Array\r\n            decNumber = decNumber / 2; //Die Zahl wird immer wieder durch 2 dividiert\r\n        }\r\n\r\n        /*\r\n         * Die zweite for-Schleife liest das Array von hinten nach vorne\r\n         */\r\n        for (int i = binaryPlace - 1; i >= 0; i--){\r\n            System.out.print(numbers[i]);\r\n        }\r\n        result = convertDecToBin();\r\n        return result;\r\n    }\r\n\r\n    public static void main(String[] args) {\r\n        convertDecToBin();\r\n    }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Calculator/controller/converter.java b/src/main/java/Calculator/controller/converter.java
+--- a/src/main/java/Calculator/controller/converter.java	(revision 582f7e3e58dd91c346ddf65a3dc2bb68808ddc1d)
++++ b/src/main/java/Calculator/controller/converter.java	(date 1656862886247)
+@@ -1,15 +1,17 @@
+ package Calculator.controller;
+ import java.util.Scanner;
+ 
++
+ public class converter {
+-    static double convertDecToBin(){
++    static void convertDecToBin(){
++
+         Scanner input = new Scanner(System.in);//Scanner zur Speicherung der Eingabe
+         System.out.println("Bitte gib eine Dezimalzahl ein!");//Aufforderung zur Eingabe
+ 
+         int decNumber = input.nextInt();//Eingabe wird gespeichert
+         int binaryPlace=0;//Anzahl der Stellen der Dualzahl
+         int decNumberTwo=decNumber;//Kopie der Zahl, da am Ende der while-Schleife die Zahl Null ist
+-        double result = 0;
++
+         /*
+          * While Schleife soll die Anzahl der Stellen bestimmen
+          */
+@@ -34,8 +36,7 @@
+         for (int i = binaryPlace - 1; i >= 0; i--){
+             System.out.print(numbers[i]);
+         }
+-        result = convertDecToBin();
+-        return result;
++
+     }
+ 
+     public static void main(String[] args) {
+Index: src/main/java/Calculator/view/Mode.java
+===================================================================
+diff --git a/src/main/java/Calculator/view/Mode.java b/src/main/java/Calculator/view/Mode.java
+deleted file mode 100644
+--- a/src/main/java/Calculator/view/Mode.java	(revision 582f7e3e58dd91c346ddf65a3dc2bb68808ddc1d)
++++ /dev/null	(revision 582f7e3e58dd91c346ddf65a3dc2bb68808ddc1d)
+@@ -1,5 +0,0 @@
+-package Calculator.view;
+-
+-public enum Mode {
+-    DARKMODE, LIGHTMODE
+-}
+Index: src/main/java/Calculator/view/View.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Calculator.view;\r\n\r\nimport Calculator.controller.Controller;\r\nimport Calculator.model.Model;\r\n\r\nimport javax.swing.*;\r\nimport java.awt.*;\r\nimport java.awt.event.ComponentEvent;\r\nimport java.awt.event.ComponentListener;\r\n\r\n/**\r\n * View-Klasse mit grafischer Benutzeroberflaeche.\r\n */\r\npublic class View extends JFrame {\r\n    private Model model;\r\n    private Controller controller;\r\n    // JPanels fuer das Layout\r\n    private javax.swing.JPanel spacer1 = new javax.swing.JPanel();\r\n    private javax.swing.JPanel jPanel1 = new javax.swing.JPanel();\r\n    private javax.swing.JPanel jPanel2 = new javax.swing.JPanel();\r\n    private javax.swing.JPanel jPanel3 = new javax.swing.JPanel();\r\n    private javax.swing.JPanel jPanel4 = new javax.swing.JPanel();\r\n    // Label mit Ausgabe bzw. Anzeige des Ausdruckes\r\n    private javax.swing.JTextPane jTextPane = new javax.swing.JTextPane();\r\n    private javax.swing.JLabel[] test;\r\n    private javax.swing.JPanel test3 = new javax.swing.JPanel();\r\n    //private javax.swing.JButton mode1 = new javax.swing.JButton();\r\n    // Arrays mit Knoepfen\r\n    private javax.swing.JButton[] jButtonsNumber;\r\n    private javax.swing.JButton[] jButtonsLeft;\r\n    private javax.swing.JButton[] jButtonsMiddle;\r\n    private javax.swing.JButton[] jButtonsRight;\r\n    private javax.swing.JButton[] jButtonsCursor;\r\n    private javax.swing.JButton[] jButtonMode;\r\n    // Arrays mit Beschriftungen der Knoepfe\r\n    private String[] textsLeft;\r\n    private String[] textsMiddle;\r\n    private String[] textsRight;\r\n    private String[] textsCursor;\r\n    private String[] textsMode;\r\n    private ProcessKeyInput processKeyInput;\r\n    private Mode mode;\r\n    private JScrollPane jScrollPane;\r\n\r\n    //-----------------------------\r\n    private javax.swing.JMenuItem cone = new javax.swing.JMenuItem();\r\n    private javax.swing.JMenuItem  square = new javax.swing.JMenuItem();\r\n    private javax.swing.JMenuItem cylinder = new javax.swing.JMenuItem();\r\n    private javax.swing.JMenuItem sphere = new javax.swing.JMenuItem();\r\n    private javax.swing.JMenu calculator = new javax.swing.JMenu();\r\n    private javax.swing.JMenu numeralSystems = new javax.swing.JMenu();\r\n    private javax.swing.JMenu volumes = new javax.swing.JMenu();\r\n    private javax.swing.JMenuBar bar = new javax.swing.JMenuBar();\r\n    private javax.swing.JMenuItem decimal = new javax.swing.JMenuItem();\r\n    private javax.swing.JMenuItem binary = new javax.swing.JMenuItem();\r\n    private javax.swing.JMenuItem hexadecimal = new javax.swing.JMenuItem();\r\n    private int fontSize;\r\n\r\n    //-----------------------------\r\n    //Flag für Shifttaste\r\n    boolean shifttasteGedrueckt;\r\n\r\n    /**\r\n     * Konstruktor: Initialisierung der vollen Oberflaeche.\r\n     * Hinzufügen des ProcessKeyInput.\r\n     */\r\n    public View() {\r\n        // Bei Schliessen Programm beenden\r\n        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);\r\n        // Erstellung des Layouts durch Schachtelung der Panels und Hinzufuegen des Labels\r\n        spacer1.setLayout(new java.awt.GridLayout(2, 1));\r\n        jTextPane = new javax.swing.JTextPane();\r\n        jTextPane.setContentType(\"text/html\");\r\n        jTextPane.setEditable(false);\r\n        jTextPane.setFocusable(false);\r\n        jScrollPane = new JScrollPane (jTextPane);\r\n        spacer1.add(jScrollPane);\r\n        jPanel1.setLayout(new java.awt.GridLayout(1, 3));\r\n        spacer1.add(jPanel1);\r\n        jPanel2.setLayout(new java.awt.GridLayout(3, 3));\r\n        jPanel1.add(jPanel2);\r\n        jPanel3.setLayout(new java.awt.GridLayout(4, 3));\r\n        jPanel1.add(jPanel3);\r\n        jPanel4.setLayout(new java.awt.GridLayout(4, 2));\r\n        jPanel1.add(jPanel4);\r\n        // Definierung der Beschriftungen und Deklarierung der Button-Arrays nach Anzahl der Texte\r\n        jButtonsNumber = new JButton[10];\r\n        textsLeft = new String[]{\"DEL\", \"AC\", \"+\", \"-\", \"*\", \"/\", \"Ans\", \"x^\"};\r\n        jButtonsLeft = new JButton[textsLeft.length];\r\n        textsMiddle = new String[]{\",\", \"=\"};\r\n        jButtonsMiddle = new JButton[textsMiddle.length];\r\n        textsRight = new String[]{\"sin(\", \"cos(\", \"tan(\", \"lg(\", \"(\", \")\"};\r\n        jButtonsRight = new JButton[textsRight.length];\r\n        textsCursor = new String[]{\"<-\", \"->\"};\r\n        jButtonsCursor = new JButton[textsCursor.length];\r\n        textsMode = new String[]{\"L\"};\r\n        jButtonMode = new JButton[textsMode.length];\r\n        mode = mode.LIGHTMODE;\r\n\r\n        // Instanz der Beiklasse \"ProcessButtonInput\", um auf Klicks zu reagieren\r\n        ProcessButtonInput bl = new ProcessButtonInput(this);\r\n        //fügt KeyListener hinzu und ermöglicht Zugriff auf das Frame\r\n        processKeyInput = new ProcessKeyInput(this);\r\n        this.addKeyListener(processKeyInput);\r\n        // Generierung der einzelnen Knoepfe: ueber jeder Knopf-Array iterieren und dabei Knoepfe mit Beschriftungen aus Texte-Array erstellen, ProcessButtonInput uebergeben und Knoepfe ins Layout hinzufuegen\r\n        for (int i = 0; i < jButtonsNumber.length; i++) {\r\n            jButtonsNumber[i] = new javax.swing.JButton(Integer.toString((Integer) i));\r\n            jButtonsNumber[i].addActionListener(bl);\r\n            jPanel3.add(jButtonsNumber[i]);\r\n        }\r\n        for (int i = 0; i < jButtonsLeft.length; i++) {\r\n            jButtonsLeft[i] = new javax.swing.JButton(\"\" + textsLeft[i] + \"\");\r\n            jButtonsLeft[i].addActionListener(bl);\r\n            jPanel4.add(jButtonsLeft[i]);\r\n        }\r\n        for (int i = 0; i < jButtonsMiddle.length; i++) {\r\n            jButtonsMiddle[i] = new javax.swing.JButton(\"\" + textsMiddle[i] + \"\");\r\n            jPanel3.add(jButtonsMiddle[i]);\r\n            jButtonsMiddle[i].addActionListener(bl);\r\n        }\r\n        for (int i = 0; i < jButtonsRight.length; i++) {\r\n            jButtonsRight[i] = new javax.swing.JButton(\"\" + textsRight[i] + \"\");\r\n            jButtonsRight[i].addActionListener(bl);\r\n            jPanel2.add(jButtonsRight[i]);\r\n        }\r\n        for (int i = 0; i < jButtonsCursor.length; i++) {\r\n            jButtonsCursor[i] = new javax.swing.JButton(\"\" + textsCursor[i] + \"\");\r\n            jButtonsCursor[i].addActionListener(bl);\r\n            jPanel2.add(jButtonsCursor[i]);\r\n        }\r\n        for (int i = 0; i < jButtonMode.length; i++) {\r\n            jButtonMode[i] = new javax.swing.JButton(\"\" + textsMode[i] + \"\");\r\n            jButtonMode[i].addActionListener(bl);\r\n            jPanel2.add(jButtonMode[i]);\r\n        }\r\n        //-----------------------------\r\n\r\n        bar = new javax.swing.JMenuBar();\r\n\r\n        calculator = new javax.swing.JMenu(\"Rechner\");\r\n        numeralSystems = new javax.swing.JMenu(\"Zahlensystem \");\r\n        volumes = new javax.swing.JMenu(\"Volumen \");\r\n        cone = new javax.swing.JMenuItem(\"Kegel\");\r\n        square = new javax.swing.JMenuItem(\"Quader\");\r\n        cylinder = new javax.swing.JMenuItem(\"Zylinder\");\r\n        sphere = new javax.swing.JMenuItem(\"Kugel\");\r\n        binary =new javax.swing.JMenuItem(\"Binär\");\r\n        decimal =new javax.swing.JMenuItem(\"Dezimal\");\r\n        hexadecimal =new javax.swing.JMenuItem(\"Hexadezimal\");\r\n\r\n        cone.addActionListener(bl);\r\n        square.addActionListener(bl);\r\n        cylinder.addActionListener(bl);\r\n        sphere.addActionListener(bl);\r\n        binary.addActionListener(bl);\r\n        decimal.addActionListener(bl);\r\n        hexadecimal.addActionListener(bl);\r\n        numeralSystems.add(decimal);\r\n        numeralSystems.add(binary);\r\n        numeralSystems.add(hexadecimal);\r\n\r\n        volumes.add(cone);\r\n        volumes.add(square);\r\n        volumes.add(cylinder);\r\n        volumes.add(sphere);\r\n\r\n        bar.add(calculator);\r\n        bar.add(numeralSystems);\r\n        bar.add(volumes);\r\n\r\n        SetLightmode();\r\n        // Hinzufuegen des Gesamtlayouts in die ContentPane (das \"Fenster\")\r\n        this.getContentPane().add(spacer1);\r\n        this.getRootPane().setJMenuBar(bar);\r\n        // Fenster als dynamisch skalierbar definieren\r\n        pack();\r\n        // Fenster sichtbar setzen\r\n        setSize(600,300);\r\n        setVisible(true);\r\n        setFocusable(true);\r\n        requestFocus();\r\n    }\r\n    /**\r\n     * Methode zur Uebergabe des neu hinzugefuegten Zeichens (aus dem ProcessButtonInput) an den Controller.\r\n     * @param s Neues Zeichen\r\n     */\r\n    public void Update(String s) {\r\n        controller.Update(s);\r\n    }\r\n\r\n    /**\r\n     * Methode, um den neue HTML-Ausdruck aus dem Model ins Fenster einzufuegen.\r\n     */\r\n    public void UpdateView() {\r\n        jTextPane.setText(model.GetHTMLExpression());\r\n        requestFocus();\r\n        SwingUtilities.invokeLater(new Runnable() {\r\n            @Override\r\n            public void run() {\r\n                jScrollPane.getHorizontalScrollBar().setValue(Math.round(model.GetCursorPosition() * jTextPane.getWidth() / model.GetHTMLElementsListSize()));\r\n            }\r\n        });\r\n    }\r\n    /**\r\n     * Getter-Methode für JButton[] jButtonsNumber\r\n     * @return JButton[] jButtonsNumber\r\n     */\r\n    protected JButton[] GetJButtonsNumber() {\r\n        return jButtonsNumber;\r\n    }\r\n\r\n    /**\r\n     * Getter-Methode für JButton[] jButtonsLeft\r\n     *\r\n     * @return JButton[] jButtonsLeft\r\n     */\r\n    protected JButton[] GetJButtonsLeft() {\r\n        return jButtonsLeft;\r\n    }\r\n\r\n    /**\r\n     * Getter-Methode für String[] textsLeft\r\n     *\r\n     * @return String[] textsLeft\r\n     */\r\n    protected String[] GetTextsLeft() {\r\n        return textsLeft;\r\n    }\r\n\r\n    /**\r\n     * Getter-Methode für JButton[] jButtonsMiddle\r\n     *\r\n     * @return JButton[] jButtonsMiddle\r\n     */\r\n    protected JButton[] GetJButtonsMiddle() {\r\n        return jButtonsMiddle;\r\n    }\r\n\r\n    /**\r\n     * Getter-Methode für String[] textsMiddle\r\n     *\r\n     * @return String[] textsMiddle\r\n     */\r\n    protected String[] GetTextsMiddle() {\r\n        return textsMiddle;\r\n    }\r\n\r\n    /**\r\n     * Getter-Methode für JButton[] jButtonsRight\r\n     *\r\n     * @return JButton[] jButtonsRight\r\n     */\r\n    protected JButton[] GetJButtonsRight() {\r\n        return jButtonsRight;\r\n    }\r\n\r\n    /**\r\n     * Getter-Methode für String[] textsRight\r\n     *\r\n     * @return String[] textsRight\r\n     */\r\n    protected String[] GetTextsRight() {\r\n        return textsRight;\r\n    }\r\n\r\n    /**\r\n     * Getter-Methode für JButton[] jButtonsCursor\r\n     *\r\n     * @return JButton[] jButtonsCursor\r\n     */\r\n    protected JButton[] GetJButtonsCursor() {\r\n        return jButtonsCursor;\r\n    }\r\n\r\n    /**\r\n     * Getter-Methode für String[] textsCursor\r\n     *\r\n     * @return String[] textsCursor\r\n     */\r\n    protected String[] GetTextsCursor() {\r\n        return textsCursor;\r\n    }\r\n\r\n    protected JButton[] GetJButtonMode() {\r\n        return jButtonMode;\r\n    }\r\n\r\n    protected String[] GetTextsMode() {\r\n        return textsMode;\r\n    }\r\n    public Mode GetMode(){\r\n        return mode;\r\n    }\r\n\r\n    protected JMenuItem GetJMenuItemCone() {\r\n        return cone;\r\n    }\r\n    protected JMenuItem GetJMenuItemSquare() {\r\n        return square;\r\n    }\r\n    protected JMenuItem GetJMenuItemCylinder() {\r\n        return cylinder;\r\n    }\r\n    protected JMenuItem GetJMenuItemSphere() {\r\n        return sphere;\r\n    }\r\n    protected JMenuItem GetJMenuItemHexa() {\r\n        return hexadecimal;\r\n    }\r\n    protected JMenuItem GetJMenuItemDecimal() {\r\n        return decimal;\r\n    }\r\n    protected JMenuItem GetJMenuItemBinary() {\r\n        return binary;\r\n    }\r\n    protected void SwitchMode() {\r\n        if (mode == mode.DARKMODE) {\r\n            SetLightmode();\r\n        }\r\n        else {\r\n            SetDarkmode();\r\n        }\r\n    }\r\n    protected void SetLightmode() {\r\n        mode = mode.LIGHTMODE;\r\n        for (int i = 0; i < jButtonsNumber.length; i++) {\r\n            jButtonsNumber[i].setBackground(Color.white);\r\n            jButtonsNumber[i].setForeground(Color.black);\r\n        }\r\n        for (int i = 0; i < jButtonsLeft.length; i++) {\r\n            jButtonsLeft[i].setBackground(Color.white);\r\n            jButtonsLeft[i].setForeground(Color.black);\r\n        }\r\n        for (int i = 0; i < jButtonsMiddle.length; i++) {\r\n            jButtonsMiddle[i].setBackground(Color.white);\r\n            jButtonsMiddle[i].setForeground(Color.black);\r\n        }\r\n        for (int i = 0; i < jButtonsRight.length; i++) {\r\n            jButtonsRight[i].setBackground(Color.white);\r\n            jButtonsRight[i].setForeground(Color.black);\r\n        }\r\n        for (int i = 0; i < jButtonsCursor.length; i++) {\r\n            jButtonsCursor[i].setBackground(Color.white);\r\n            jButtonsCursor[i].setForeground(Color.black);\r\n        }\r\n        for (int i = 0; i < jButtonMode.length; i++) {\r\n            jButtonMode[i].setBackground(Color.white);\r\n            jButtonMode[i].setForeground(Color.black);\r\n        }\r\n        spacer1.setBackground(Color.white);\r\n        bar.setBackground(Color.white);\r\n        volumes.setForeground(Color.black);\r\n        cone.setForeground(Color.black);\r\n        calculator.setForeground(Color.black);\r\n        numeralSystems.setForeground(Color.black);\r\n        jPanel1.setBackground(Color.white);\r\n        jPanel2.setBackground(Color.white);\r\n        jPanel3.setBackground(Color.white);\r\n        jPanel4.setBackground(Color.white);\r\n        jButtonMode[0].setText(\"D\");\r\n    }\r\n\r\n    protected void SetDarkmode() {\r\n        mode = mode.DARKMODE;\r\n        for (int i = 0; i < jButtonsNumber.length; i++) {\r\n            jButtonsNumber[i].setBackground(Color.black);\r\n            jButtonsNumber[i].setForeground(Color.white);\r\n        }\r\n        for (int i = 0; i < jButtonsLeft.length; i++) {\r\n            jButtonsLeft[i].setBackground(Color.black);\r\n            jButtonsLeft[i].setForeground(Color.white);\r\n        }\r\n        for (int i = 0; i < jButtonsMiddle.length; i++) {\r\n            jButtonsMiddle[i].setBackground(Color.black);\r\n            jButtonsMiddle[i].setForeground(Color.white);\r\n        }\r\n        for (int i = 0; i < jButtonsRight.length; i++) {\r\n            jButtonsRight[i].setBackground(Color.black);\r\n            jButtonsRight[i].setForeground(Color.white);\r\n        }\r\n        for (int i = 0; i < jButtonsCursor.length; i++) {\r\n            jButtonsCursor[i].setBackground(Color.black);\r\n            jButtonsCursor[i].setForeground(Color.white);\r\n        }\r\n        for (int i = 0; i < jButtonMode.length; i++) {\r\n            jButtonMode[i].setBackground(Color.black);\r\n            jButtonMode[i].setForeground(Color.white);\r\n        }\r\n        spacer1.setBackground(Color.black);\r\n        bar.setBackground(Color.black);\r\n        volumes.setForeground(Color.white);\r\n        cone.setForeground(Color.white);\r\n        calculator.setForeground(Color.white);\r\n        numeralSystems.setForeground(Color.white);\r\n        jPanel1.setBackground(Color.black);\r\n        jPanel2.setBackground(Color.black);\r\n        jPanel3.setBackground(Color.black);\r\n        jPanel4.setBackground(Color.black);\r\n        jButtonMode[0].setText(\"L\");\r\n    }\r\n\r\n    public int GetWindowHeight()\r\n    {\r\n        return getHeight();\r\n    }\r\n\r\n    /**\r\n     * Methode zur Setzung der Referenzen auf Model und Controller in Main\r\n     *\r\n     * @param m Model-Instanz\r\n     * @param c Controller-Instanz\r\n     */\r\n    public void UpdateLinks(Model m, Controller c) {\r\n        model = m;\r\n        controller = c;\r\n        addComponentListener(new ComponentListener() {\r\n            @Override\r\n            public void componentResized(ComponentEvent e) {\r\n                UpdateView();\r\n            }\r\n            @Override\r\n            public void componentMoved(ComponentEvent e) {\r\n            }\r\n            @Override\r\n            public void componentShown(ComponentEvent e) {\r\n            }\r\n            @Override\r\n            public void componentHidden(ComponentEvent e) {\r\n            }\r\n        });\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Calculator/view/View.java b/src/main/java/Calculator/view/View.java
+--- a/src/main/java/Calculator/view/View.java	(revision 582f7e3e58dd91c346ddf65a3dc2bb68808ddc1d)
++++ b/src/main/java/Calculator/view/View.java	(date 1656862354260)
+@@ -1,6 +1,7 @@
+ package Calculator.view;
+ 
+ import Calculator.controller.Controller;
++import Calculator.model.ColorMode;
+ import Calculator.model.Model;
+ 
+ import javax.swing.*;
+@@ -14,74 +15,99 @@
+ public class View extends JFrame {
+     private Model model;
+     private Controller controller;
++    // Obermenue mit Reitern
++    private javax.swing.JMenuBar bar = new javax.swing.JMenuBar();
++    private javax.swing.JMenu calculator = new javax.swing.JMenu();
++    private javax.swing.JMenu numeralSystems = new javax.swing.JMenu();
++    private javax.swing.JMenu volumes = new javax.swing.JMenu();
++    private javax.swing.JMenuItem binary = new javax.swing.JMenuItem();
++    private javax.swing.JMenuItem decimal = new javax.swing.JMenuItem();
++    private javax.swing.JMenuItem hexadecimal = new javax.swing.JMenuItem();
++    private javax.swing.JMenuItem cone = new javax.swing.JMenuItem();
++    private javax.swing.JMenuItem square = new javax.swing.JMenuItem();
++    private javax.swing.JMenuItem cylinder = new javax.swing.JMenuItem();
++    private javax.swing.JMenuItem sphere = new javax.swing.JMenuItem();
+     // JPanels fuer das Layout
+     private javax.swing.JPanel spacer1 = new javax.swing.JPanel();
+     private javax.swing.JPanel jPanel1 = new javax.swing.JPanel();
+     private javax.swing.JPanel jPanel2 = new javax.swing.JPanel();
+     private javax.swing.JPanel jPanel3 = new javax.swing.JPanel();
+     private javax.swing.JPanel jPanel4 = new javax.swing.JPanel();
+-    // Label mit Ausgabe bzw. Anzeige des Ausdruckes
++    // JTextPane mit Ausgabe bzw. Anzeige des Ausdruckes, in JScrollBar gehuellt
+     private javax.swing.JTextPane jTextPane = new javax.swing.JTextPane();
+-    private javax.swing.JLabel[] test;
+-    private javax.swing.JPanel test3 = new javax.swing.JPanel();
+-    //private javax.swing.JButton mode1 = new javax.swing.JButton();
++    private JScrollPane jScrollPane;
+     // Arrays mit Knoepfen
+     private javax.swing.JButton[] jButtonsNumber;
+     private javax.swing.JButton[] jButtonsLeft;
+     private javax.swing.JButton[] jButtonsMiddle;
+     private javax.swing.JButton[] jButtonsRight;
+     private javax.swing.JButton[] jButtonsCursor;
+-    private javax.swing.JButton[] jButtonMode;
++    private javax.swing.JButton[] jButtonsMode;
+     // Arrays mit Beschriftungen der Knoepfe
+     private String[] textsLeft;
+     private String[] textsMiddle;
+     private String[] textsRight;
+     private String[] textsCursor;
+     private String[] textsMode;
++    // Auswerter der Knopf- bzw. Tastaturtastendruecke
++    private ProcessButtonInput processButtonInput;
+     private ProcessKeyInput processKeyInput;
+-    private Mode mode;
+-    private JScrollPane jScrollPane;
+-
+-    //-----------------------------
+-    private javax.swing.JMenuItem cone = new javax.swing.JMenuItem();
+-    private javax.swing.JMenuItem  square = new javax.swing.JMenuItem();
+-    private javax.swing.JMenuItem cylinder = new javax.swing.JMenuItem();
+-    private javax.swing.JMenuItem sphere = new javax.swing.JMenuItem();
+-    private javax.swing.JMenu calculator = new javax.swing.JMenu();
+-    private javax.swing.JMenu numeralSystems = new javax.swing.JMenu();
+-    private javax.swing.JMenu volumes = new javax.swing.JMenu();
+-    private javax.swing.JMenuBar bar = new javax.swing.JMenuBar();
+-    private javax.swing.JMenuItem decimal = new javax.swing.JMenuItem();
+-    private javax.swing.JMenuItem binary = new javax.swing.JMenuItem();
+-    private javax.swing.JMenuItem hexadecimal = new javax.swing.JMenuItem();
+-    private int fontSize;
+-
+-    //-----------------------------
+-    //Flag für Shifttaste
+-    boolean shifttasteGedrueckt;
+ 
+     /**
+      * Konstruktor: Initialisierung der vollen Oberflaeche.
+-     * Hinzufügen des ProcessKeyInput.
++     * Hinzufuegen der Eingabeverarbeitung.
+      */
+     public View() {
+         // Bei Schliessen Programm beenden
+-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+-        // Erstellung des Layouts durch Schachtelung der Panels und Hinzufuegen des Labels
+-        spacer1.setLayout(new java.awt.GridLayout(2, 1));
+-        jTextPane = new javax.swing.JTextPane();
++        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
++        // Instanz der Beiklasse "ProcessButtonInput", um auf Klicks zu reagieren
++        processButtonInput = new ProcessButtonInput(this);
++        processKeyInput = new ProcessKeyInput(this);
++        addKeyListener(processKeyInput);
++        // Erstellung des Obermenues
++        bar = new JMenuBar();
++        calculator = new JMenu("Rechner");
++        numeralSystems = new JMenu("Zahlensystem ");
++        binary = new JMenuItem("Binär");
++        decimal = new JMenuItem("Dezimal");
++        hexadecimal = new JMenuItem("Hexadezimal");
++        volumes = new JMenu("Volumen ");
++        cone = new JMenuItem("Kegel");
++        square = new JMenuItem("Quader");
++        cylinder = new JMenuItem("Zylinder");
++        sphere = new JMenuItem("Kugel");
++        binary.addActionListener(processButtonInput);
++        decimal.addActionListener(processButtonInput);
++        hexadecimal.addActionListener(processButtonInput);
++        cone.addActionListener(processButtonInput);
++        square.addActionListener(processButtonInput);
++        cylinder.addActionListener(processButtonInput);
++        sphere.addActionListener(processButtonInput);
++        numeralSystems.add(decimal);
++        numeralSystems.add(binary);
++        numeralSystems.add(hexadecimal);
++        volumes.add(cone);
++        volumes.add(square);
++        volumes.add(cylinder);
++        volumes.add(sphere);
++        bar.add(calculator);
++        bar.add(numeralSystems);
++        bar.add(volumes);
++        // Erstellung des Layouts durch Schachtelung der Panels und Hinzufuegen des JTextPane
++        spacer1.setLayout(new GridLayout(2, 1));
++        jTextPane = new JTextPane();
+         jTextPane.setContentType("text/html");
+         jTextPane.setEditable(false);
+         jTextPane.setFocusable(false);
+         jScrollPane = new JScrollPane (jTextPane);
+         spacer1.add(jScrollPane);
+-        jPanel1.setLayout(new java.awt.GridLayout(1, 3));
++        jPanel1.setLayout(new GridLayout(1, 3));
+         spacer1.add(jPanel1);
+-        jPanel2.setLayout(new java.awt.GridLayout(3, 3));
++        jPanel2.setLayout(new GridLayout(3, 3));
+         jPanel1.add(jPanel2);
+-        jPanel3.setLayout(new java.awt.GridLayout(4, 3));
++        jPanel3.setLayout(new GridLayout(4, 3));
+         jPanel1.add(jPanel3);
+-        jPanel4.setLayout(new java.awt.GridLayout(4, 2));
++        jPanel4.setLayout(new GridLayout(4, 2));
+         jPanel1.add(jPanel4);
+         // Definierung der Beschriftungen und Deklarierung der Button-Arrays nach Anzahl der Texte
+         jButtonsNumber = new JButton[10];
+@@ -94,92 +120,52 @@
+         textsCursor = new String[]{"<-", "->"};
+         jButtonsCursor = new JButton[textsCursor.length];
+         textsMode = new String[]{"L"};
+-        jButtonMode = new JButton[textsMode.length];
+-        mode = mode.LIGHTMODE;
+-
+-        // Instanz der Beiklasse "ProcessButtonInput", um auf Klicks zu reagieren
+-        ProcessButtonInput bl = new ProcessButtonInput(this);
+-        //fügt KeyListener hinzu und ermöglicht Zugriff auf das Frame
+-        processKeyInput = new ProcessKeyInput(this);
+-        this.addKeyListener(processKeyInput);
++        jButtonsMode = new JButton[textsMode.length];
+         // Generierung der einzelnen Knoepfe: ueber jeder Knopf-Array iterieren und dabei Knoepfe mit Beschriftungen aus Texte-Array erstellen, ProcessButtonInput uebergeben und Knoepfe ins Layout hinzufuegen
+         for (int i = 0; i < jButtonsNumber.length; i++) {
+-            jButtonsNumber[i] = new javax.swing.JButton(Integer.toString((Integer) i));
+-            jButtonsNumber[i].addActionListener(bl);
++            jButtonsNumber[i] = new JButton(Integer.toString((Integer) i));
++            jButtonsNumber[i].addActionListener(processButtonInput);
+             jPanel3.add(jButtonsNumber[i]);
+         }
+         for (int i = 0; i < jButtonsLeft.length; i++) {
+-            jButtonsLeft[i] = new javax.swing.JButton("" + textsLeft[i] + "");
+-            jButtonsLeft[i].addActionListener(bl);
++            jButtonsLeft[i] = new JButton("" + textsLeft[i] + "");
++            jButtonsLeft[i].addActionListener(processButtonInput);
+             jPanel4.add(jButtonsLeft[i]);
+         }
+         for (int i = 0; i < jButtonsMiddle.length; i++) {
+-            jButtonsMiddle[i] = new javax.swing.JButton("" + textsMiddle[i] + "");
++            jButtonsMiddle[i] = new JButton("" + textsMiddle[i] + "");
+             jPanel3.add(jButtonsMiddle[i]);
+-            jButtonsMiddle[i].addActionListener(bl);
++            jButtonsMiddle[i].addActionListener(processButtonInput);
+         }
+         for (int i = 0; i < jButtonsRight.length; i++) {
+-            jButtonsRight[i] = new javax.swing.JButton("" + textsRight[i] + "");
+-            jButtonsRight[i].addActionListener(bl);
++            jButtonsRight[i] = new JButton("" + textsRight[i] + "");
++            jButtonsRight[i].addActionListener(processButtonInput);
+             jPanel2.add(jButtonsRight[i]);
+         }
+         for (int i = 0; i < jButtonsCursor.length; i++) {
+-            jButtonsCursor[i] = new javax.swing.JButton("" + textsCursor[i] + "");
+-            jButtonsCursor[i].addActionListener(bl);
++            jButtonsCursor[i] = new JButton("" + textsCursor[i] + "");
++            jButtonsCursor[i].addActionListener(processButtonInput);
+             jPanel2.add(jButtonsCursor[i]);
+         }
+-        for (int i = 0; i < jButtonMode.length; i++) {
+-            jButtonMode[i] = new javax.swing.JButton("" + textsMode[i] + "");
+-            jButtonMode[i].addActionListener(bl);
+-            jPanel2.add(jButtonMode[i]);
++        for (int i = 0; i < jButtonsMode.length; i++) {
++            jButtonsMode[i] = new JButton("" + textsMode[i] + "");
++            jButtonsMode[i].addActionListener(processButtonInput);
++            jPanel2.add(jButtonsMode[i]);
+         }
+-        //-----------------------------
+-
+-        bar = new javax.swing.JMenuBar();
+-
+-        calculator = new javax.swing.JMenu("Rechner");
+-        numeralSystems = new javax.swing.JMenu("Zahlensystem ");
+-        volumes = new javax.swing.JMenu("Volumen ");
+-        cone = new javax.swing.JMenuItem("Kegel");
+-        square = new javax.swing.JMenuItem("Quader");
+-        cylinder = new javax.swing.JMenuItem("Zylinder");
+-        sphere = new javax.swing.JMenuItem("Kugel");
+-        binary =new javax.swing.JMenuItem("Binär");
+-        decimal =new javax.swing.JMenuItem("Dezimal");
+-        hexadecimal =new javax.swing.JMenuItem("Hexadezimal");
+-
+-        cone.addActionListener(bl);
+-        square.addActionListener(bl);
+-        cylinder.addActionListener(bl);
+-        sphere.addActionListener(bl);
+-        binary.addActionListener(bl);
+-        decimal.addActionListener(bl);
+-        hexadecimal.addActionListener(bl);
+-        numeralSystems.add(decimal);
+-        numeralSystems.add(binary);
+-        numeralSystems.add(hexadecimal);
+-
+-        volumes.add(cone);
+-        volumes.add(square);
+-        volumes.add(cylinder);
+-        volumes.add(sphere);
+-
+-        bar.add(calculator);
+-        bar.add(numeralSystems);
+-        bar.add(volumes);
+-
+-        SetLightmode();
+         // Hinzufuegen des Gesamtlayouts in die ContentPane (das "Fenster")
++        this.getRootPane().setJMenuBar(bar);
+         this.getContentPane().add(spacer1);
+-        this.getRootPane().setJMenuBar(bar);
+         // Fenster als dynamisch skalierbar definieren
+         pack();
+-        // Fenster sichtbar setzen
++        // Groesse setzen
+         setSize(600,300);
++        // Sichtbar setzen
+         setVisible(true);
++        // Fokussierbar machen und Fokus (fuer Tastatureingabe) anfordern
+         setFocusable(true);
+         requestFocus();
+     }
++
+     /**
+      * Methode zur Uebergabe des neu hinzugefuegten Zeichens (aus dem ProcessButtonInput) an den Controller.
+      * @param s Neues Zeichen
+@@ -192,8 +178,11 @@
+      * Methode, um den neue HTML-Ausdruck aus dem Model ins Fenster einzufuegen.
+      */
+     public void UpdateView() {
++        // Text (aus Model) in HTML-Darstellung anzeigen
+         jTextPane.setText(model.GetHTMLExpression());
++        // Fokus fuer Tastatureingabe anfordern
+         requestFocus();
++        // Cursor-Positon berechnen und setzen
+         SwingUtilities.invokeLater(new Runnable() {
+             @Override
+             public void run() {
+@@ -201,8 +190,155 @@
+             }
+         });
+     }
++
++    /**
++     * Methode, um den Farbmodus zu weckseln.
++     */
++    protected void SwitchMode() {
++        if (model.GetColorMode() == ColorMode.DARKMODE) {
++            SetLightmode();
++        }
++        else {
++            SetDarkmode();
++        }
++    }
++
+     /**
+-     * Getter-Methode für JButton[] jButtonsNumber
++     * Methode, um den hellen Modus zu aktivieren.
++     */
++    protected void SetLightmode() {
++        // Im Model setzen
++        model.SetLightmode();
++        // Obermenue setzen
++        bar.setForeground(Color.black);
++        bar.setBackground(Color.white);
++        calculator.setForeground(Color.black);
++        calculator.setBackground(Color.white);
++        numeralSystems.setForeground(Color.black);
++        numeralSystems.setBackground(Color.white);
++        binary.setForeground(Color.black);
++        binary.setBackground(Color.white);
++        decimal.setForeground(Color.black);
++        decimal.setBackground(Color.white);
++        hexadecimal.setForeground(Color.black);
++        hexadecimal.setBackground(Color.white);
++        volumes.setForeground(Color.black);
++        volumes.setBackground(Color.white);
++        cone.setForeground(Color.black);
++        cone.setBackground(Color.white);
++        square.setForeground(Color.black);
++        square.setBackground(Color.white);
++        cylinder.setForeground(Color.black);
++        cylinder.setBackground(Color.white);
++        sphere.setForeground(Color.black);
++        sphere.setBackground(Color.white);
++        // Hauptkomponenten setzen
++        spacer1.setBackground(Color.white);
++        jPanel1.setBackground(Color.white);
++        jPanel2.setBackground(Color.white);
++        jPanel3.setBackground(Color.white);
++        jPanel4.setBackground(Color.white);
++        // HTML-Darstellung setzen
++        jTextPane.setBackground(Color.white);
++        jScrollPane.setBackground(Color.white);
++        // Knoepfe setzen
++        for (int i = 0; i < jButtonsNumber.length; i++) {
++            jButtonsNumber[i].setBackground(Color.white);
++            jButtonsNumber[i].setForeground(Color.black);
++        }
++        for (int i = 0; i < jButtonsLeft.length; i++) {
++            jButtonsLeft[i].setBackground(Color.white);
++            jButtonsLeft[i].setForeground(Color.black);
++        }
++        for (int i = 0; i < jButtonsMiddle.length; i++) {
++            jButtonsMiddle[i].setBackground(Color.white);
++            jButtonsMiddle[i].setForeground(Color.black);
++        }
++        for (int i = 0; i < jButtonsRight.length; i++) {
++            jButtonsRight[i].setBackground(Color.white);
++            jButtonsRight[i].setForeground(Color.black);
++        }
++        for (int i = 0; i < jButtonsCursor.length; i++) {
++            jButtonsCursor[i].setBackground(Color.white);
++            jButtonsCursor[i].setForeground(Color.black);
++        }
++        for (int i = 0; i < jButtonsMode.length; i++) {
++            jButtonsMode[i].setBackground(Color.white);
++            jButtonsMode[i].setForeground(Color.black);
++        }
++        // Text auf Knopf aktualisieren
++        jButtonsMode[0].setText("L");
++    }
++
++    /**
++     * Methode, um den dunklen Modus zu aktivieren.
++     */
++    protected void SetDarkmode() {
++        // Im Model setzen
++        model.SetDarkmode();
++        // Obermenue setzen
++        bar.setForeground(Color.white);
++        bar.setBackground(Color.black);
++        calculator.setForeground(Color.white);
++        calculator.setBackground(Color.black);
++        numeralSystems.setForeground(Color.white);
++        numeralSystems.setBackground(Color.black);
++        binary.setForeground(Color.white);
++        binary.setBackground(Color.black);
++        decimal.setForeground(Color.white);
++        decimal.setBackground(Color.black);
++        hexadecimal.setForeground(Color.white);
++        hexadecimal.setBackground(Color.black);
++        volumes.setForeground(Color.white);
++        volumes.setBackground(Color.black);
++        cone.setForeground(Color.white);
++        cone.setBackground(Color.black);
++        square.setForeground(Color.white);
++        square.setBackground(Color.black);
++        cylinder.setForeground(Color.white);
++        cylinder.setBackground(Color.black);
++        sphere.setForeground(Color.white);
++        sphere.setBackground(Color.black);
++        // Hauptkomponenten setzen
++        spacer1.setBackground(Color.black);
++        jPanel1.setBackground(Color.black);
++        jPanel2.setBackground(Color.black);
++        jPanel3.setBackground(Color.black);
++        jPanel4.setBackground(Color.black);
++        // HTML-Darstellung setzen
++        jTextPane.setBackground(Color.black);
++        jScrollPane.getHorizontalScrollBar().setBackground(Color.black);
++        // Knoepfe setzen
++        for (int i = 0; i < jButtonsNumber.length; i++) {
++            jButtonsNumber[i].setBackground(Color.black);
++            jButtonsNumber[i].setForeground(Color.white);
++        }
++        for (int i = 0; i < jButtonsLeft.length; i++) {
++            jButtonsLeft[i].setBackground(Color.black);
++            jButtonsLeft[i].setForeground(Color.white);
++        }
++        for (int i = 0; i < jButtonsMiddle.length; i++) {
++            jButtonsMiddle[i].setBackground(Color.black);
++            jButtonsMiddle[i].setForeground(Color.white);
++        }
++        for (int i = 0; i < jButtonsRight.length; i++) {
++            jButtonsRight[i].setBackground(Color.black);
++            jButtonsRight[i].setForeground(Color.white);
++        }
++        for (int i = 0; i < jButtonsCursor.length; i++) {
++            jButtonsCursor[i].setBackground(Color.black);
++            jButtonsCursor[i].setForeground(Color.white);
++        }
++        for (int i = 0; i < jButtonsMode.length; i++) {
++            jButtonsMode[i].setBackground(Color.black);
++            jButtonsMode[i].setForeground(Color.white);
++        }
++        // Text auf Knopf aktualisieren
++        jButtonsMode[0].setText("D");
++    }
++
++    /**
++     * Getter-Methode fuer JButton[] jButtonsNumber.
+      * @return JButton[] jButtonsNumber
+      */
+     protected JButton[] GetJButtonsNumber() {
+@@ -210,8 +346,7 @@
+     }
+ 
+     /**
+-     * Getter-Methode für JButton[] jButtonsLeft
+-     *
++     * Getter-Methode fuer JButton[] jButtonsLeft.
+      * @return JButton[] jButtonsLeft
+      */
+     protected JButton[] GetJButtonsLeft() {
+@@ -219,8 +354,7 @@
+     }
+ 
+     /**
+-     * Getter-Methode für String[] textsLeft
+-     *
++     * Getter-Methode fuer String[] textsLeft.
+      * @return String[] textsLeft
+      */
+     protected String[] GetTextsLeft() {
+@@ -228,8 +362,7 @@
+     }
+ 
+     /**
+-     * Getter-Methode für JButton[] jButtonsMiddle
+-     *
++     * Getter-Methode fuer JButton[] jButtonsMiddle.
+      * @return JButton[] jButtonsMiddle
+      */
+     protected JButton[] GetJButtonsMiddle() {
+@@ -237,8 +370,7 @@
+     }
+ 
+     /**
+-     * Getter-Methode für String[] textsMiddle
+-     *
++     * Getter-Methode fuer String[] textsMiddle.
+      * @return String[] textsMiddle
+      */
+     protected String[] GetTextsMiddle() {
+@@ -246,8 +378,7 @@
+     }
+ 
+     /**
+-     * Getter-Methode für JButton[] jButtonsRight
+-     *
++     * Getter-Methode fuer JButton[] jButtonsRight.
+      * @return JButton[] jButtonsRight
+      */
+     protected JButton[] GetJButtonsRight() {
+@@ -255,8 +386,7 @@
+     }
+ 
+     /**
+-     * Getter-Methode für String[] textsRight
+-     *
++     * Getter-Methode fuer String[] textsRight.
+      * @return String[] textsRight
+      */
+     protected String[] GetTextsRight() {
+@@ -264,8 +394,7 @@
+     }
+ 
+     /**
+-     * Getter-Methode für JButton[] jButtonsCursor
+-     *
++     * Getter-Methode fuer JButton[] jButtonsCursor.
+      * @return JButton[] jButtonsCursor
+      */
+     protected JButton[] GetJButtonsCursor() {
+@@ -273,140 +402,99 @@
+     }
+ 
+     /**
+-     * Getter-Methode für String[] textsCursor
+-     *
++     * Getter-Methode fuer String[] textsCursor.
+      * @return String[] textsCursor
+      */
+     protected String[] GetTextsCursor() {
+         return textsCursor;
+     }
+ 
++    /**
++     * Getter-Methode fuer JButton[] jButtonsMode.
++     * @return JButton[] jButtonsMode
++     */
+     protected JButton[] GetJButtonMode() {
+-        return jButtonMode;
++        return jButtonsMode;
+     }
+ 
++    /**
++     * Getter-Methode fuer String[] textsMode.
++     * @return String[] textsMode
++     */
+     protected String[] GetTextsMode() {
+         return textsMode;
+     }
+-    public Mode GetMode(){
+-        return mode;
++
++    /**
++     * Getter-Methode fuer das JMenuItem binary.
++     * @return JMenuItem binary
++     */
++    protected JMenuItem GetJMenuItemBinary() {
++        return binary;
+     }
+ 
++    /**
++     * Getter-Methode fuer das JMenuItem decimal.
++     * @return JMenuItem decimal.
++     */
++    protected JMenuItem GetJMenuItemDecimal() {
++        return decimal;
++    }
++
++    /**
++     * Getter-Methode fuer das JMenuItem hexadecimal.
++     * @return JMenuItem hexadecimal
++     */
++    protected JMenuItem GetJMenuItemHexa() {
++        return hexadecimal;
++    }
++
++    /**
++     * Getter-Methode fuer das JMenuItem cone.
++     * @return JMenuItem cone
++     */
+     protected JMenuItem GetJMenuItemCone() {
+         return cone;
+     }
++
++    /**
++     * Getter-Methode fuer das JMenuItem square.
++     * @return JMenuItem square
++     */
+     protected JMenuItem GetJMenuItemSquare() {
+         return square;
+     }
++
++    /**
++     * Getter-Methode fuer das JMenuItem cylinder.
++     * @return JMenuItem cylinder
++     */
+     protected JMenuItem GetJMenuItemCylinder() {
+         return cylinder;
+     }
++
++    /**
++     * Getter-Methode fuer das JMenuItem sphere.
++     * @return JMenuItem sphere
++     */
+     protected JMenuItem GetJMenuItemSphere() {
+         return sphere;
+     }
+-    protected JMenuItem GetJMenuItemHexa() {
+-        return hexadecimal;
+-    }
+-    protected JMenuItem GetJMenuItemDecimal() {
+-        return decimal;
+-    }
+-    protected JMenuItem GetJMenuItemBinary() {
+-        return binary;
+-    }
+-    protected void SwitchMode() {
+-        if (mode == mode.DARKMODE) {
+-            SetLightmode();
+-        }
+-        else {
+-            SetDarkmode();
+-        }
+-    }
+-    protected void SetLightmode() {
+-        mode = mode.LIGHTMODE;
+-        for (int i = 0; i < jButtonsNumber.length; i++) {
+-            jButtonsNumber[i].setBackground(Color.white);
+-            jButtonsNumber[i].setForeground(Color.black);
+-        }
+-        for (int i = 0; i < jButtonsLeft.length; i++) {
+-            jButtonsLeft[i].setBackground(Color.white);
+-            jButtonsLeft[i].setForeground(Color.black);
+-        }
+-        for (int i = 0; i < jButtonsMiddle.length; i++) {
+-            jButtonsMiddle[i].setBackground(Color.white);
+-            jButtonsMiddle[i].setForeground(Color.black);
+-        }
+-        for (int i = 0; i < jButtonsRight.length; i++) {
+-            jButtonsRight[i].setBackground(Color.white);
+-            jButtonsRight[i].setForeground(Color.black);
+-        }
+-        for (int i = 0; i < jButtonsCursor.length; i++) {
+-            jButtonsCursor[i].setBackground(Color.white);
+-            jButtonsCursor[i].setForeground(Color.black);
+-        }
+-        for (int i = 0; i < jButtonMode.length; i++) {
+-            jButtonMode[i].setBackground(Color.white);
+-            jButtonMode[i].setForeground(Color.black);
+-        }
+-        spacer1.setBackground(Color.white);
+-        bar.setBackground(Color.white);
+-        volumes.setForeground(Color.black);
+-        cone.setForeground(Color.black);
+-        calculator.setForeground(Color.black);
+-        numeralSystems.setForeground(Color.black);
+-        jPanel1.setBackground(Color.white);
+-        jPanel2.setBackground(Color.white);
+-        jPanel3.setBackground(Color.white);
+-        jPanel4.setBackground(Color.white);
+-        jButtonMode[0].setText("D");
+-    }
+ 
+-    protected void SetDarkmode() {
+-        mode = mode.DARKMODE;
+-        for (int i = 0; i < jButtonsNumber.length; i++) {
+-            jButtonsNumber[i].setBackground(Color.black);
+-            jButtonsNumber[i].setForeground(Color.white);
+-        }
+-        for (int i = 0; i < jButtonsLeft.length; i++) {
+-            jButtonsLeft[i].setBackground(Color.black);
+-            jButtonsLeft[i].setForeground(Color.white);
+-        }
+-        for (int i = 0; i < jButtonsMiddle.length; i++) {
+-            jButtonsMiddle[i].setBackground(Color.black);
+-            jButtonsMiddle[i].setForeground(Color.white);
+-        }
+-        for (int i = 0; i < jButtonsRight.length; i++) {
+-            jButtonsRight[i].setBackground(Color.black);
+-            jButtonsRight[i].setForeground(Color.white);
+-        }
+-        for (int i = 0; i < jButtonsCursor.length; i++) {
+-            jButtonsCursor[i].setBackground(Color.black);
+-            jButtonsCursor[i].setForeground(Color.white);
+-        }
+-        for (int i = 0; i < jButtonMode.length; i++) {
+-            jButtonMode[i].setBackground(Color.black);
+-            jButtonMode[i].setForeground(Color.white);
+-        }
+-        spacer1.setBackground(Color.black);
+-        bar.setBackground(Color.black);
+-        volumes.setForeground(Color.white);
+-        cone.setForeground(Color.white);
+-        calculator.setForeground(Color.white);
+-        numeralSystems.setForeground(Color.white);
+-        jPanel1.setBackground(Color.black);
+-        jPanel2.setBackground(Color.black);
+-        jPanel3.setBackground(Color.black);
+-        jPanel4.setBackground(Color.black);
+-        jButtonMode[0].setText("L");
+-    }
+-
++    /**
++     * Getter-Methode fuer die Fensterhoehe.
++     * Genutzt, um die HTML-Schriftgroesse im Model zu bestimmen.
++     * @return int Fenstergroesse
++     */
+     public int GetWindowHeight()
+     {
+         return getHeight();
+     }
+ 
+     /**
+-     * Methode zur Setzung der Referenzen auf Model und Controller in Main
+-     *
++     * Methode zur Setzung der Referenzen auf Model und Controller in Main.
++     * Zudem Methoden, die eigentlich im Konstruktor waeren, jedoch Referenzen auf andere Klassen benoetigen und daher
++     * erst hier ausgefuehrt werden koennen.
+      * @param m Model-Instanz
+      * @param c Controller-Instanz
+      */
+@@ -428,5 +516,6 @@
+             public void componentHidden(ComponentEvent e) {
+             }
+         });
++        SetLightmode();
+     }
+ }
+\ No newline at end of file
+Index: .idea/inspectionProfiles/Project_Default.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><component name=\"InspectionProjectProfileManager\">\r\n  <profile version=\"1.0\">\r\n    <option name=\"myName\" value=\"Project Default\" />\r\n    <inspection_tool class=\"JavadocDeclaration\" enabled=\"true\" level=\"WARNING\" enabled_by_default=\"true\">\r\n      <option name=\"ADDITIONAL_TAGS\" value=\"params\" />\r\n    </inspection_tool>\r\n  </profile>\r\n</component>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/inspectionProfiles/Project_Default.xml b/.idea/inspectionProfiles/Project_Default.xml
+--- a/.idea/inspectionProfiles/Project_Default.xml	(revision 582f7e3e58dd91c346ddf65a3dc2bb68808ddc1d)
++++ b/.idea/inspectionProfiles/Project_Default.xml	(date 1656862626830)
+@@ -1,6 +1,7 @@
+ <component name="InspectionProjectProfileManager">
+   <profile version="1.0">
+     <option name="myName" value="Project Default" />
++    <inspection_tool class="InfiniteRecursion" enabled="false" level="WARNING" enabled_by_default="false" />
+     <inspection_tool class="JavadocDeclaration" enabled="true" level="WARNING" enabled_by_default="true">
+       <option name="ADDITIONAL_TAGS" value="params" />
+     </inspection_tool>
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"6e01ba51-84bb-425d-83d7-45271fdd1757\" name=\"Changes\" comment=\"Hinzufügen der Menüpunkte zu den Zahlensystemen, neue view hierfür (in groben Zügen), Kürzen des codes\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Calculator/controller/converter.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/Calculator/controller/converter.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Enum\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <favorite-branches>\r\n      <branch-storage>\r\n        <map>\r\n          <entry type=\"REMOTE\">\r\n            <value>\r\n              <list>\r\n                <branch-info repo=\"$PROJECT_DIR$\" source=\"origin/current\" />\r\n              </list>\r\n            </value>\r\n          </entry>\r\n        </map>\r\n      </branch-storage>\r\n    </favorite-branches>\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"master\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"HighlightingSettingsPerFile\">\r\n    <setting file=\"file://$PROJECT_DIR$/src/main/java/Calculator/controller/Controller.java\" root0=\"SKIP_INSPECTION\" />\r\n    <setting file=\"file://$PROJECT_DIR$/src/main/java/Calculator/view/View.java\" root0=\"SKIP_INSPECTION\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"29VfzMkRBzX21tK3VKBMMlEthK3\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW\": \"true\",\r\n    \"UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW\": \"false\",\r\n    \"last_opened_file_path\": \"D:/InfoHefteinträge/Calculator\",\r\n    \"project.structure.last.edited\": \"Project\",\r\n    \"project.structure.proportion\": \"0.0\",\r\n    \"project.structure.side.proportion\": \"0.2\",\r\n    \"settings.editor.selected.configurable\": \"reference.settings.project.maven.repository.indices\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RunManager\" selected=\"Application.squareVolume\">\r\n    <configuration name=\"CalculatorGUI\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"CalculatorGUI\" />\r\n      <module name=\"Calculator\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"Calculator.Main\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"Calculator.Main\" />\r\n      <module name=\"Calculator\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"Calculator.controller.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"Calculator.model.Model\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"Calculator.model.Model\" />\r\n      <module name=\"Calculator\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"Calculator.controller.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"Calculator.view.ViewNumeralSystem\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"Calculator.view.ViewNumeralSystem\" />\r\n      <module name=\"Calculator\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"Calculator.view.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"squareVolume\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"Calculator.view.squareVolume\" />\r\n      <module name=\"Calculator\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"Calculator.view.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.squareVolume\" />\r\n        <item itemvalue=\"Application.Calculator.Main\" />\r\n        <item itemvalue=\"Application.Calculator.view.ViewNumeralSystem\" />\r\n        <item itemvalue=\"Application.Calculator.model.Model\" />\r\n        <item itemvalue=\"Application.CalculatorGUI\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"6e01ba51-84bb-425d-83d7-45271fdd1757\" name=\"Changes\" comment=\"\" />\r\n      <created>1653203437225</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1653203437225</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Init commit\">\r\n      <created>1653203702671</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1653203702671</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"Test\">\r\n      <created>1653204098483</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1653204098483</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"update Funktion\">\r\n      <created>1653206808419</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1653206808419</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"update Funktion\">\r\n      <created>1653367708371</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1653367708371</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"//Test\">\r\n      <created>1653484573040</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1653484573040</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"//Test\">\r\n      <created>1653484858765</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1653484858765</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"*&#10;* Hier werden die Buttons ausgewertet und initialisiert und auf der View (Oberfläche)&#10;* angezeigt&#10; */\">\r\n      <created>1653485758054</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1653485758054</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"CalculationState\">\r\n      <created>1654802877239</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1654802877240</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"Update\">\r\n      <created>1654803007821</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1654803007821</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"Updates\">\r\n      <created>1654803387361</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1654803387361</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00011\" summary=\"CalculatorState\">\r\n      <created>1655747473360</created>\r\n      <option name=\"number\" value=\"00011\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1655747473360</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00012\" summary=\"Mode\">\r\n      <created>1656347031470</created>\r\n      <option name=\"number\" value=\"00012\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1656347031470</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00013\" summary=\"Lightmode &amp; Darkmode + KeyEvent für modes\">\r\n      <created>1656348021847</created>\r\n      <option name=\"number\" value=\"00013\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1656348021847</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00014\" summary=\"Hinzufügen der Menüpunkte zu den Zahlensystemen, neue view hierfür (in groben Zügen), Kürzen des codes\">\r\n      <created>1656856849147</created>\r\n      <option name=\"number\" value=\"00014\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1656856849147</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00015\" summary=\"Hinzufügen der Menüpunkte zu den Zahlensystemen, neue view hierfür (in groben Zügen), Kürzen des codes\">\r\n      <created>1656857154491</created>\r\n      <option name=\"number\" value=\"00015\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1656857154491</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"16\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.History.Properties\">\r\n    <option name=\"COLUMN_ID_ORDER\">\r\n      <list>\r\n        <option value=\"Default.Root\" />\r\n        <option value=\"Default.Author\" />\r\n        <option value=\"Default.Date\" />\r\n        <option value=\"Default.Subject\" />\r\n        <option value=\"Space.CommitStatus\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Init commit\" />\r\n    <MESSAGE value=\"Test\" />\r\n    <MESSAGE value=\"//Test\" />\r\n    <MESSAGE value=\"*&#10;* Hier werden die Buttons ausgewertet und initialisiert und auf der View (Oberfläche)&#10;* angezeigt&#10; */\" />\r\n    <MESSAGE value=\"CalculationState\" />\r\n    <MESSAGE value=\"Update\" />\r\n    <MESSAGE value=\"Updates\" />\r\n    <MESSAGE value=\"update Funktion\" />\r\n    <MESSAGE value=\"CalculatorState\" />\r\n    <MESSAGE value=\"Mode\" />\r\n    <MESSAGE value=\"Lightmode &amp; Darkmode + KeyEvent für modes\" />\r\n    <MESSAGE value=\"Hinzufügen der Menüpunkte zu den Zahlensystemen, neue view hierfür (in groben Zügen), Kürzen des codes\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Hinzufügen der Menüpunkte zu den Zahlensystemen, neue view hierfür (in groben Zügen), Kürzen des codes\" />\r\n  </component>\r\n  <component name=\"com.intellij.coverage.CoverageDataManagerImpl\">\r\n    <SUITE FILE_PATH=\"coverage/Calculator$Calculator_Main.ic\" NAME=\"Calculator.Main Coverage Results\" MODIFIED=\"1656782262692\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"idea\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"false\">\r\n      <FILTER>Calculator.controller.*</FILTER>\r\n    </SUITE>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 582f7e3e58dd91c346ddf65a3dc2bb68808ddc1d)
++++ b/.idea/workspace.xml	(date 1656862970575)
+@@ -5,8 +5,23 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="6e01ba51-84bb-425d-83d7-45271fdd1757" name="Changes" comment="Hinzufügen der Menüpunkte zu den Zahlensystemen, neue view hierfür (in groben Zügen), Kürzen des codes">
++      <change afterPath="$PROJECT_DIR$/src/main/java/Calculator/model/ColorMode.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/Main.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/controller/Controller.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/controller/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/controller/Parser.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/controller/converter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/controller/converter.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/model/CalculatorState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/model/CalculatorState.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/model/Model.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/Mode.java" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/ProcessButtonInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/ProcessButtonInput.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/ProcessKeyInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/ProcessKeyInput.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/View.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/ViewCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/ViewCalculator.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/ViewNumeralSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/ViewNumeralSystem.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/squareVolume.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/ViewVolumeSquare.form" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/squareVolume.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/ViewVolumeSquare.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -58,27 +73,20 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "RunOnceActivity.OpenProjectViewOnStart": "true",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW": "true",
+-    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW": "false",
+-    "last_opened_file_path": "D:/InfoHefteinträge/Calculator",
+-    "project.structure.last.edited": "Project",
+-    "project.structure.proportion": "0.0",
+-    "project.structure.side.proportion": "0.2",
+-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW&quot;: &quot;true&quot;,
++    &quot;UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW&quot;: &quot;false&quot;,
++    &quot;last_opened_file_path&quot;: &quot;D:/InfoHefteinträge/Calculator&quot;,
++    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
++    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
++    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
++    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;
+   }
+-}]]></component>
+-  <component name="RunManager" selected="Application.squareVolume">
+-    <configuration name="CalculatorGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+-      <option name="MAIN_CLASS_NAME" value="CalculatorGUI" />
+-      <module name="Calculator" />
+-      <method v="2">
+-        <option name="Make" enabled="true" />
+-      </method>
+-    </configuration>
++}</component>
++  <component name="RunManager" selected="Application.converter">
+     <configuration name="Calculator.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+       <option name="MAIN_CLASS_NAME" value="Calculator.Main" />
+       <module name="Calculator" />
+@@ -111,6 +119,19 @@
+       <extension name="coverage">
+         <pattern>
+           <option name="PATTERN" value="Calculator.view.*" />
++          <option name="ENABLED" value="true" />
++        </pattern>
++      </extension>
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <configuration name="converter" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="Calculator.controller.converter" />
++      <module name="Calculator" />
++      <extension name="coverage">
++        <pattern>
++          <option name="PATTERN" value="Calculator.controller.*" />
+           <option name="ENABLED" value="true" />
+         </pattern>
+       </extension>
+@@ -133,11 +154,11 @@
+     </configuration>
+     <recent_temporary>
+       <list>
++        <item itemvalue="Application.converter" />
+         <item itemvalue="Application.squareVolume" />
+         <item itemvalue="Application.Calculator.Main" />
+         <item itemvalue="Application.Calculator.view.ViewNumeralSystem" />
+         <item itemvalue="Application.Calculator.model.Model" />
+-        <item itemvalue="Application.CalculatorGUI" />
+       </list>
+     </recent_temporary>
+   </component>
+@@ -255,7 +276,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1656857154491</updated>
+     </task>
+-    <option name="localTasksCounter" value="16" />
++    <task id="LOCAL-00016" summary="Hinzufügen der Menüpunkte zu den Zahlensystemen, neue view hierfür (in groben Zügen), Kürzen des codes">
++      <created>1656862342486</created>
++      <option name="number" value="00016" />
++      <option name="presentableId" value="LOCAL-00016" />
++      <option name="project" value="LOCAL" />
++      <updated>1656862342486</updated>
++    </task>
++    <option name="localTasksCounter" value="17" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.History.Properties">
+Index: src/main/java/Calculator/view/ViewCalculator.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Calculator.view;\r\n\r\npublic class ViewCalculator {\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Calculator/view/ViewCalculator.java b/src/main/java/Calculator/view/ViewCalculator.java
+--- a/src/main/java/Calculator/view/ViewCalculator.java	(revision 582f7e3e58dd91c346ddf65a3dc2bb68808ddc1d)
++++ b/src/main/java/Calculator/view/ViewCalculator.java	(date 1656862354261)
+@@ -1,5 +1,7 @@
+ package Calculator.view;
+ 
+-public class ViewCalculator {
+-
+-}
++/**
++ * Klasse mit der Darstellung des eigentlichen Rechners.
++ * Verwendet, um Abstraktion zwischen View-Oberklasse und den Unter-Darstellungen zu schaffen.
++ */
++public class ViewCalculator {}
+Index: src/main/java/Calculator/view/ViewNumeralSystem.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Calculator.view;\r\n\r\nimport javax.swing.*;\r\nimport java.awt.event.ActionEvent;\r\nimport java.awt.event.ActionListener;\r\npublic class ViewNumeralSystem extends JFrame {\r\n            private JPanel NumeralmainPanel;\r\n            private JTextField decimalTextfield;\r\n    private JTextField hexaTextField;\r\n    private JTextField binaryTextField;\r\n    private JButton button1;\r\n    private JButton button2;\r\n    private JButton convertButton;\r\n\r\n    public ViewNumeralSystem(){\r\n       // this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);\r\n        this.setContentPane(NumeralmainPanel);\r\n        this.pack();\r\n        this.setVisible(true);\r\n        }\r\n\r\n            public static void main (String[] args)\r\n            {\r\n            JFrame frame = new ViewNumeralSystem();\r\n\r\n                frame.setVisible(true);\r\n            }\r\n\r\n        }
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Calculator/view/ViewNumeralSystem.java b/src/main/java/Calculator/view/ViewNumeralSystem.java
+--- a/src/main/java/Calculator/view/ViewNumeralSystem.java	(revision 582f7e3e58dd91c346ddf65a3dc2bb68808ddc1d)
++++ b/src/main/java/Calculator/view/ViewNumeralSystem.java	(date 1656862354262)
+@@ -3,27 +3,48 @@
+ import javax.swing.*;
+ import java.awt.event.ActionEvent;
+ import java.awt.event.ActionListener;
++
++/**
++ * Klasse mit der Darstellung des Zahlensystemsumrechners.
++ * Verwendet, um Abstraktion zwischen View-Oberklasse und den Unter-Darstellungen zu schaffen.
++ */
+ public class ViewNumeralSystem extends JFrame {
+-            private JPanel NumeralmainPanel;
+-            private JTextField decimalTextfield;
++    // Hauptpanel
++    private JPanel numeralMainPanel;
++    // Textfelder mit Ein- bzw. Ausgabe
++    private JTextField decimalTextfield;
+     private JTextField hexaTextField;
+     private JTextField binaryTextField;
++    // Knoepfe
+     private JButton button1;
+     private JButton button2;
+     private JButton convertButton;
+ 
+-    public ViewNumeralSystem(){
+-       // this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+-        this.setContentPane(NumeralmainPanel);
++    /**
++     * Konstruktor: Initialisierung der Oberflaeche.
++     */
++    public ViewNumeralSystem() {
++        // this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
++        // Hinzufuegen des Hauptpanels in das Fenster
++        this.setContentPane(numeralMainPanel);
++        // Fenstergroesse aenderbar machen
+         this.pack();
++        // Sichtbar setzen
+         this.setVisible(true);
+-        }
+-
+-            public static void main (String[] args)
+-            {
+-            JFrame frame = new ViewNumeralSystem();
+-
+-                frame.setVisible(true);
+-            }
+-
+-        }
+\ No newline at end of file
++        convertButton.addActionListener(new ActionListener() {
++            @Override
++            public void actionPerformed(ActionEvent e) {
++                double decimalNumber = Double.parseDouble(decimalTextfield.getText());
++                binaryTextField.setText("Test erfolgreich");
++                hexaTextField.setText("Test erfolgreich");
++                //Hier Methode zum umrechnen
++            }
++        });
++}
++    // Uebergangsweise zum Testen: main-Methode zum Ausfuehren
++    public static void main (String[] args)
++    {
++        JFrame frame = new ViewNumeralSystem();
++        frame.setVisible(true);
++    }
++}
+Index: src/main/java/Calculator/model/CalculatorState.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Calculator.model;\r\n\r\n/**\r\n * Enumeration, welche die Zustaende des Taschenrechners enthaelt.\r\n * Programmtechnisch im Model verwendet.\r\n */\r\npublic enum CalculatorState {\r\n    // Zustaende: waehrend der Loesungsanzeige, waehrend der Eingabe\r\n    SOLUTION, CALCULATION\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Calculator/model/CalculatorState.java b/src/main/java/Calculator/model/CalculatorState.java
+--- a/src/main/java/Calculator/model/CalculatorState.java	(revision 582f7e3e58dd91c346ddf65a3dc2bb68808ddc1d)
++++ b/src/main/java/Calculator/model/CalculatorState.java	(date 1656862354252)
+@@ -2,7 +2,7 @@
+ 
+ /**
+  * Enumeration, welche die Zustaende des Taschenrechners enthaelt.
+- * Programmtechnisch im Model verwendet.
++ * Programmtechnisch ans Model angegliedert.
+  */
+ public enum CalculatorState {
+     // Zustaende: waehrend der Loesungsanzeige, waehrend der Eingabe
+Index: src/main/java/Calculator/model/Model.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Calculator.model;\r\n\r\nimport Calculator.controller.Controller;\r\nimport Calculator.view.View;\r\n\r\nimport java.util.LinkedList;\r\n\r\n/**\r\n * Model-Klasse mit allen gespeicherten Daten.\r\n */\r\npublic class Model {\r\n    private View view;\r\n    private Controller controller;\r\n    // String mit Rechenausdruck\r\n    private String expression;\r\n    // String mit HTML-Ausdruck\r\n    private String html;\r\n    // Liste mit durch Eingaben eingefügten Elementen (des Ausdrucks)\r\n    private LinkedList<String> expressionsElementsList;\r\n    // Liste mit durch Eingaben eingefügten Elementen in HTML-Form\r\n    private LinkedList<String> htmlElementsList;\r\n    // Antwort der letzten Rechnung (s. Ans-Taste)\r\n    private double ans;\r\n    // HTML-Ausdruck in Bildform zur Darstellung\r\n    private int cursorPosition;\r\n    private String cursorSymbolHTML;\r\n    private CalculatorState state;\r\n    private boolean exponentMode;\r\n\r\n    public Model() {\r\n        // Beide Strings als leer initialisieren\r\n        expression = \"\";\r\n        html = \"\";\r\n        // Listen initialisieren\r\n        expressionsElementsList = new LinkedList<>();\r\n        htmlElementsList = new LinkedList<>();\r\n        // Letzte Antwort als 0 initialisieren\r\n        ans = 0;\r\n        cursorSymbolHTML = \"&#10073;\";\r\n        CursorBack();\r\n        exponentMode = false;\r\n    }\r\n\r\n    /**\r\n     * Methode zur Erweiterung des Ausdrucks-Strings: Element wird in Liste eingefuegt und anschliessend der String erweitert.\r\n     * @param extension Zu erweiternder Ausdruck\r\n     */\r\n    public void ExtendExpression(String extension) {\r\n        if(expressionsElementsList.size() < 101)\r\n        {\r\n            expressionsElementsList.add(cursorPosition, extension);\r\n            expression = GenerateNewExpression();\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Methode zur Verkürzung des Ausdrucks-Strings: letztes Element wird aus der Liste entfernt und mithilfe der Liste der String neu generiert.\r\n     */\r\n    public void ShortenExpression() {\r\n        if(expressionsElementsList.size() > 0) {\r\n            expressionsElementsList.remove(cursorPosition-1);\r\n            expression = GenerateNewExpression();\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Methode zur Räumung des Expression-Strings und seiner Liste.\r\n     */\r\n    public void ClearExpression() {\r\n        expression = \"\";\r\n        expressionsElementsList.clear();\r\n    }\r\n\r\n    /**\r\n     * Methode zur Erweiterung des HTML-Strings: Element wird in Liste eingefuegt und anschliessend der String erweitert.\r\n     * @param extension Zu erweiternder Ausdruck\r\n     */\r\n    public void ExtendHTML(String extension) {\r\n        htmlElementsList.add(cursorPosition, extension);\r\n        cursorPosition += 1;\r\n        html = GenerateNewHTML();\r\n    }\r\n\r\n    /**\r\n     * Methode zur Verkürzung des Ausdrucks-Strings: letztes Element wird aus der Liste entfernt und mithilfe der Liste der String neu generiert.\r\n     */\r\n    public void ShortenHTML() {\r\n        if(htmlElementsList.size() > 1) {\r\n            htmlElementsList.remove(cursorPosition-1);\r\n            cursorPosition -= 1;\r\n            html = GenerateNewHTML();\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Methode zur Leerung des HTML-Strings und seiner Liste, wobei der Cursor an dne Zeilenanfang zurueckkehrt.\r\n     */\r\n    public void ClearHTML() {\r\n        html = \"\";\r\n        htmlElementsList.clear();\r\n        CursorBack();\r\n    }\r\n\r\n    /**\r\n     * Methode zur Leerung des HTML-Strings und seiner Liste ohne Cursor zur Ergebnisanzeige.\r\n     */\r\n    public void ClearHTMLSolution() {\r\n        html = \"\";\r\n        htmlElementsList.clear();\r\n        // Um Ergebnis an erster Stelle einzufuegen, muss die Einfuegeposition zurueckgesetzt werden\r\n        cursorPosition = 0;\r\n    }\r\n\r\n    /**\r\n     * Getter für die Answer-Variable, die als Antwortspeicher dient.\r\n     * @return Gespeicherte Antwort als String\r\n     */\r\n    public String GetAnswer() {\r\n        return Double.toString(ans);\r\n    }\r\n\r\n    /**\r\n     * Setter für die Answer-Variable, die als Antwortspeicher dient.\r\n     * @param gottenAnswer Ausgerechneter Wert\r\n     */\r\n    public void SetAnswer(double gottenAnswer) {\r\n        // Strings leeren\r\n        ClearExpression();\r\n        ClearHTMLSolution();\r\n        // Antwort speichern\r\n        ans = gottenAnswer;\r\n        // Antwort zu Strings hinzufuegen\r\n        ExtendExpression(Double.toString(ans));\r\n        ExtendHTML(Double.toString(ans));\r\n    }\r\n\r\n    /**\r\n     * Getter für die HTML-String-Variable, die den HTML-Ausdruck in Textform enthält.\r\n     * Dabei werden die umschliessenden <HTML>-Tags mit eingefuegt.\r\n     * @return String mit HTML-Ausdruck\r\n     */\r\n    public String GetHTMLExpression() {\r\n        return \"<html><pre style=\\\"font-family: Consolas; font-size: \" + CalculateSize() + \"px\\\">\" + html + \"</pre></html>\";\r\n    }\r\n\r\n    /**\r\n     * Methode, um die aktuelle Schriftgroesse in Abhaengigkeit von der Fenstergroeße zu berechnen.\r\n     * @return Neue Schriftgroesse\r\n     */\r\n    public int CalculateSize()\r\n    {\r\n        return Math.round(35 * view.GetWindowHeight() / 300);\r\n    }\r\n\r\n    /**\r\n     * Methode, um die Laenge der HTML-Liste zu erhalten.\r\n     * @return Laenge der Liste\r\n     */\r\n    public int GetHTMLElementsListSize()\r\n    {\r\n        return htmlElementsList.size();\r\n    }\r\n\r\n    /**\r\n     * Getter für die Expression-Variable, die den normalen Ausdruck in Textform enthält.\r\n     * @return String mit Ausdruck\r\n     */\r\n    public String GetExpression() {\r\n        return expression;\r\n    }\r\n\r\n    /**\r\n     * Methode zur Generierung des Expression-Strings aus der Liste.\r\n     * @return Generierte Expression\r\n     */\r\n    public String GenerateNewExpression() {\r\n        return expressionsElementsList.stream().reduce(\"\", (a, b) -> a + b);\r\n    }\r\n\r\n    /**\r\n     * Methode zur Generierung des HTML-Strings aus der Liste.\r\n     * @return Generierte Expression\r\n     */\r\n    public String GenerateNewHTML() {\r\n        return htmlElementsList.stream().reduce(\"\", (a, b) -> a + b);\r\n    }\r\n\r\n    /**\r\n     * Methode, um den Cursor um eine Position nach links zu verschieben.\r\n     */\r\n    public void CursorLeft()\r\n    {\r\n        if(cursorPosition > 0)\r\n        {\r\n            htmlElementsList.remove(cursorPosition);\r\n            cursorPosition -= 1;\r\n            htmlElementsList.add(cursorPosition, cursorSymbolHTML);\r\n            expression = GenerateNewExpression();\r\n            html = GenerateNewHTML();\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Methode, um den Cursor um eine Position nach rechts zu verschieben.\r\n     */\r\n    public void CursorRight() {\r\n        if (cursorPosition < htmlElementsList.size() - 1) {\r\n            htmlElementsList.remove(cursorPosition);\r\n            cursorPosition += 1;\r\n            htmlElementsList.add(cursorPosition, cursorSymbolHTML);\r\n            html = GenerateNewHTML();\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Methode, um den Cursor wieder in den Ursprungszustand zu versetzen.\r\n     */\r\n    public void CursorBack() {\r\n        cursorPosition = 0;\r\n        htmlElementsList.add(cursorSymbolHTML);\r\n        html = GenerateNewHTML();\r\n    }\r\n\r\n    /**\r\n     * Methode, um die Position des Cursors in der Liste zu erhalten.\r\n     * @return Position als int\r\n     */\r\n    public int GetCursorPosition()\r\n    {\r\n        return cursorPosition;\r\n    }\r\n\r\n    /**\r\n     * Methode, um den Zustand des Taschenrechners zu erhalten.\r\n     */\r\n    public CalculatorState GetState() {\r\n        return state;\r\n    }\r\n\r\n    /**\r\n     * Methode, um den Zustand des Taschenrechners zu setzen.\r\n     */\r\n    public void SetState(CalculatorState newState) {\r\n        state = newState;\r\n    }\r\n\r\n    /**\r\n     * Methode, um den Exponentenmodus zu erhalten.\r\n     * Genutzt im Controller, um zu erkennen, ob nun <sup> oder </sup> verwendet werden sollte, d.h. ob nun der\r\n     * Exponent \"geoeffnet\" oder \"geschlossen\" wird.\r\n     */\r\n    public boolean GetExponentMode()\r\n    {\r\n        return exponentMode;\r\n    }\r\n\r\n    /**\r\n     * Methode, um den Exponentenmodus zu aendern.\r\n     * Genutzt im Controller, um den Modus umzuschalten.\r\n     */\r\n    public void ChangeExponentMode()\r\n    {\r\n        exponentMode = !exponentMode;\r\n    }\r\n\r\n    /**\r\n     * Methode zur Setzung der Referenzen auf View und Controller in Main.\r\n     * @param v View-Instanz\r\n     * @param c Controller-Instanz\r\n     */\r\n    public void UpdateLinks(View v, Controller c) {\r\n        view = v;\r\n        controller = c;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Calculator/model/Model.java b/src/main/java/Calculator/model/Model.java
+--- a/src/main/java/Calculator/model/Model.java	(revision 582f7e3e58dd91c346ddf65a3dc2bb68808ddc1d)
++++ b/src/main/java/Calculator/model/Model.java	(date 1656862354255)
+@@ -21,12 +21,23 @@
+     private LinkedList<String> htmlElementsList;
+     // Antwort der letzten Rechnung (s. Ans-Taste)
+     private double ans;
+-    // HTML-Ausdruck in Bildform zur Darstellung
++    // Zustand des Rechners
++    private CalculatorState state;
++    // Position des Cursors als Zahl
+     private int cursorPosition;
++    // Symbol fuer den Cursor in der HTML-Darstellung
+     private String cursorSymbolHTML;
+-    private CalculatorState state;
++
++    // Fuer die Eingabe: Modus, ob gerade im Exponenten oder normale Eingabe
+     private boolean exponentMode;
++    // Farbmodus des Rechners
++    private ColorMode colorMode;
++    // Speicherung der Farbe der HTML-Darstellung in Abhaengigkeit vom Farbmodus
++    private String colorExtension;
+ 
++    /**
++     * Konstruktor: Ausdruecke als leer initialisieren.
++     */
+     public Model() {
+         // Beide Strings als leer initialisieren
+         expression = "";
+@@ -36,9 +47,14 @@
+         htmlElementsList = new LinkedList<>();
+         // Letzte Antwort als 0 initialisieren
+         ans = 0;
++        // Cursor-Symbol setzen
+         cursorSymbolHTML = "&#10073;";
++        // Cursor an den Ursprungszustand zurueckkehren lassen
+         CursorBack();
++        // Exponentenmodus ausstellen
+         exponentMode = false;
++        // Den hellen Modus aktivieren
++        SetLightmode();
+     }
+ 
+     /**
+@@ -127,11 +143,28 @@
+         // Strings leeren
+         ClearExpression();
+         ClearHTMLSolution();
+-        // Antwort speichern
+-        ans = gottenAnswer;
+-        // Antwort zu Strings hinzufuegen
+-        ExtendExpression(Double.toString(ans));
+-        ExtendHTML(Double.toString(ans));
++        // Pruefen, ob Antwort ein Sonderfall ist
++        if(Double.toString(gottenAnswer).equals("NaN"))
++        {
++            // Ans nicht setzen, da sonst keine korrekte Eingabe gespeichert
++            ExtendHTML("Kein g\u00FCltiger Ausdruck");
++        }
++        else if(Double.toString(gottenAnswer).equals("Infinity"))
++        {
++            ExtendHTML("Positiv unendlich");
++        }
++        else if(Double.toString(gottenAnswer).equals("-Infinity"))
++        {
++            ExtendHTML("Negativ unendlich");
++        }
++        // Bei korrekter Rueckgabe
++        else
++        {
++            // Antwort setzen
++            ans = gottenAnswer;
++            // In Anzeige einfuegen
++            ExtendHTML(Double.toString(ans).replace(".",","));
++        }
+     }
+ 
+     /**
+@@ -140,7 +173,7 @@
+      * @return String mit HTML-Ausdruck
+      */
+     public String GetHTMLExpression() {
+-        return "<html><pre style=\"font-family: Consolas; font-size: " + CalculateSize() + "px\">" + html + "</pre></html>";
++        return "<html><pre style=\"font-family: Consolas; font-size: " + CalculateSize() + "px; color: " + colorExtension + ";\">" + html + "</pre></html>";
+     }
+ 
+     /**
+@@ -263,6 +296,39 @@
+         exponentMode = !exponentMode;
+     }
+ 
++    /**
++     * Methode, um den Farbmodus zu erhalten.
++     * @return Farbmodus
++     */
++    public ColorMode GetColorMode()
++    {
++        return colorMode;
++    }
++
++    /**
++     * Methode, um den hellen Modus zu setzen.
++     * Tatsaechliche Umsetzung in der View.
++     */
++    public void SetLightmode()
++    {
++        // Modus setzen
++        colorMode = ColorMode.LIGHTMODE;
++        // HTML-Farbe setzen
++        colorExtension = "black";
++    }
++
++    /**
++     * Methode, um den hellen Modus zu setzen.
++     * Tatsaechliche Umsetzung in der View.
++     */
++    public void SetDarkmode()
++    {
++        // Modus setzen
++        colorMode = ColorMode.DARKMODE;
++        // HTML-Farbe setzen
++        colorExtension = "white";
++    }
++
+     /**
+      * Methode zur Setzung der Referenzen auf View und Controller in Main.
+      * @param v View-Instanz
+Index: src/main/java/Calculator/controller/Controller.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Calculator.controller;\r\n\r\nimport Calculator.model.CalculatorState;\r\nimport Calculator.model.Model;\r\nimport Calculator.view.View;\r\n\r\n/**\r\n * Controller-Klasse mit Programmierlogik.\r\n */\r\npublic class Controller {\r\n    private Model model;\r\n    private View view;\r\n    private Parser parser;\r\n\r\n    /**\r\n     * Konstruktor: Parser initialisieren.\r\n     */\r\n    public Controller() {\r\n        parser = new Parser();\r\n    }\r\n\r\n    /**\r\n     * Methode zur Erweiterung der Model-Strings anhand der Eingabe, die der View weitergibt.\r\n     * Beginnt nach einer Berechnung eine neue Eingabe.\r\n     * @param input Eingabe-String\r\n     */\r\n    public void Update(String input) {\r\n        /*\r\n         * Wenn eine Berechnung fertig ist (somit ist Taschenrechner im Loesungsanzeige-Zustand) und eine\r\n         * neue Berechnung angefangen wird, soll die alte Berechnung gelöscht werden\r\n         *\r\n         */\r\n        if (model.GetState() == CalculatorState.SOLUTION) {\r\n            // Falls \"Ist-Gleich\"-Taste gedrueckt: nichts tun, da bereits Berechnung ausgefuerht\r\n            if(input.equals(\"=\")) {\r\n            }\r\n            // Eigentliche Methode\r\n            else {\r\n                // Beide Eingabestrings loeschen\r\n                model.ClearExpression();\r\n                model.ClearHTML();\r\n                // Zustand auf Berechnung setzen\r\n                model.SetState(CalculatorState.CALCULATION);\r\n            }\r\n        }\r\n        // Zahleneingabe, Kommas und Trigonometrie: in beide einfach einfuegen\r\n        if(input.matches(\"[0123456789()]\") || input.equals(\"sin(\") || input.equals(\"cos(\") || input.equals(\"tan(\")) {\r\n            model.ExtendExpression(input);\r\n            model.ExtendHTML(input);\r\n        }\r\n        // Grundoperatoren: in Expression einfach einfuegen, in HTML mit Sonderzeichen\r\n        else if(input.equals(\"+\"))\r\n        {\r\n            model.ExtendExpression(input);\r\n            model.ExtendHTML(\"&#43;\");\r\n        }\r\n        else if(input.equals(\"-\"))\r\n        {\r\n            model.ExtendExpression(input);\r\n            model.ExtendHTML(\"&#8722;\");\r\n        }\r\n        else if(input.equals(\"*\"))\r\n        {\r\n            model.ExtendExpression(input);\r\n            model.ExtendHTML(\"&#215;\");\r\n        }\r\n        else if(input.equals(\"/\"))\r\n        {\r\n            model.ExtendExpression(input);\r\n            model.ExtendHTML(\"&#247;\");\r\n        }\r\n        // Komma: Expression mit Punkt und HTML mit Komma\r\n        else if (input.equals(\",\")) {\r\n            model.ExtendExpression(\".\");\r\n            model.ExtendHTML(\",\");\r\n        }\r\n        /* Exponent: Exponent in Klammern in Expression einfuegen; in HTML erst erkennen, ob nun geoeffnet oder\r\n         * geschlossen, dann einfuegen der entsprechenden Zeichens und Aendern des Modus\r\n         */\r\n        else if (input.equals(\"x^\")) {\r\n            if(model.GetExponentMode())\r\n            {\r\n                model.ExtendExpression(\")\");\r\n                model.ExtendHTML(\"</sup>\");\r\n                model.ChangeExponentMode();\r\n            }\r\n            else if(!model.GetExponentMode())\r\n            {\r\n                model.ExtendExpression(\"^(\");\r\n                model.ExtendHTML(\"<sup>\");\r\n                model.ChangeExponentMode();\r\n            }\r\n        }\r\n        // Logarithmus: Expression einfach einfuegen, in HTML Sonderkommando\r\n        else if (input.equals(\"lg(\")) {\r\n            model.ExtendExpression(input);\r\n            model.ExtendHTML(\"log<sub>10</sub>(\");\r\n        }\r\n        // Ist-Gleich: Berechnung anstossen\r\n        else if (input.equals(\"=\")) {\r\n            // Parser berechnet aktuellen Ausdruck im Model und Setter leert expression sowie HTML-String und fügt Ergebnis ein\r\n            model.SetAnswer(parser.Calculate(model.GetExpression()));\r\n            // Anzeige aktualisieren\r\n            view.UpdateView();\r\n            // Zustand auf Loesungsanzeige setzen\r\n            model.SetState(CalculatorState.SOLUTION);\r\n        }\r\n        // Ans: in beide Strings Dezimalwert aus Antwortspeicher einfuegen\r\n        else if (input.equals(\"Ans\")) {\r\n            model.ExtendExpression(model.GetAnswer());\r\n            model.ExtendHTML(model.GetAnswer());\r\n        }\r\n        // Einfachkorrektur: in beiden Strings das zuletzt eingefuegte Element entfernen\r\n        else if (input.equals(\"DEL\")) {\r\n            model.ShortenExpression();\r\n            model.ShortenHTML();\r\n        }\r\n        // Komplettloeschung: beide Strings komplett leeren und Cursor zuruecksetzen\r\n        else if (input.equals(\"AC\")) {\r\n            model.ClearExpression();\r\n            model.ClearHTML();\r\n        }\r\n        // Cursortasten: Aenderungen im Model anstossen\r\n        else if (input.equals(\"<-\")) {\r\n            model.CursorLeft();\r\n        }\r\n        else if (input.equals(\"->\")) {\r\n            model.CursorRight();\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Methode zur Setzung der Referenzen auf Model und View in Main.\r\n     * Auch Ausfuehrung von Code, welcher im Konstruktur waere, jedoch die Links zu den anderen Klassen benoetigt.\r\n     * @param m Model-Instanz\r\n     * @param v View-Instanz\r\n     */\r\n    public void UpdateLinks(Model m, View v) {\r\n        model = m;\r\n        view = v;\r\n        // Fortgefuehrter Konstruktor\r\n        model.SetState(CalculatorState.CALCULATION);\r\n        view.UpdateView();\r\n    }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Calculator/controller/Controller.java b/src/main/java/Calculator/controller/Controller.java
+--- a/src/main/java/Calculator/controller/Controller.java	(revision 582f7e3e58dd91c346ddf65a3dc2bb68808ddc1d)
++++ b/src/main/java/Calculator/controller/Controller.java	(date 1656862354249)
+@@ -36,8 +36,7 @@
+             }
+             // Eigentliche Methode
+             else {
+-                // Beide Eingabestrings loeschen
+-                model.ClearExpression();
++                // Anzeigestring loeschen
+                 model.ClearHTML();
+                 // Zustand auf Berechnung setzen
+                 model.SetState(CalculatorState.CALCULATION);
+Index: src/main/java/Calculator/controller/Parser.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Calculator.controller;\r\n\r\nimport org.mariuszgromada.math.mxparser.*;\r\n\r\n/**\r\n * Klasse zur Auswertung des mathematischen Ausdruckes im Model anhand des mXparer-Maven-Moduls (MathParser.org-mXparser).\r\n * Programmtechnisch an den Controller gegliedert.\r\n */\r\npublic class Parser {\r\n    // Ausdruck deklarieren\r\n    Expression e;\r\n\r\n    /**\r\n     * Konstruktor, der die Expression initialisiert.\r\n     */\r\n    public Parser()\r\n    {\r\n        e = new Expression();\r\n    }\r\n\r\n    /**\r\n     * Methode zur Berechnung eines Ausdruckes.\r\n     * @param expression Der den Ausdruck enthaltende String\r\n     * @return Das Ergebnis der Berechnung (als Double)\r\n     */\r\n    public Double Calculate(String expression)\r\n    {\r\n        // String an Expression übergeben\r\n        e.setExpressionString(expression);\r\n        // Ausrechnen und zurückgeben\r\n        return e.calculate();\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Calculator/controller/Parser.java b/src/main/java/Calculator/controller/Parser.java
+--- a/src/main/java/Calculator/controller/Parser.java	(revision 582f7e3e58dd91c346ddf65a3dc2bb68808ddc1d)
++++ b/src/main/java/Calculator/controller/Parser.java	(date 1656862354251)
+@@ -11,7 +11,7 @@
+     Expression e;
+ 
+     /**
+-     * Konstruktor, der die Expression initialisiert.
++     * Konstruktor: Expression initialisieren.
+      */
+     public Parser()
+     {
+Index: src/main/java/Calculator/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Calculator;\r\n\r\nimport Calculator.controller.Controller;\r\nimport Calculator.model.Model;\r\nimport Calculator.view.View;\r\n\r\n/**\r\n * Die Hauptklasse, welche als erstes ausgeführt wird.\r\n * Sie erstellt die drei Hauptkomponenten nach dem MVC-Modell und gibt ihnen jeweils die Referenzen auf die anderen Hauptkomponenten.\r\n */\r\npublic class Main {\r\n     public static void main(String[] args) {\r\n        //Drei Hauptkomponenten deklarieren und initialisieren\r\n        Model model = new Model();\r\n        View view = new View();\r\n        Controller controller = new Controller();\r\n        // Weitergabe der Referenzen über gesonderte Methoden\r\n        model.UpdateLinks(view, controller);\r\n        view.UpdateLinks(model, controller);\r\n        controller.UpdateLinks(model, view);\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Calculator/Main.java b/src/main/java/Calculator/Main.java
+--- a/src/main/java/Calculator/Main.java	(revision 582f7e3e58dd91c346ddf65a3dc2bb68808ddc1d)
++++ b/src/main/java/Calculator/Main.java	(date 1656862354248)
+@@ -6,10 +6,11 @@
+ 
+ /**
+  * Die Hauptklasse, welche als erstes ausgeführt wird.
+- * Sie erstellt die drei Hauptkomponenten nach dem MVC-Modell und gibt ihnen jeweils die Referenzen auf die anderen Hauptkomponenten.
++ * Sie erstellt die drei Hauptkomponenten nach dem MVC-Modell und gibt ihnen jeweils die Referenzen auf die anderen
++ * Hauptkomponenten.
+  */
+ public class Main {
+-     public static void main(String[] args) {
++    public static void main(String[] args) {
+         //Drei Hauptkomponenten deklarieren und initialisieren
+         Model model = new Model();
+         View view = new View();
+Index: src/main/java/Calculator/view/squareVolume.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Calculator/view/squareVolume.java b/src/main/java/Calculator/view/ViewVolumeSquare.java
+rename from src/main/java/Calculator/view/squareVolume.java
+rename to src/main/java/Calculator/view/ViewVolumeSquare.java
+--- a/src/main/java/Calculator/view/squareVolume.java	(revision 582f7e3e58dd91c346ddf65a3dc2bb68808ddc1d)
++++ b/src/main/java/Calculator/view/ViewVolumeSquare.java	(date 1656862354282)
+@@ -4,12 +4,18 @@
+ import java.awt.event.ActionEvent;
+ import java.awt.event.ActionListener;
+ 
+-
+-public class squareVolume extends JFrame{
++/**
++ * Klasse mit der Darstellung des Quaderrechners.
++ * Verwendet, um Abstraktion zwischen View-Oberklasse und den Unter-Darstellungen zu schaffen.
++ */
++public class ViewVolumeSquare extends JFrame {
++    // Hautpanel
+     private JPanel mainPanel;
++    // Textfelder zur Eingabe
+     private JTextField lengthTextField;
+     private JTextField widthTextField;
+     private JTextField heightTextField;
++    // Ungenutzt?
+     private JPanel lengthJPanel;
+     private JLabel length;
+     private JPanel widthJPanel;
+@@ -18,26 +24,33 @@
+     private JLabel height;
+     private JPanel volumeJPanel;
+     private JLabel volume;
++    // Knopf zur Berechnung
+     private JButton calculate;
++    // Panel und Label mit Ausgabe
+     private JPanel volumeOutput;
+     private JLabel volumeOutputSquare;
+ 
+-
+-    public squareVolume() {
+-
++    /**
++     * Konstruktor: Oberflaeche initialisieren.
++     */
++    public ViewVolumeSquare() {
++        // Schliessoperation setzen
+         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
++        // Hauptpanel hinzufuegen
+         this.setContentPane(mainPanel);
++        // Fenstergroesse aenderbar setzen
+         this.pack();
++        // Sichtbar setzen
+         this.setVisible(true);
++        // Uebergangsweise: kommt in eigene Klasse
+         calculate.addActionListener(new ActionListener() {
+             @Override
+             public void actionPerformed(ActionEvent e) {
+-                //noch prüfen Buchstaben + leere Eingabe
+-                // parse Double, da nicht möglich String direkt in Zahl umwandeln
++                // Noch prüfen Buchstaben + leere Eingabe
++                // Parse Double, da nicht möglich String direkt in Zahl umwandeln
+                 double volumeLength = Double.parseDouble(lengthTextField.getText());
+                 double volumeWidth = Double.parseDouble(widthTextField.getText());
+                 double volumeHeight = Double.parseDouble(heightTextField.getText());
+-
+                 if (volumeLength <= 0 || volumeWidth <= 0 || volumeHeight <= 0) {
+                     volumeOutputSquare.setText("ungültige Eingabe");
+                 }
+@@ -49,8 +62,10 @@
+             }
+         });
+     }
++
++    // Uebergangsweise: zum Testen
+     public static void main(String[] args) {
+-            JFrame frame = new squareVolume();
++            JFrame frame = new ViewVolumeSquare();
+             frame.setVisible(true);
+     }
+ }
+Index: src/main/java/Calculator/view/ProcessButtonInput.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Calculator.view;\r\n\r\nimport javax.swing.*;\r\nimport java.awt.*;\r\n\r\n\r\n/*\r\n * ProcessButtonInput-Klasse zum Auswerten der Interaktionen mit der grafischen Oberflaeche.\r\n * Programmtechnisch an die View-Klasse gegliedert.\r\n */\r\npublic class ProcessButtonInput implements java.awt.event.ActionListener {\r\n    private View view;\r\n    // Relevante Attribute: Arrays mit Knopfobjekten und Beschriftungen\r\n    private JButton[] jButtonsNumber;\r\n    private JButton[] jButtonsLeft;\r\n    private String[] textsLeft;\r\n    private JButton[] jButtonsMiddle;\r\n    private String[] textsMiddle;\r\n    private JButton[] jButtonsRight;\r\n    private String[] textsRight;\r\n    private JButton[] jButtonsCursor;\r\n    private String[] textsCursor;\r\n    private JButton[] jButtonMode;\r\n    private String[] textsMode;\r\n\r\n    /**\r\n     * Konstruktor, der die übergebene View-Instanz speichert und die lokalen Attribute aus der View ueber Getter erhaelt.\r\n     *\r\n     * @param v View-Instanz\r\n     */\r\n    public ProcessButtonInput(View v) {\r\n        // View speichern\r\n        view = v;\r\n        // Getter aufrufen\r\n        jButtonsNumber = view.GetJButtonsNumber();\r\n        jButtonsLeft = view.GetJButtonsLeft();\r\n        textsLeft = view.GetTextsLeft();\r\n        jButtonsMiddle = view.GetJButtonsMiddle();\r\n        textsMiddle = view.GetTextsMiddle();\r\n        jButtonsRight = view.GetJButtonsRight();\r\n        textsRight = view.GetTextsRight();\r\n        jButtonsCursor = view.GetJButtonsCursor();\r\n        textsCursor = view.GetTextsCursor();\r\n        jButtonMode = view.GetJButtonMode();\r\n        textsMode = view.GetTextsMode();\r\n    }\r\n\r\n    /**\r\n     * Methode, welche bei Knopfdrucken aufgerufen wird.\r\n     *\r\n     * @param e Das \"Event\" bzw. Ereignis, welches verarbeitet werden soll\r\n     */\r\n    public void actionPerformed(java.awt.event.ActionEvent e) {\r\n        /*\r\n         * Alle JNumberButtons und im weiteren Verlauf die anderen Arrays werden geprueft.\r\n         * Bei Uebereinstimmung des Eventursprungs mit einem Knopf wird:\r\n         * der View der Befehl gegeben, die hinzugefuegten Zeichen an den Controller zu geben, sodass sie hinzugefuegt werden koennen.\r\n         * der View der Befehl gegeben, nach Änderung der Darstellung (durch den Controller) diese zu aktualisieren.\r\n         * die weitere Ausfuehrung der Methode aus Effizienzgruenden abgebrochen.\r\n         */\r\n        for (int i = 0; i < jButtonsNumber.length; i++) {\r\n            if (e.getSource() == jButtonsNumber[i]) {\r\n                view.Update(\"\" + (i) + \"\");\r\n                view.UpdateView();\r\n                return;\r\n            }\r\n        }\r\n        for (int i = 0; i < jButtonsLeft.length; i++) {\r\n            if (e.getSource() == jButtonsLeft[i]) {\r\n                view.Update(textsLeft[i]);\r\n                view.UpdateView();\r\n                return;\r\n            }\r\n        }\r\n        for (int i = 0; i < jButtonsMiddle.length; i++) {\r\n            if (e.getSource() == jButtonsMiddle[i]) {\r\n                view.Update(textsMiddle[i]);\r\n                view.UpdateView();\r\n                return;\r\n            }\r\n        }\r\n        for (int i = 0; i < jButtonsRight.length; i++) {\r\n            if (e.getSource() == jButtonsRight[i]) {\r\n                view.Update(textsRight[i]);\r\n                view.UpdateView();\r\n                return;\r\n            }\r\n        }\r\n        for (int i = 0; i < jButtonsCursor.length; i++) {\r\n            if (e.getSource() == jButtonsCursor[i]) {\r\n                view.Update(textsCursor[i]);\r\n                view.UpdateView();\r\n                return;\r\n            }\r\n        }\r\n        for (int i = 0; i < jButtonMode.length; i++) {\r\n            if (e.getSource() == jButtonMode[i]) {\r\n                view.SwitchMode();\r\n                return;\r\n            }\r\n        }\r\n\r\n        if (e.getSource() == view.GetJMenuItemCone()) {\r\n            System.out.println(\"Kegel\");\r\n            return;\r\n        }\r\n\r\n        if (e.getSource() == view.GetJMenuItemCylinder()) {\r\n            System.out.println(\"Zylinder\");\r\n            return;\r\n        }\r\n\r\n        if (e.getSource() == view.GetJMenuItemSphere()) {\r\n            System.out.println(\"sphere\");\r\n            return;\r\n        }\r\n\r\n        if (e.getSource() == view.GetJMenuItemSquare()) {\r\n            Frame frame = new squareVolume();\r\n            frame.setVisible(true);\r\n            return;\r\n        }\r\n    }\r\n}\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Calculator/view/ProcessButtonInput.java b/src/main/java/Calculator/view/ProcessButtonInput.java
+--- a/src/main/java/Calculator/view/ProcessButtonInput.java	(revision 582f7e3e58dd91c346ddf65a3dc2bb68808ddc1d)
++++ b/src/main/java/Calculator/view/ProcessButtonInput.java	(date 1656862354256)
+@@ -20,12 +20,10 @@
+     private String[] textsRight;
+     private JButton[] jButtonsCursor;
+     private String[] textsCursor;
+-    private JButton[] jButtonMode;
+-    private String[] textsMode;
++    private JButton[] jButtonsMode;
+ 
+     /**
+-     * Konstruktor, der die übergebene View-Instanz speichert und die lokalen Attribute aus der View ueber Getter erhaelt.
+-     *
++     * Konstruktor: übergebene View-Instanz speichern und lokale Attribute aus der View ueber Getter erhalten.
+      * @param v View-Instanz
+      */
+     public ProcessButtonInput(View v) {
+@@ -41,20 +39,19 @@
+         textsRight = view.GetTextsRight();
+         jButtonsCursor = view.GetJButtonsCursor();
+         textsCursor = view.GetTextsCursor();
+-        jButtonMode = view.GetJButtonMode();
+-        textsMode = view.GetTextsMode();
++        jButtonsMode = view.GetJButtonMode();
+     }
+ 
+     /**
+      * Methode, welche bei Knopfdrucken aufgerufen wird.
+-     *
+      * @param e Das "Event" bzw. Ereignis, welches verarbeitet werden soll
+      */
+     public void actionPerformed(java.awt.event.ActionEvent e) {
+         /*
+-         * Alle JNumberButtons und im weiteren Verlauf die anderen Arrays werden geprueft.
++         * Alle JNumberButtons und im weiteren Verlauf die anderen Arrays bzw. Knoepfe werden geprueft.
+          * Bei Uebereinstimmung des Eventursprungs mit einem Knopf wird:
+-         * der View der Befehl gegeben, die hinzugefuegten Zeichen an den Controller zu geben, sodass sie hinzugefuegt werden koennen.
++         * der View der Befehl gegeben, die hinzugefuegten Zeichen an den Controller zu geben, sodass sie hinzugefuegt
++         * werden koennen.
+          * der View der Befehl gegeben, nach Änderung der Darstellung (durch den Controller) diese zu aktualisieren.
+          * die weitere Ausfuehrung der Methode aus Effizienzgruenden abgebrochen.
+          */
+@@ -93,33 +90,30 @@
+                 return;
+             }
+         }
+-        for (int i = 0; i < jButtonMode.length; i++) {
+-            if (e.getSource() == jButtonMode[i]) {
++        for (int i = 0; i < jButtonsMode.length; i++) {
++            if (e.getSource() == jButtonsMode[i]) {
+                 view.SwitchMode();
++                view.UpdateView();
+                 return;
+             }
+         }
+-
+         if (e.getSource() == view.GetJMenuItemCone()) {
+             System.out.println("Kegel");
+             return;
+         }
+-
++        if (e.getSource() == view.GetJMenuItemSquare()) {
++            Frame frame = new ViewVolumeSquare();
++            frame.setVisible(true);
++            return;
++        }
+         if (e.getSource() == view.GetJMenuItemCylinder()) {
+             System.out.println("Zylinder");
+             return;
+         }
+-
+         if (e.getSource() == view.GetJMenuItemSphere()) {
+             System.out.println("sphere");
+             return;
+         }
+-
+-        if (e.getSource() == view.GetJMenuItemSquare()) {
+-            Frame frame = new squareVolume();
+-            frame.setVisible(true);
+-            return;
+-        }
+     }
+ }
+ 
+Index: src/main/java/Calculator/view/ProcessKeyInput.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Calculator.view;\r\n\r\nimport java.awt.event.KeyEvent;\r\nimport java.awt.event.KeyListener;\r\n/**\r\n * ProcessKeyInput-Klasse zum Auswerten der Interaktionen mit der grafischen Oberflaeche ueber die Tastatur.\r\n * Programmtechnisch an die View-Klasse gegliedert.\r\n */\r\npublic class ProcessKeyInput implements KeyListener {\r\n    private View view;\r\n\r\n    public ProcessKeyInput(View v) {\r\n        view = v;\r\n    } //Methode in view nötig //in ProcessButtonInput\r\n\r\n    /** @keyPressed prueft die gedrückten Tasten, Aufruf beim Druecken einer Taste,\r\n    * diese werden dann an die view weitergegeben und ausgegeben\r\n     */\r\n\r\n    public void keyPressed(KeyEvent e) {\r\n        if (e.isShiftDown() && (e.getKeyCode() == KeyEvent.VK_7 || e.getKeyCode() ==KeyEvent.VK_PERIOD)) {\r\n            view.Update(\"/\");\r\n            view.UpdateView();\r\n        }else if (e.isShiftDown() && e.getKeyCode() == KeyEvent.VK_8) {\r\n            view.Update(\"(\");\r\n            view.UpdateView();\r\n        } else if (e.isShiftDown() && e.getKeyCode() == KeyEvent.VK_9) {\r\n            view.Update(\")\");\r\n            view.UpdateView();\r\n        } else if (e.isShiftDown() && e.getKeyCode() == KeyEvent.VK_PLUS) {\r\n            view.Update(\"*\");\r\n            view.UpdateView();\r\n        } else if (e.getKeyCode() == KeyEvent.VK_PLUS) {\r\n            view.Update(\"+\");\r\n            view.UpdateView();\r\n        } else if (e.getKeyCode() == KeyEvent.VK_MINUS) {\r\n            view.Update(\"-\");\r\n            view.UpdateView();\r\n        } else if (e.isShiftDown() && e.getKeyCode() == KeyEvent.VK_0) {\r\n            view.Update(\"=\");\r\n            view.UpdateView();\r\n        } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {\r\n            view.Update(\"->\");\r\n            view.UpdateView();\r\n        } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {\r\n            view.Update(\"<-\");\r\n            view.UpdateView();\r\n        } else if (e.getKeyCode() == KeyEvent.VK_0 || e.getKeyCode() == KeyEvent.VK_NUMPAD0) {\r\n            view.Update(\"\" + 0 + \"\");\r\n            view.UpdateView();\r\n        } else if (e.getKeyCode() == KeyEvent.VK_1 || e.getKeyCode() == KeyEvent.VK_NUMPAD1) {\r\n            view.Update(\"\" + 1 + \"\");\r\n            view.UpdateView();\r\n        } else if (e.getKeyCode() == KeyEvent.VK_2 || e.getKeyCode() == KeyEvent.VK_NUMPAD2) {\r\n            view.Update(\"\" + 2 + \"\");\r\n            view.UpdateView();\r\n        } else if (e.getKeyCode() == KeyEvent.VK_3 || e.getKeyCode() == KeyEvent.VK_NUMPAD3) {\r\n            view.Update(\"\" + 3 + \"\");\r\n            view.UpdateView();\r\n        } else if (e.getKeyCode() == KeyEvent.VK_4 || e.getKeyCode() == KeyEvent.VK_NUMPAD4) {\r\n            view.Update(\"\" + 4 + \"\");\r\n            view.UpdateView();\r\n        } else if (e.getKeyCode() == KeyEvent.VK_5 || e.getKeyCode() == KeyEvent.VK_NUMPAD5) {\r\n            view.Update(\"\" + 5 + \"\");\r\n            view.UpdateView();\r\n        } else if (e.getKeyCode() == KeyEvent.VK_6 || e.getKeyCode() == KeyEvent.VK_NUMPAD6) {\r\n            view.Update(\"\" + 6 + \"\");\r\n            view.UpdateView();\r\n        } else if (e.getKeyCode() == KeyEvent.VK_7 || e.getKeyCode() == KeyEvent.VK_NUMPAD7) {\r\n            view.Update(\"\" + 7 + \"\");\r\n            view.UpdateView();\r\n        } else if (e.getKeyCode() == KeyEvent.VK_8 || e.getKeyCode() == KeyEvent.VK_NUMPAD8) {\r\n            view.Update(\"\" + 8 + \"\");\r\n            view.UpdateView();\r\n        } else if (e.getKeyCode() == KeyEvent.VK_9 || e.getKeyCode() == KeyEvent.VK_NUMPAD9) {\r\n            view.Update(\"\" + 9 + \"\");\r\n            view.UpdateView();\r\n        } else if (e.getKeyCode() == KeyEvent.VK_S) {\r\n            view.Update(\"sin(\");\r\n            view.UpdateView();\r\n        } else if (e.getKeyCode() == KeyEvent.VK_C) {\r\n            view.Update(\"cos(\");\r\n            view.UpdateView();\r\n        } else if (e.getKeyCode() == KeyEvent.VK_T) {\r\n            view.Update(\"tan(\");\r\n            view.UpdateView();\r\n        } else if (e.getKeyCode() == KeyEvent.VK_L) {\r\n            view.Update(\"lg(\");\r\n            view.UpdateView();\r\n        } else if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {\r\n            view.Update(\"DEL\");\r\n            view.UpdateView();\r\n        } else if (e.getKeyCode() == KeyEvent.VK_DELETE) {\r\n            view.Update(\"AC\");\r\n            view.UpdateView();\r\n        } else if (e.getKeyCode() == KeyEvent.VK_ENTER) {\r\n            view.Update(\"=\");\r\n            view.UpdateView();\r\n        } else if (e.getKeyCode() == KeyEvent.VK_DEAD_CIRCUMFLEX) {\r\n            view.Update(\"x^\");\r\n            view.UpdateView();\r\n        } else if (e.getKeyCode() == KeyEvent.VK_COMMA) {\r\n            view.Update(\",\");\r\n            view.UpdateView();\r\n        } else if(e.getKeyCode() == KeyEvent.VK_A) {\r\n            view.Update(\"Ans\");\r\n            view.UpdateView();\r\n        } else if(e.getKeyCode() == KeyEvent.VK_B) {\r\n           view.SetLightmode();\r\n        } else if(e.getKeyCode() == KeyEvent.VK_D) {\r\n           view.SetDarkmode();\r\n        }\r\n    }\r\n    //nicht nötig\r\n    @Override\r\n  public void keyReleased(KeyEvent e) {}\r\n    //nicht nötig\r\n    @Override\r\n    public void keyTyped(KeyEvent e) {}\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Calculator/view/ProcessKeyInput.java b/src/main/java/Calculator/view/ProcessKeyInput.java
+--- a/src/main/java/Calculator/view/ProcessKeyInput.java	(revision 582f7e3e58dd91c346ddf65a3dc2bb68808ddc1d)
++++ b/src/main/java/Calculator/view/ProcessKeyInput.java	(date 1656862354258)
+@@ -2,6 +2,7 @@
+ 
+ import java.awt.event.KeyEvent;
+ import java.awt.event.KeyListener;
++
+ /**
+  * ProcessKeyInput-Klasse zum Auswerten der Interaktionen mit der grafischen Oberflaeche ueber die Tastatur.
+  * Programmtechnisch an die View-Klasse gegliedert.
+@@ -9,19 +10,23 @@
+ public class ProcessKeyInput implements KeyListener {
+     private View view;
+ 
++    /**
++     * Konstruktor: View-Referenz speichern.
++     * @param v
++     */
+     public ProcessKeyInput(View v) {
+         view = v;
+-    } //Methode in view nötig //in ProcessButtonInput
++    }
+ 
+-    /** @keyPressed prueft die gedrückten Tasten, Aufruf beim Druecken einer Taste,
+-    * diese werden dann an die view weitergegeben und ausgegeben
++    /**
++     * Methode, um die bei Tastaturtastendruck aufgerufen wird und diesen an die View weitergibt.
++     * @param e "Event" bzw. Ereignis des Tastendruckes
+      */
+-
+     public void keyPressed(KeyEvent e) {
+         if (e.isShiftDown() && (e.getKeyCode() == KeyEvent.VK_7 || e.getKeyCode() ==KeyEvent.VK_PERIOD)) {
+             view.Update("/");
+             view.UpdateView();
+-        }else if (e.isShiftDown() && e.getKeyCode() == KeyEvent.VK_8) {
++        } else if (e.isShiftDown() && e.getKeyCode() == KeyEvent.VK_8) {
+             view.Update("(");
+             view.UpdateView();
+         } else if (e.isShiftDown() && e.getKeyCode() == KeyEvent.VK_9) {
+@@ -111,10 +116,10 @@
+            view.SetDarkmode();
+         }
+     }
+-    //nicht nötig
++
++    // Vervollstaendigung der Implementierung, jedoch nicht benoetigt
+     @Override
+-  public void keyReleased(KeyEvent e) {}
+-    //nicht nötig
++    public void keyReleased(KeyEvent e) {}
+     @Override
+     public void keyTyped(KeyEvent e) {}
+ }
+Index: src/main/java/Calculator/model/ColorMode.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Calculator/model/ColorMode.java b/src/main/java/Calculator/model/ColorMode.java
+new file mode 100644
+--- /dev/null	(date 1656862354253)
++++ b/src/main/java/Calculator/model/ColorMode.java	(date 1656862354253)
+@@ -0,0 +1,10 @@
++package Calculator.model;
++
++/**
++ * Enumeration, welche die Farbzustaende des Taschenrechners enthaelt.
++ * Programmtechnisch ans Model angegliedert.
++ */
++public enum ColorMode {
++    // Ein heller Modus fuer den Tag, ein dunkler Modus fuer die Nacht
++    LIGHTMODE, DARKMODE
++}
+Index: src/main/java/Calculator/view/squareVolume.form
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Calculator/view/squareVolume.form b/src/main/java/Calculator/view/ViewVolumeSquare.form
+rename from src/main/java/Calculator/view/squareVolume.form
+rename to src/main/java/Calculator/view/ViewVolumeSquare.form
+--- a/src/main/java/Calculator/view/squareVolume.form	(revision 582f7e3e58dd91c346ddf65a3dc2bb68808ddc1d)
++++ b/src/main/java/Calculator/view/ViewVolumeSquare.form	(date 1656862354284)
+@@ -1,5 +1,5 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+-<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="Calculator.view.squareVolume">
++<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="Calculator.view.ViewVolumeSquare">
+   <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="4" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+     <margin top="0" left="0" bottom="0" right="0"/>
+     <constraints>
