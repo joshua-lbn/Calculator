@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
  * Klasse mit der Darstellung des Quaderrechners.
  * Verwendet, um Abstraktion zwischen View-Oberklasse und den Unter-Darstellungen zu schaffen.
  */
-public class ViewVolumeSquare extends JFrame {
+public class ViewVolumeSquare extends JRootPane {
     // Hautpanel
     private JPanel mainPanel;
     // Textfelder zur Eingabe
@@ -35,13 +35,13 @@ public class ViewVolumeSquare extends JFrame {
      */
     public ViewVolumeSquare() {
         // Schliessoperation setzen
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // Hauptpanel hinzufuegen
         this.setContentPane(mainPanel);
         // Fenstergroesse aenderbar setzen
-        this.pack();
+        //this.pack();
         // Sichtbar setzen
-        this.setVisible(true);
+        //this.setVisible(true);
         // Uebergangsweise: kommt in eigene Klasse
         calculate.addActionListener(new ActionListener() {
             @Override
@@ -64,9 +64,9 @@ public class ViewVolumeSquare extends JFrame {
     }
 
     // Uebergangsweise: zum Testen
-    public static void main(String[] args) {
-            JFrame frame = new ViewVolumeSquare();
-            frame.setVisible(true);
-    }
+    //public static void main(String[] args) {
+    //        JFrame frame = new ViewVolumeSquare();
+    //        frame.setVisible(true);
+    //}
 }
 

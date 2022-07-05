@@ -1,7 +1,7 @@
 package Calculator.model;
 
 import Calculator.controller.Controller;
-import Calculator.view.View;
+import Calculator.view.main.View;
 
 import java.util.LinkedList;
 

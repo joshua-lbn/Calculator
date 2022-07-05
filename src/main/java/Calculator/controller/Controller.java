@@ -2,7 +2,7 @@ package Calculator.controller;
 
 import Calculator.model.CalculatorState;
 import Calculator.model.Model;
-import Calculator.view.View;
+import Calculator.view.main.View;
 
 /**
  * Controller-Klasse mit Programmierlogik.

@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ViewNumeralSystem extends JFrame{
+public class ViewNumeralSystem extends JRootPane {
     //Knoepfe
     private JButton convertDec;
     private JButton convertHex;
@@ -27,9 +27,9 @@ public class ViewNumeralSystem extends JFrame{
         // Hinzufuegen des Hauptpanels in das Fenster
         this.setContentPane(NumeralViewPanel);
         // Fenstergroesse aenderbar machen
-        this.pack();
+        // this.pack();
         // Sichtbar setzen
-        this.setVisible(true);
+        // this.setVisible(true);
         convertDec.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -41,10 +41,10 @@ public class ViewNumeralSystem extends JFrame{
         });
     }
     // Uebergangsweise zum Testen: main-Methode zum Ausfuehren
-    public static void main (String[] args)
-    {
-        JFrame frame = new ViewNumeralSystem();
-        frame.setVisible(true);
-    }
+    //public static void main (String[] args)
+    //{
+    //    JFrame frame = new ViewNumeralSystem();
+    //    frame.setVisible(true);
+    //}
 }
 

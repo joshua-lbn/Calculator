@@ -2,7 +2,7 @@ package Calculator;
 
 import Calculator.controller.Controller;
 import Calculator.model.Model;
-import Calculator.view.View;
+import Calculator.view.main.View;
 
 /**
  * Die Hauptklasse, welche als erstes ausgeführt wird.

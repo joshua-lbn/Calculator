@@ -1,19 +1,22 @@
-package Calculator.view;
+package Calculator.view.calculator;
 
 import Calculator.controller.Controller;
-import Calculator.model.ColorMode;
 import Calculator.model.Model;
+import Calculator.view.main.ProcessKeyInput;
+import Calculator.view.main.View;
+import Calculator.model.ColorMode;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 
 /**
- * View-Klasse mit grafischer Benutzeroberflaeche.
+ * View-Klasse mit grafischer Benutzeroberflaeche des Taschenrechners.
+ * Verwendet, um Abstraktion zwischen View-Oberklasse und den Unter-Darstellungen zu schaffen.
  */
-public class View extends JFrame {
+public class ViewCalculator extends JRootPane {
+    // Referenzen auf andere Klassen
     private Model model;
+    private View view;
     private Controller controller;
     // JPanels fuer das Layout
     private javax.swing.JPanel spacer1 = new javax.swing.JPanel();
@@ -37,29 +40,17 @@ public class View extends JFrame {
     private String[] textsRight;
     private String[] textsCursor;
     private String[] textsMode;
-    // Auswerter der Knopf-, Menue- bzw. Tastaturtastendruecke
-    private ProcessKeyInput processKeyInput;
+    // Auswerter der Knopfdruecke
     private ProcessButtonInput processButtonInput;
-    // Obermenue mit Reitern
-    private javax.swing.JMenuBar bar = new javax.swing.JMenuBar();
-    private javax.swing.JMenu calculator = new javax.swing.JMenu();
-    private javax.swing.JMenu numeralSystems = new javax.swing.JMenu();
-    private javax.swing.JMenu volumes = new javax.swing.JMenu();
-    private javax.swing.JMenuItem binary = new javax.swing.JMenuItem();
-    private javax.swing.JMenuItem decimal = new javax.swing.JMenuItem();
-    private javax.swing.JMenuItem hexadecimal = new javax.swing.JMenuItem();
-    private javax.swing.JMenuItem cone = new javax.swing.JMenuItem();
-    private javax.swing.JMenuItem square = new javax.swing.JMenuItem();
-    private javax.swing.JMenuItem cylinder = new javax.swing.JMenuItem();
-    private javax.swing.JMenuItem sphere = new javax.swing.JMenuItem();
 
     /**
-     * Konstruktor: Initialisierung der vollen Oberflaeche.
+     * Konstruktor: Initialisierung der Oberflaeche.
      * Hinzufuegen der Eingabeverarbeitung.
      */
-    public View() {
-        // Bei Schliessen Programm beenden
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    public ViewCalculator(Model m, View v, Controller c) {
+        model = m;
+        view = v;
+        controller = c;
         // Erstellung des Layouts durch Schachtelung der Panels und Hinzufuegen des JTextPane
         spacer1.setLayout(new GridLayout(2, 1));
         jTextPane = new JTextPane();
@@ -122,50 +113,8 @@ public class View extends JFrame {
             jButtonsMode[i].addActionListener(processButtonInput);
             jPanel2.add(jButtonsMode[i]);
         }
-        // Erstellung des Obermenues
-        bar = new JMenuBar();
-        calculator = new JMenu("Rechner");
-        numeralSystems = new JMenu("Zahlensystem ");
-        binary = new JMenuItem("Binär");
-        decimal = new JMenuItem("Dezimal");
-        hexadecimal = new JMenuItem("Hexadezimal");
-        volumes = new JMenu("Volumen ");
-        cone = new JMenuItem("Kegel");
-        square = new JMenuItem("Quader");
-        cylinder = new JMenuItem("Zylinder");
-        sphere = new JMenuItem("Kugel");
-        binary.addActionListener(processButtonInput);
-        decimal.addActionListener(processButtonInput);
-        hexadecimal.addActionListener(processButtonInput);
-        cone.addActionListener(processButtonInput);
-        square.addActionListener(processButtonInput);
-        cylinder.addActionListener(processButtonInput);
-        sphere.addActionListener(processButtonInput);
-        numeralSystems.add(decimal);
-        numeralSystems.add(binary);
-        numeralSystems.add(hexadecimal);
-        volumes.add(cone);
-        volumes.add(square);
-        volumes.add(cylinder);
-        volumes.add(sphere);
-        bar.add(calculator);
-        bar.add(numeralSystems);
-        bar.add(volumes);
         // Hinzufuegen des Gesamtlayouts in die ContentPane (das "Fenster")
-        this.getRootPane().setJMenuBar(bar);
         this.getContentPane().add(spacer1);
-        // Fenster als dynamisch skalierbar definieren
-        pack();
-        // Groesse setzen
-        setSize(600,300);
-        // Sichtbar setzen
-        setVisible(true);
-        // Fokussierbar machen und Fokus (fuer Tastatureingabe) anfordern
-        setFocusable(true);
-        requestFocus();
-        // Instanz der Beiklasse "ProcessKeyInput", um auf Tastendruecke zu reagieren
-        processKeyInput = new ProcessKeyInput(this);
-        addKeyListener(processKeyInput);
     }
 
     /**
@@ -182,9 +131,7 @@ public class View extends JFrame {
     public void UpdateView() {
         // Text (aus Model) in HTML-Darstellung anzeigen
         jTextPane.setText(model.GetHTMLExpression());
-        // Fokus fuer Tastatureingabe anfordern
-        requestFocus();
-        // Cursor-Positon berechnen und setzen
+        // Cursor-Position berechnen und setzen
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -194,7 +141,7 @@ public class View extends JFrame {
     }
 
     /**
-     * Methode, um den Farbmodus zu weckseln.
+     * Methode, um den Farbmodus zu wechseln.
      */
     protected void SwitchMode() {
         if (model.GetColorMode() == ColorMode.DARKMODE) {
@@ -208,32 +155,9 @@ public class View extends JFrame {
     /**
      * Methode, um den hellen Modus zu aktivieren.
      */
-    protected void SetLightmode() {
-        // Im Model setzen
-        model.SetLightmode();
-        // Obermenue setzen
-        bar.setForeground(Color.black);
-        bar.setBackground(Color.white);
-        calculator.setForeground(Color.black);
-        calculator.setBackground(Color.white);
-        numeralSystems.setForeground(Color.black);
-        numeralSystems.setBackground(Color.white);
-        binary.setForeground(Color.black);
-        binary.setBackground(Color.white);
-        decimal.setForeground(Color.black);
-        decimal.setBackground(Color.white);
-        hexadecimal.setForeground(Color.black);
-        hexadecimal.setBackground(Color.white);
-        volumes.setForeground(Color.black);
-        volumes.setBackground(Color.white);
-        cone.setForeground(Color.black);
-        cone.setBackground(Color.white);
-        square.setForeground(Color.black);
-        square.setBackground(Color.white);
-        cylinder.setForeground(Color.black);
-        cylinder.setBackground(Color.white);
-        sphere.setForeground(Color.black);
-        sphere.setBackground(Color.white);
+    public void SetLightmode() {
+        // Im Menue setzen
+        view.SetLightmode();
         // Hauptkomponenten setzen
         spacer1.setBackground(Color.white);
         jPanel1.setBackground(Color.white);
@@ -275,32 +199,9 @@ public class View extends JFrame {
     /**
      * Methode, um den dunklen Modus zu aktivieren.
      */
-    protected void SetDarkmode() {
-        // Im Model setzen
-        model.SetDarkmode();
-        // Obermenue setzen
-        bar.setForeground(Color.white);
-        bar.setBackground(Color.black);
-        calculator.setForeground(Color.white);
-        calculator.setBackground(Color.black);
-        numeralSystems.setForeground(Color.white);
-        numeralSystems.setBackground(Color.black);
-        binary.setForeground(Color.white);
-        binary.setBackground(Color.black);
-        decimal.setForeground(Color.white);
-        decimal.setBackground(Color.black);
-        hexadecimal.setForeground(Color.white);
-        hexadecimal.setBackground(Color.black);
-        volumes.setForeground(Color.white);
-        volumes.setBackground(Color.black);
-        cone.setForeground(Color.white);
-        cone.setBackground(Color.black);
-        square.setForeground(Color.white);
-        square.setBackground(Color.black);
-        cylinder.setForeground(Color.white);
-        cylinder.setBackground(Color.black);
-        sphere.setForeground(Color.white);
-        sphere.setBackground(Color.black);
+    public void SetDarkmode() {
+        // Im Menue setzen
+        view.SetDarkmode();
         // Hauptkomponenten setzen
         spacer1.setBackground(Color.black);
         jPanel1.setBackground(Color.black);
@@ -428,72 +329,6 @@ public class View extends JFrame {
     }
 
     /**
-     * Getter-Methode fuer das JMenuItem binary.
-     * @return JMenuItem binary
-     */
-    protected JMenuItem GetJMenuItemBinary() {
-        return binary;
-    }
-
-    /**
-     * Getter-Methode fuer das JMenuItem decimal.
-     * @return JMenuItem decimal.
-     */
-    protected JMenuItem GetJMenuItemDecimal() {
-        return decimal;
-    }
-
-    /**
-     * Getter-Methode fuer das JMenuItem hexadecimal.
-     * @return JMenuItem hexadecimal
-     */
-    protected JMenuItem GetJMenuItemHexa() {
-        return hexadecimal;
-    }
-
-    /**
-     * Getter-Methode fuer das JMenuItem cone.
-     * @return JMenuItem cone
-     */
-    protected JMenuItem GetJMenuItemCone() {
-        return cone;
-    }
-
-    /**
-     * Getter-Methode fuer das JMenuItem square.
-     * @return JMenuItem square
-     */
-    protected JMenuItem GetJMenuItemSquare() {
-        return square;
-    }
-
-    /**
-     * Getter-Methode fuer das JMenuItem cylinder.
-     * @return JMenuItem cylinder
-     */
-    protected JMenuItem GetJMenuItemCylinder() {
-        return cylinder;
-    }
-
-    /**
-     * Getter-Methode fuer das JMenuItem sphere.
-     * @return JMenuItem sphere
-     */
-    protected JMenuItem GetJMenuItemSphere() {
-        return sphere;
-    }
-
-    /**
-     * Getter-Methode fuer die Fensterhoehe.
-     * Genutzt, um die HTML-Schriftgroesse im Model zu bestimmen.
-     * @return int Fenstergroesse
-     */
-    public int GetWindowHeight()
-    {
-        return getHeight();
-    }
-
-    /**
      * Methode zur Setzung der Referenzen auf Model und Controller in Main.
      * Zudem Methoden, die eigentlich im Konstruktor waeren, jedoch Referenzen auf andere Klassen benoetigen und daher
      * erst hier ausgefuehrt werden koennen.
@@ -503,21 +338,6 @@ public class View extends JFrame {
     public void UpdateLinks(Model m, Controller c) {
         model = m;
         controller = c;
-        addComponentListener(new ComponentListener() {
-            @Override
-            public void componentResized(ComponentEvent e) {
-                UpdateView();
-            }
-            @Override
-            public void componentMoved(ComponentEvent e) {
-            }
-            @Override
-            public void componentShown(ComponentEvent e) {
-            }
-            @Override
-            public void componentHidden(ComponentEvent e) {
-            }
-        });
         SetLightmode();
     }
 }
