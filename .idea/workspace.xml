@@ -9,20 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e01ba51-84bb-425d-83d7-45271fdd1757" name="Changes" comment="Überarbeitung">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/main/ProcessKeyInput.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/main/ProcessMenuInput.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/main/View.java" afterDir="false" />
+    <list default="true" id="6e01ba51-84bb-425d-83d7-45271fdd1757" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/controller/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/model/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/ProcessButtonInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/calculator/ProcessButtonInput.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/ProcessKeyInput.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/calculator/ViewCalculator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/ViewCalculator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/ViewNumeralSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/ViewNumeralSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/ViewVolumeSquare.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/ViewVolumeSquare.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +45,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/main/java/Calculator/controller/Controller.java" root0="SKIP_INSPECTION" />
@@ -148,8 +137,8 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.ViewNumeralSystem" />
       <item itemvalue="Application.Calculator.view.ViewVolumeSquare" />
-      <item itemvalue="Application.Calculator.view.ViewNumeralSystem" />
       <item itemvalue="Application.CalculatorGUI" />
       <item itemvalue="Application.Main" />
       <item itemvalue="Application.Model" />
@@ -157,7 +146,6 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
-        <item itemvalue="Application.Calculator.view.ViewNumeralSystem" />
         <item itemvalue="Application.Calculator.view.ViewVolumeSquare" />
         <item itemvalue="Application.CalculatorGUI" />
       </list>
