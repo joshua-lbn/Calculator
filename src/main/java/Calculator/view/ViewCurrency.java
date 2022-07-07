@@ -10,12 +10,13 @@ import java.awt.event.*;
 class ViewCurrency extends JFrame{
 
 
-
+    //erstellen der GridLayouts
     private javax.swing.JPanel grid1 = new javax.swing.JPanel();
     private javax.swing.JPanel grid2 = new javax.swing.JPanel();
     private javax.swing.JPanel grid3 = new javax.swing.JPanel();
     private javax.swing.JPanel grid11 = new javax.swing.JPanel();
 
+    //Labels für Währungsnamen und Währungswert
     private javax.swing.JLabel label1 = new javax.swing.JLabel();
     private javax.swing.JLabel label2 = new javax.swing.JLabel();
     private javax.swing.JLabel label3 = new javax.swing.JLabel();
@@ -29,11 +30,9 @@ class ViewCurrency extends JFrame{
     private String[] currency;
 
 
-    //private JScrollPane jScrollPane;
-    //private javax.swing.JTextPane jTextPane = new javax.swing.JTextPane();
+    //Eingabenfeld
     private javax.swing.JTextField textinput = new javax.swing.JTextField();;
-    //private ProcessKeyInput processKeyInput;
-    //private ProcessButtonInput processButtonInput;
+
 
     public ViewCurrency () {
 
@@ -45,13 +44,13 @@ class ViewCurrency extends JFrame{
         grid11.setLayout(new GridLayout(2, 1));
         grid1.add(grid11);
 
-
+        //Name der Ausgangswährung
         currency = new String[]{"Dollar","Euro","Pound","Yuan"};
-
         label11 = new JLabel("" + currency[getA()] + "" );
-        textinput = new JTextField();
-
         grid11.add(label11);
+
+        //Eingabenfeld
+        textinput = new JTextField();
         grid11.add(textinput);
         textinput.addActionListener( bl );
 
@@ -59,6 +58,7 @@ class ViewCurrency extends JFrame{
         grid2.setLayout(new GridLayout(4, 1));
         grid1.add(grid2);
 
+        //umgerechneten Währungswerte
         label21 = new JLabel();
         label22 = new JLabel();
         label23 = new JLabel();
@@ -73,6 +73,7 @@ class ViewCurrency extends JFrame{
         grid3.setLayout(new GridLayout(4, 1));
         grid1.add(grid3);
 
+        //Währungsnamen der Währungen in die umgerechnet wurde
         label1 = new JLabel("Dollar");
         label2 = new JLabel("Euro");
         label3 = new JLabel("Pound");
@@ -91,12 +92,7 @@ class ViewCurrency extends JFrame{
         setSize(600,300);
         // Sichtbar setzen
         setVisible(true);
-        // Fokussierbar machen und Fokus (fuer Tastatureingabe) anfordern
-        //setFocusable(true);
-        //requestFocus();
-        // Instanz der Beiklasse "ProcessKeyInput", um auf Tastendruecke zu reagieren
-        //processKeyInput = new ProcessKeyInput(this);
-        //addKeyListener(processKeyInput);
+
 
     }
     public static void main(String args[]) {
@@ -117,6 +113,7 @@ class ViewCurrency extends JFrame{
                 label24.setText("ungültige Eingabe");
             }
             else {
+                //umrechnen in andere Währungen
                 if (getA() == 0) {
                     double dollar1 = 1 * norm;
                     System.out.println((double) (Math.round(dollar1 * 100)) / 100);
@@ -190,6 +187,7 @@ class ViewCurrency extends JFrame{
     }
 
     public int getA () {
+        //ausgewählte Währung aus dem JMenuBar übernehmen (als Zahl; int a = "view.getWaehrung()" - 1)
         int a = 1-1;
         return a;
     }
