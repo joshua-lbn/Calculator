@@ -112,7 +112,7 @@ public class ProcessKeyInput implements KeyListener {
             } else if (e.getKeyCode() == KeyEvent.VK_DEAD_CIRCUMFLEX) {
                 view.Update("x^");
                 view.UpdateView();
-            } else if (e.getKeyCode() == KeyEvent.VK_COMMA) {
+            } else if (e.getKeyCode() == KeyEvent.VK_COMMA || e.getKeyCode() == KeyEvent.VK_PERIOD) {
                 view.Update(",");
                 view.UpdateView();
             } else if(e.getKeyCode() == KeyEvent.VK_A) {

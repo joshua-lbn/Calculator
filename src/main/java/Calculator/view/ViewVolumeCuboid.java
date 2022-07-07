@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
  * Klasse mit der Darstellung des Quaderrechners.
  * Verwendet, um Abstraktion zwischen View-Oberklasse und den Unter-Darstellungen zu schaffen.
  */
-public class ViewVolumeSquare extends JRootPane {
+public class ViewVolumeCuboid extends JRootPane {
     // Hautpanel
     private JPanel mainPanel;
     // Textfelder zur Eingabe
@@ -33,7 +33,7 @@ public class ViewVolumeSquare extends JRootPane {
     /**
      * Konstruktor: Oberflaeche initialisieren.
      */
-    public ViewVolumeSquare() {
+    public ViewVolumeCuboid() {
         // Schliessoperation setzen
         //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // Hauptpanel hinzufuegen
@@ -65,7 +65,7 @@ public class ViewVolumeSquare extends JRootPane {
 
     // Uebergangsweise: zum Testen
     //public static void main(String[] args) {
-    //        JFrame frame = new ViewVolumeSquare();
+    //        JFrame frame = new ViewVolumeCuboid();
     //        frame.setVisible(true);
     //}
 }

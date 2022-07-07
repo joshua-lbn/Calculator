@@ -3,8 +3,6 @@ package Calculator.view;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.DecimalFormat;
-import java.util.Scanner;
 
 public class ViewNumeralSystem extends JRootPane{
     //Knoepfe
@@ -35,9 +33,9 @@ public class ViewNumeralSystem extends JRootPane{
                 //Runden der eingegeben Zahl
                 double decimalNumberRounded = ((double) Math.round(decimalNumber * 1));
                 int decInt = (int) decimalNumberRounded;
-                //@Maths.abs() prüft, ob Zahl negativ, wenn ja: Betrag der Zahl wird genommen
+                // @Maths.abs() prüft, ob Zahl negativ, wenn ja: Betrag der Zahl wird genommen
                 // (bei Hexa und Binär nicht klar, ob negative Zahlen, Martin?)
-                //sont einfach löschen
+                // sonst einfach löschen
                 if (decimalNumber < 0)
                 {
                     decInt = Math.abs(decInt);
@@ -90,9 +88,6 @@ public class ViewNumeralSystem extends JRootPane{
             }
         });
     }
-    //too easy @Louis!
-    //evtl. woanders Mehtoden @Martin
-    //einfach ein "-" vor Hexaausgabe, wenn anderes negativ
-
-
+    // Evtl. woanders Methoden @Martin
+    // Einfach ein "-" vor Hexaausgabe, wenn anderes negativ
 }

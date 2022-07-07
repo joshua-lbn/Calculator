@@ -2,15 +2,15 @@ package Calculator.view.main;
 
 import Calculator.controller.Controller;
 import Calculator.model.Model;
+import Calculator.view.ViewVolumeCuboid;
 import Calculator.view.calculator.ViewCalculator;
 import Calculator.view.ViewNumeralSystem;
-import Calculator.view.ViewVolumeSquare;
+import Calculator.view.viewCurrency.ViewCurrency;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
-import java.lang.invoke.VolatileCallSite;
 
 /**
  * View-Klasse, die die Hauptoberflaeche inklusive Reiter verwaltet.
@@ -27,6 +27,7 @@ public class View extends JFrame {
     private javax.swing.JMenu calculator = new javax.swing.JMenu();
     private javax.swing.JMenu numeralSystems = new javax.swing.JMenu();
     private javax.swing.JMenu volumes = new javax.swing.JMenu();
+    private javax.swing.JMenu currency = new javax.swing.JMenu();
     private javax.swing.JMenuItem calculatorItem = new javax.swing.JMenuItem();
     private javax.swing.JMenuItem binary = new javax.swing.JMenuItem();
     private javax.swing.JMenuItem decimal = new javax.swing.JMenuItem();
@@ -35,10 +36,12 @@ public class View extends JFrame {
     private javax.swing.JMenuItem square = new javax.swing.JMenuItem();
     private javax.swing.JMenuItem cylinder = new javax.swing.JMenuItem();
     private javax.swing.JMenuItem sphere = new javax.swing.JMenuItem();
+    private javax.swing.JMenuItem currencyItem = new javax.swing.JMenuItem();
     // Unterfenster
     private ViewCalculator viewCalculator;
     private ViewNumeralSystem viewNumeralSystem;
-    private ViewVolumeSquare viewVolumeSquare;
+    private ViewVolumeCuboid viewVolumeCuboid;
+    private ViewCurrency viewCurrency;
 
     /**
      * Konstruktor: Initialisierung der Reiter.
@@ -57,7 +60,8 @@ public class View extends JFrame {
         bar = new JMenuBar();
         calculator = new JMenu("Rechner");
         numeralSystems = new JMenu("Zahlensystem ");
-        calculatorItem = new JMenuItem("Rechner");
+        currency = new JMenu("W\u00E4hrungen");
+        calculatorItem = new JMenuItem("\u00D6ffnen");
         binary = new JMenuItem("Bin\u00E4r");
         decimal = new JMenuItem("Dezimal");
         hexadecimal = new JMenuItem("Hexadezimal");
@@ -66,6 +70,7 @@ public class View extends JFrame {
         square = new JMenuItem("Quader");
         cylinder = new JMenuItem("Zylinder");
         sphere = new JMenuItem("Kugel");
+        currencyItem = new JMenuItem("\u00D6ffnen");
         // Erstellung des Obermenues: Listener hinzufuegen
         calculatorItem.addActionListener(processMenuInput);
         binary.addActionListener(processMenuInput);
@@ -75,7 +80,8 @@ public class View extends JFrame {
         square.addActionListener(processMenuInput);
         cylinder.addActionListener(processMenuInput);
         sphere.addActionListener(processMenuInput);
-        // Erstellung des Obermenues: Hinzufuegen der Eintraege in das Menue
+        currencyItem.addActionListener(processMenuInput);
+        // Erstellung des Obermenues: Hinzufuegen der Eintraege in die JMenus
         calculator.add(calculatorItem);
         numeralSystems.add(decimal);
         numeralSystems.add(binary);
@@ -84,9 +90,12 @@ public class View extends JFrame {
         volumes.add(square);
         volumes.add(cylinder);
         volumes.add(sphere);
+        currency.add(currencyItem);
+        // Erstellung des Obermenues: Hinzufuegen der JMenus in die Leiste
         bar.add(calculator);
         bar.add(numeralSystems);
         bar.add(volumes);
+        bar.add(currency);
         // Hinzufuegen des Reiters in RootPane (das "Fenster")
         this.getRootPane().setJMenuBar(bar);
         // Fenster als dynamisch skalierbar definieren
@@ -115,7 +124,7 @@ public class View extends JFrame {
     }
 
     /**
-     * Methode, um das Calculator-Unterfenster im Hauptfenster anzuzeigen.
+     * Methode, um das NumeralSystem-Unterfenster im Hauptfenster anzuzeigen.
      */
     public void SetNumeralSystem() {
         // Listener fuer Calculator deaktivieren
@@ -129,14 +138,28 @@ public class View extends JFrame {
     }
 
     /**
-     * Methode, um das Calculator-Unterfenster im Hauptfenster anzuzeigen.
+     * Methode, um das VolumeCuboid-Unterfenster im Hauptfenster anzuzeigen.
      */
-    public void SetVolumeSquare() {
+    public void SetVolumeCuboid() {
         // Listener fuer Calculator deaktivieren
         processKeyInput.Deactivate();
         // Hinzufuegen
         getContentPane().removeAll();
-        getContentPane().add(viewVolumeSquare);
+        getContentPane().add(viewVolumeCuboid);
+        // Update der Oberflaeche
+        revalidate();
+        repaint();
+    }
+
+    /**
+     * Methode, um das CurrencyItem-Unterfenster im Hauptfenster anzuzeigen.
+     */
+    public void SetCurrency() {
+        // Listener fuer Calculator deaktivieren
+        processKeyInput.Deactivate();
+        // Hinzufuegen
+        getContentPane().removeAll();
+        getContentPane().add(viewCurrency);
         // Update der Oberflaeche
         revalidate();
         repaint();
@@ -290,6 +313,14 @@ public class View extends JFrame {
     }
 
     /**
+     * Getter-Methode fuer das JMenuItem currencyItem.
+     * @return JMenuItem currencyItem
+     */
+    protected JMenuItem GetJMenuItemCurrency() {
+        return currencyItem;
+    }
+
+    /**
      * Getter-Methode fuer die Fensterhoehe.
      * Genutzt, um die HTML-Schriftgroesse im Model zu bestimmen.
      * @return int Fenstergroesse
@@ -312,7 +343,8 @@ public class View extends JFrame {
         // Instanziierung der Unterfenster
         viewCalculator = new ViewCalculator(model, this, controller);
         viewNumeralSystem = new ViewNumeralSystem();
-        viewVolumeSquare = new ViewVolumeSquare();
+        viewVolumeCuboid = new ViewVolumeCuboid();
+        viewCurrency = new ViewCurrency();
         // Fenster auf Taschenrechner setzen
         SetCalculator();
         // ComponentListener, damit viewCalculator auf Groessenaenderungen reagieren kann

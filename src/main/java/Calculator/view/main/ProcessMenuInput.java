@@ -28,7 +28,7 @@ public class ProcessMenuInput implements java.awt.event.ActionListener {
             //view.SetVolumeSquare();
         }
         else if (e.getSource() == view.GetJMenuItemSquare()) {
-            view.SetVolumeSquare();
+            view.SetVolumeCuboid();
         }
         else if (e.getSource() == view.GetJMenuItemCylinder()) {
             //view.SetVolumeCylinder();
@@ -44,6 +44,9 @@ public class ProcessMenuInput implements java.awt.event.ActionListener {
         }
         else if (e.getSource() == view.GetJMenuItemBinary()) {
             view.SetNumeralSystem();
+        }
+        else if (e.getSource() == view.GetJMenuItemCurrency()) {
+            view.SetCurrency();
         }
     }
 }
