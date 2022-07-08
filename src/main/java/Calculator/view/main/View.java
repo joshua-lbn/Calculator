@@ -2,7 +2,7 @@ package Calculator.view.main;
 
 import Calculator.controller.Controller;
 import Calculator.model.Model;
-import Calculator.view.ViewVolumeCuboid;
+import Calculator.view.volumeCuboid;
 import Calculator.view.calculator.ViewCalculator;
 import Calculator.view.ViewNumeralSystem;
 import Calculator.view.viewCurrency.ViewCurrency;
@@ -40,7 +40,7 @@ public class View extends JFrame {
     // Unterfenster
     private ViewCalculator viewCalculator;
     private ViewNumeralSystem viewNumeralSystem;
-    private ViewVolumeCuboid viewVolumeCuboid;
+    private volumeCuboid volumeCuboid;
     private ViewCurrency viewCurrency;
 
     /**
@@ -145,7 +145,7 @@ public class View extends JFrame {
         processKeyInput.Deactivate();
         // Hinzufuegen
         getContentPane().removeAll();
-        getContentPane().add(viewVolumeCuboid);
+        getContentPane().add(volumeCuboid);
         // Update der Oberflaeche
         revalidate();
         repaint();
@@ -343,7 +343,7 @@ public class View extends JFrame {
         // Instanziierung der Unterfenster
         viewCalculator = new ViewCalculator(model, this, controller);
         viewNumeralSystem = new ViewNumeralSystem();
-        viewVolumeCuboid = new ViewVolumeCuboid();
+        volumeCuboid = new volumeCuboid();
         viewCurrency = new ViewCurrency();
         // Fenster auf Taschenrechner setzen
         SetCalculator();
