@@ -68,9 +68,9 @@ public class volumeCuboid extends JRootPane {
                 }
                 else {
                     double volumeResult = volumeLength * volumeWidth * volumeHeight;
-                    double volume = (double) ((Math.round(volumeResult * 100)) / 100);
-                    Double.toString(volume).replace (',', '.');
-                    volumeCalculate.setText(""+ volume);
+                    double volume = (double) (Math.round(volumeResult * 100)) / 100;
+                    String volumeString = (Double.toString(volume)).replace ('.', ',');
+                    volumeCalculate.setText(volumeString);
                     //volumeCalculate.setText("" + (double) (Math.round(volumeResult * 100)) / 100);
                 }
             }
