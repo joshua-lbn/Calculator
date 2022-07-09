@@ -20,7 +20,13 @@ public class ProcessMenuInput implements java.awt.event.ActionListener {
      * @param e Das "Event" bzw. Ereignis, welches verarbeitet werden soll
      */
     public void actionPerformed(java.awt.event.ActionEvent e) {
-        if (e.getSource() == view.GetJMenuItemCalculator()) {
+        if (e.getSource() == view.GetJMenuItemSettings()) {
+            view.SetSettings();
+        }
+        else if (e.getSource() == view.GetJMenuItemHelp()) {
+            view.SetHelp();
+        }
+        else if (e.getSource() == view.GetJMenuItemCalculator()) {
             // Die jeweilige Methode in der View ausfuehren
             view.SetCalculator();
         }

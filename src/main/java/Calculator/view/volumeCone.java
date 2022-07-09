@@ -74,5 +74,53 @@ public class volumeCone extends JRootPane {
         new volumeCone().setVisible(true);
     }
 
+    /**
+     * Methode, um den hellen Modus zu setzen.
+     */
+    public void SetLightmode() {
+        jpanel1.setBackground(Color.white);
+        calculate.setForeground(Color.black);
+        calculate.setBackground(Color.white);
+        radiusTextField.setForeground(Color.black);
+        radiusTextField.setBackground(Color.white);
+        heightTextField.setForeground(Color.black);
+        heightTextField.setBackground(Color.white);
+        radius.setForeground(Color.black);
+        radius.setBackground(Color.white);
+        height.setForeground(Color.black);
+        height.setBackground(Color.white);
+        volume.setForeground(Color.black);
+        volume.setBackground(Color.white);
+        volumeCalculate.setForeground(Color.black);
+        volumeCalculate.setBackground(Color.white);
+        spacer1.setForeground(Color.black);
+        spacer1.setBackground(Color.white);
+        spacer2.setForeground(Color.black);
+        spacer2.setBackground(Color.white);
+    }
 
+    /**
+     * Methode, um den dunklen Modus zu setzen.
+     */
+    public void SetDarkmode() {
+        jpanel1.setBackground(Color.black);
+        calculate.setForeground(Color.white);
+        calculate.setBackground(Color.black);
+        radiusTextField.setForeground(Color.white);
+        radiusTextField.setBackground(Color.black);
+        heightTextField.setForeground(Color.white);
+        heightTextField.setBackground(Color.black);
+        radius.setForeground(Color.white);
+        radius.setBackground(Color.black);
+        height.setForeground(Color.white);
+        height.setBackground(Color.black);
+        volume.setForeground(Color.white);
+        volume.setBackground(Color.black);
+        volumeCalculate.setForeground(Color.white);
+        volumeCalculate.setBackground(Color.black);
+        spacer1.setForeground(Color.white);
+        spacer1.setBackground(Color.black);
+        spacer2.setForeground(Color.white);
+        spacer2.setBackground(Color.black);
+    }
 }

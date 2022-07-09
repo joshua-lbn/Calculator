@@ -166,4 +166,64 @@ public class ViewCurrency extends JRootPane {
         int a = 1-1;
         return a;
     }
+
+    /**
+     * Methode, um den hellen Modus zu setzen.
+     */
+    public void SetLightmode() {
+        grid1.setBackground(Color.white);
+        grid2.setBackground(Color.white);
+        grid3.setBackground(Color.white);
+        grid11.setBackground(Color.white);
+        label1.setForeground(Color.black);
+        label1.setBackground(Color.white);
+        label2.setForeground(Color.black);
+        label2.setBackground(Color.white);
+        label3.setForeground(Color.black);
+        label3.setBackground(Color.white);
+        label4.setForeground(Color.black);
+        label4.setBackground(Color.white);
+        label11.setForeground(Color.black);
+        label11.setBackground(Color.white);
+        label21.setForeground(Color.black);
+        label21.setBackground(Color.white);
+        label22.setForeground(Color.black);
+        label22.setBackground(Color.white);
+        label23.setForeground(Color.black);
+        label23.setBackground(Color.white);
+        label24.setForeground(Color.black);
+        label24.setBackground(Color.white);
+        textinput.setForeground(Color.black);
+        textinput.setBackground(Color.white);
+    }
+
+    /**
+     * Methode, um den hellen Modus zu setzen.
+     */
+    public void SetDarkmode() {
+        grid1.setBackground(Color.black);
+        grid2.setBackground(Color.black);
+        grid3.setBackground(Color.black);
+        grid11.setBackground(Color.black);
+        label1.setForeground(Color.white);
+        label1.setBackground(Color.black);
+        label2.setForeground(Color.white);
+        label2.setBackground(Color.black);
+        label3.setForeground(Color.white);
+        label3.setBackground(Color.black);
+        label4.setForeground(Color.white);
+        label4.setBackground(Color.black);
+        label11.setForeground(Color.white);
+        label11.setBackground(Color.black);
+        label21.setForeground(Color.white);
+        label21.setBackground(Color.black);
+        label22.setForeground(Color.white);
+        label22.setBackground(Color.black);
+        label23.setForeground(Color.white);
+        label23.setBackground(Color.black);
+        label24.setForeground(Color.white);
+        label24.setBackground(Color.black);
+        textinput.setForeground(Color.white);
+        textinput.setBackground(Color.black);
+    }
 }

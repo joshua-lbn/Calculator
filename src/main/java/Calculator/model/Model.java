@@ -62,7 +62,7 @@ public class Model {
      * @param extension Zu erweiternder Ausdruck
      */
     public void ExtendExpression(String extension) {
-        if(expressionsElementsList.size() < 101)
+        if(expressionsElementsList.size() < 100)
         {
             expressionsElementsList.add(cursorPosition, extension);
             expression = GenerateNewExpression();

@@ -55,13 +55,14 @@ public class ProcessButtonInput implements java.awt.event.ActionListener {
          * hinzugefuegt werden koennen.
          * der viewCalculator der Befehl gegeben, nach Änderung der Interna (durch den Controller) die Darstellung zu
          * aktualisieren.
-         * die weitere Ausfuehrung der Methode aus Effizienzgruenden abzubrechen.
+         * der viewCalculator der Befehl gegeben, die Tastatureingabe zu ermoeglichen.
+         * die weitere Ausfuehrung der Methode aus Effizienzgruenden abgebrochen.
          */
-
         for (int i = 0; i < jButtonsNumber.length; i++) {
             if (e.getSource() == jButtonsNumber[i]) {
                 viewCalculator.Update("" + (i) + "");
                 viewCalculator.UpdateView();
+                viewCalculator.UpdateFocus();
                 return;
             }
         }
@@ -69,6 +70,7 @@ public class ProcessButtonInput implements java.awt.event.ActionListener {
             if (e.getSource() == jButtonsLeft[i]) {
                 viewCalculator.Update(textsLeft[i]);
                 viewCalculator.UpdateView();
+                viewCalculator.UpdateFocus();
                 return;
             }
         }
@@ -76,6 +78,7 @@ public class ProcessButtonInput implements java.awt.event.ActionListener {
             if (e.getSource() == jButtonsMiddle[i]) {
                 viewCalculator.Update(textsMiddle[i]);
                 viewCalculator.UpdateView();
+                viewCalculator.UpdateFocus();
                 return;
             }
         }
@@ -83,6 +86,7 @@ public class ProcessButtonInput implements java.awt.event.ActionListener {
             if (e.getSource() == jButtonsRight[i]) {
                 viewCalculator.Update(textsRight[i]);
                 viewCalculator.UpdateView();
+                viewCalculator.UpdateFocus();
                 return;
             }
         }
@@ -90,6 +94,7 @@ public class ProcessButtonInput implements java.awt.event.ActionListener {
             if (e.getSource() == jButtonsCursor[i]) {
                 viewCalculator.Update(textsCursor[i]);
                 viewCalculator.UpdateView();
+                viewCalculator.UpdateFocus();
                 return;
             }
         }
@@ -97,6 +102,7 @@ public class ProcessButtonInput implements java.awt.event.ActionListener {
             if (e.getSource() == jButtonsMode[i]) {
                 viewCalculator.SwitchMode();
                 viewCalculator.UpdateView();
+                viewCalculator.UpdateFocus();
                 return;
             }
         }

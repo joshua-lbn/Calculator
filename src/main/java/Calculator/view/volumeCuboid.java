@@ -83,5 +83,65 @@ public class volumeCuboid extends JRootPane {
         new volumeCuboid().setVisible(true);
     }
 
+    /**
+     * Methode, um den hellen Modus zu setzen.
+     */
+    public void SetLightmode() {
+        jpanel1.setBackground(Color.white);
+        calculate.setForeground(Color.black);
+        calculate.setBackground(Color.white);
+        lengthTextField.setForeground(Color.black);
+        lengthTextField.setBackground(Color.white);
+        heightTextField.setForeground(Color.black);
+        heightTextField.setBackground(Color.white);
+        widthTextField.setForeground(Color.black);
+        widthTextField.setBackground(Color.white);
+        length.setForeground(Color.black);
+        length.setBackground(Color.white);
+        height.setForeground(Color.black);
+        height.setBackground(Color.white);
+        width.setForeground(Color.black);
+        width.setBackground(Color.white);
+        volume.setForeground(Color.black);
+        volume.setBackground(Color.white);
+        volumeCalculate.setForeground(Color.black);
+        volumeCalculate.setBackground(Color.white);
+        spacer1.setForeground(Color.black);
+        spacer1.setBackground(Color.white);
+        spacer2.setForeground(Color.black);
+        spacer2.setBackground(Color.white);
+        spacer3.setForeground(Color.black);
+        spacer3.setBackground(Color.white);
+    }
 
+    /**
+     * Methode, um den dunklen Modus zu setzen.
+     */
+    public void SetDarkmode() {
+        jpanel1.setBackground(Color.black);
+        calculate.setForeground(Color.white);
+        calculate.setBackground(Color.black);
+        lengthTextField.setForeground(Color.white);
+        lengthTextField.setBackground(Color.black);
+        heightTextField.setForeground(Color.white);
+        heightTextField.setBackground(Color.black);
+        widthTextField.setForeground(Color.white);
+        widthTextField.setBackground(Color.black);
+        length.setForeground(Color.white);
+        length.setBackground(Color.black);
+        height.setForeground(Color.white);
+        height.setBackground(Color.black);
+        width.setForeground(Color.white);
+        width.setBackground(Color.black);
+        volume.setForeground(Color.white);
+        volume.setBackground(Color.black);
+        volumeCalculate.setForeground(Color.white);
+        volumeCalculate.setBackground(Color.black);
+        spacer1.setForeground(Color.white);
+        spacer1.setBackground(Color.black);
+        spacer2.setForeground(Color.white);
+        spacer2.setBackground(Color.black);
+        spacer3.setForeground(Color.black);
+        spacer3.setBackground(Color.white);
+    }
 }

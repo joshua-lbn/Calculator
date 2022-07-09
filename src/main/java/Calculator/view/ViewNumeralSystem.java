@@ -1,6 +1,7 @@
 package Calculator.view;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -90,4 +91,54 @@ public class ViewNumeralSystem extends JRootPane{
     }
     // Evtl. woanders Methoden @Martin
     // Einfach ein "-" vor Hexaausgabe, wenn anderes negativ
+
+    /**
+     * Methode, um den hellen Modus zu setzen.
+     */
+    public void SetLightmode() {
+        NumeralViewPanel.setBackground(Color.white);
+        DecLabel.setForeground(Color.black);
+        DecLabel.setBackground(Color.white);
+        HexaLabel.setForeground(Color.black);
+        HexaLabel.setBackground(Color.white);
+        BinLabel.setForeground(Color.black);
+        BinLabel.setBackground(Color.white);
+        DecTextField.setForeground(Color.black);
+        DecTextField.setBackground(Color.white);
+        HexaTextField.setForeground(Color.black);
+        HexaTextField.setBackground(Color.white);
+        BinTextField.setForeground(Color.black);
+        BinTextField.setBackground(Color.white);
+        convertDec.setForeground(Color.black);
+        convertDec.setBackground(Color.white);
+        convertHex.setForeground(Color.black);
+        convertHex.setBackground(Color.white);
+        convertBin.setForeground(Color.black);
+        convertBin.setBackground(Color.white);
+    }
+
+    /**
+     * Methode, um den dunklen Modus zu setzen.
+     */
+    public void SetDarkmode() {
+        NumeralViewPanel.setBackground(Color.black);
+        DecLabel.setForeground(Color.white);
+        DecLabel.setBackground(Color.black);
+        HexaLabel.setForeground(Color.white);
+        HexaLabel.setBackground(Color.black);
+        BinLabel.setForeground(Color.white);
+        BinLabel.setBackground(Color.black);
+        DecTextField.setForeground(Color.white);
+        DecTextField.setBackground(Color.black);
+        HexaTextField.setForeground(Color.white);
+        HexaTextField.setBackground(Color.black);
+        BinTextField.setForeground(Color.white);
+        BinTextField.setBackground(Color.black);
+        convertDec.setForeground(Color.white);
+        convertDec.setBackground(Color.black);
+        convertHex.setForeground(Color.white);
+        convertHex.setBackground(Color.black);
+        convertBin.setForeground(Color.white);
+        convertBin.setBackground(Color.black);
+    }
 }

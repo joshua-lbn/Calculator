@@ -7,10 +7,11 @@ import Calculator.view.main.View;
 import Calculator.model.ColorMode;
 
 import javax.swing.*;
+import javax.swing.plaf.basic.BasicScrollBarUI;
 import java.awt.*;
 
 /**
- * View-Klasse mit grafischer Benutzeroberflaeche des Taschenrechners.
+ * ViewCalculator-Klasse mit grafischer Benutzeroberflaeche des Taschenrechners.
  * Verwendet, um Abstraktion zwischen View-Oberklasse und den Unter-Darstellungen zu schaffen.
  */
 public class ViewCalculator extends JRootPane {
@@ -141,6 +142,13 @@ public class ViewCalculator extends JRootPane {
     }
 
     /**
+     * Methode, um den UpdateFocus()-Aufruf an die View weiterzugeben.
+     */
+    public void UpdateFocus() {
+        view.UpdateFocus();
+    }
+
+    /**
      * Methode, um den Farbmodus zu wechseln.
      */
     protected void SwitchMode() {
@@ -156,8 +164,6 @@ public class ViewCalculator extends JRootPane {
      * Methode, um den hellen Modus zu aktivieren.
      */
     public void SetLightmode() {
-        // Im Menue setzen
-        view.SetLightmode();
         // Hauptkomponenten setzen
         spacer1.setBackground(Color.white);
         jPanel1.setBackground(Color.white);
@@ -166,7 +172,28 @@ public class ViewCalculator extends JRootPane {
         jPanel4.setBackground(Color.white);
         // HTML-Darstellung setzen
         jTextPane.setBackground(Color.white);
-        jScrollPane.setBackground(Color.white);
+        // Scrollbar setzen
+        jScrollPane.getHorizontalScrollBar().setUI(new BasicScrollBarUI() {
+            @Override
+            protected void configureScrollBarColors() {
+                this.thumbColor = Color.lightGray;
+                this.trackColor = Color.white;
+            }
+            @Override
+            protected JButton createDecreaseButton(int orientation) {
+                JButton button = super.createDecreaseButton(orientation);
+                button.setForeground(Color.black);
+                button.setBackground(Color.white);
+                return button;
+            }
+            @Override
+            protected JButton createIncreaseButton(int orientation) {
+                JButton button = super.createIncreaseButton(orientation);
+                button.setForeground(Color.black);
+                button.setBackground(Color.white);
+                return button;
+            }
+        });
         // Knoepfe setzen
         for (int i = 0; i < jButtonsNumber.length; i++) {
             jButtonsNumber[i].setBackground(Color.white);
@@ -200,8 +227,6 @@ public class ViewCalculator extends JRootPane {
      * Methode, um den dunklen Modus zu aktivieren.
      */
     public void SetDarkmode() {
-        // Im Menue setzen
-        view.SetDarkmode();
         // Hauptkomponenten setzen
         spacer1.setBackground(Color.black);
         jPanel1.setBackground(Color.black);
@@ -210,7 +235,28 @@ public class ViewCalculator extends JRootPane {
         jPanel4.setBackground(Color.black);
         // HTML-Darstellung setzen
         jTextPane.setBackground(Color.black);
-        jScrollPane.getHorizontalScrollBar().setBackground(Color.black);
+        // Scrollbar setzen
+        jScrollPane.getHorizontalScrollBar().setUI(new BasicScrollBarUI() {
+            @Override
+            protected void configureScrollBarColors() {
+                this.thumbColor = Color.darkGray;
+                this.trackColor = Color.black;
+            }
+            @Override
+            protected JButton createDecreaseButton(int orientation) {
+                JButton button = super.createDecreaseButton(orientation);
+                button.setForeground(Color.white);
+                button.setBackground(Color.black);
+                return button;
+            }
+            @Override
+            protected JButton createIncreaseButton(int orientation) {
+                JButton button = super.createIncreaseButton(orientation);
+                button.setForeground(Color.white);
+                button.setBackground(Color.black);
+                return button;
+            }
+        });
         // Knoepfe setzen
         for (int i = 0; i < jButtonsNumber.length; i++) {
             jButtonsNumber[i].setBackground(Color.black);

@@ -2,7 +2,9 @@ package Calculator.view.main;
 
 import Calculator.controller.Controller;
 import Calculator.model.Model;
+import Calculator.view.viewGeneral.ViewHelp;
 import Calculator.view.volumeCone;
+import Calculator.view.viewGeneral.ViewSettings;
 import Calculator.view.volumeCuboid;
 import Calculator.view.volumeCylinder;
 import Calculator.view.volumeSphere;
@@ -12,8 +14,9 @@ import Calculator.view.viewCurrency.ViewCurrency;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 /**
  * View-Klasse, die die Hauptoberflaeche inklusive Reiter verwaltet.
@@ -27,10 +30,13 @@ public class View extends JFrame {
     private ProcessKeyInput processKeyInput;
     // Obermenue mit Reitern
     private javax.swing.JMenuBar bar = new javax.swing.JMenuBar();
+    private javax.swing.JMenu general = new javax.swing.JMenu();
     private javax.swing.JMenu calculator = new javax.swing.JMenu();
     private javax.swing.JMenu numeralSystems = new javax.swing.JMenu();
     private javax.swing.JMenu volumes = new javax.swing.JMenu();
     private javax.swing.JMenu currency = new javax.swing.JMenu();
+    private javax.swing.JMenuItem settingsItem = new javax.swing.JMenuItem();
+    private javax.swing.JMenuItem helpItem = new javax.swing.JMenuItem();
     private javax.swing.JMenuItem calculatorItem = new javax.swing.JMenuItem();
     private javax.swing.JMenuItem binary = new javax.swing.JMenuItem();
     private javax.swing.JMenuItem decimal = new javax.swing.JMenuItem();
@@ -41,6 +47,8 @@ public class View extends JFrame {
     private javax.swing.JMenuItem sphere = new javax.swing.JMenuItem();
     private javax.swing.JMenuItem currencyItem = new javax.swing.JMenuItem();
     // Unterfenster
+    private ViewSettings viewSettings;
+    private ViewHelp viewHelp;
     private ViewCalculator viewCalculator;
     private ViewNumeralSystem viewNumeralSystem;
     private volumeCone volumeCone;
@@ -64,9 +72,12 @@ public class View extends JFrame {
         setFocusable(true);
         // Erstellung des Obermenues: Instanziierung
         bar = new JMenuBar();
+        general = new JMenu("Allgemein");
         calculator = new JMenu("Rechner");
         numeralSystems = new JMenu("Zahlensystem ");
         currency = new JMenu("W\u00E4hrungen");
+        settingsItem = new JMenuItem("Einstellungen");
+        helpItem = new JMenuItem("Hilfe");
         calculatorItem = new JMenuItem("\u00D6ffnen");
         binary = new JMenuItem("Bin\u00E4r");
         decimal = new JMenuItem("Dezimal");
@@ -78,6 +89,8 @@ public class View extends JFrame {
         sphere = new JMenuItem("Kugel");
         currencyItem = new JMenuItem("\u00D6ffnen");
         // Erstellung des Obermenues: Listener hinzufuegen
+        settingsItem.addActionListener(processMenuInput);
+        helpItem.addActionListener(processMenuInput);
         calculatorItem.addActionListener(processMenuInput);
         binary.addActionListener(processMenuInput);
         decimal.addActionListener(processMenuInput);
@@ -88,6 +101,8 @@ public class View extends JFrame {
         sphere.addActionListener(processMenuInput);
         currencyItem.addActionListener(processMenuInput);
         // Erstellung des Obermenues: Hinzufuegen der Eintraege in die JMenus
+        general.add(settingsItem);
+        general.add(helpItem);
         calculator.add(calculatorItem);
         numeralSystems.add(decimal);
         numeralSystems.add(binary);
@@ -98,6 +113,7 @@ public class View extends JFrame {
         volumes.add(sphere);
         currency.add(currencyItem);
         // Erstellung des Obermenues: Hinzufuegen der JMenus in die Leiste
+        bar.add(general);
         bar.add(calculator);
         bar.add(numeralSystems);
         bar.add(volumes);
@@ -114,6 +130,34 @@ public class View extends JFrame {
     }
 
     /**
+     * Methode, um das SettingsItem-Unterfenster im Hauptfenster anzuzeigen.
+     */
+    public void SetSettings() {
+        // Listener fuer Calculator deaktivieren
+        processKeyInput.Deactivate();
+        // Hinzufuegen
+        getContentPane().removeAll();
+        getContentPane().add(viewSettings);
+        // Update der Oberflaeche
+        revalidate();
+        repaint();
+    }
+
+    /**
+     * Methode, um das HelpItem-Unterfenster im Hauptfenster anzuzeigen.
+     */
+    public void SetHelp() {
+        // Listener fuer Calculator deaktivieren
+        processKeyInput.Deactivate();
+        // Hinzufuegen
+        getContentPane().removeAll();
+        getContentPane().add(viewHelp);
+        // Update der Oberflaeche
+        revalidate();
+        repaint();
+    }
+
+    /**
      * Methode, um das Calculator-Unterfenster im Hauptfenster anzuzeigen.
      */
     public void SetCalculator() {
@@ -123,7 +167,7 @@ public class View extends JFrame {
         getContentPane().removeAll();
         getContentPane().add(viewCalculator);
         // Voraussetzungen fuer Tastatureingabe
-        requestFocus();
+        UpdateFocus();
         // Update der Oberflaeche
         revalidate();
         repaint();
@@ -194,8 +238,16 @@ public class View extends JFrame {
         // Menue setzen
         bar.setForeground(Color.black);
         bar.setBackground(Color.white);
+        general.setForeground(Color.black);
+        general.setBackground(Color.white);
+        settingsItem.setForeground(Color.black);
+        settingsItem.setBackground(Color.white);
+        helpItem.setForeground(Color.black);
+        helpItem.setBackground(Color.white);
         calculator.setForeground(Color.black);
         calculator.setBackground(Color.white);
+        calculatorItem.setForeground(Color.black);
+        calculatorItem.setBackground(Color.white);
         numeralSystems.setForeground(Color.black);
         numeralSystems.setBackground(Color.white);
         binary.setForeground(Color.black);
@@ -214,6 +266,20 @@ public class View extends JFrame {
         cylinder.setBackground(Color.white);
         sphere.setForeground(Color.black);
         sphere.setBackground(Color.white);
+        currency.setForeground(Color.black);
+        currency.setBackground(Color.white);
+        currencyItem.setForeground(Color.black);
+        currencyItem.setBackground(Color.white);
+        // In Unterfenstern setzen
+        viewSettings.SetLightmode();
+        viewHelp.SetLightmode();
+        viewCalculator.SetLightmode();
+        viewNumeralSystem.SetLightmode();
+        volumeCone.SetLightmode();
+        volumeCuboid.SetLightmode();
+        volumeCylinder.SetLightmode();
+        volumeSphere.SetLightmode();
+        viewCurrency.SetLightmode();
         // Update der Oberflaeche
         repaint();
     }
@@ -227,8 +293,16 @@ public class View extends JFrame {
         // Obermenue setzen
         bar.setForeground(Color.white);
         bar.setBackground(Color.black);
+        general.setForeground(Color.white);
+        general.setBackground(Color.black);
+        settingsItem.setForeground(Color.white);
+        settingsItem.setBackground(Color.black);
+        helpItem.setForeground(Color.white);
+        helpItem.setBackground(Color.black);
         calculator.setForeground(Color.white);
         calculator.setBackground(Color.black);
+        calculatorItem.setForeground(Color.white);
+        calculatorItem.setBackground(Color.black);
         numeralSystems.setForeground(Color.white);
         numeralSystems.setBackground(Color.black);
         binary.setForeground(Color.white);
@@ -247,6 +321,20 @@ public class View extends JFrame {
         cylinder.setBackground(Color.black);
         sphere.setForeground(Color.white);
         sphere.setBackground(Color.black);
+        currency.setForeground(Color.white);
+        currency.setBackground(Color.black);
+        currencyItem.setForeground(Color.white);
+        currencyItem.setBackground(Color.black);
+        // In Unterfenstern setzen
+        viewSettings.SetDarkmode();
+        viewHelp.SetDarkmode();
+        viewCalculator.SetDarkmode();
+        viewNumeralSystem.SetDarkmode();
+        volumeCone.SetDarkmode();
+        volumeCuboid.SetDarkmode();
+        volumeCylinder.SetDarkmode();
+        volumeSphere.SetDarkmode();
+        viewCurrency.SetDarkmode();
         // Update der Oberflaeche
         repaint();
     }
@@ -264,8 +352,29 @@ public class View extends JFrame {
      */
     public void UpdateView() {
         viewCalculator.UpdateView();
-        // Fokus fuer Tastatureingabe anfordern
+    }
+
+    /**
+     * Methode, um den Fokus auf die Tastatureingabe zu schalten.
+     */
+    public void UpdateFocus() {
         requestFocus();
+    }
+
+    /**
+     * Getter-Methode fuer das JMenuItem settingsItem.
+     * @return JMenuItem settingsItem
+     */
+    protected JMenuItem GetJMenuItemSettings() {
+        return settingsItem;
+    }
+
+    /**
+     * Getter-Methode fuer das JMenuItem helpItem.
+     * @return JMenuItem helpItem
+     */
+    protected JMenuItem GetJMenuItemHelp() {
+        return helpItem;
     }
 
     /**
@@ -361,6 +470,8 @@ public class View extends JFrame {
         model = m;
         controller = c;
         // Instanziierung der Unterfenster
+        viewSettings = new ViewSettings(this);
+        viewHelp = new ViewHelp();
         viewCalculator = new ViewCalculator(model, this, controller);
         viewNumeralSystem = new ViewNumeralSystem();
         volumeCone = new volumeCone();
@@ -370,21 +481,27 @@ public class View extends JFrame {
         viewCurrency = new ViewCurrency();
         // Fenster auf Taschenrechner setzen
         SetCalculator();
-        // ComponentListener, damit viewCalculator auf Groessenaenderungen reagieren kann
-        addComponentListener(new ComponentListener() {
-            @Override
-            public void componentResized(ComponentEvent e) {
-                UpdateView();
-            }
-            @Override
-            public void componentMoved(ComponentEvent e) {
-            }
-            @Override
-            public void componentShown(ComponentEvent e) {
-            }
-            @Override
-            public void componentHidden(ComponentEvent e) {
-            }
-        });
+        // Darstellungsmodus aus Datei auslesen und setzen
+        String data = "";
+        try {
+            File file = new File(System.getenv("APPDATA") + "\\Calculator\\settings.txt");
+            Scanner scanner = new Scanner(file);
+            data = scanner.nextLine();
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            System.out.println(e);
+        }
+        if (data.equals("Darkmode: on")) {
+            viewSettings.ActivatedDarkmodeSetting();
+        }
+        else if (data.equals("Darkmode: off")) {
+            viewSettings.DeactivatedDarkmodeSetting();
+        }
+        else {
+            // Falls keine Einstellungen gefunden
+            viewSettings.DeactivatedDarkmodeSetting();
+        }
+        // Instanz der Beiklasse ProcessResize, damit viewCalculator auf Groessenaenderungen reagieren kann
+        addComponentListener(new ProcessResize(this));
     }
 }
