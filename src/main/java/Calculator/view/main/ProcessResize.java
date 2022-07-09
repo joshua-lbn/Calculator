@@ -21,11 +21,13 @@ public class ProcessResize implements ComponentListener {
 
     /**
      * Methode, um bei Groessenaenderung ein Update der Oberflaeche anzustossen.
+     * Es wird die ViewCalculator- und ViewHelp-Instanz aktualisiert.
      * @param e Ereignis bzw. "Event", das verarbeitet werden soll
      */
     @Override
     public void componentResized(ComponentEvent e) {
-        view.UpdateView();
+        view.UpdateCalculator();
+        view.UpdateHelp();
     }
 
     // Weitere ungenutzte Methoden, um Implementierung zu vervollstaendigen

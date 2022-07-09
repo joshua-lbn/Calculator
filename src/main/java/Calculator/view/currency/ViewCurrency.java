@@ -1,4 +1,4 @@
-package Calculator.view.viewCurrency;
+package Calculator.view.currency;
 
 import javax.swing.*;
 import java.awt.*;

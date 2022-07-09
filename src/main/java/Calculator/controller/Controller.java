@@ -104,7 +104,7 @@ public class Controller {
             // Parser berechnet aktuellen Ausdruck im Model und Setter leert expression sowie HTML-String und fügt Ergebnis ein
             model.SetAnswer(parser.Calculate(model.GetExpression()));
             // Anzeige aktualisieren
-            view.UpdateView();
+            view.UpdateCalculator();
             // Zustand auf Loesungsanzeige setzen
             model.SetState(CalculatorState.SOLUTION);
         }
@@ -143,7 +143,7 @@ public class Controller {
         view = v;
         // Fortgefuehrter Konstruktor
         model.SetState(CalculatorState.CALCULATION);
-        view.UpdateView();
+        view.UpdateCalculator();
     }
 
     public void VolumeCalculate(int nummer) {

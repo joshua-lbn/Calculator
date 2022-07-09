@@ -1,4 +1,4 @@
-package Calculator.view.viewGeneral;
+package Calculator.view.general;
 
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -24,9 +24,9 @@ public class ProcessCheckboxes implements ItemListener {
         // Soweit Zustand der Darkmode-Checkbox geaendert
         if (e.getSource() == viewSettings.GetDarkmodeSetting()) {
             if (e.getStateChange() == ItemEvent.SELECTED) {
-                viewSettings.ActivatedDarkmodeSetting();
+                viewSettings.ActivateDarkmodeSetting();
             } else {
-                viewSettings.DeactivatedDarkmodeSetting();
+                viewSettings.DeactivateDarkmodeSetting();
             }
         }
     }

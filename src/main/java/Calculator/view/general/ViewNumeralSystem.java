@@ -1,4 +1,4 @@
-package Calculator.view.viewGeneral;
+package Calculator.view.general;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,7 +1,5 @@
 package Calculator.view.main;
 
-import Calculator.view.calculator.ViewCalculator;
-
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -32,92 +30,92 @@ public class ProcessKeyInput implements KeyListener {
     public void keyPressed(KeyEvent e) {
         if (active) {
             if (e.isShiftDown() && (e.getKeyCode() == KeyEvent.VK_7 || e.getKeyCode() ==KeyEvent.VK_PERIOD)) {
-                view.Update("/");
-                view.UpdateView();
+                view.UpdateExpression("/");
+                view.UpdateCalculator();
             } else if (e.isShiftDown() && e.getKeyCode() == KeyEvent.VK_8) {
-                view.Update("(");
-                view.UpdateView();
+                view.UpdateExpression("(");
+                view.UpdateCalculator();
             } else if (e.isShiftDown() && e.getKeyCode() == KeyEvent.VK_9) {
-                view.Update(")");
-                view.UpdateView();
+                view.UpdateExpression(")");
+                view.UpdateCalculator();
             } else if (e.isShiftDown() && e.getKeyCode() == KeyEvent.VK_PLUS) {
-                view.Update("*");
-                view.UpdateView();
+                view.UpdateExpression("*");
+                view.UpdateCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_PLUS) {
-                view.Update("+");
-                view.UpdateView();
+                view.UpdateExpression("+");
+                view.UpdateCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_MINUS) {
-                view.Update("-");
-                view.UpdateView();
+                view.UpdateExpression("-");
+                view.UpdateCalculator();
             } else if (e.isShiftDown() && e.getKeyCode() == KeyEvent.VK_0) {
-                view.Update("=");
-                view.UpdateView();
+                view.UpdateExpression("=");
+                view.UpdateCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                view.Update("->");
-                view.UpdateView();
+                view.UpdateExpression("->");
+                view.UpdateCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                view.Update("<-");
-                view.UpdateView();
+                view.UpdateExpression("<-");
+                view.UpdateCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_0 || e.getKeyCode() == KeyEvent.VK_NUMPAD0) {
-                view.Update("" + 0 + "");
-                view.UpdateView();
+                view.UpdateExpression("" + 0 + "");
+                view.UpdateCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_1 || e.getKeyCode() == KeyEvent.VK_NUMPAD1) {
-                view.Update("" + 1 + "");
-                view.UpdateView();
+                view.UpdateExpression("" + 1 + "");
+                view.UpdateCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_2 || e.getKeyCode() == KeyEvent.VK_NUMPAD2) {
-                view.Update("" + 2 + "");
-                view.UpdateView();
+                view.UpdateExpression("" + 2 + "");
+                view.UpdateCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_3 || e.getKeyCode() == KeyEvent.VK_NUMPAD3) {
-                view.Update("" + 3 + "");
-                view.UpdateView();
+                view.UpdateExpression("" + 3 + "");
+                view.UpdateCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_4 || e.getKeyCode() == KeyEvent.VK_NUMPAD4) {
-                view.Update("" + 4 + "");
-                view.UpdateView();
+                view.UpdateExpression("" + 4 + "");
+                view.UpdateCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_5 || e.getKeyCode() == KeyEvent.VK_NUMPAD5) {
-                view.Update("" + 5 + "");
-                view.UpdateView();
+                view.UpdateExpression("" + 5 + "");
+                view.UpdateCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_6 || e.getKeyCode() == KeyEvent.VK_NUMPAD6) {
-                view.Update("" + 6 + "");
-                view.UpdateView();
+                view.UpdateExpression("" + 6 + "");
+                view.UpdateCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_7 || e.getKeyCode() == KeyEvent.VK_NUMPAD7) {
-                view.Update("" + 7 + "");
-                view.UpdateView();
+                view.UpdateExpression("" + 7 + "");
+                view.UpdateCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_8 || e.getKeyCode() == KeyEvent.VK_NUMPAD8) {
-                view.Update("" + 8 + "");
-                view.UpdateView();
+                view.UpdateExpression("" + 8 + "");
+                view.UpdateCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_9 || e.getKeyCode() == KeyEvent.VK_NUMPAD9) {
-                view.Update("" + 9 + "");
-                view.UpdateView();
+                view.UpdateExpression("" + 9 + "");
+                view.UpdateCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_S) {
-                view.Update("sin(");
-                view.UpdateView();
+                view.UpdateExpression("sin(");
+                view.UpdateCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_C) {
-                view.Update("cos(");
-                view.UpdateView();
+                view.UpdateExpression("cos(");
+                view.UpdateCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_T) {
-                view.Update("tan(");
-                view.UpdateView();
+                view.UpdateExpression("tan(");
+                view.UpdateCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_L) {
-                view.Update("lg(");
-                view.UpdateView();
+                view.UpdateExpression("lg(");
+                view.UpdateCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-                view.Update("DEL");
-                view.UpdateView();
+                view.UpdateExpression("DEL");
+                view.UpdateCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_DELETE) {
-                view.Update("AC");
-                view.UpdateView();
+                view.UpdateExpression("AC");
+                view.UpdateCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                view.Update("=");
-                view.UpdateView();
+                view.UpdateExpression("=");
+                view.UpdateCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_DEAD_CIRCUMFLEX) {
-                view.Update("x^");
-                view.UpdateView();
+                view.UpdateExpression("x^");
+                view.UpdateCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_COMMA || e.getKeyCode() == KeyEvent.VK_PERIOD) {
-                view.Update(",");
-                view.UpdateView();
+                view.UpdateExpression(",");
+                view.UpdateCalculator();
             } else if(e.getKeyCode() == KeyEvent.VK_A) {
-                view.Update("Ans");
-                view.UpdateView();
+                view.UpdateExpression("Ans");
+                view.UpdateCalculator();
             } else if(e.getKeyCode() == KeyEvent.VK_B) {
                 view.SetLightmode();
             } else if(e.getKeyCode() == KeyEvent.VK_D) {

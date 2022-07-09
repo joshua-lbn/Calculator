@@ -2,21 +2,20 @@ package Calculator.view.main;
 
 import Calculator.controller.Controller;
 import Calculator.model.Model;
-import Calculator.view.viewGeneral.ViewHelp;
-import Calculator.view.viewGeneral.ViewNumeralSystem;
+import Calculator.view.general.ViewSettings;
+import Calculator.view.general.ViewHelp;
 import Calculator.view.viewVolume.viewCone;
-import Calculator.view.viewGeneral.ViewSettings;
 import Calculator.view.viewVolume.viewCuboid;
+import Calculator.view.general.ViewNumeralSystem;
+import Calculator.view.volumeCone;
+import Calculator.view.volumeCuboid;
 import Calculator.view.volumeCylinder;
 import Calculator.view.volumeSphere;
 import Calculator.view.calculator.ViewCalculator;
-import Calculator.view.viewCurrency.ViewCurrency;
+import Calculator.view.currency.ViewCurrency;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
 
 /**
  * View-Klasse, die die Hauptoberflaeche inklusive Reiter verwaltet.
@@ -56,6 +55,8 @@ public class View extends JFrame {
     private volumeCylinder volumeCylinder;
     private volumeSphere volumeSphere;
     private ViewCurrency viewCurrency;
+    // Darkmode-Zustand
+    boolean darkmodeActive;
 
     /**
      * Konstruktor: Initialisierung der Reiter.
@@ -340,18 +341,33 @@ public class View extends JFrame {
     }
 
     /**
+     * Methode, um die Darkmode-Einstellung permanent ueber das Model zu setzen.
+     * @param active Wahrheitswert, ob Darkmode aktiv
+     */
+    public void SaveDarkmode(boolean active) {
+        model.SaveDarkmode(active);
+    }
+
+    /**
      * Methode, um Updates aus der Instanz von "ProcessKeyInput" an die View weiterzugeben
      * @param s String mit Updatecode
      */
-    public void Update(String s) {
+    public void UpdateExpression(String s) {
         viewCalculator.Update(s);
     }
 
     /**
      * Methode, um den UpdateView-Befehl an die ViewCalculator-Instanz weiterzugeben.
      */
-    public void UpdateView() {
+    public void UpdateCalculator() {
         viewCalculator.UpdateView();
+    }
+
+    /**
+     * Methode, um den UpdateView-Befehl an die ViewHelp-Instanz weiterzugeben.
+     */
+    public void UpdateHelp() {
+        viewHelp.UpdateView();
     }
 
     /**
@@ -482,24 +498,16 @@ public class View extends JFrame {
         // Fenster auf Taschenrechner setzen
         SetCalculator();
         // Darstellungsmodus aus Datei auslesen und setzen
-        String data = "";
-        try {
-            File file = new File(System.getenv("APPDATA") + "\\Calculator\\settings.txt");
-            Scanner scanner = new Scanner(file);
-            data = scanner.nextLine();
-            scanner.close();
-        } catch (FileNotFoundException e) {
-            System.out.println(e);
+        darkmodeActive = model.ExtractDarkmode();
+        if (darkmodeActive) {
+            viewSettings.ActivateDarkmodeSetting();
         }
-        if (data.equals("Darkmode: on")) {
-            viewSettings.ActivatedDarkmodeSetting();
-        }
-        else if (data.equals("Darkmode: off")) {
-            viewSettings.DeactivatedDarkmodeSetting();
+        else if (!darkmodeActive) {
+            viewSettings.DeactivateDarkmodeSetting();
         }
         else {
             // Falls keine Einstellungen gefunden
-            viewSettings.DeactivatedDarkmodeSetting();
+            viewSettings.DeactivateDarkmodeSetting();
         }
         // Instanz der Beiklasse ProcessResize, damit viewCalculator auf Groessenaenderungen reagieren kann
         addComponentListener(new ProcessResize(this));

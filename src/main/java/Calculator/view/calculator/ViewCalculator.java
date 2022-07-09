@@ -179,7 +179,7 @@ public class ViewCalculator extends JRootPane {
                 this.thumbColor = Color.lightGray;
                 this.trackColor = Color.white;
             }
-            @Override
+            /* @Override
             protected JButton createDecreaseButton(int orientation) {
                 JButton button = super.createDecreaseButton(orientation);
                 button.setForeground(Color.black);
@@ -192,7 +192,7 @@ public class ViewCalculator extends JRootPane {
                 button.setForeground(Color.black);
                 button.setBackground(Color.white);
                 return button;
-            }
+            } */
         });
         // Knoepfe setzen
         for (int i = 0; i < jButtonsNumber.length; i++) {
@@ -242,7 +242,7 @@ public class ViewCalculator extends JRootPane {
                 this.thumbColor = Color.darkGray;
                 this.trackColor = Color.black;
             }
-            @Override
+            /* @Override
             protected JButton createDecreaseButton(int orientation) {
                 JButton button = super.createDecreaseButton(orientation);
                 button.setForeground(Color.white);
@@ -255,7 +255,7 @@ public class ViewCalculator extends JRootPane {
                 button.setForeground(Color.white);
                 button.setBackground(Color.black);
                 return button;
-            }
+            } */
         });
         // Knoepfe setzen
         for (int i = 0; i < jButtonsNumber.length; i++) {

@@ -3,7 +3,9 @@ package Calculator.model;
 import Calculator.controller.Controller;
 import Calculator.view.main.View;
 
+import java.io.*;
 import java.util.LinkedList;
+import java.util.Scanner;
 
 /**
  * Model-Klasse mit allen gespeicherten Daten.
@@ -34,6 +36,11 @@ public class Model {
     private ColorMode colorMode;
     // Speicherung der Farbe der HTML-Darstellung in Abhaengigkeit vom Farbmodus
     private String colorExtension;
+    // Variablen, um Einstellungen permanent im Dateisystem zu speichern
+    private File file;
+    private Scanner fileScanner;
+    private File folder;
+    private BufferedWriter bufferedWriter;
 
     /**
      * Konstruktor: Ausdruecke als leer initialisieren.
@@ -53,8 +60,9 @@ public class Model {
         CursorBack();
         // Exponentenmodus ausstellen
         exponentMode = false;
-        // Den hellen Modus aktivieren
-        SetLightmode();
+        // Instanzen von File und BufferedWriter ueber Datei im %APPDATA% des Nutzers
+        folder = new File(System.getenv("APPDATA") + "\\Calculator");
+        file = new File (System.getenv("APPDATA") + "\\Calculator\\settings.txt");
     }
 
     /**
@@ -330,6 +338,55 @@ public class Model {
         // HTML-Farbe setzen
         colorExtension = "white";
     }
+
+    /**
+     * Methode, um den Zustand des dunklen (bzw. hellen) Modus im Dateisystem zu speichern.
+     * @param active Wahrheitswert, ob dunkler Modus aktiv
+     */
+    public void SaveDarkmode(boolean active) {
+        try {
+            // Ordner in %APPDATA% erstellen
+            folder.mkdir();
+            // BufferedWriter erstellen
+            bufferedWriter = new BufferedWriter(new FileWriter(file));
+            // Wert schreiben
+            if (active) {
+                bufferedWriter.write("Darkmode: on");
+            }
+            else {
+                bufferedWriter.write("Darkmode: off");
+            }
+            // BufferedWriter beenden
+            bufferedWriter.close();
+        } catch (IOException e) {
+            // Da nicht kritisch: kein Fallback noetig
+        }
+    }
+
+    /**
+     * Methode, um den Zustand des dunklen Modus im Dateizustand auszulesen.
+     * @return Wahrheitswert, ob aktiv
+     */
+    public boolean ExtractDarkmode() {
+        String data = "";
+        file = new File(System.getenv("APPDATA") + "\\Calculator\\settings.txt");
+        try {
+            fileScanner = new Scanner(file);
+            data = fileScanner.nextLine();
+        } catch (FileNotFoundException e) {
+            // Keine Fehlerbehandlung noetig: wird in der View gehandelt
+        }
+        if (data.equals("Darkmode: on")) {
+            return true;
+        }
+        else if (data.equals("Darkmode: off")) {
+            return false;
+        }
+        else {
+            return false;
+        }
+    }
+
 
     /**
      * Methode zur Setzung der Referenzen auf View und Controller in Main.
