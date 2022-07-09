@@ -9,7 +9,6 @@ import java.awt.event.*;
 
 class ViewCurrency extends JFrame{
 
-
     //erstellen der GridLayouts
     private javax.swing.JPanel grid1 = new javax.swing.JPanel();
     private javax.swing.JPanel grid2 = new javax.swing.JPanel();

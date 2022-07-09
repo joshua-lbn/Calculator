@@ -4,11 +4,13 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ViewCurrency extends JRootPane {
+    // Erstellen der GridLayouts
     private javax.swing.JPanel grid1 = new javax.swing.JPanel();
     private javax.swing.JPanel grid2 = new javax.swing.JPanel();
     private javax.swing.JPanel grid3 = new javax.swing.JPanel();
     private javax.swing.JPanel grid11 = new javax.swing.JPanel();
 
+    //Labels für Währungsnamen und Währungswert
     private javax.swing.JLabel label1 = new javax.swing.JLabel();
     private javax.swing.JLabel label2 = new javax.swing.JLabel();
     private javax.swing.JLabel label3 = new javax.swing.JLabel();
@@ -21,12 +23,8 @@ public class ViewCurrency extends JRootPane {
 
     private String[] currency;
 
-
-    //private JScrollPane jScrollPane;
-    //private javax.swing.JTextPane jTextPane = new javax.swing.JTextPane();
-    private javax.swing.JTextField textinput = new javax.swing.JTextField();;
-    //private ProcessKeyInput processKeyInput;
-    //private ProcessButtonInput processButtonInput;
+    // Eingabenfeld
+    private javax.swing.JTextField textinput;
 
     public ViewCurrency () {
         grid1.setLayout(new GridLayout(1, 3));
@@ -35,13 +33,13 @@ public class ViewCurrency extends JRootPane {
         grid11.setLayout(new GridLayout(2, 1));
         grid1.add(grid11);
 
-
+        //Name der Ausgangswährung
         currency = new String[]{"Dollar","Euro","Pound","Yuan"};
-
         label11 = new JLabel("" + currency[getA()] + "" );
-        textinput = new JTextField();
-
         grid11.add(label11);
+
+        //Eingabenfeld
+        textinput = new JTextField();
         grid11.add(textinput);
         textinput.addActionListener( bl );
 
@@ -49,6 +47,7 @@ public class ViewCurrency extends JRootPane {
         grid2.setLayout(new GridLayout(4, 1));
         grid1.add(grid2);
 
+        //umgerechneten Währungswerte
         label21 = new JLabel();
         label22 = new JLabel();
         label23 = new JLabel();
@@ -63,6 +62,7 @@ public class ViewCurrency extends JRootPane {
         grid3.setLayout(new GridLayout(4, 1));
         grid1.add(grid3);
 
+        //Währungsnamen der Währungen in die umgerechnet wurde
         label1 = new JLabel("Dollar");
         label2 = new JLabel("Euro");
         label3 = new JLabel("Pound");
@@ -73,28 +73,11 @@ public class ViewCurrency extends JRootPane {
         grid3.add(label3);
         grid3.add(label4);
 
-
         this.getContentPane().add(grid1);
-        // Groesse setzen
-        setSize(600,300);
-        // Sichtbar setzen
-        setVisible(true);
-        // Fokussierbar machen und Fokus (fuer Tastatureingabe) anfordern
-        //setFocusable(true);
-        //requestFocus();
-        // Instanz der Beiklasse "ProcessKeyInput", um auf Tastendruecke zu reagieren
-        //processKeyInput = new ProcessKeyInput(this);
-        //addKeyListener(processKeyInput);
-
-    }
-    public static void main(String args[]) {
-        // Ein Objekt der Klasse erzeugen und sichtbar machen.
-        new ViewCurrency().setVisible ( true );
     }
 
     class ButtonListener implements java.awt.event.ActionListener {
         public void actionPerformed(java.awt.event.ActionEvent e) {
-
             // Noch prüfen Buchstaben + leere Eingabe
             // Parse Double, da nicht möglich String direkt in Zahl umwandeln
             double norm = Double.parseDouble(textinput.getText());
@@ -105,6 +88,7 @@ public class ViewCurrency extends JRootPane {
                 label24.setText("ungültige Eingabe");
             }
             else {
+                //umrechnen in andere Währungen
                 if (getA() == 0) {
                     double dollar1 = 1 * norm;
                     System.out.println((double) (Math.round(dollar1 * 100)) / 100);
@@ -178,6 +162,7 @@ public class ViewCurrency extends JRootPane {
     }
 
     public int getA () {
+        // Ausgewählte Währung aus dem JMenuBar übernehmen (als Zahl; int a = "view.getWaehrung()" - 1)
         int a = 1-1;
         return a;
     }
