@@ -1,11 +1,14 @@
 package Calculator.view.viewVolume;
 
+import Calculator.view.main.ProcessVolumeInput;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class viewCuboid extends JRootPane {
+    private ProcessVolumeInput processVolumeInput;
     private javax.swing.JPanel jpanel1 = new javax.swing.JPanel();
     private javax.swing.JButton calculate = new javax.swing.JButton();
     private javax.swing.JTextField lengthTextField = new javax.swing.JTextField();
@@ -57,6 +60,7 @@ public class viewCuboid extends JRootPane {
         setSize(600,300);
         //this.pack();
         this.setVisible(true);
+        calculate.addActionListener(processVolumeInput);
     }
     public static void main(String[] args) {
         new Calculator.view.volumeCuboid().setVisible(true);
@@ -125,5 +129,21 @@ public class viewCuboid extends JRootPane {
     }
     public JButton getCalculate() {
         return calculate;
+    }
+
+    public void Calculate() {
+        double volumeLength = Double.parseDouble(lengthTextField.getText().replace(',','.'));
+        double volumeWidth = Double.parseDouble(widthTextField.getText().replace(',','.'));
+        double volumeHeight = Double.parseDouble(heightTextField.getText().replace(',','.'));
+        if (volumeLength <= 0 || volumeWidth <= 0 || volumeHeight <= 0) {
+            volumeCalculate.setText("Ung\u00FCltige Eingabe");
+        }
+        else {
+            double volumeResult = volumeLength * volumeWidth * volumeHeight;
+            double volume = (double) (Math.round(volumeResult * 100)) / 100;
+            String volumeString = (Double.toString(volume)).replace ('.', ',');
+            volumeCalculate.setText(volumeString);
+            //volumeCalculate.setText("" + (double) (Math.round(volumeResult * 100)) / 100);
+        }
     }
 }

@@ -152,7 +152,7 @@ public class Controller {
                 viewCone.Calculate();
                 break;
             case 2:
-
+                viewCuboid.Calculate();
             case 3:
             case 4:
         }

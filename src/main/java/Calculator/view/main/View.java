@@ -6,7 +6,7 @@ import Calculator.view.viewGeneral.ViewHelp;
 import Calculator.view.viewGeneral.ViewNumeralSystem;
 import Calculator.view.viewVolume.viewCone;
 import Calculator.view.viewGeneral.ViewSettings;
-import Calculator.view.volumeCuboid;
+import Calculator.view.viewVolume.viewCuboid;
 import Calculator.view.volumeCylinder;
 import Calculator.view.volumeSphere;
 import Calculator.view.calculator.ViewCalculator;
@@ -52,7 +52,7 @@ public class View extends JFrame {
     private ViewCalculator viewCalculator;
     private ViewNumeralSystem viewNumeralSystem;
     private viewCone viewCone;
-    private volumeCuboid volumeCuboid;
+    private viewCuboid viewCuboid;
     private volumeCylinder volumeCylinder;
     private volumeSphere volumeSphere;
     private ViewCurrency viewCurrency;
@@ -200,7 +200,7 @@ public class View extends JFrame {
                 getContentPane().add(viewCone);
                 break;
             case 2:
-                getContentPane().add(volumeCuboid);
+                getContentPane().add(viewCuboid);
                 break;
             case 3:
                 getContentPane().add(volumeCylinder);
@@ -276,7 +276,7 @@ public class View extends JFrame {
         viewCalculator.SetLightmode();
         viewNumeralSystem.SetLightmode();
         viewCone.SetLightmode();
-        volumeCuboid.SetLightmode();
+        viewCuboid.SetLightmode();
         volumeCylinder.SetLightmode();
         volumeSphere.SetLightmode();
         viewCurrency.SetLightmode();
@@ -331,7 +331,7 @@ public class View extends JFrame {
         viewCalculator.SetDarkmode();
         viewNumeralSystem.SetDarkmode();
         viewCone.SetDarkmode();
-        volumeCuboid.SetDarkmode();
+        viewCuboid.SetDarkmode();
         volumeCylinder.SetDarkmode();
         volumeSphere.SetDarkmode();
         viewCurrency.SetDarkmode();
@@ -475,7 +475,7 @@ public class View extends JFrame {
         viewCalculator = new ViewCalculator(model, this, controller);
         viewNumeralSystem = new ViewNumeralSystem();
         viewCone = new viewCone();
-        volumeCuboid = new volumeCuboid();
+        viewCuboid = new viewCuboid();
         volumeCylinder = new volumeCylinder();
         volumeSphere = new volumeSphere();
         viewCurrency = new ViewCurrency();
