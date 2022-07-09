@@ -4,20 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e01ba51-84bb-425d-83d7-45271fdd1757" name="Changes" comment="ViewSettings &amp; Light-/Darkmode">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/general/ViewHelp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/controller/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/model/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/calculator/ViewCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/calculator/ViewCalculator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/main/ProcessKeyInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/main/ProcessKeyInput.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/main/ProcessMenuInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/main/ProcessMenuInput.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/main/ProcessResize.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/main/ProcessResize.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/main/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/main/View.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/viewCurrency/ViewCurrency.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/currency/ViewCurrency.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/viewGeneral/ProcessCheckboxes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/general/ProcessCheckboxes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/viewGeneral/ViewHelp.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/viewGeneral/ViewNumeralSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/general/ViewNumeralSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/viewGeneral/ViewSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/general/ViewSettings.java" afterDir="false" />
+    <list default="true" id="6e01ba51-84bb-425d-83d7-45271fdd1757" name="Changes" comment="ViewCurrency Kommentieren">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/ViewCurrency.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/ViewCurrency.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +45,6 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/main/java/Calculator/controller/Controller.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/Calculator/view/main/View.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -83,7 +71,7 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.Calculator.Main">
+  <component name="RunManager" selected="Application.volumeCylinder">
     <configuration name="Calculator.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Calculator.Main" />
       <module name="Calculator" />
@@ -97,7 +85,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Calculator.view.volumeCone" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="ViewCurrency" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Calculator.view.ViewCurrency" />
+      <module name="Calculator" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Calculator.view.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="volumeCone" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Calculator.view.volumeCone" />
       <module name="Calculator" />
       <extension name="coverage">
@@ -110,7 +111,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Calculator.view.volumeCuboid" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="volumeCuboid" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Calculator.view.volumeCuboid" />
       <module name="Calculator" />
       <extension name="coverage">
@@ -123,7 +124,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Calculator.view.volumeCylinder" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="volumeCylinder" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Calculator.view.volumeCylinder" />
       <module name="Calculator" />
       <extension name="coverage">
@@ -136,33 +137,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="volumeSphere" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Calculator.view.volumeSphere" />
-      <module name="Calculator" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Calculator.view.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
-      <item itemvalue="Application.Calculator.view.volumeCone" />
-      <item itemvalue="Application.Calculator.view.volumeCuboid" />
-      <item itemvalue="Application.Calculator.view.volumeCylinder" />
-      <item itemvalue="Application.volumeSphere" />
+      <item itemvalue="Application.volumeCone" />
+      <item itemvalue="Application.volumeCylinder" />
+      <item itemvalue="Application.volumeCuboid" />
       <item itemvalue="Application.Calculator.Main" />
+      <item itemvalue="Application.ViewCurrency" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.volumeCylinder" />
+        <item itemvalue="Application.volumeCone" />
+        <item itemvalue="Application.volumeCuboid" />
         <item itemvalue="Application.Calculator.Main" />
-        <item itemvalue="Application.Calculator.view.volumeCylinder" />
-        <item itemvalue="Application.volumeSphere" />
-        <item itemvalue="Application.Calculator.view.volumeCone" />
-        <item itemvalue="Application.Calculator.view.volumeCuboid" />
+        <item itemvalue="Application.ViewCurrency" />
       </list>
     </recent_temporary>
   </component>
@@ -343,35 +331,7 @@
       <option name="project" value="LOCAL" />
       <updated>1657364074707</updated>
     </task>
-    <task id="LOCAL-00025" summary="Volumen Zylinder">
-      <created>1657373699028</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1657373699028</updated>
-    </task>
-    <task id="LOCAL-00026" summary="Volumen Kugel">
-      <created>1657375554297</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1657375554297</updated>
-    </task>
-    <task id="LOCAL-00027" summary="Volumen auf Knopfdruck geöffnet">
-      <created>1657377125602</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1657377125602</updated>
-    </task>
-    <task id="LOCAL-00028" summary="MVC Kegel">
-      <created>1657404547882</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1657404547882</updated>
-    </task>
-    <option name="localTasksCounter" value="29" />
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -414,17 +374,13 @@
     <MESSAGE value="Volumen Quader Komma Eingabe" />
     <MESSAGE value="Volumen Quader Komma Ausgabe" />
     <MESSAGE value="Volumen Kegel" />
-    <MESSAGE value="Volumen Zylinder" />
-    <MESSAGE value="Volumen Kugel" />
-    <MESSAGE value="Volumen auf Knopfdruck geöffnet" />
-    <MESSAGE value="MVC Kegel" />
-    <option name="LAST_COMMIT_MESSAGE" value="MVC Kegel" />
+    <option name="LAST_COMMIT_MESSAGE" value="Volumen Kegel" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Calculator$Calculator_Main.ic" NAME="Calculator.Main Coverage Results" MODIFIED="1656782262692" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Calculator$Main.ic" NAME="Main Coverage Results" MODIFIED="1656866699393" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>Calculator.controller.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Calculator$Main.ic" NAME="Main Coverage Results" MODIFIED="1656866699393" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Calculator$Calculator_Main.ic" NAME="Calculator.Main Coverage Results" MODIFIED="1656782262692" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>Calculator.controller.*</FILTER>
     </SUITE>
   </component>

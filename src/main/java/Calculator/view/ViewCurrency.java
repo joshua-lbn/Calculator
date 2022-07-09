@@ -1,3 +1,4 @@
+
 package Calculator.view;
 
 import Calculator.controller.Controller;
@@ -7,81 +8,176 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+import java.lang.*;
+import java.util.StringJoiner;
+import java.io.*;
+import java.net.*;
+import java.nio.charset.*;
+import org.json.*;
+
+
 class ViewCurrency extends JFrame{
 
     //erstellen der GridLayouts
     private javax.swing.JPanel grid1 = new javax.swing.JPanel();
-    private javax.swing.JPanel grid2 = new javax.swing.JPanel();
-    private javax.swing.JPanel grid3 = new javax.swing.JPanel();
     private javax.swing.JPanel grid11 = new javax.swing.JPanel();
+    private javax.swing.JPanel grid12 = new javax.swing.JPanel();
+
+    private javax.swing.JComboBox ausgabecb = new javax.swing.JComboBox();
+
+    private javax.swing.JComboBox eingangcb = new javax.swing.JComboBox();
+
+    private javax.swing.JLabel label1 = new javax.swing.JLabel();
+    private javax.swing.JTextField textinput = new javax.swing.JTextField();;
+
+    private StringBuilder sb;
+    private InputStream is;
+    private BufferedReader rd;
+    private JSONObject json;
+    private String[] c;
+    private String[] c1;
+    private String[] c2;
+    private String[] c3;
+
+
+
+
+
 
     //Labels für Währungsnamen und Währungswert
-    private javax.swing.JLabel label1 = new javax.swing.JLabel();
-    private javax.swing.JLabel label2 = new javax.swing.JLabel();
-    private javax.swing.JLabel label3 = new javax.swing.JLabel();
-    private javax.swing.JLabel label4 = new javax.swing.JLabel();
-    private javax.swing.JLabel label11 = new javax.swing.JLabel();
-    private javax.swing.JLabel label21 = new javax.swing.JLabel();
-    private javax.swing.JLabel label22 = new javax.swing.JLabel();
-    private javax.swing.JLabel label23 = new javax.swing.JLabel();
-    private javax.swing.JLabel label24 = new javax.swing.JLabel();
 
-    private String[] currency;
 
 
     //Eingabenfeld
-    private javax.swing.JTextField textinput = new javax.swing.JTextField();;
 
 
-    public ViewCurrency () {
+
+    public ViewCurrency ()  {
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        grid1.setLayout(new GridLayout(1, 3));
-        ButtonListener bl = new ButtonListener();
-
+        grid1.setLayout(new GridLayout(1, 2));
         grid11.setLayout(new GridLayout(2, 1));
         grid1.add(grid11);
+        grid12.setLayout(new GridLayout(2, 1));
+        grid1.add(grid12);
 
-        //Name der Ausgangswährung
-        currency = new String[]{"Dollar","Euro","Pound","Yuan"};
-        label11 = new JLabel("" + currency[getA()] + "" );
-        grid11.add(label11);
 
-        //Eingabenfeld
+
+//-----------------------------------------------
+
+        c = new String[4];
+        StringJoiner joiner = new StringJoiner("");
+        for (int i = 0;i < 4;i++) {
+            char s;
+            s = Test().charAt(Test().indexOf("EUR") + i + 5 );
+            c[i] = String.valueOf(s);
+        }
+        for(int i = 0; i < c.length; i++) {
+            joiner.add(c[i]);
+        }
+        String str = joiner.toString();
+        //System.out.println("" + str + "");
+
+        //str gibt umtauschkurs
+//-----------------------------------------------
+        c1 = new String[Test().length()-42];
+        c2 = new String[3];
+        c3 = new String[9];
+
+
+
+
+
+        StringJoiner joiner1 = new StringJoiner("");
+        for (int i = 0; i < Test().length()-42; i++) {
+            char u;
+            u = Test().charAt(i + 29);
+            c1[i] = String.valueOf(u);
+        }
+        for (int i = 0; i < Test().length()-43; i++) {
+            joiner1.add(c1[i]);
+        }
+        String str1 = joiner1.toString();
+        //System.out.println("" + str1 + "");
+
+        //System.out.println(Test());
+
+        for (int n = 0; n < c3.length; n++) {
+            StringJoiner joiner2 = new StringJoiner("");
+            for (int i = 0; i < c2.length; i++) {
+                char p;
+
+                //if (Integer.valueOf(str1.charAt(str1.indexOf("\"") + 4)) == Integer.valueOf(str1.charAt(str1.indexOf("\"")))) {
+                    p = str1.charAt(str1.indexOf("\"") + i + 1);
+                    c2[i] = String.valueOf(p);
+                //System.out.println(str1.indexOf("\""));
+                //System.out.println(str1.charAt(str1.indexOf("\"") + i + 1));
+
+
+                //}
+            }
+            for (int i = 0; i < c2.length; i++) {
+                joiner2.add(c2[i]);
+            }
+            String str2 = joiner2.toString();
+            //System.out.println("" + str2 + "");
+
+            c3[n] = str2;
+
+            int Position = str1.indexOf("\"");
+            str1 = str1.substring(0,0) + str1.substring(Position+6);
+
+            //System.out.println("" + str1 + "");
+        }
+        for (int e = 0; e < c3.length; e++) {
+            //System.out.println("" + c3[e] + "");
+
+        }
+
+        //c3 gibt Währungen
+
+//-----------------------------------------------
+
+        eingangcb = new JComboBox(c3);
+        grid11.add(eingangcb);
+        System.out.println("eingangcb");
+
         textinput = new JTextField();
         grid11.add(textinput);
-        textinput.addActionListener( bl );
+        System.out.println("textinput");
 
 
-        grid2.setLayout(new GridLayout(4, 1));
-        grid1.add(grid2);
+        ausgabecb = new JComboBox(c3);
+        grid12.add(eingangcb);
+        System.out.println("eingangcb");
 
-        //umgerechneten Währungswerte
-        label21 = new JLabel();
-        label22 = new JLabel();
-        label23 = new JLabel();
-        label24 = new JLabel();
-        grid2.add(label21);
-        grid2.add(label22);
-        grid2.add(label23);
-        grid2.add(label24);
+        label1 = new JLabel();
+        grid12.add(label1);
+        System.out.println("label1");
 
 
 
-        grid3.setLayout(new GridLayout(4, 1));
-        grid1.add(grid3);
 
-        //Währungsnamen der Währungen in die umgerechnet wurde
-        label1 = new JLabel("Dollar");
-        label2 = new JLabel("Euro");
-        label3 = new JLabel("Pound");
-        label4 = new JLabel("Yuan");
 
-        grid3.add(label1);
-        grid3.add(label2);
-        grid3.add(label3);
-        grid3.add(label4);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         this.getContentPane().add(grid1);
@@ -94,100 +190,61 @@ class ViewCurrency extends JFrame{
 
 
     }
-    public static void main(String args[]) {
-        // Ein Objekt der Klasse erzeugen und sichtbar machen.
-        new ViewCurrency().setVisible ( true );
+
+
+    private static String readAll(Reader rd) {
+        StringBuilder sb = new StringBuilder();
+        int cp;/*w w  w .j  ava2 s .co  m*/
+        while (true) {
+            try {
+                if (!((cp = rd.read()) != -1)) break;
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            sb.append((char) cp);
+        }
+        return sb.toString();
     }
 
-    class ButtonListener implements java.awt.event.ActionListener {
-        public void actionPerformed(java.awt.event.ActionEvent e) {
-
-            // Noch prüfen Buchstaben + leere Eingabe
-            // Parse Double, da nicht möglich String direkt in Zahl umwandeln
-            double norm = Double.parseDouble(textinput.getText());
-            if (norm <= 0 ) {
-                label21.setText("ungültige Eingabe");
-                label22.setText("ungültige Eingabe");
-                label23.setText("ungültige Eingabe");
-                label24.setText("ungültige Eingabe");
-            }
-            else {
-                //umrechnen in andere Währungen
-                if (getA() == 0) {
-                    double dollar1 = 1 * norm;
-                    System.out.println((double) (Math.round(dollar1 * 100)) / 100);
-                    label21.setText("" + (double) (Math.round(dollar1 * 100)) / 100);
-
-                    double euro1 = 0.97 * norm;
-                    System.out.println((double) (Math.round(euro1 * 100)) / 100);
-                    label22.setText("" + (double) (Math.round(euro1 * 100)) / 100);
-
-                    double pound1 = 0.84 *  norm;
-                    System.out.println((double) (Math.round(pound1 * 100)) / 100);
-                    label23.setText("" + (double) (Math.round(pound1 * 100)) / 100);
-
-                    double yuan1 = 6.72 * norm;
-                    System.out.println((double) (Math.round(yuan1 * 100)) / 100);
-                    label24.setText("" + (double) (Math.round(yuan1 * 100)) / 100);
-                }
-                else if (getA() == 1) {
-                    double dollar2 = 1.03 * norm;
-                    System.out.println((double) (Math.round(dollar2 * 100)) / 100);
-                    label21.setText("" + (double) (Math.round(dollar2 * 100)) / 100);
-
-                    double euro2 = 1 * norm;
-                    System.out.println((double) (Math.round(euro2 * 100)) / 100);
-                    label22.setText("" + (double) (Math.round(euro2 * 100)) / 100);
-
-                    double pound2 = 0.86 * norm;
-                    System.out.println((double) (Math.round(pound2 * 100)) / 100);
-                    label23.setText("" + (double) (Math.round(pound2 * 100)) / 100);
-
-                    double yuan2 = 6.90 * norm;
-                    System.out.println((double) (Math.round(yuan2 * 100)) / 100);
-                    label24.setText("" + (double) (Math.round(yuan2 * 100)) / 100);
-                }
-                else if (getA() == 2) {
-                    double dollar3 = 1.20 * norm;
-                    System.out.println((double) (Math.round(dollar3 * 100)) / 100);
-                    label21.setText("" + (double) (Math.round(dollar3 * 100)) / 100);
-
-                    double euro3 = 1.16 * norm;
-                    System.out.println((double) (Math.round(euro3 * 100)) / 100);
-                    label22.setText("" + (double) (Math.round(euro3 * 100)) / 100);
-
-                    double pound3 = 1 * norm;
-                    System.out.println((double) (Math.round(pound3 * 100)) / 100);
-                    label23.setText("" + (double) (Math.round(pound3 * 100)) / 100);
-
-                    double yuan3 = 8.04 * norm;
-                    System.out.println((double) (Math.round(yuan3 * 100)) / 100);
-                    label24.setText("" + (double) (Math.round(yuan3 * 100)) / 100);
-                }
-                else if (getA() == 3) {
-                    double dollar4 = norm;
-                    System.out.println((double) (Math.round(dollar4 * 100)) / 100);
-                    label21.setText("" + (double) (Math.round(dollar4 * 100)) / 100);
-
-                    double euro4 = norm;
-                    System.out.println((double) (Math.round(euro4 * 100)) / 100);
-                    label22.setText("" + (double) (Math.round(euro4 * 100)) / 100);
-
-                    double pound4 = norm;
-                    System.out.println((double) (Math.round(pound4 * 100)) / 100);
-                    label23.setText("" + (double) (Math.round(pound4 * 100)) / 100);
-
-                    double yuan4 = norm;
-                    System.out.println((double) (Math.round(yuan4 * 100)) / 100);
-                    label24.setText("" + (double) (Math.round(yuan4 * 100)) / 100);
-                }
+    public static JSONObject readJsonFromUrl(String url) {
+        InputStream is = null;
+        try {
+            is = new URL(url).openStream();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
+            String jsonText = readAll(rd);
+            JSONObject json = new JSONObject(jsonText);
+            return json;
+        } finally {
+            try {
+                is.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         }
     }
 
-    public int getA () {
-        //ausgewählte Währung aus dem JMenuBar übernehmen (als Zahl; int a = "view.getWaehrung()" - 1)
-        int a = 1-1;
-        return a;
+    public static String Test() {
+
+        JSONObject json = null;
+        json = readJsonFromUrl("https://www.currency-api.com/rates?base=USD");
+        //System.out.println(json.toString());
+
+
+        return json.toString();
+
     }
+    public static void main(String[] args) {
+
+
+        new ViewCurrency().setVisible(true);
+
+
+    }
+
+
+
 }
