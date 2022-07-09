@@ -3,6 +3,8 @@ package Calculator.controller;
 import Calculator.model.CalculatorState;
 import Calculator.model.Model;
 import Calculator.view.main.View;
+import Calculator.view.viewVolume.viewCone;
+import Calculator.view.viewVolume.viewCuboid;
 
 /**
  * Controller-Klasse mit Programmierlogik.
@@ -11,6 +13,8 @@ public class Controller {
     private Model model;
     private View view;
     private Parser parser;
+    private viewCone viewCone;
+    private viewCuboid viewCuboid;
 
     /**
      * Konstruktor: Parser initialisieren.
@@ -140,6 +144,18 @@ public class Controller {
         // Fortgefuehrter Konstruktor
         model.SetState(CalculatorState.CALCULATION);
         view.UpdateView();
+    }
+
+    public void VolumeCalculate(int nummer) {
+        switch (nummer) {
+            case 1:
+                viewCone.Calculate();
+                break;
+            case 2:
+
+            case 3:
+            case 4:
+        }
     }
 }
 
