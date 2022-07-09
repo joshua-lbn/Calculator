@@ -3,13 +3,13 @@ package Calculator.view.main;
 import Calculator.controller.Controller;
 import Calculator.model.Model;
 import Calculator.view.viewGeneral.ViewHelp;
+import Calculator.view.viewGeneral.ViewNumeralSystem;
 import Calculator.view.volumeCone;
 import Calculator.view.viewGeneral.ViewSettings;
 import Calculator.view.volumeCuboid;
 import Calculator.view.volumeCylinder;
 import Calculator.view.volumeSphere;
 import Calculator.view.calculator.ViewCalculator;
-import Calculator.view.ViewNumeralSystem;
 import Calculator.view.viewCurrency.ViewCurrency;
 
 import javax.swing.*;

@@ -5,7 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6e01ba51-84bb-425d-83d7-45271fdd1757" name="Changes" comment="Volumen auf Knopfdruck geöffnet">
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/volumeCylinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/volumeCylinder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/viewGeneral/ViewNumeralSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_07_2022_17_44__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_07_2022_17_44__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_07_2022_17_48__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_07_2022_17_48__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/ViewNumeralSystem.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/ViewNumeralSystem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/ViewVolumeCuboid.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/ViewVolumeCuboid.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/main/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/main/View.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +52,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/main/java/Calculator/controller/Controller.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/Calculator/view/main/View.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -146,8 +155,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Calculator.Main" />
-        <item itemvalue="Application.volumeSphere" />
         <item itemvalue="Application.Calculator.view.volumeCylinder" />
+        <item itemvalue="Application.volumeSphere" />
         <item itemvalue="Application.Calculator.view.volumeCone" />
         <item itemvalue="Application.Calculator.view.volumeCuboid" />
       </list>
