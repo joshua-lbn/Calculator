@@ -20,10 +20,10 @@ public class volumeSphere extends JRootPane {
         jpanel1.setLayout(new GridLayout(2,3));
 
         //jpanel1 = new javax.swing.JPanel();
-        radius = new javax.swing.JLabel("Radius:");
+        radius = new javax.swing.JLabel("   Radius:");
         radiusTextField = new javax.swing.JTextField();
         calculate = new javax.swing.JButton("OK");
-        volume = new javax.swing.JLabel("Volumen");
+        volume = new javax.swing.JLabel("   Volumen");
         volumeCalculate = new javax.swing.JLabel();
         spacer1 = new javax.swing.JLabel();
         //ggf. noch set Size

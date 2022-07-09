@@ -26,16 +26,16 @@ public class volumeCuboid extends JRootPane {
         jpanel1.setLayout(new GridLayout(4,3));
 
         //jpanel1 = new javax.swing.JPanel();
-        length = new javax.swing.JLabel("Länge:");
+        length = new javax.swing.JLabel("   Länge:");
         lengthTextField = new javax.swing.JTextField();
         spacer1 = new javax.swing.JLabel();
-        width = new javax.swing.JLabel("Breite:");
+        width = new javax.swing.JLabel("    Breite:");
         widthTextField = new javax.swing.JTextField();
         spacer2 = new javax.swing.JLabel();
-        height = new javax.swing.JLabel("Höhe:");
+        height = new javax.swing.JLabel("   Höhe:");
         heightTextField = new javax.swing.JTextField();
         calculate = new javax.swing.JButton("OK");
-        volume = new javax.swing.JLabel("Volumen");
+        volume = new javax.swing.JLabel("   Volumen");
         volumeCalculate = new javax.swing.JLabel();
         spacer3 = new javax.swing.JLabel();
         //ggf. noch set Size
