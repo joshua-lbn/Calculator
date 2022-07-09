@@ -60,9 +60,9 @@ public class volumeCuboid extends JRootPane {
             public void actionPerformed(ActionEvent e) {
                 // Noch prüfen Buchstaben + leere Eingabe
                 // Parse Double, da nicht möglich String direkt in Zahl umwandeln
-                double volumeLength = Double.parseDouble(lengthTextField.getText());
-                double volumeWidth = Double.parseDouble(widthTextField.getText());
-                double volumeHeight = Double.parseDouble(heightTextField.getText());
+                double volumeLength = Double.parseDouble(lengthTextField.getText().replace(',','.'));
+                double volumeWidth = Double.parseDouble(widthTextField.getText().replace(',','.'));
+                double volumeHeight = Double.parseDouble(heightTextField.getText().replace(',','.'));
                 if (volumeLength <= 0 || volumeWidth <= 0 || volumeHeight <= 0) {
                     volumeCalculate.setText("ungültige Eingabe");
                 }
@@ -70,7 +70,8 @@ public class volumeCuboid extends JRootPane {
                     double volumeResult = volumeLength * volumeWidth * volumeHeight;
                     double volume = (double) ((Math.round(volumeResult * 100)) / 100);
                     Double.toString(volume).replace (',', '.');
-                    volumeCalculate.setText("" + (double) (Math.round(volumeResult * 100)) / 100);
+                    volumeCalculate.setText(""+ volume);
+                    //volumeCalculate.setText("" + (double) (Math.round(volumeResult * 100)) / 100);
                 }
             }
         });
