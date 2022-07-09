@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e01ba51-84bb-425d-83d7-45271fdd1757" name="Changes" comment="Volumen Kegel">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/volumeCylinder.java" afterDir="false" />
+    <list default="true" id="6e01ba51-84bb-425d-83d7-45271fdd1757" name="Changes" comment="Volumen Zylinder">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/volumeSphere.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/volumeCuboid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/volumeCuboid.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +71,7 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.volumeCylinder">
+  <component name="RunManager" selected="Application.volumeSphere">
     <configuration name="Calculator.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Calculator.Main" />
       <module name="Calculator" />
@@ -86,20 +85,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ViewCurrency" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Calculator.view.ViewCurrency" />
-      <module name="Calculator" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Calculator.view.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="volumeCone" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="Calculator.view.volumeCone" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Calculator.view.volumeCone" />
       <module name="Calculator" />
       <extension name="coverage">
@@ -112,7 +98,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="volumeCuboid" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="Calculator.view.volumeCuboid" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Calculator.view.volumeCuboid" />
       <module name="Calculator" />
       <extension name="coverage">
@@ -125,7 +111,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="volumeCylinder" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="Calculator.view.volumeCylinder" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Calculator.view.volumeCylinder" />
       <module name="Calculator" />
       <extension name="coverage">
@@ -138,20 +124,33 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="volumeSphere" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Calculator.view.volumeSphere" />
+      <module name="Calculator" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Calculator.view.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
-      <item itemvalue="Application.volumeCone" />
-      <item itemvalue="Application.volumeCylinder" />
-      <item itemvalue="Application.volumeCuboid" />
+      <item itemvalue="Application.Calculator.view.volumeCone" />
+      <item itemvalue="Application.Calculator.view.volumeCuboid" />
+      <item itemvalue="Application.Calculator.view.volumeCylinder" />
+      <item itemvalue="Application.volumeSphere" />
       <item itemvalue="Application.Calculator.Main" />
-      <item itemvalue="Application.ViewCurrency" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.volumeCylinder" />
-        <item itemvalue="Application.volumeCone" />
-        <item itemvalue="Application.volumeCuboid" />
+        <item itemvalue="Application.volumeSphere" />
+        <item itemvalue="Application.Calculator.view.volumeCylinder" />
+        <item itemvalue="Application.Calculator.view.volumeCone" />
+        <item itemvalue="Application.Calculator.view.volumeCuboid" />
         <item itemvalue="Application.Calculator.Main" />
-        <item itemvalue="Application.ViewCurrency" />
       </list>
     </recent_temporary>
   </component>
@@ -332,7 +331,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657364074707</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Volumen Zylinder">
+      <created>1657373699028</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1657373699028</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -375,7 +381,8 @@
     <MESSAGE value="Volumen Quader Komma Eingabe" />
     <MESSAGE value="Volumen Quader Komma Ausgabe" />
     <MESSAGE value="Volumen Kegel" />
-    <option name="LAST_COMMIT_MESSAGE" value="Volumen Kegel" />
+    <MESSAGE value="Volumen Zylinder" />
+    <option name="LAST_COMMIT_MESSAGE" value="Volumen Zylinder" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Calculator$Main.ic" NAME="Main Coverage Results" MODIFIED="1656866699393" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
