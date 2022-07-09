@@ -25,16 +25,16 @@ public class ProcessMenuInput implements java.awt.event.ActionListener {
             view.SetCalculator();
         }
         else if (e.getSource() == view.GetJMenuItemCone()) {
-            //view.SetVolumeSquare();
+            view.SetVolume(1);
         }
-        else if (e.getSource() == view.GetJMenuItemSquare()) {
-            view.SetVolumeCuboid();
+        else if (e.getSource() == view.GetJMenuItemCuboid()) {
+            view.SetVolume(2);
         }
         else if (e.getSource() == view.GetJMenuItemCylinder()) {
-            //view.SetVolumeCylinder();
+            view.SetVolume(3);
         }
         else if (e.getSource() == view.GetJMenuItemSphere()) {
-            //view.SetVolumeSphere();
+            view.SetVolume(4);
         }
         else if (e.getSource() == view.GetJMenuItemDecimal()) {
             view.SetNumeralSystem();

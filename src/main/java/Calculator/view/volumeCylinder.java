@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class volumeCylinder extends JFrame {
+public class volumeCylinder extends JRootPane {
     private javax.swing.JPanel jpanel1 = new javax.swing.JPanel();
     private javax.swing.JButton calculate = new javax.swing.JButton();
     private javax.swing.JTextField radiusTextField = new javax.swing.JTextField();

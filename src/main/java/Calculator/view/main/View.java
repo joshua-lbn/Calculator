@@ -2,7 +2,10 @@ package Calculator.view.main;
 
 import Calculator.controller.Controller;
 import Calculator.model.Model;
+import Calculator.view.volumeCone;
 import Calculator.view.volumeCuboid;
+import Calculator.view.volumeCylinder;
+import Calculator.view.volumeSphere;
 import Calculator.view.calculator.ViewCalculator;
 import Calculator.view.ViewNumeralSystem;
 import Calculator.view.viewCurrency.ViewCurrency;
@@ -33,14 +36,17 @@ public class View extends JFrame {
     private javax.swing.JMenuItem decimal = new javax.swing.JMenuItem();
     private javax.swing.JMenuItem hexadecimal = new javax.swing.JMenuItem();
     private javax.swing.JMenuItem cone = new javax.swing.JMenuItem();
-    private javax.swing.JMenuItem square = new javax.swing.JMenuItem();
+    private javax.swing.JMenuItem cuboid = new javax.swing.JMenuItem();
     private javax.swing.JMenuItem cylinder = new javax.swing.JMenuItem();
     private javax.swing.JMenuItem sphere = new javax.swing.JMenuItem();
     private javax.swing.JMenuItem currencyItem = new javax.swing.JMenuItem();
     // Unterfenster
     private ViewCalculator viewCalculator;
     private ViewNumeralSystem viewNumeralSystem;
+    private volumeCone volumeCone;
     private volumeCuboid volumeCuboid;
+    private volumeCylinder volumeCylinder;
+    private volumeSphere volumeSphere;
     private ViewCurrency viewCurrency;
 
     /**
@@ -67,7 +73,7 @@ public class View extends JFrame {
         hexadecimal = new JMenuItem("Hexadezimal");
         volumes = new JMenu("Volumen ");
         cone = new JMenuItem("Kegel");
-        square = new JMenuItem("Quader");
+        cuboid = new JMenuItem("Quader");
         cylinder = new JMenuItem("Zylinder");
         sphere = new JMenuItem("Kugel");
         currencyItem = new JMenuItem("\u00D6ffnen");
@@ -77,7 +83,7 @@ public class View extends JFrame {
         decimal.addActionListener(processMenuInput);
         hexadecimal.addActionListener(processMenuInput);
         cone.addActionListener(processMenuInput);
-        square.addActionListener(processMenuInput);
+        cuboid.addActionListener(processMenuInput);
         cylinder.addActionListener(processMenuInput);
         sphere.addActionListener(processMenuInput);
         currencyItem.addActionListener(processMenuInput);
@@ -87,7 +93,7 @@ public class View extends JFrame {
         numeralSystems.add(binary);
         numeralSystems.add(hexadecimal);
         volumes.add(cone);
-        volumes.add(square);
+        volumes.add(cuboid);
         volumes.add(cylinder);
         volumes.add(sphere);
         currency.add(currencyItem);
@@ -140,12 +146,26 @@ public class View extends JFrame {
     /**
      * Methode, um das VolumeCuboid-Unterfenster im Hauptfenster anzuzeigen.
      */
-    public void SetVolumeCuboid() {
+    public void SetVolume(int nummer) {
         // Listener fuer Calculator deaktivieren
         processKeyInput.Deactivate();
         // Hinzufuegen
         getContentPane().removeAll();
-        getContentPane().add(volumeCuboid);
+        switch(nummer) {
+            case 1:
+                getContentPane().add(volumeCone);
+                break;
+            case 2:
+                getContentPane().add(volumeCuboid);
+                break;
+            case 3:
+                getContentPane().add(volumeCylinder);
+                break;
+            case 4:
+                getContentPane().add(volumeSphere);
+                break;
+
+        }
         // Update der Oberflaeche
         revalidate();
         repaint();
@@ -188,8 +208,8 @@ public class View extends JFrame {
         volumes.setBackground(Color.white);
         cone.setForeground(Color.black);
         cone.setBackground(Color.white);
-        square.setForeground(Color.black);
-        square.setBackground(Color.white);
+        cuboid.setForeground(Color.black);
+        cuboid.setBackground(Color.white);
         cylinder.setForeground(Color.black);
         cylinder.setBackground(Color.white);
         sphere.setForeground(Color.black);
@@ -221,8 +241,8 @@ public class View extends JFrame {
         volumes.setBackground(Color.black);
         cone.setForeground(Color.white);
         cone.setBackground(Color.black);
-        square.setForeground(Color.white);
-        square.setBackground(Color.black);
+        cuboid.setForeground(Color.white);
+        cuboid.setBackground(Color.black);
         cylinder.setForeground(Color.white);
         cylinder.setBackground(Color.black);
         sphere.setForeground(Color.white);
@@ -289,11 +309,11 @@ public class View extends JFrame {
     }
 
     /**
-     * Getter-Methode fuer das JMenuItem square.
-     * @return JMenuItem square
+     * Getter-Methode fuer das JMenuItem cuboid.
+     * @return JMenuItem cuboid
      */
-    protected JMenuItem GetJMenuItemSquare() {
-        return square;
+    protected JMenuItem GetJMenuItemCuboid() {
+        return cuboid;
     }
 
     /**
@@ -343,7 +363,10 @@ public class View extends JFrame {
         // Instanziierung der Unterfenster
         viewCalculator = new ViewCalculator(model, this, controller);
         viewNumeralSystem = new ViewNumeralSystem();
+        volumeCone = new volumeCone();
         volumeCuboid = new volumeCuboid();
+        volumeCylinder = new volumeCylinder();
+        volumeSphere = new volumeSphere();
         viewCurrency = new ViewCurrency();
         // Fenster auf Taschenrechner setzen
         SetCalculator();
