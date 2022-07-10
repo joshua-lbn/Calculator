@@ -51,60 +51,69 @@ public class Controller {
             }
         }
         // Zahleneingabe, Kommas und Trigonometrie: in beide einfach einfuegen
-        if(input.matches("[0123456789()]") || input.equals("sin(") || input.equals("cos(") || input.equals("tan(")) {
+        if(input.matches("[0123456789()]")) {
             model.ExtendExpression(input);
             model.ExtendHTML(input);
         }
         // Grundoperatoren: in Expression einfach einfuegen, in HTML mit Sonderzeichen
-        else if(input.equals("+"))
+        else if(input.equals("\u002B"))
         {
-            model.ExtendExpression(input);
+            model.ExtendExpression("+");
             model.ExtendHTML("&#43;");
         }
-        else if(input.equals("-"))
+        else if(input.equals("\u2212"))
         {
-            model.ExtendExpression(input);
+            model.ExtendExpression("-");
             model.ExtendHTML("&#8722;");
         }
-        else if(input.equals("*"))
+        else if(input.equals("\u00D7"))
         {
-            model.ExtendExpression(input);
+            model.ExtendExpression("*");
             model.ExtendHTML("&#215;");
         }
-        else if(input.equals("/"))
+        else if(input.equals("\u00F7"))
         {
-            model.ExtendExpression(input);
+            model.ExtendExpression("/");
             model.ExtendHTML("&#247;");
         }
         // Komma: Expression mit Punkt und HTML mit Komma
-        else if (input.equals(",")) {
+        else if (input.equals("\u002C")) {
             model.ExtendExpression(".");
             model.ExtendHTML(",");
         }
-        /* Exponent: Exponent in Klammern in Expression einfuegen; in HTML erst erkennen, ob nun geoeffnet oder
-         * geschlossen, dann einfuegen der entsprechenden Zeichens und Aendern des Modus
-         */
-        else if (input.equals("x^")) {
-            if(model.GetExponentMode())
-            {
-                model.ExtendExpression(")");
-                model.ExtendHTML("</sup>");
-                model.ChangeExponentMode();
-            }
-            else if(!model.GetExponentMode())
-            {
-                model.ExtendExpression("^(");
-                model.ExtendHTML("<sup>");
-                model.ChangeExponentMode();
-            }
+        // Exponent: an Model weitergeben, da dort spezifische Methode
+        else if (input.equals("\u207F")) {
+            model.AddExponent();
+        }
+        // Wurzel: an Model weitergeben, da dort spezifische Methode
+        else if (input.equals("\u221A")) {
+            model.AddSquareRoot();
+        }
+        // Trigonometrie: modifiziert in Expression und HTML
+        if(input.equals("sin") || input.equals("cos") || input.equals("tan")) {
+            model.ExtendExpression(input + "(");
+            model.ExtendHTML(input + "(");
         }
         // Logarithmus: Expression einfach einfuegen, in HTML Sonderkommando
-        else if (input.equals("lg(")) {
-            model.ExtendExpression(input);
+        else if (input.equals("\u33D2")) {
+            model.ExtendExpression(input + "(");
             model.ExtendHTML("log<sub>10</sub>(");
         }
+        // Konstanten: in Expression als Text einfuegen (in Parser behandelt), in HTML als Symbol
+        else if (input.equals("\u03C0")) {
+            model.ExtendExpression("pi");
+            model.ExtendHTML("&pi;");
+        }
+        else if (input.equals("\u212F")) {
+            model.ExtendExpression("e");
+            model.ExtendHTML("&#8495;");
+        }
+        else if (input.equals("\u03D5")) {
+            model.ExtendExpression("[phi]");
+            model.ExtendHTML("&#x3D5;");
+        }
         // Ist-Gleich: Berechnung anstossen
-        else if (input.equals("=")) {
+        else if (input.equals("\u003D")) {
             // Parser berechnet aktuellen Ausdruck im Model und Setter leert expression sowie HTML-String und fügt Ergebnis ein
             model.SetAnswer(parser.Calculate(model.GetExpression()));
             // Anzeige aktualisieren
@@ -128,10 +137,10 @@ public class Controller {
             model.ClearHTML();
         }
         // Cursortasten: Aenderungen im Model anstossen
-        else if (input.equals("<-")) {
+        else if (input.equals("\u2190")) {
             model.CursorLeft();
         }
-        else if (input.equals("->")) {
+        else if (input.equals("\u2192")) {
             model.CursorRight();
         }
     }

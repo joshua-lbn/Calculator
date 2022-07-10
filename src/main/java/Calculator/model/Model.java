@@ -29,9 +29,6 @@ public class Model {
     private int cursorPosition;
     // Symbol fuer den Cursor in der HTML-Darstellung
     private String cursorSymbolHTML;
-
-    // Fuer die Eingabe: Modus, ob gerade im Exponenten oder normale Eingabe
-    private boolean exponentMode;
     // Farbmodus des Rechners
     private ColorMode colorMode;
     // Speicherung der Farbe der HTML-Darstellung in Abhaengigkeit vom Farbmodus
@@ -58,8 +55,6 @@ public class Model {
         cursorSymbolHTML = "&#10073;";
         // Cursor an den Ursprungszustand zurueckkehren lassen
         CursorBack();
-        // Exponentenmodus ausstellen
-        exponentMode = false;
         // Instanzen von File und BufferedWriter ueber Datei im %APPDATA% des Nutzers
         folder = new File(System.getenv("APPDATA") + "\\Calculator");
         file = new File (System.getenv("APPDATA") + "\\Calculator\\settings.txt");
@@ -183,7 +178,8 @@ public class Model {
      * @return String mit HTML-Ausdruck
      */
     public String GetHTMLExpression() {
-        return "<html><pre style=\"font-family: Consolas; font-size: " + CalculateSize() + "px; color: " + colorExtension + ";\">" + html + "</pre></html>";
+        return "<html><pre style=\"font-family: Consolas; font-size: " + CalculateSize() + "px; color: "
+                + colorExtension + ";\">" + html + "</pre></html>";
     }
 
     /**
@@ -288,22 +284,47 @@ public class Model {
     }
 
     /**
-     * Methode, um den Exponentenmodus zu erhalten.
-     * Genutzt im Controller, um zu erkennen, ob nun <sup> oder </sup> verwendet werden sollte, d.h. ob nun der
-     * Exponent "geoeffnet" oder "geschlossen" wird.
+     * Methode, um das korrekte Exponierungszeichen hinzuzufuegen.
+     * Diese ist noetig, damit man nicht beim Loeschen bspw. zwei "Hoch" und kein "Runter" hat.
      */
-    public boolean GetExponentMode()
-    {
-        return exponentMode;
+    public void AddExponent() {
+        // Falls letztes "Hoch" vor letztem "Runter": runter
+        if (htmlElementsList.lastIndexOf("<sup>") > htmlElementsList.lastIndexOf("</sup>")) {
+            ExtendExpression(")");
+            ExtendHTML("</sup>");
+        }
+        // Falls letztes "Runter vor letztem "Hoch": hoch
+        else if (htmlElementsList.lastIndexOf("</sup>") > htmlElementsList.lastIndexOf("<sup>")) {
+            ExtendExpression("^(");
+            ExtendHTML("<sup>");
+        }
+        // Falls beides gleich (sprich: noch nichts von beidem hinzugefuegt): hoch
+        else {
+            ExtendExpression("(");
+            ExtendHTML("<sup>");
+        }
     }
 
     /**
-     * Methode, um den Exponentenmodus zu aendern.
-     * Genutzt im Controller, um den Modus umzuschalten.
+     * Methode, um das korrekte Wurzelzeichen einzufuegen.
+     * Diese ist noetig, da die Wurzel "geoeffnet" und "geschlossen" werden muss.
      */
-    public void ChangeExponentMode()
-    {
-        exponentMode = !exponentMode;
+    public void AddSquareRoot() {
+        // Falls letzte "Oeffnung" vor "Schliessung": schliessen
+        if (htmlElementsList.lastIndexOf("&radic;") > htmlElementsList.lastIndexOf("&#39;")) {
+            ExtendExpression(")");
+            ExtendHTML("&#39;");
+        }
+        // Falls letzte "Schliessung" vor "Oeffnung": oeffnen
+        else if (htmlElementsList.lastIndexOf("&#39;") > htmlElementsList.lastIndexOf("&radic;")) {
+            ExtendExpression("sqrt(");
+            ExtendHTML("&radic;");
+        }
+        // Falls beides gleich (sprich: noch nichts von beidem hinzugefuegt): oeffnen
+        else {
+            ExtendExpression("sqrt(");
+            ExtendHTML("&radic;");
+        }
     }
 
     /**

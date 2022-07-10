@@ -30,7 +30,7 @@ public class ProcessKeyInput implements KeyListener {
     public void keyPressed(KeyEvent e) {
         if (active) {
             if (e.isShiftDown() && (e.getKeyCode() == KeyEvent.VK_7 || e.getKeyCode() ==KeyEvent.VK_PERIOD)) {
-                view.UpdateExpression("/");
+                view.UpdateExpression("\u00F7");
                 view.UpdateCalculator();
             } else if (e.isShiftDown() && e.getKeyCode() == KeyEvent.VK_8) {
                 view.UpdateExpression("(");
@@ -39,22 +39,22 @@ public class ProcessKeyInput implements KeyListener {
                 view.UpdateExpression(")");
                 view.UpdateCalculator();
             } else if (e.isShiftDown() && e.getKeyCode() == KeyEvent.VK_PLUS) {
-                view.UpdateExpression("*");
+                view.UpdateExpression("\u00D7");
                 view.UpdateCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_PLUS) {
-                view.UpdateExpression("+");
+                view.UpdateExpression("\u002B");
                 view.UpdateCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_MINUS) {
-                view.UpdateExpression("-");
+                view.UpdateExpression("\u2212");
                 view.UpdateCalculator();
             } else if (e.isShiftDown() && e.getKeyCode() == KeyEvent.VK_0) {
-                view.UpdateExpression("=");
+                view.UpdateExpression("\u003D");
                 view.UpdateCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                view.UpdateExpression("->");
+                view.UpdateExpression("\u2192");
                 view.UpdateCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                view.UpdateExpression("<-");
+                view.UpdateExpression("\u2190");
                 view.UpdateCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_0 || e.getKeyCode() == KeyEvent.VK_NUMPAD0) {
                 view.UpdateExpression("" + 0 + "");
@@ -87,16 +87,16 @@ public class ProcessKeyInput implements KeyListener {
                 view.UpdateExpression("" + 9 + "");
                 view.UpdateCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_S) {
-                view.UpdateExpression("sin(");
+                view.UpdateExpression("sin");
                 view.UpdateCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_C) {
-                view.UpdateExpression("cos(");
+                view.UpdateExpression("cos");
                 view.UpdateCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_T) {
-                view.UpdateExpression("tan(");
+                view.UpdateExpression("tan");
                 view.UpdateCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_L) {
-                view.UpdateExpression("lg(");
+                view.UpdateExpression("\u33D2");
                 view.UpdateCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
                 view.UpdateExpression("DEL");
@@ -108,10 +108,10 @@ public class ProcessKeyInput implements KeyListener {
                 view.UpdateExpression("=");
                 view.UpdateCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_DEAD_CIRCUMFLEX) {
-                view.UpdateExpression("x^");
+                view.UpdateExpression("\u207F");
                 view.UpdateCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_COMMA || e.getKeyCode() == KeyEvent.VK_PERIOD) {
-                view.UpdateExpression(",");
+                view.UpdateExpression("\u002C");
                 view.UpdateCalculator();
             } else if(e.getKeyCode() == KeyEvent.VK_A) {
                 view.UpdateExpression("Ans");
@@ -120,6 +120,18 @@ public class ProcessKeyInput implements KeyListener {
                 view.SetLightmode();
             } else if(e.getKeyCode() == KeyEvent.VK_D) {
                 view.SetDarkmode();
+            } else if(e.getKeyCode() == KeyEvent.VK_P) {
+                view.UpdateExpression("\u03C0");
+                view.UpdateCalculator();
+            } else if(e.getKeyCode() == KeyEvent.VK_E) {
+                view.UpdateExpression("\u212F");
+                view.UpdateCalculator();
+            } else if(e.getKeyCode() == KeyEvent.VK_G) {
+                view.UpdateExpression("\u03D5");
+                view.UpdateCalculator();
+            } else if(e.getKeyCode() == KeyEvent.VK_W) {
+                view.UpdateExpression("\u221A");
+                view.UpdateCalculator();
             }
         }
     }

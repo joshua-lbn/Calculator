@@ -1,8 +1,5 @@
 package Calculator.view.calculator;
 
-import Calculator.view.main.View;
-
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 
 /*
@@ -10,19 +7,8 @@ import java.awt.event.ActionEvent;
  * Programmtechnisch an die ViewCalculator-Klasse gegliedert.
  */
 public class ProcessButtonInput implements java.awt.event.ActionListener {
-    // Referenz auf andere Klasse
+    // Referenz auf Oberklasse
     private ViewCalculator viewCalculator;
-    // Relevante Attribute: Arrays mit Knopfobjekten und Beschriftungen
-    private JButton[] jButtonsNumber;
-    private JButton[] jButtonsLeft;
-    private String[] textsLeft;
-    private JButton[] jButtonsMiddle;
-    private String[] textsMiddle;
-    private JButton[] jButtonsRight;
-    private String[] textsRight;
-    private JButton[] jButtonsCursor;
-    private String[] textsCursor;
-    private JButton[] jButtonsMode;
 
     /**
      * Konstruktor: übergebene ViewCalculator-Instanz speichern und lokale Attribute aus derselben erhalten.
@@ -31,17 +17,6 @@ public class ProcessButtonInput implements java.awt.event.ActionListener {
     public ProcessButtonInput(ViewCalculator vC) {
         // View speichern
         viewCalculator = vC;
-        // Getter aufrufen
-        jButtonsNumber = viewCalculator.GetJButtonsNumber();
-        jButtonsLeft = viewCalculator.GetJButtonsLeft();
-        textsLeft = viewCalculator.GetTextsLeft();
-        jButtonsMiddle = viewCalculator.GetJButtonsMiddle();
-        textsMiddle = viewCalculator.GetTextsMiddle();
-        jButtonsRight = viewCalculator.GetJButtonsRight();
-        textsRight = viewCalculator.GetTextsRight();
-        jButtonsCursor = viewCalculator.GetJButtonsCursor();
-        textsCursor = viewCalculator.GetTextsCursor();
-        jButtonsMode = viewCalculator.GetJButtonMode();
     }
 
     /**
@@ -58,49 +33,33 @@ public class ProcessButtonInput implements java.awt.event.ActionListener {
          * der viewCalculator der Befehl gegeben, die Tastatureingabe zu ermoeglichen.
          * die weitere Ausfuehrung der Methode aus Effizienzgruenden abgebrochen.
          */
-        for (int i = 0; i < jButtonsNumber.length; i++) {
-            if (e.getSource() == jButtonsNumber[i]) {
+        for (int i = 0; i < viewCalculator.GetJButtonsNumber().length; i++) {
+            if (e.getSource() == viewCalculator.GetJButtonsNumber()[i]) {
                 viewCalculator.Update("" + (i) + "");
                 viewCalculator.UpdateView();
                 viewCalculator.UpdateFocus();
                 return;
             }
         }
-        for (int i = 0; i < jButtonsLeft.length; i++) {
-            if (e.getSource() == jButtonsLeft[i]) {
-                viewCalculator.Update(textsLeft[i]);
+        for (int i = 0; i < viewCalculator.GetJButtonsLeft().length; i++) {
+            if (e.getSource() == viewCalculator.GetJButtonsLeft()[i]) {
+                viewCalculator.Update(viewCalculator.GetTextsLeft()[i]);
                 viewCalculator.UpdateView();
                 viewCalculator.UpdateFocus();
                 return;
             }
         }
-        for (int i = 0; i < jButtonsMiddle.length; i++) {
-            if (e.getSource() == jButtonsMiddle[i]) {
-                viewCalculator.Update(textsMiddle[i]);
+        for (int i = 0; i < viewCalculator.GetJButtonsMiddle().length; i++) {
+            if (e.getSource() == viewCalculator.GetJButtonsMiddle()[i]) {
+                viewCalculator.Update(viewCalculator.GetTextsMiddle()[i]);
                 viewCalculator.UpdateView();
                 viewCalculator.UpdateFocus();
                 return;
             }
         }
-        for (int i = 0; i < jButtonsRight.length; i++) {
-            if (e.getSource() == jButtonsRight[i]) {
-                viewCalculator.Update(textsRight[i]);
-                viewCalculator.UpdateView();
-                viewCalculator.UpdateFocus();
-                return;
-            }
-        }
-        for (int i = 0; i < jButtonsCursor.length; i++) {
-            if (e.getSource() == jButtonsCursor[i]) {
-                viewCalculator.Update(textsCursor[i]);
-                viewCalculator.UpdateView();
-                viewCalculator.UpdateFocus();
-                return;
-            }
-        }
-        for (int i = 0; i < jButtonsMode.length; i++) {
-            if (e.getSource() == jButtonsMode[i]) {
-                viewCalculator.SwitchMode();
+        for (int i = 0; i < viewCalculator.GetJButtonsRight().length; i++) {
+            if (e.getSource() == viewCalculator.GetJButtonsRight()[i]) {
+                viewCalculator.Update(viewCalculator.GetTextsRight()[i]);
                 viewCalculator.UpdateView();
                 viewCalculator.UpdateFocus();
                 return;

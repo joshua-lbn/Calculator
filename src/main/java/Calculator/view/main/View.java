@@ -235,8 +235,9 @@ public class View extends JFrame {
      * Methode, um den hellen Modus zu aktivieren.
      */
     public void SetLightmode() {
-        // Im Model setzen
+        // Im Model setzen und Rechner aktualisieren
         model.SetLightmode();
+        UpdateCalculator();
         // Menue setzen
         bar.setForeground(Color.black);
         bar.setBackground(Color.white);
@@ -290,8 +291,9 @@ public class View extends JFrame {
      * Methode, um den dunklen Modus zu aktivieren.
      */
     public void SetDarkmode() {
-        // Im Model setzen
+        // Im Model setzen und Rechner aktualisieren
         model.SetDarkmode();
+        UpdateCalculator();
         // Obermenue setzen
         bar.setForeground(Color.white);
         bar.setBackground(Color.black);

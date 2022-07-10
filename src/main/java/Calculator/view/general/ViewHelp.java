@@ -63,27 +63,7 @@ public class ViewHelp extends JRootPane {
         panel.setBackground(Color.white);
         text.setForeground(Color.black);
         text.setBackground(Color.white);
-        jScrollPane.getVerticalScrollBar().setUI(new BasicScrollBarUI() {
-            @Override
-            protected void configureScrollBarColors() {
-                this.thumbColor = Color.lightGray;
-                this.trackColor = Color.white;
-            }
-            /* @Override
-            protected JButton createDecreaseButton(int orientation) {
-                JButton button = super.createDecreaseButton(orientation);
-                button.setForeground(Color.black);
-                button.setBackground(Color.white);
-                return button;
-            }
-            @Override
-            protected JButton createIncreaseButton(int orientation) {
-                JButton button = super.createIncreaseButton(orientation);
-                button.setForeground(Color.black);
-                button.setBackground(Color.white);
-                return button;
-            } */
-        });
+        jScrollPane.getVerticalScrollBar().setBackground(Color.white);
     }
 
     /**
@@ -93,26 +73,6 @@ public class ViewHelp extends JRootPane {
         panel.setBackground(Color.black);
         text.setForeground(Color.white);
         text.setBackground(Color.black);
-        jScrollPane.getVerticalScrollBar().setUI(new BasicScrollBarUI() {
-            @Override
-            protected void configureScrollBarColors() {
-                this.thumbColor = Color.darkGray;
-                this.trackColor = Color.black;
-            }
-            /* @Override
-            protected JButton createDecreaseButton(int orientation) {
-                JButton button = super.createDecreaseButton(orientation);
-                button.setForeground(Color.white);
-                button.setBackground(Color.black);
-                return button;
-            }
-            @Override
-            protected JButton createIncreaseButton(int orientation) {
-                JButton button = super.createIncreaseButton(orientation);
-                button.setForeground(Color.white);
-                button.setBackground(Color.black);
-                return button;
-            } */
-        });
+        jScrollPane.getVerticalScrollBar().setBackground(Color.black);
     }
 }
