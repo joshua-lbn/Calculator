@@ -42,15 +42,21 @@ public class ProcessMenuInput implements java.awt.event.ActionListener {
         else if (e.getSource() == view.GetJMenuItemSphere()) {
             view.SetVolume(4);
         }
+        /*
         else if (e.getSource() == view.GetJMenuItemDecimal()) {
             view.SetNumeralSystem();
         }
-        else if (e.getSource() == view.GetJMenuItemHexadecimal()) {
+
+         */
+        else if (e.getSource() == view.GetJMenuItemOpenNumeralSystem()) {
             view.SetNumeralSystem();
         }
+        /*
         else if (e.getSource() == view.GetJMenuItemBinary()) {
             view.SetNumeralSystem();
         }
+
+         */
         else if (e.getSource() == view.GetJMenuItemCurrency()) {
             view.SetCurrency();
         }

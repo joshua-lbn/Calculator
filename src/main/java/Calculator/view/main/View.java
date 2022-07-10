@@ -37,9 +37,9 @@ public class View extends JFrame {
     private javax.swing.JMenuItem settingsItem = new javax.swing.JMenuItem();
     private javax.swing.JMenuItem helpItem = new javax.swing.JMenuItem();
     private javax.swing.JMenuItem calculatorItem = new javax.swing.JMenuItem();
-    private javax.swing.JMenuItem binary = new javax.swing.JMenuItem();
-    private javax.swing.JMenuItem decimal = new javax.swing.JMenuItem();
-    private javax.swing.JMenuItem hexadecimal = new javax.swing.JMenuItem();
+    //private javax.swing.JMenuItem binary = new javax.swing.JMenuItem();
+    //private javax.swing.JMenuItem decimal = new javax.swing.JMenuItem();
+    private javax.swing.JMenuItem OpenNumeralSystem = new javax.swing.JMenuItem();
     private javax.swing.JMenuItem cone = new javax.swing.JMenuItem();
     private javax.swing.JMenuItem cuboid = new javax.swing.JMenuItem();
     private javax.swing.JMenuItem cylinder = new javax.swing.JMenuItem();
@@ -80,9 +80,10 @@ public class View extends JFrame {
         settingsItem = new JMenuItem("Einstellungen");
         helpItem = new JMenuItem("Hilfe");
         calculatorItem = new JMenuItem("\u00D6ffnen");
-        binary = new JMenuItem("Bin\u00E4r");
-        decimal = new JMenuItem("Dezimal");
-        hexadecimal = new JMenuItem("Hexadezimal");
+        //binary = new JMenuItem("Bin\u00E4r");
+        //decimal = new JMenuItem("Dezimal");
+        //Anzeige nicht noetig //@Martin
+        OpenNumeralSystem = new JMenuItem("\u00D6ffnen");
         volumes = new JMenu("Volumen ");
         cone = new JMenuItem("Kegel");
         cuboid = new JMenuItem("Quader");
@@ -93,9 +94,9 @@ public class View extends JFrame {
         settingsItem.addActionListener(processMenuInput);
         helpItem.addActionListener(processMenuInput);
         calculatorItem.addActionListener(processMenuInput);
-        binary.addActionListener(processMenuInput);
-        decimal.addActionListener(processMenuInput);
-        hexadecimal.addActionListener(processMenuInput);
+        //binary.addActionListener(processMenuInput);
+        //decimal.addActionListener(processMenuInput);
+        OpenNumeralSystem.addActionListener(processMenuInput);
         cone.addActionListener(processMenuInput);
         cuboid.addActionListener(processMenuInput);
         cylinder.addActionListener(processMenuInput);
@@ -105,9 +106,9 @@ public class View extends JFrame {
         general.add(settingsItem);
         general.add(helpItem);
         calculator.add(calculatorItem);
-        numeralSystems.add(decimal);
-        numeralSystems.add(binary);
-        numeralSystems.add(hexadecimal);
+        //numeralSystems.add(decimal);
+        //numeralSystems.add(binary);
+        numeralSystems.add(OpenNumeralSystem);
         volumes.add(cone);
         volumes.add(cuboid);
         volumes.add(cylinder);
@@ -251,12 +252,12 @@ public class View extends JFrame {
         calculatorItem.setBackground(Color.white);
         numeralSystems.setForeground(Color.black);
         numeralSystems.setBackground(Color.white);
-        binary.setForeground(Color.black);
-        binary.setBackground(Color.white);
-        decimal.setForeground(Color.black);
-        decimal.setBackground(Color.white);
-        hexadecimal.setForeground(Color.black);
-        hexadecimal.setBackground(Color.white);
+        //binary.setForeground(Color.black);
+        //binary.setBackground(Color.white);
+        //decimal.setForeground(Color.black);
+        //decimal.setBackground(Color.white);
+        OpenNumeralSystem.setForeground(Color.black);
+        OpenNumeralSystem.setBackground(Color.white);
         volumes.setForeground(Color.black);
         volumes.setBackground(Color.white);
         cone.setForeground(Color.black);
@@ -306,12 +307,12 @@ public class View extends JFrame {
         calculatorItem.setBackground(Color.black);
         numeralSystems.setForeground(Color.white);
         numeralSystems.setBackground(Color.black);
-        binary.setForeground(Color.white);
-        binary.setBackground(Color.black);
-        decimal.setForeground(Color.white);
-        decimal.setBackground(Color.black);
-        hexadecimal.setForeground(Color.white);
-        hexadecimal.setBackground(Color.black);
+        //binary.setForeground(Color.white);
+        //binary.setBackground(Color.black);
+        //decimal.setForeground(Color.white);
+        //decimal.setBackground(Color.black);
+        OpenNumeralSystem.setForeground(Color.white);
+        OpenNumeralSystem.setBackground(Color.black);
         volumes.setForeground(Color.white);
         volumes.setBackground(Color.black);
         cone.setForeground(Color.white);
@@ -405,6 +406,7 @@ public class View extends JFrame {
      * Getter-Methode fuer das JMenuItem binary.
      * @return JMenuItem binary
      */
+    /*
     protected JMenuItem GetJMenuItemBinary() {
         return binary;
     }
@@ -412,18 +414,20 @@ public class View extends JFrame {
     /**
      * Getter-Methode fuer das JMenuItem decimal.
      * @return JMenuItem decimal.
-     */
+
     protected JMenuItem GetJMenuItemDecimal() {
         return decimal;
     }
 
+    */
     /**
-     * Getter-Methode fuer das JMenuItem hexadecimal.
-     * @return JMenuItem hexadecimal
+     * Getter-Methode fuer das JMenuItem OpenNumeralSystem.
+     * @return JMenuItem OpenNumeralSystem
      */
-    protected JMenuItem GetJMenuItemHexadecimal() {
-        return hexadecimal;
+    protected JMenuItem GetJMenuItemOpenNumeralSystem() {
+        return OpenNumeralSystem;
     }
+
 
     /**
      * Getter-Methode fuer das JMenuItem cone.

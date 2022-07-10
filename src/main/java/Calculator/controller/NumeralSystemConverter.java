@@ -1,43 +1,49 @@
-/*package Calculator.controller;
-import java.util.Scanner;
+package Calculator.controller;
+import Calculator.view.general.ViewNumeralSystem;
 
 public class NumeralSystemConverter {
-    static void convertDecToBin(){
-        Scanner input = new Scanner(System.in);//Scanner zur Speicherung der Eingabe
-        System.out.println("Bitte gib eine Dezimalzahl ein!");//Aufforderung zur Eingabe
+    public NumeralSystemConverter(){}
+    protected String[] DectoHex_Bin (double decimalNumber) {
+        double decimalNumberRounded = ((double) Math.round(decimalNumber * 1));
+        int decInt = (int) decimalNumberRounded;
+        String[] ArrayHex_Bin = new String[2];
+        if (decimalNumber < 0) {
+            decInt = Math.abs(decInt);
+            ArrayHex_Bin[0] = "-" + Integer.toBinaryString(decInt);
+            ArrayHex_Bin[1] = "-" + Integer.toHexString(decInt);
+            return ArrayHex_Bin;
 
-        int decNumber = input.nextInt();//Eingabe wird gespeichert
-        int binaryPlace=0;//Anzahl der Stellen der Dualzahl
-        int decNumberTwo=decNumber;//Kopie der Zahl, da am Ende der while-Schleife die Zahl Null ist
-
-        /*
-         * While Schleife soll die Anzahl der Stellen bestimmen
-
-        while (decNumberTwo != 0){
-            decNumberTwo=decNumberTwo / 2;//Zahl wird solange durch 2 dividiert bis 0 herauskommt
-            binaryPlace++;//Erhöhung der Zählvariablen
+            //BinTextField.setText("-" + Integer.toBinaryString(decInt));
+            //HexaTextField.setText("-" + Integer.toHexString(decInt));
+        } else {
+            //Umrechnung vom Dezimalsystem in die anderen beiden Zahlensysteme
+            ArrayHex_Bin[0] = Integer.toBinaryString(decInt);
+            ArrayHex_Bin[1] = Integer.toHexString(decInt);
+            return ArrayHex_Bin;
         }
-
-        int []numbers = new int [binaryPlace];//Array mit Länge der Zählvariablen
-
-        /*
-         * For Schleife füllt das Array mit den Restwerten
-
-        for (int i = 0; i < binaryPlace; i++){
-            numbers[i]=decNumber % 2; //Speichern der Restwerte im Array
-            decNumber = decNumber / 2; //Die Zahl wird immer wieder durch 2 dividiert
-        }
-
-        /*
-         * Die zweite for-Schleife liest das Array von hinten nach vorne
-
-        for (int i = binaryPlace - 1; i >= 0; i--){
-            System.out.print(numbers[i]);
-        }
-    }
-
-    public static void main(String[] args) {
-        convertDecToBin();
     }
 }
-*/
+        /*
+        String[] ArrayHex_Bin = new String[2];
+        //ArrayHex_Bin[0] = Hex;
+        return ArrayHex_Bin;
+        //double decimalNumber = Double.parseDouble(DecTextField.getText().replace(',', '.'));
+        //Runden der eingegeben Zahl
+        //double decimalNumberRounded = ((double) Math.round(decimalNumber * 1));
+        //int decInt = (int) decimalNumberRounded;
+        // @Maths.abs() prüft, ob Zahl negativ, wenn ja: Betrag der Zahl wird genommen
+        // (bei Hexa und Binär nicht klar, ob negative Zahlen, Martin?)
+        // sonst einfach löschen
+        if (decimalNumber < 0) {
+            decInt = Math.abs(decInt);
+            BinTextField.setText("-" + Integer.toBinaryString(decInt));
+            HexaTextField.setText("-" + Integer.toHexString(decInt));
+        } else {
+            //Umrechnung vom Dezimalsystem in die anderen beiden Zahlensysteme
+            BinTextField.setText(Integer.toBinaryString(decInt));
+            HexaTextField.setText(Integer.toHexString(decInt));
+        }
+    }
+}
+
+         */

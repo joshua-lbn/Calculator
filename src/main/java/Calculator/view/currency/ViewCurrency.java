@@ -76,6 +76,10 @@ public class ViewCurrency extends JRootPane {
         this.getContentPane().add(grid1);
     }
 
+    /**
+     * Ab hier Strg C + V
+     *
+     */
     class ButtonListener implements java.awt.event.ActionListener {
         public void actionPerformed(java.awt.event.ActionEvent e) {
             // Noch prüfen Buchstaben + leere Eingabe

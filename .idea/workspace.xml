@@ -4,9 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e01ba51-84bb-425d-83d7-45271fdd1757" name="Changes" comment="ViewCurrency V2">
+    <list default="true" id="6e01ba51-84bb-425d-83d7-45271fdd1757" name="Changes" comment="Überarbeitung Darstellung ViewNumeralSystem">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/ViewCurrency.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/ViewCurrency.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/controller/NumeralSystemConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/controller/NumeralSystemConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/ViewNumeralSystem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/ViewVolumeCuboid.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/ViewVolumeCuboid.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/currency/ViewCurrency.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/currency/ViewCurrency.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/general/ViewNumeralSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/general/ViewNumeralSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/main/ProcessMenuInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/main/ProcessMenuInput.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/main/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/main/View.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,10 +50,10 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/main/java/Calculator/controller/Controller.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/Calculator/view/main/View.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -71,7 +80,7 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.ViewCurrency">
+  <component name="RunManager" selected="Application.Calculator.Main">
     <configuration name="Calculator.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Calculator.Main" />
       <module name="Calculator" />
@@ -146,11 +155,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Calculator.Main" />
         <item itemvalue="Application.ViewCurrency" />
         <item itemvalue="Application.volumeCylinder" />
         <item itemvalue="Application.volumeCone" />
         <item itemvalue="Application.volumeCuboid" />
-        <item itemvalue="Application.Calculator.Main" />
       </list>
     </recent_temporary>
   </component>

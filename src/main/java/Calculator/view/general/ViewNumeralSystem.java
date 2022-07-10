@@ -1,9 +1,11 @@
 package Calculator.view.general;
+import Calculator.controller.Controller;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 public class ViewNumeralSystem extends JRootPane {
     private javax.swing.JPanel JPanel = new javax.swing.JPanel();
@@ -16,11 +18,12 @@ public class ViewNumeralSystem extends JRootPane {
     private javax.swing.JLabel DecLabel = new javax.swing.JLabel();
     private javax.swing.JLabel HexaLabel = new javax.swing.JLabel();
     private javax.swing.JLabel BinLabel = new javax.swing.JLabel();
-
+    //hinzufügen des Rechners
+    Controller controller = new Controller();
 
     public ViewNumeralSystem () {
         //setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        JPanel.setLayout(new GridLayout(3,3));
+        JPanel.setLayout(new GridLayout(3, 3));
 
         //jpanel1 = new javax.swing.JPanel();
         DecLabel = new javax.swing.JLabel("   Dezimal:");
@@ -48,84 +51,44 @@ public class ViewNumeralSystem extends JRootPane {
         this.getContentPane().add(JPanel);
         //pack();
         setVisible(true);
-        setSize(600,300);
+        setSize(600, 300);
         this.setVisible(true);
+
 
         convertDec.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //hier zunächt ingnorieren
-                /*
-                String DecString = DecTextField.getText().replace(',','.');
-                int BinInt = Integer.parseInt(DecString);
-                int binary = Integer.parseInt(Integer.toBinaryString(BinInt));
-                BinTextField.setText(Integer.toString(binary));
-
-                 */
-                //auch für @Joshua um das Problem mit dem Komma zu lösen
-                double decimalNumber = Double.parseDouble(DecTextField.getText().replace(',', '.'));
-                //Runden der eingegeben Zahl
-                double decimalNumberRounded = ((double) Math.round(decimalNumber * 1));
-                int decInt = (int) decimalNumberRounded;
-                // @Maths.abs() prüft, ob Zahl negativ, wenn ja: Betrag der Zahl wird genommen
-                // (bei Hexa und Binär nicht klar, ob negative Zahlen, Martin?)
-                // sonst einfach löschen
-                if (decimalNumber < 0) {
-                    decInt = Math.abs(decInt);
-                    BinTextField.setText("-" + Integer.toBinaryString(decInt));
-                    HexaTextField.setText("-" + Integer.toHexString(decInt));
-                } else {
-                    //Umrechnung vom Dezimalsystem in die anderen beiden Zahlensysteme
-                    BinTextField.setText(Integer.toBinaryString(decInt));
-                    HexaTextField.setText(Integer.toHexString(decInt));
-                }
-                }
+                //Feld zum Speichern des übergegeben Feldes
+                String[] ConvertedNumbers = new String[2];
+                //Uebergabe des Wertes an den controller
+                ConvertedNumbers = controller.DectoHex_Bin(DecTextField.getText());
+                //Ausgabe des Feldes, 1.Wert ist hierbei Hexa, 2. Binaer
+                HexaTextField.setText(ConvertedNumbers[0]);
+                BinTextField.setText(ConvertedNumbers[1]);
+                //MVC-Modell!
+            }
         });
-
-
         convertHex.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String HexNumber = HexaTextField.getText();
-                //int für if-Bedingung (nicht in Hexa umgerechnet)
-                if(HexNumber.indexOf("-") ==0) {
-                    HexNumber = HexNumber.replace("-","");
-                    int decIntNeg = Integer.parseInt(HexNumber, 16);
-                    DecTextField.setText("-" + Integer.toString(decIntNeg));
-                    BinTextField.setText("-" + Integer.toBinaryString(decIntNeg));
-                }
-                else {
-                    int decInt = Integer.parseInt(HexNumber, 16);
-                    DecTextField.setText(Integer.toString(decInt));
-                    String binary = Integer.toBinaryString(decInt);
-                    BinTextField.setText(binary);
-                }
+                String HexString = HexaTextField.getText();
+                String ConvertedNumbers[] = new String[2];
+                ConvertedNumbers = controller.HextoDec_Bin(HexString);
+                DecTextField.setText(ConvertedNumbers[0]);
+                BinTextField.setText(ConvertedNumbers[1]);
+
             }
         });
         convertBin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String BinString = BinTextField.getText();
-                int BinNumberInt = Integer.parseInt(BinString);
-                if(BinNumberInt < 0)
-                {
-                    int decIntNeg = Integer.parseInt(BinString, 2);
-                    DecTextField.setText("-"+ Integer.toString(decIntNeg));
-                    HexaTextField.setText(Integer.toHexString(decIntNeg));
-                }
-                else {
-                    int decInt = Integer.parseInt(BinString, 2);
-                    DecTextField.setText(Integer.toString(decInt));
-                    HexaTextField.setText(Integer.toHexString(decInt));
-                }
+                String ConvertedNumbers[] = new String[2];
+                ConvertedNumbers = controller.BintoDec_Hex(BinString);
+                DecTextField.setText(ConvertedNumbers[0]);
+                HexaTextField.setText(ConvertedNumbers[1]);
             }
         });
-    }
-        //this.pack();
-        //this.setVisible(true);
-
-    public static void main(String[] args) {
-        new Calculator.view.volumeCuboid().setVisible(true);
     }
 
     /**
