@@ -4,16 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e01ba51-84bb-425d-83d7-45271fdd1757" name="Changes" comment="MVC Quader">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/viewVolume/ProcessVolumeInput.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/viewVolume/ViewVolume.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="6e01ba51-84bb-425d-83d7-45271fdd1757" name="Changes" comment="MVC Volumen">
       <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/controller/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/main/ProcessVolumeInput.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/main/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/main/View.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/viewVolume/viewCone.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/viewVolume/viewCone.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/viewVolume/ProcessVolumeInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/viewVolume/ProcessVolumeInput.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/viewVolume/viewCuboid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/viewVolume/viewCuboid.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/viewVolume/viewCylinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/viewVolume/viewCylinder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/viewVolume/viewSphere.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/viewVolume/viewSphere.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -346,7 +343,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657407624838</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="MVC Volumen">
+      <created>1657467104873</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1657467104873</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -390,7 +394,8 @@
     <MESSAGE value="Volumen Quader Komma Ausgabe" />
     <MESSAGE value="Volumen Kegel" />
     <MESSAGE value="ViewCurrency V2" />
-    <option name="LAST_COMMIT_MESSAGE" value="ViewCurrency V2" />
+    <MESSAGE value="MVC Volumen" />
+    <option name="LAST_COMMIT_MESSAGE" value="MVC Volumen" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Calculator$Main.ic" NAME="Main Coverage Results" MODIFIED="1656866699393" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

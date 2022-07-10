@@ -3,8 +3,10 @@ package Calculator.view.viewVolume;
 
 import javax.swing.*;
 import java.awt.*;
+import Calculator.controller.Controller;
 
-public class viewCylinder extends JRootPane {
+
+public class viewCylinder extends JRootPane implements ViewVolume{
     private ProcessVolumeInput processVolumeInput;
     private javax.swing.JPanel jpanel1 = new javax.swing.JPanel();
     private javax.swing.JButton calculate = new javax.swing.JButton();
@@ -18,7 +20,8 @@ public class viewCylinder extends JRootPane {
     private javax.swing.JLabel spacer1 = new javax.swing.JLabel();
     private javax.swing.JLabel spacer2 = new javax.swing.JLabel();
 
-    public viewCylinder() {
+    public viewCylinder(Controller c) {
+        processVolumeInput = new ProcessVolumeInput(this, c);
         //setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         jpanel1.setLayout(new GridLayout(3, 3));
 
@@ -52,9 +55,6 @@ public class viewCylinder extends JRootPane {
         this.setVisible(true);
     }
 
-    public static void main(String[] args) {
-        new viewCylinder().setVisible(true);
-    }
 
     /**
      * Methode, um den hellen Modus zu setzen.

@@ -156,9 +156,14 @@ public class Controller {
                 view.Calculate(1);
                 break;
             case 2:
-                viewCuboid.Calculate();
+                view.Calculate(2);
+                break;
             case 3:
+                view.Calculate(3);
+                break;
             case 4:
+                view.Calculate(4);
+                break;
         }
     }
 
