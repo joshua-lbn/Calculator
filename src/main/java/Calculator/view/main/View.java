@@ -533,4 +533,20 @@ public class View extends JFrame {
                 break;
         }
     }
+    public String GetConeRadius() {
+        return viewCone.GetTextRadius();
+    }
+
+    public String GetConeHeight() {
+        return viewCone.GetTextHeight();
+    }
+
+    public void VolumeOutput(int number, String output) {
+        switch (number) {
+            case 1:
+                viewCone.VolumeOutput(output);
+                break;
+        }
+    }
+
 }

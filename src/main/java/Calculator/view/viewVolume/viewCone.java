@@ -110,6 +110,18 @@ public class viewCone extends JRootPane implements ViewVolume {
         return calculate;
     }
 
+    public String GetTextRadius() {
+        return radiusTextField.getText();
+    }
+
+    public String GetTextHeight() {
+        return heightTextField.getText();
+    }
+
+    public void VolumeOutput(String volume) {
+        volumeCalculate.setText(volume);
+    }
+
     public void Calculate() {
         System.out.println("viewCone");
         System.out.println(radiusTextField.getText());
