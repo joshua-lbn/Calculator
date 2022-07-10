@@ -87,6 +87,14 @@ public class viewSphere extends JRootPane implements ViewVolume{
         return calculate;
     }
 
+    public String GetTextRadius() {
+        return radiusTextField.getText();
+    }
+
+    public void VolumeOutput(String volume) {
+        volumeCalculate.setText(volume);
+    }
+
     public void Calculate() {
         double volumeRadius = Double.parseDouble(radiusTextField.getText().replace(',','.'));
         if (volumeRadius <= 0) {

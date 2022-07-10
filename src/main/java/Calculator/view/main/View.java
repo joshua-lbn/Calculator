@@ -561,6 +561,10 @@ public class View extends JFrame {
         return viewCylinder.GetTextHeight();
     }
 
+    public String GetSphereRadius() {
+        return viewSphere.GetTextRadius();
+    }
+
     public void VolumeOutput(int number, String output) {
         switch (number) {
             case 1:
@@ -571,6 +575,9 @@ public class View extends JFrame {
                 break;
             case 3:
                 viewCylinder.VolumeOutput(output);
+                break;
+            case 4:
+                viewSphere.VolumeOutput(output);
                 break;
         }
     }

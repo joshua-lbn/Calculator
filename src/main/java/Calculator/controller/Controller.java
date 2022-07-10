@@ -225,7 +225,19 @@ public class Controller {
     }
 
     public void VolumeCalculateSphere() {
-
+        String radius = view.GetSphereRadius();
+        double volumeRadius = Double.parseDouble(radius.replace(',','.'));
+        if (volumeRadius <= 0) {
+            view.VolumeOutput(4,"Ung\u00FCltige Eingabe");
+        }
+        else {
+            double volumeResult = (4.0/3.0) * Math.PI * volumeRadius * volumeRadius * volumeRadius;
+            System.out.println(""+volumeResult);
+            double volume = (double) (Math.round(volumeResult * 100)) / 100;
+            String volumeString = (Double.toString(volume)).replace ('.', ',');
+            view.VolumeOutput(4,volumeString);
+            //volumeCalculate.setText("" + (double) (Math.round(volumeResult * 100)) / 100);
+        }
     }
 
 
