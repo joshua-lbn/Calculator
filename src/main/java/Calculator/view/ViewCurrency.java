@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 import java.lang.*;
+import java.util.Objects;
 import java.util.StringJoiner;
 import java.io.*;
 import java.net.*;
@@ -18,10 +19,19 @@ import org.json.*;
 
 class ViewCurrency extends JFrame{
 
-    //erstellen der GridLayouts
-    private javax.swing.JPanel grid1 = new javax.swing.JPanel();
-    private javax.swing.JPanel grid11 = new javax.swing.JPanel();
-    private javax.swing.JPanel grid12 = new javax.swing.JPanel();
+
+
+    private StringBuilder sb;
+    private InputStream is;
+    private BufferedReader rd;
+    private JSONObject json;
+    private String[] c;
+    private String[] c01;
+    private String[] c1;
+    private String[] c2;
+    private String[] c3;
+    private String[] c31;
+
 
     private javax.swing.JComboBox ausgabecb = new javax.swing.JComboBox();
 
@@ -30,25 +40,9 @@ class ViewCurrency extends JFrame{
     private javax.swing.JLabel label1 = new javax.swing.JLabel();
     private javax.swing.JTextField textinput = new javax.swing.JTextField();;
 
-    private StringBuilder sb;
-    private InputStream is;
-    private BufferedReader rd;
-    private JSONObject json;
-    private String[] c;
-    private String[] c1;
-    private String[] c2;
-    private String[] c3;
-
-
-
-
-
 
     //Labels für Währungsnamen und Währungswert
 
-
-
-    //Eingabenfeld
 
 
 
@@ -56,36 +50,13 @@ class ViewCurrency extends JFrame{
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        grid1.setLayout(new GridLayout(1, 2));
-        grid11.setLayout(new GridLayout(2, 1));
-        grid1.add(grid11);
-        grid12.setLayout(new GridLayout(2, 1));
-        grid1.add(grid12);
+        ButtonListener bl = new ButtonListener();
 
-
-
-//-----------------------------------------------
-
-        c = new String[4];
-        StringJoiner joiner = new StringJoiner("");
-        for (int i = 0;i < 4;i++) {
-            char s;
-            s = Test().charAt(Test().indexOf("EUR") + i + 5 );
-            c[i] = String.valueOf(s);
-        }
-        for(int i = 0; i < c.length; i++) {
-            joiner.add(c[i]);
-        }
-        String str = joiner.toString();
-        //System.out.println("" + str + "");
-
-        //str gibt umtauschkurs
 //-----------------------------------------------
         c1 = new String[Test().length()-42];
         c2 = new String[3];
-        c3 = new String[9];
-
-
+        c3 = new String[32];
+        c31 = new String[c3.length];
 
 
 
@@ -99,88 +70,58 @@ class ViewCurrency extends JFrame{
             joiner1.add(c1[i]);
         }
         String str1 = joiner1.toString();
-        //System.out.println("" + str1 + "");
 
-        //System.out.println(Test());
 
         for (int n = 0; n < c3.length; n++) {
             StringJoiner joiner2 = new StringJoiner("");
             for (int i = 0; i < c2.length; i++) {
                 char p;
 
-                //if (Integer.valueOf(str1.charAt(str1.indexOf("\"") + 4)) == Integer.valueOf(str1.charAt(str1.indexOf("\"")))) {
-                    p = str1.charAt(str1.indexOf("\"") + i + 1);
-                    c2[i] = String.valueOf(p);
-                //System.out.println(str1.indexOf("\""));
-                //System.out.println(str1.charAt(str1.indexOf("\"") + i + 1));
+                p = str1.charAt(str1.indexOf("\"") + i + 1);
+                c2[i] = String.valueOf(p);
 
-
-                //}
             }
             for (int i = 0; i < c2.length; i++) {
                 joiner2.add(c2[i]);
             }
             String str2 = joiner2.toString();
-            //System.out.println("" + str2 + "");
 
             c3[n] = str2;
 
             int Position = str1.indexOf("\"");
             str1 = str1.substring(0,0) + str1.substring(Position+6);
 
-            //System.out.println("" + str1 + "");
         }
         for (int e = 0; e < c3.length; e++) {
-            //System.out.println("" + c3[e] + "");
+            c31[e] = c3[e];
 
         }
 
-        //c3 gibt Währungen
+        //c3, c31 gibt Währungen(Namen)
 
 //-----------------------------------------------
 
+
+
+
         eingangcb = new JComboBox(c3);
-        grid11.add(eingangcb);
-        System.out.println("eingangcb");
+        eingangcb.setEditable( true );
+        this.getContentPane().add( eingangcb, BorderLayout.WEST );
+
+        ausgabecb = new JComboBox(c31);
+        ausgabecb.setEditable( true );
+        this.getContentPane().add( ausgabecb, BorderLayout.EAST );
 
         textinput = new JTextField();
-        grid11.add(textinput);
-        System.out.println("textinput");
 
+        textinput.addActionListener( bl );
+        label1 = new JLabel("Umgerechnete Währung");
 
-        ausgabecb = new JComboBox(c3);
-        grid12.add(eingangcb);
-        System.out.println("eingangcb");
-
-        label1 = new JLabel();
-        grid12.add(label1);
-        System.out.println("label1");
+        this.getContentPane().add(textinput, java.awt.BorderLayout.NORTH);
+        this.getContentPane().add(label1, BorderLayout.CENTER);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        this.getContentPane().add(grid1);
         // Fenster als dynamisch skalierbar definieren
         pack();
         // Groesse setzen
@@ -231,7 +172,6 @@ class ViewCurrency extends JFrame{
 
         JSONObject json = null;
         json = readJsonFromUrl("https://www.currency-api.com/rates?base=USD");
-        //System.out.println(json.toString());
 
 
         return json.toString();
@@ -243,6 +183,72 @@ class ViewCurrency extends JFrame{
         new ViewCurrency().setVisible(true);
 
 
+    }
+    class ButtonListener implements java.awt.event.ActionListener {
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+
+            // Noch prüfen Buchstaben + leere Eingabe
+            // Parse Double, da nicht möglich String direkt in Zahl umwandeln
+            double norm = Double.parseDouble(textinput.getText());
+            if (norm < 0) {
+                label1.setText("0");
+            }
+            else {
+
+
+                //umrechnen in andere Währungen
+                c = new String[4];
+                double in1;
+                StringJoiner joiner = new StringJoiner("");
+                if(((String) Objects.requireNonNull(eingangcb.getSelectedItem())).equals("USD")){
+                    in1 = 1.0;
+                }
+                else {
+                    for (int i = 0; i < 4; i++) {
+                        char s;
+
+                        s = Test().charAt(Test().indexOf((String) Objects.requireNonNull(eingangcb.getSelectedItem())) + i + 5);
+                        c[i] = String.valueOf(s);
+
+                    }
+
+                    for (int i = 0; i < c.length; i++) {
+                        joiner.add(c[i]);
+                    }
+                    String str = joiner.toString();
+                    in1 = Double.parseDouble(str);
+                }
+
+                c01 = new String[4];
+                double in2;
+                StringJoiner joiner01 = new StringJoiner("");
+                if(((String) Objects.requireNonNull(ausgabecb.getSelectedItem())).equals("USD")){
+                   in2 = 1.0;
+                }
+                else {
+                    for (int i = 0; i < 4; i++) {
+                        char s;
+
+                        s = Test().charAt(Test().indexOf((String) Objects.requireNonNull(ausgabecb.getSelectedItem())) + i + 5);
+                        c01[i] = String.valueOf(s);
+
+                    }
+
+                    for (int i = 0; i < c01.length; i++) {
+                        joiner01.add(c01[i]);
+                    }
+                    String str01 = joiner01.toString();
+                    in2 = Double.parseDouble(str01);
+                }
+
+
+                double dollar1 = norm * ( in2 / in1 );
+                //System.out.println((double) (Math.round(dollar1 * 100)) / 100);
+                label1.setText("" + (double) (Math.round(dollar1 * 100)) / 100);
+
+
+            }
+        }
     }
 
 
