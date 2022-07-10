@@ -9,7 +9,7 @@ import Calculator.view.viewVolume.viewCuboid;
 import Calculator.view.general.ViewNumeralSystem;
 import Calculator.view.volumeCone;
 import Calculator.view.volumeCuboid;
-import Calculator.view.volumeCylinder;
+import Calculator.view.viewVolume.viewCylinder;
 import Calculator.view.volumeSphere;
 import Calculator.view.calculator.ViewCalculator;
 import Calculator.view.currency.ViewCurrency;
@@ -52,7 +52,7 @@ public class View extends JFrame {
     private ViewNumeralSystem viewNumeralSystem;
     private viewCone viewCone;
     private viewCuboid viewCuboid;
-    private volumeCylinder volumeCylinder;
+    private viewCylinder viewCylinder;
     private volumeSphere volumeSphere;
     private ViewCurrency viewCurrency;
     // Darkmode-Zustand
@@ -205,7 +205,7 @@ public class View extends JFrame {
                 getContentPane().add(viewCuboid);
                 break;
             case 3:
-                getContentPane().add(volumeCylinder);
+                getContentPane().add(viewCylinder);
                 break;
             case 4:
                 getContentPane().add(volumeSphere);
@@ -279,7 +279,7 @@ public class View extends JFrame {
         viewNumeralSystem.SetLightmode();
         viewCone.SetLightmode();
         viewCuboid.SetLightmode();
-        volumeCylinder.SetLightmode();
+        viewCylinder.SetLightmode();
         volumeSphere.SetLightmode();
         viewCurrency.SetLightmode();
         // Update der Oberflaeche
@@ -334,7 +334,7 @@ public class View extends JFrame {
         viewNumeralSystem.SetDarkmode();
         viewCone.SetDarkmode();
         viewCuboid.SetDarkmode();
-        volumeCylinder.SetDarkmode();
+        viewCylinder.SetDarkmode();
         volumeSphere.SetDarkmode();
         viewCurrency.SetDarkmode();
         // Update der Oberflaeche
@@ -494,9 +494,9 @@ public class View extends JFrame {
         viewHelp = new ViewHelp();
         viewCalculator = new ViewCalculator(model, this, controller);
         viewNumeralSystem = new ViewNumeralSystem();
-        viewCone = new viewCone();
+        viewCone = new viewCone(controller);
         viewCuboid = new viewCuboid();
-        volumeCylinder = new volumeCylinder();
+        viewCylinder = new viewCylinder();
         volumeSphere = new volumeSphere();
         viewCurrency = new ViewCurrency();
         // Fenster auf Taschenrechner setzen
@@ -515,5 +515,13 @@ public class View extends JFrame {
         }
         // Instanz der Beiklasse ProcessResize, damit viewCalculator auf Groessenaenderungen reagieren kann
         addComponentListener(new ProcessResize(this));
+    }
+
+    public void Calculate(int number) {
+        switch(number) {
+            case 1:
+                viewCone.Calculate();
+                break;
+        }
     }
 }

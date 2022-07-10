@@ -8,6 +8,7 @@ import Calculator.view.viewVolume.viewCuboid;
 //import Calculator.view.general.ViewNumeralSystem;
 
 import java.util.Arrays;
+import Calculator.view.viewVolume.viewCylinder;
 
 /**
  * Controller-Klasse mit Programmierlogik.
@@ -152,7 +153,7 @@ public class Controller {
     public void VolumeCalculate(int nummer) {
         switch (nummer) {
             case 1:
-                viewCone.Calculate();
+                view.Calculate(1);
                 break;
             case 2:
                 viewCuboid.Calculate();
@@ -160,6 +161,7 @@ public class Controller {
             case 4:
         }
     }
+
     //Rechnet vom Dezimal-Zahlensystem in die beiden anderen um
     public String[] DectoHex_Bin (String decimalString)
     {
@@ -220,5 +222,8 @@ public class Controller {
             return ArrayDec_Hex;
         }
     }
-    }
-    //NumeralSystemConverter dann noch herauszulöschen
+//NumeralSystemConverter dann noch herauszulöschen
+
+
+}
+

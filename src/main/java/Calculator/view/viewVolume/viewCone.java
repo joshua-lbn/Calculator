@@ -1,13 +1,10 @@
 package Calculator.view.viewVolume;
 
-import Calculator.view.main.ProcessVolumeInput;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import Calculator.controller.Controller;
 
-public class viewCone extends JRootPane {
+public class viewCone extends JRootPane implements ViewVolume {
     private ProcessVolumeInput processVolumeInput;
     private javax.swing.JPanel jpanel1 = new javax.swing.JPanel();
     private javax.swing.JButton calculate = new javax.swing.JButton();
@@ -21,7 +18,8 @@ public class viewCone extends JRootPane {
     private javax.swing.JLabel spacer1 = new javax.swing.JLabel();
     private javax.swing.JLabel spacer2 = new javax.swing.JLabel();
 
-    public viewCone () {
+    public viewCone (Controller c) {
+        processVolumeInput = new ProcessVolumeInput(this, c);
         //setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         jpanel1.setLayout(new GridLayout(3,3));
 
@@ -113,6 +111,8 @@ public class viewCone extends JRootPane {
     }
 
     public void Calculate() {
+        System.out.println("viewCone");
+        System.out.println(radiusTextField.getText());
         double volumeRadius = Double.parseDouble(radiusTextField.getText().replace(',','.'));
         double volumeHeight = Double.parseDouble(heightTextField.getText().replace(',','.'));
         if (volumeRadius <= 0 || volumeHeight <= 0) {

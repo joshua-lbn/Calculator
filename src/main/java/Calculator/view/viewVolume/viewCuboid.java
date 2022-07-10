@@ -1,11 +1,7 @@
 package Calculator.view.viewVolume;
 
-import Calculator.view.main.ProcessVolumeInput;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class viewCuboid extends JRootPane {
     private ProcessVolumeInput processVolumeInput;
@@ -132,6 +128,8 @@ public class viewCuboid extends JRootPane {
     }
 
     public void Calculate() {
+        System.out.println("TestCuboid");
+        System.out.print(lengthTextField.getText());
         double volumeLength = Double.parseDouble(lengthTextField.getText().replace(',','.'));
         double volumeWidth = Double.parseDouble(widthTextField.getText().replace(',','.'));
         double volumeHeight = Double.parseDouble(heightTextField.getText().replace(',','.'));
