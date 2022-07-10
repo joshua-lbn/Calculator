@@ -541,10 +541,25 @@ public class View extends JFrame {
         return viewCone.GetTextHeight();
     }
 
+    public String GetCuboidLength() {
+        return viewCuboid.GetTextLength();
+    }
+
+    public String GetCuboidWidth() {
+        return viewCuboid.GetTextWidth();
+    }
+
+    public String GetCuboidHeight() {
+        return viewCuboid.GetTextHeight();
+    }
+
     public void VolumeOutput(int number, String output) {
         switch (number) {
             case 1:
                 viewCone.VolumeOutput(output);
+                break;
+            case 2:
+                viewCuboid.VolumeOutput(output);
                 break;
         }
     }

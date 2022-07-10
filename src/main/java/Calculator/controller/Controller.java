@@ -187,6 +187,34 @@ public class Controller {
         }
     }
 
+    public void VolumeCalculateCuboid() {
+        String length = view.GetCuboidLength();
+        String width = view.GetCuboidWidth();
+        String height = view.GetCuboidHeight();
+        double volumeLength = Double.parseDouble(length.replace(',','.'));
+        double volumeWidth = Double.parseDouble(width.replace(',','.'));
+        double volumeHeight = Double.parseDouble(height.replace(',','.'));
+        if (volumeLength <= 0 || volumeWidth <= 0 || volumeHeight <= 0) {
+            view.VolumeOutput(2,"Ung\u00FCltige Eingabe");
+        }
+        else {
+            double volumeResult = volumeLength * volumeWidth * volumeHeight;
+            double volume = (double) (Math.round(volumeResult * 100)) / 100;
+            String volumeString = (Double.toString(volume)).replace ('.', ',');
+            view.VolumeOutput(2,volumeString);
+            //volumeCalculate.setText("" + (double) (Math.round(volumeResult * 100)) / 100);
+        }
+    }
+
+    public void VolumeCalculateCylinder() {
+
+    }
+
+    public void VolumeCalculateSphere() {
+
+    }
+
+
     //Rechnet vom Dezimal-Zahlensystem in die beiden anderen um
     public String[] DectoHex_Bin (String decimalString)
     {

@@ -61,9 +61,6 @@ public class viewCuboid extends JRootPane implements ViewVolume{
         this.setVisible(true);
         calculate.addActionListener(processVolumeInput);
     }
-    public static void main(String[] args) {
-        new Calculator.view.volumeCuboid().setVisible(true);
-    }
 
     /**
      * Methode, um den hellen Modus zu setzen.
@@ -128,6 +125,22 @@ public class viewCuboid extends JRootPane implements ViewVolume{
     }
     public JButton getCalculate() {
         return calculate;
+    }
+
+    public String GetTextLength() {
+        return lengthTextField.getText();
+    }
+
+    public String GetTextWidth() {
+        return widthTextField.getText();
+    }
+
+    public String GetTextHeight() {
+        return heightTextField.getText();
+    }
+
+    public void VolumeOutput(String volume) {
+        volumeCalculate.setText(volume);
     }
 
     public void Calculate() {

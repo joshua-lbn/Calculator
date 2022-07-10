@@ -27,17 +27,17 @@ public class ProcessVolumeInput implements java.awt.event.ActionListener {
         }
         else if (v instanceof viewCuboid) {
             if (e.getSource() == v.getCalculate()) {
-                controller.VolumeCalculate(2);
+                controller.VolumeCalculateCuboid();
             }
         }
         else if (v instanceof viewCylinder) {
             if (e.getSource() == v.getCalculate()) {
-                controller.VolumeCalculate(3);
+                controller.VolumeCalculateCylinder();
             }
         }
         else if (v instanceof viewSphere) {
             if (e.getSource() == v.getCalculate()) {
-                controller.VolumeCalculate(4);
+                controller.VolumeCalculateSphere();
             }
         }
     }
