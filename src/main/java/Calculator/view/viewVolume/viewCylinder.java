@@ -109,6 +109,18 @@ public class viewCylinder extends JRootPane implements ViewVolume{
         return calculate;
     }
 
+    public String GetTextRadius() {
+        return radiusTextField.getText();
+    }
+
+    public String GetTextHeight() {
+        return heightTextField.getText();
+    }
+
+    public void VolumeOutput(String volume) {
+        volumeCalculate.setText(volume);
+    }
+
     public void Calculate() {
             double volumeRadius = Double.parseDouble(radiusTextField.getText().replace(',', '.'));
             double volumeHeight = Double.parseDouble(heightTextField.getText().replace(',', '.'));

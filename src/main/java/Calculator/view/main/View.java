@@ -553,6 +553,14 @@ public class View extends JFrame {
         return viewCuboid.GetTextHeight();
     }
 
+    public String GetCylinderRadius() {
+        return viewCylinder.GetTextRadius();
+    }
+
+    public String GetCylinderHeight() {
+        return viewCylinder.GetTextHeight();
+    }
+
     public void VolumeOutput(int number, String output) {
         switch (number) {
             case 1:
@@ -560,6 +568,9 @@ public class View extends JFrame {
                 break;
             case 2:
                 viewCuboid.VolumeOutput(output);
+                break;
+            case 3:
+                viewCylinder.VolumeOutput(output);
                 break;
         }
     }

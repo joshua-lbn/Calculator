@@ -207,6 +207,20 @@ public class Controller {
     }
 
     public void VolumeCalculateCylinder() {
+        String radius = view.GetCylinderRadius();
+        String height = view.GetCylinderHeight();
+        double volumeRadius = Double.parseDouble(radius.replace(',', '.'));
+        double volumeHeight = Double.parseDouble(height.replace(',', '.'));
+        if (volumeRadius <= 0 || volumeHeight <= 0) {
+            view.VolumeOutput(3,"Ung\u00FCltige Eingabe");
+        } else {
+            double volumeResult = Math.PI * volumeRadius * volumeRadius * volumeHeight;
+            System.out.println("" + volumeResult);
+            double volume = (double) (Math.round(volumeResult * 100)) / 100;
+            String volumeString = (Double.toString(volume)).replace('.', ',');
+            view.VolumeOutput(3,volumeString);
+            //volumeCalculate.setText("" + (double) (Math.round(volumeResult * 100)) / 100);
+        }
 
     }
 
