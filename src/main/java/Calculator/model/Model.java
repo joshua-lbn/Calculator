@@ -1,19 +1,22 @@
 package Calculator.model;
 
-import Calculator.controller.Controller;
-import Calculator.view.main.View;
-import org.json.JSONObject;
-
+// Java-Imports
 import java.io.*;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.LinkedList;
 import java.util.Scanner;
+// Import weiterer Programmklassen
+import Calculator.controller.Controller;
+import Calculator.view.main.View;
+// Import des JSON-Packages
+import org.json.JSONObject;
 
 /**
  * Model-Klasse mit allen gespeicherten Daten.
  */
 public class Model {
+    // Referenzen auf andere Klassen
     private View view;
     private Controller controller;
     // String mit Rechenausdruck
@@ -22,7 +25,7 @@ public class Model {
     private String html;
     // Liste mit durch Eingaben eingefügten Elementen (des Ausdrucks)
     private LinkedList<String> expressionsElementsList;
-    // Liste mit durch Eingaben eingefügten Elementen in HTML-Form
+    // Liste mit durch Eingaben eingefügten Elementen (des HTML-Ausdruckes)
     private LinkedList<String> htmlElementsList;
     // Antwort der letzten Rechnung (s. Ans-Taste)
     private double ans;
@@ -36,20 +39,15 @@ public class Model {
     private ColorMode colorMode;
     // Speicherung der Farbe der HTML-Darstellung in Abhaengigkeit vom Farbmodus
     private String colorExtension;
-    // Variablen, um Einstellungen permanent im Dateisystem zu speichern
+    // Instanzen, um Einstellungen permanent im Dateisystem zu speichern
     private File file;
     private Scanner fileScanner;
     private File folder;
     private BufferedWriter bufferedWriter;
-    // Objekte,
-    private StringBuilder sb;
-    private InputStream is;
-    private BufferedReader rd;
-    // JSON, um aktuelle Daten aus dem Internet zu speichern
-    private JSONObject json;
 
     /**
-     * Konstruktor: Ausdruecke als leer initialisieren.
+     * Konstruktor: Ausdruecke und Listen als leer initialisieren, Antwort initialisieren, Cursorsymbol setzen und
+     * Cursor zurueckkehren lassen, Instanzen fuer Schreiben ins Dateisystem erstellen
      */
     public Model() {
         // Beide Strings als leer initialisieren
@@ -70,7 +68,31 @@ public class Model {
     }
 
     /**
-     * Methode zur Erweiterung des Ausdrucks-Strings: Element wird in Liste eingefuegt und anschliessend der String erweitert.
+     * Methode, um den Zustand des Taschenrechners zu erhalten.
+     */
+    public CalculatorState GetState() {
+        return state;
+    }
+
+    /**
+     * Methode, um den Zustand des Taschenrechners zu setzen.
+     */
+    public void SetState(CalculatorState newState) {
+        state = newState;
+    }
+
+    /**
+     * Getter für die Expression-Variable, die den normalen Ausdruck in Textform enthält.
+     * @return String mit Ausdruck
+     */
+    public String GetExpression() {
+        return expression;
+    }
+
+    /**
+     * Methode zur Erweiterung des Ausdrucks-Strings: Element wird in Liste eingefuegt an der Position des Cursors
+     * eingefuegt und anschliessend wird der String neu aus der Liste generiert.
+     * Voraussetzung hierfuer ist eine Laenge von unter 100 Elementen.
      * @param extension Zu erweiternder Ausdruck
      */
     public void ExtendExpression(String extension) {
@@ -82,7 +104,17 @@ public class Model {
     }
 
     /**
-     * Methode zur Verkürzung des Ausdrucks-Strings: letztes Element wird aus der Liste entfernt und mithilfe der Liste der String neu generiert.
+     * Methode zur Generierung des Expression-Strings aus der Liste.
+     * @return Generierte Expression
+     */
+    public String GenerateNewExpression() {
+        return expressionsElementsList.stream().reduce("", (a, b) -> a + b);
+    }
+
+    /**
+     * Methode zur Verkürzung des Ausdrucks-Strings: Element vor dem Cursor wird aus der Liste entfernt und
+     * mithilfe der Liste der String neu generiert.
+     * Voraussetzung hierfuer ist eine nicht-leere Liste.
      */
     public void ShortenExpression() {
         if(expressionsElementsList.size() > 0) {
@@ -92,7 +124,7 @@ public class Model {
     }
 
     /**
-     * Methode zur Räumung des Expression-Strings und seiner Liste.
+     * Methode zur Leerung des Expression-Strings und seiner Liste.
      */
     public void ClearExpression() {
         expression = "";
@@ -100,7 +132,38 @@ public class Model {
     }
 
     /**
-     * Methode zur Erweiterung des HTML-Strings: Element wird in Liste eingefuegt und anschliessend der String erweitert.
+     * Getter für die HTML-String-Variable, die den HTML-Ausdruck in Textform enthält.
+     * Dabei werden die umschliessenden <HTML>-Tags mit eingefuegt, die Schriftgroesse per Methode (anhand der Fenster-
+     * groesse bestimmt) ermittelt und die Farbe ueber die colorExtesion (in Abhaengigkeit vom Farbmodus) gesetzt.
+     * @return String mit HTML-Ausdruck
+     */
+    public String GetHTMLExpression() {
+        return "<html><pre style=\"font-family: Consolas; font-size: " + CalculateSize() + "px; color: "
+                + colorExtension + ";\">" + html + "</pre></html>";
+    }
+
+    /**
+     * Methode, um die aktuelle Schriftgroesse in Abhaengigkeit von der Fenstergroeße zu berechnen.
+     * @return Neue Schriftgroesse
+     */
+    public int CalculateSize()
+    {
+        return Math.round(35 * view.GetWindowHeight() / 300);
+    }
+
+    /**
+     * Methode, um die Laenge der HTML-Liste zu erhalten.
+     * @return Laenge der Liste
+     */
+    public int GetHTMLElementsListSize()
+    {
+        return htmlElementsList.size();
+    }
+
+    /**
+     * Methode zur Erweiterung des HTML-Strings: Element wird in Liste an Cursor-Position eingefuegt, die Position um
+     * eins erhoeht und anschliessend der String mithilfe der Liste neu generiert.
+     * Voraussetzung hierfuer ist eine Laenge von unter 101 Elementen (da Cursor hier inklusive).
      * @param extension Zu erweiternder Ausdruck
      */
     public void ExtendHTML(String extension) {
@@ -112,7 +175,18 @@ public class Model {
     }
 
     /**
-     * Methode zur Verkürzung des Ausdrucks-Strings: letztes Element wird aus der Liste entfernt und mithilfe der Liste der String neu generiert.
+     * Methode zur Generierung des HTML-Strings aus der Liste.
+     * @return Generierte Expression
+     */
+    public String GenerateNewHTML() {
+        return htmlElementsList.stream().reduce("", (a, b) -> a + b);
+    }
+
+    /**
+     * Methode zur Verkürzung des Ausdrucks-Strings: Element vor dem Cursor wird aus der Liste entfernt, die Cursor-
+     * Position um eins verringert und der String mithilfe der Liste neu generiert.
+     * Voraussetzung hierfuer ist eine Laenge von ueber einem Element, da Cursor als ein Element eine de facto leere
+     * Liste darstellt.
      */
     public void ShortenHTML() {
         if(htmlElementsList.size() > 1) {
@@ -123,7 +197,7 @@ public class Model {
     }
 
     /**
-     * Methode zur Leerung des HTML-Strings und seiner Liste, wobei der Cursor an dne Zeilenanfang zurueckkehrt.
+     * Methode zur Leerung des HTML-Strings und seiner Liste, wobei der Cursor an den Zeilenanfang zurueckkehrt.
      */
     public void ClearHTML() {
         html = "";
@@ -132,12 +206,13 @@ public class Model {
     }
 
     /**
-     * Methode zur Leerung des HTML-Strings und seiner Liste ohne Cursor zur Ergebnisanzeige.
+     * Methode zur Leerung des HTML-Strings und seiner Liste ohne Cursor.
+     * Verwendet zur Ergebnisanzeige.
      */
     public void ClearHTMLSolution() {
         html = "";
         htmlElementsList.clear();
-        // Um Ergebnis an erster Stelle einzufuegen, muss die Einfuegeposition zurueckgesetzt werden
+        // Um das Ergebnis an erster Stelle einzufuegen, muss die Einfuegeposition zurueckgesetzt werden
         cursorPosition = 0;
     }
 
@@ -176,97 +251,9 @@ public class Model {
         {
             // Antwort setzen
             ans = gottenAnswer;
-            // In Anzeige einfuegen
+            // In Anzeige einfuegen, wobei ein Punkt durch ein Komma ersetzt wird
             ExtendHTML(Double.toString(ans).replace(".",","));
         }
-    }
-
-    /**
-     * Getter für die HTML-String-Variable, die den HTML-Ausdruck in Textform enthält.
-     * Dabei werden die umschliessenden <HTML>-Tags mit eingefuegt.
-     * @return String mit HTML-Ausdruck
-     */
-    public String GetHTMLExpression() {
-        return "<html><pre style=\"font-family: Consolas; font-size: " + CalculateSize() + "px; color: "
-                + colorExtension + ";\">" + html + "</pre></html>";
-    }
-
-    /**
-     * Methode, um die aktuelle Schriftgroesse in Abhaengigkeit von der Fenstergroeße zu berechnen.
-     * @return Neue Schriftgroesse
-     */
-    public int CalculateSize()
-    {
-        return Math.round(35 * view.GetWindowHeight() / 300);
-    }
-
-    /**
-     * Methode, um die Laenge der HTML-Liste zu erhalten.
-     * @return Laenge der Liste
-     */
-    public int GetHTMLElementsListSize()
-    {
-        return htmlElementsList.size();
-    }
-
-    /**
-     * Getter für die Expression-Variable, die den normalen Ausdruck in Textform enthält.
-     * @return String mit Ausdruck
-     */
-    public String GetExpression() {
-        return expression;
-    }
-
-    /**
-     * Methode zur Generierung des Expression-Strings aus der Liste.
-     * @return Generierte Expression
-     */
-    public String GenerateNewExpression() {
-        return expressionsElementsList.stream().reduce("", (a, b) -> a + b);
-    }
-
-    /**
-     * Methode zur Generierung des HTML-Strings aus der Liste.
-     * @return Generierte Expression
-     */
-    public String GenerateNewHTML() {
-        return htmlElementsList.stream().reduce("", (a, b) -> a + b);
-    }
-
-    /**
-     * Methode, um den Cursor um eine Position nach links zu verschieben.
-     */
-    public void CursorLeft()
-    {
-        if(cursorPosition > 0)
-        {
-            htmlElementsList.remove(cursorPosition);
-            cursorPosition -= 1;
-            htmlElementsList.add(cursorPosition, cursorSymbolHTML);
-            expression = GenerateNewExpression();
-            html = GenerateNewHTML();
-        }
-    }
-
-    /**
-     * Methode, um den Cursor um eine Position nach rechts zu verschieben.
-     */
-    public void CursorRight() {
-        if (cursorPosition < htmlElementsList.size() - 1) {
-            htmlElementsList.remove(cursorPosition);
-            cursorPosition += 1;
-            htmlElementsList.add(cursorPosition, cursorSymbolHTML);
-            html = GenerateNewHTML();
-        }
-    }
-
-    /**
-     * Methode, um den Cursor wieder in den Ursprungszustand zu versetzen.
-     */
-    public void CursorBack() {
-        cursorPosition = 0;
-        htmlElementsList.add(cursorSymbolHTML);
-        html = GenerateNewHTML();
     }
 
     /**
@@ -279,22 +266,56 @@ public class Model {
     }
 
     /**
-     * Methode, um den Zustand des Taschenrechners zu erhalten.
+     * Methode, um den Cursor um eine Position nach links zu verschieben.
      */
-    public CalculatorState GetState() {
-        return state;
+    public void CursorLeft()
+    {
+        // Falls Cursor noch nicht ganz links
+        if(cursorPosition > 0)
+        {
+            // Cursor-Element aus HTML-Liste entfernen
+            htmlElementsList.remove(cursorPosition);
+            // Position aktualisieren
+            cursorPosition -= 1;
+            // Cursor-Symbol an neuer Position in HTML-Liste einfuegen
+            htmlElementsList.add(cursorPosition, cursorSymbolHTML);
+            // HTML-String neu generieren
+            html = GenerateNewHTML();
+        }
     }
 
     /**
-     * Methode, um den Zustand des Taschenrechners zu setzen.
+     * Methode, um den Cursor um eine Position nach rechts zu verschieben.
      */
-    public void SetState(CalculatorState newState) {
-        state = newState;
+    public void CursorRight() {
+        // Falls Cursor noch nicht ganz rechts
+        if (cursorPosition < htmlElementsList.size() - 1) {
+            // Cursor-Element aus HTML-Liste entfernen
+            htmlElementsList.remove(cursorPosition);
+            // Position aktualisieren
+            cursorPosition += 1;
+            // Cursor-Symbol an neuer Position in HTML-Liste einfuegen
+            htmlElementsList.add(cursorPosition, cursorSymbolHTML);
+            // HTML-String neu generieren
+            html = GenerateNewHTML();
+        }
+    }
+
+    /**
+     * Methode, um den Cursor wieder in den Ursprungszustand zu versetzen.
+     */
+    public void CursorBack() {
+        // Position auf 0
+        cursorPosition = 0;
+        // Am HTML-Listen-Beginn Symbol einfuegen
+        htmlElementsList.add(cursorSymbolHTML);
+        // HTML-String neu generieren
+        html = GenerateNewHTML();
     }
 
     /**
      * Methode, um das korrekte Exponierungszeichen hinzuzufuegen.
-     * Diese ist noetig, damit man nicht beim Loeschen bspw. zwei "Hoch" und kein "Runter" hat.
+     * Diese ist noetig, damit man bspw. beim Loeschen nicht zwei "Hoch" und kein "Runter" hat.
      */
     public void AddExponent() {
         // Falls letztes "Hoch" vor letztem "Runter": runter
@@ -398,14 +419,18 @@ public class Model {
      * @return Wahrheitswert, ob aktiv
      */
     public boolean ExtractDarkmode() {
+        // String erstellen
         String data = "";
+        // Datei finden
         file = new File(System.getenv("APPDATA") + "\\Calculator\\settings.txt");
         try {
+            // Datei auslesen
             fileScanner = new Scanner(file);
             data = fileScanner.nextLine();
         } catch (FileNotFoundException e) {
             // Keine Fehlerbehandlung noetig: wird in der View gehandelt
         }
+        // Je nach Dateiinhalt: Rueckgabe
         if (data.equals("Darkmode: on")) {
             return true;
         }
@@ -417,7 +442,11 @@ public class Model {
         }
     }
 
-
+    /**
+     * Methode, um JSON-Informationen einer Webseite zu speichern.
+     * @param url URL-Daten der Webseite
+     * @return Resultierendes JSON-Objekt
+     */
     private JSONObject ReadJSONFromUrl(String url) {
         InputStream is;
         try {
@@ -453,11 +482,16 @@ public class Model {
         return sb.toString();
     }
 
+    /**
+     * Methode, um die Waehrungsdaten aus dem JSON als String zu erhalten.
+     * @return String der Waehrungsdaten
+     */
     public String GetCurrenciesAsString() {
+        // JSON speichern
         JSONObject json = ReadJSONFromUrl("https://www.currency-api.com/rates?base=USD");
+        // Umwandeln und zurueckgeben
         return json.toString();
     }
-
 
     /**
      * Methode zur Setzung der Referenzen auf View und Controller in Main.

@@ -5,6 +5,6 @@ package Calculator.model;
  * Programmtechnisch ans Model angegliedert.
  */
 public enum CalculatorState {
-    // Zustaende: waehrend der Loesungsanzeige, waehrend der Eingabe
-    SOLUTION, CALCULATION
+    // Zustaende: waehrend der Eingabe, waehrend der Ergebnisanzeige
+    CALCULATION, SOLUTION
 }

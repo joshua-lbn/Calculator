@@ -1,4 +1,4 @@
-package Calculator.view.viewVolume;
+package Calculator.view.volume;
 
 import javax.swing.*;
 /*

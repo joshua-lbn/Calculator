@@ -1,11 +1,10 @@
-package Calculator.view.general;
+package Calculator.view.numeralSystem;
 import Calculator.controller.Controller;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Arrays;
 
 public class ViewNumeralSystem extends JRootPane {
     private javax.swing.JPanel JPanel = new javax.swing.JPanel();

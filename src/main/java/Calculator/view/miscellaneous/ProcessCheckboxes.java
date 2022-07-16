@@ -1,4 +1,4 @@
-package Calculator.view.general;
+package Calculator.view.miscellaneous;
 
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;

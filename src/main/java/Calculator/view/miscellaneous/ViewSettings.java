@@ -1,4 +1,4 @@
-package Calculator.view.general;
+package Calculator.view.miscellaneous;
 
 import Calculator.view.main.View;
 

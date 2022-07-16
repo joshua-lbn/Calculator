@@ -1,6 +1,5 @@
-package Calculator.view.viewVolume;
+package Calculator.view.volume;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import Calculator.controller.Controller;
 
@@ -21,22 +20,22 @@ public class ProcessVolumeInput implements java.awt.event.ActionListener {
         controller = c;
     }
     public void actionPerformed(ActionEvent e) {
-        if (v instanceof viewCone) {
+        if (v instanceof ViewCone) {
             if (e.getSource() == v.getCalculate()) {
                 controller.VolumeCalculateCone();
             }
         }
-        else if (v instanceof viewCuboid) {
+        else if (v instanceof ViewCuboid) {
             if (e.getSource() == v.getCalculate()) {
                 controller.VolumeCalculateCuboid();
             }
         }
-        else if (v instanceof viewCylinder) {
+        else if (v instanceof ViewCylinder) {
             if (e.getSource() == v.getCalculate()) {
                 controller.VolumeCalculateCylinder();
             }
         }
-        else if (v instanceof viewSphere) {
+        else if (v instanceof ViewSphere) {
             if (e.getSource() == v.getCalculate()) {
                 controller.VolumeCalculateSphere();
             }

@@ -1,7 +1,6 @@
-package Calculator.view.general;
+package Calculator.view.miscellaneous;
 
 import javax.swing.*;
-import javax.swing.plaf.basic.BasicScrollBarUI;
 import java.awt.*;
 
 public class ViewHelp extends JRootPane {

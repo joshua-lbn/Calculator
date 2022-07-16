@@ -3,13 +3,13 @@ package Calculator.view.main;
 import Calculator.controller.Controller;
 import Calculator.model.Model;
 import Calculator.view.currency.ViewCurrency;
-import Calculator.view.general.ViewSettings;
-import Calculator.view.general.ViewHelp;
-import Calculator.view.viewVolume.viewCone;
-import Calculator.view.viewVolume.viewCuboid;
-import Calculator.view.general.ViewNumeralSystem;
-import Calculator.view.viewVolume.viewCylinder;
-import Calculator.view.viewVolume.viewSphere;
+import Calculator.view.miscellaneous.ViewSettings;
+import Calculator.view.miscellaneous.ViewHelp;
+import Calculator.view.volume.ViewCone;
+import Calculator.view.volume.ViewCuboid;
+import Calculator.view.numeralSystem.ViewNumeralSystem;
+import Calculator.view.volume.ViewCylinder;
+import Calculator.view.volume.ViewSphere;
 import Calculator.view.calculator.ViewCalculator;
 
 import javax.swing.*;
@@ -48,10 +48,10 @@ public class View extends JFrame {
     private ViewHelp viewHelp;
     private ViewCalculator viewCalculator;
     private ViewNumeralSystem viewNumeralSystem;
-    private viewCone viewCone;
-    private viewCuboid viewCuboid;
-    private viewCylinder viewCylinder;
-    private viewSphere viewSphere;
+    private ViewCone viewCone;
+    private ViewCuboid viewCuboid;
+    private ViewCylinder viewCylinder;
+    private ViewSphere viewSphere;
     private ViewCurrency viewCurrency;
     // Darkmode-Zustand
     boolean darkmodeActive;
@@ -494,10 +494,10 @@ public class View extends JFrame {
         viewHelp = new ViewHelp();
         viewCalculator = new ViewCalculator(model, this, controller);
         viewNumeralSystem = new ViewNumeralSystem();
-        viewCone = new viewCone(controller);
-        viewCuboid = new viewCuboid(controller);
-        viewCylinder = new viewCylinder(controller);
-        viewSphere = new viewSphere(controller);
+        viewCone = new ViewCone(controller);
+        viewCuboid = new ViewCuboid(controller);
+        viewCylinder = new ViewCylinder(controller);
+        viewSphere = new ViewSphere(controller);
         viewCurrency = new ViewCurrency(this);
         // Fenster auf Taschenrechner setzen
         SetCalculator();
