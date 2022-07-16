@@ -61,10 +61,14 @@ public class ViewNumeralSystem extends JRootPane {
                 //Feld zum Speichern des übergegeben Feldes
                 String[] ConvertedNumbers = new String[2];
                 //Uebergabe des Wertes an den controller
-                ConvertedNumbers = controller.DectoHex_Bin(DecTextField.getText().replace(',','.'));
+                ConvertedNumbers = controller.DectoHex_Bin(DecTextField.getText().replace(',', '.'));
                 //Ausgabe des Feldes
-                HexaTextField.setText(ConvertedNumbers[0]);
-                BinTextField.setText(ConvertedNumbers[1]);
+                if (ConvertedNumbers[0] == "Fehler") {
+                    DecTextField.setText("Ung\u00FCltige Eingabe");
+                } else {
+                    HexaTextField.setText(ConvertedNumbers[0]);
+                    BinTextField.setText(ConvertedNumbers[1]);
+                }
             }
         });
         convertHex.addActionListener(new ActionListener() {
@@ -84,7 +88,7 @@ public class ViewNumeralSystem extends JRootPane {
                 String BinString = BinTextField.getText();
                 String ConvertedNumbers[] = new String[2];
                 ConvertedNumbers = controller.BintoDec_Hex(BinString);
-                if (ConvertedNumbers[0] == "Ung\u00FCltige Eingabe") {
+                if (ConvertedNumbers[0] == "Fehler") {
                     BinTextField.setText("Ung\u00FCltige Eingabe");
                 } else {
                     DecTextField.setText(ConvertedNumbers[0]);
