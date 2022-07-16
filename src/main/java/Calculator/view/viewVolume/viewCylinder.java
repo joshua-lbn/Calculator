@@ -1,6 +1,5 @@
 package Calculator.view.viewVolume;
 
-
 import javax.swing.*;
 import java.awt.*;
 import Calculator.controller.Controller;
@@ -16,16 +15,12 @@ public class viewCylinder extends JRootPane implements ViewVolume{
     private javax.swing.JLabel height = new javax.swing.JLabel();
     private javax.swing.JLabel volume = new javax.swing.JLabel();
     private javax.swing.JLabel volumeCalculate = new javax.swing.JLabel();
-
     private javax.swing.JLabel spacer1 = new javax.swing.JLabel();
     private javax.swing.JLabel spacer2 = new javax.swing.JLabel();
 
     public viewCylinder(Controller c) {
         processVolumeInput = new ProcessVolumeInput(this, c);
-        //setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         jpanel1.setLayout(new GridLayout(3, 3));
-
-        //jpanel1 = new javax.swing.JPanel();
         radius = new javax.swing.JLabel("   Radius:");
         radiusTextField = new javax.swing.JTextField();
         spacer1 = new javax.swing.JLabel();
@@ -35,7 +30,6 @@ public class viewCylinder extends JRootPane implements ViewVolume{
         volume = new javax.swing.JLabel("   Volumen");
         volumeCalculate = new javax.swing.JLabel();
         spacer2 = new javax.swing.JLabel();
-        //ggf. noch set Size
         jpanel1.add(radius);
         jpanel1.add(radiusTextField);
         jpanel1.add(spacer1);
@@ -46,12 +40,9 @@ public class viewCylinder extends JRootPane implements ViewVolume{
         jpanel1.add(volumeCalculate);
         jpanel1.add(spacer2);
         this.getContentPane().add(jpanel1);
-        //pack();
         setVisible(true);
         setSize(600, 300);
         calculate.addActionListener(processVolumeInput);
-
-        //this.pack();
         this.setVisible(true);
     }
 
@@ -119,21 +110,5 @@ public class viewCylinder extends JRootPane implements ViewVolume{
 
     public void VolumeOutput(String volume) {
         volumeCalculate.setText(volume);
-    }
-
-    public void Calculate() {
-            double volumeRadius = Double.parseDouble(radiusTextField.getText().replace(',', '.'));
-            double volumeHeight = Double.parseDouble(heightTextField.getText().replace(',', '.'));
-            if (volumeRadius <= 0 || volumeHeight <= 0) {
-                volumeCalculate.setText("ungültige Eingabe");
-            } else {
-                double volumeResult = Math.PI * volumeRadius * volumeRadius * volumeHeight;
-                System.out.println("" + volumeResult);
-                double volume = (double) (Math.round(volumeResult * 100)) / 100;
-                String volumeString = (Double.toString(volume)).replace('.', ',');
-                volumeCalculate.setText(volumeString);
-                //volumeCalculate.setText("" + (double) (Math.round(volumeResult * 100)) / 100);
-            }
-
     }
 }

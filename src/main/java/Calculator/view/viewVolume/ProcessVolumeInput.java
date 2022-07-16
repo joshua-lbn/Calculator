@@ -2,19 +2,20 @@ package Calculator.view.viewVolume;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
-import Calculator.view.viewVolume.viewCone;
-import Calculator.view.viewVolume.viewCylinder;
 import Calculator.controller.Controller;
-import Calculator.view.main.View;
 
+/*
+ * ProcessVolumeInput Klasse zum Auswerten der Interaktion mit der grafischen Volumenoberfläche.
+ */
 public class ProcessVolumeInput implements java.awt.event.ActionListener {
-    private View view;
     private Controller controller;
-    private viewCone viewCone;
-    private viewCone viewCuboid;
-    private viewCone viewCylinder;
     private ViewVolume v;
-    //private View view;
+
+    /**
+     * Konstruktor: übergebene ViewVolume-Instanz und Controller-Instanz speichern.
+     * @param vV ViewVolume-Instanz
+     * @param c Controller-Instanz
+     */
     public ProcessVolumeInput(ViewVolume vV, Controller c) {
         v = vV;
         controller = c;

@@ -519,22 +519,6 @@ public class View extends JFrame {
         addComponentListener(new ProcessResize(this));
     }
 
-    public void Calculate(int number) {
-        switch(number) {
-            case 1:
-                viewCone.Calculate();
-                break;
-            case 2:
-                viewCuboid.Calculate();
-                break;
-            case 3:
-                viewCylinder.Calculate();
-                break;
-            case 4:
-                viewSphere.Calculate();
-                break;
-        }
-    }
     public String GetConeRadius() {
         return viewCone.GetTextRadius();
     }

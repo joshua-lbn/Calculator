@@ -17,17 +17,13 @@ public class viewCuboid extends JRootPane implements ViewVolume{
     private javax.swing.JLabel height = new javax.swing.JLabel();
     private javax.swing.JLabel volume = new javax.swing.JLabel();
     private javax.swing.JLabel volumeCalculate = new javax.swing.JLabel();
-
     private javax.swing.JLabel spacer1 = new javax.swing.JLabel();
     private javax.swing.JLabel spacer2 = new javax.swing.JLabel();
     private javax.swing.JLabel spacer3 = new javax.swing.JLabel();
 
     public viewCuboid (Controller c) {
         processVolumeInput = new ProcessVolumeInput(this, c);
-        //setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         jpanel1.setLayout(new GridLayout(4,3));
-
-        //jpanel1 = new javax.swing.JPanel();
         length = new javax.swing.JLabel("   Länge:");
         lengthTextField = new javax.swing.JTextField();
         spacer1 = new javax.swing.JLabel();
@@ -40,7 +36,6 @@ public class viewCuboid extends JRootPane implements ViewVolume{
         volume = new javax.swing.JLabel("   Volumen");
         volumeCalculate = new javax.swing.JLabel();
         spacer3 = new javax.swing.JLabel();
-        //ggf. noch set Size
         jpanel1.add(length);
         jpanel1.add(lengthTextField);
         jpanel1.add(spacer1);
@@ -54,10 +49,8 @@ public class viewCuboid extends JRootPane implements ViewVolume{
         jpanel1.add(volumeCalculate);
         jpanel1.add(spacer3);
         this.getContentPane().add(jpanel1);
-        //pack();
         setVisible(true);
         setSize(600,300);
-        //this.pack();
         this.setVisible(true);
         calculate.addActionListener(processVolumeInput);
     }
@@ -143,21 +136,4 @@ public class viewCuboid extends JRootPane implements ViewVolume{
         volumeCalculate.setText(volume);
     }
 
-    public void Calculate() {
-        System.out.println("TestCuboid");
-        System.out.print(lengthTextField.getText());
-        double volumeLength = Double.parseDouble(lengthTextField.getText().replace(',','.'));
-        double volumeWidth = Double.parseDouble(widthTextField.getText().replace(',','.'));
-        double volumeHeight = Double.parseDouble(heightTextField.getText().replace(',','.'));
-        if (volumeLength <= 0 || volumeWidth <= 0 || volumeHeight <= 0) {
-            volumeCalculate.setText("Ung\u00FCltige Eingabe");
-        }
-        else {
-            double volumeResult = volumeLength * volumeWidth * volumeHeight;
-            double volume = (double) (Math.round(volumeResult * 100)) / 100;
-            String volumeString = (Double.toString(volume)).replace ('.', ',');
-            volumeCalculate.setText(volumeString);
-            //volumeCalculate.setText("" + (double) (Math.round(volumeResult * 100)) / 100);
-        }
-    }
 }

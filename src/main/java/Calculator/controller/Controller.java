@@ -159,23 +159,9 @@ public class Controller {
         view.UpdateCalculator();
     }
 
-    public void VolumeCalculate(int nummer) {
-        switch (nummer) {
-            case 1:
-                view.Calculate(1);
-                break;
-            case 2:
-                view.Calculate(2);
-                break;
-            case 3:
-                view.Calculate(3);
-                break;
-            case 4:
-                view.Calculate(4);
-                break;
-        }
-    }
-
+    /**
+     * Methode zur Berechnung des Volumens eines Kegels.
+     */
     public void VolumeCalculateCone() {
         String radius = view.GetConeRadius();
         String height = view.GetConeHeight();
@@ -183,19 +169,18 @@ public class Controller {
         double volumeHeight = Double.parseDouble(height.replace(',','.'));
         if (volumeRadius <= 0 || volumeHeight <= 0) {
             view.VolumeOutput(1,"Ung\u00FCltige Eingabe");
-            //volumeCalculate.setText("ungültige Eingabe");
         }
         else {
             double volumeResult = (1.0/3.0) * Math.PI * volumeRadius * volumeRadius * volumeHeight;
-            System.out.println(""+volumeResult);
             double volume = (double) (Math.round(volumeResult * 100)) / 100;
             String volumeString = (Double.toString(volume)).replace ('.', ',');
             view.VolumeOutput(1,volumeString);
-            //volumeCalculate.setText(volumeString);
-            //volumeCalculate.setText("" + (double) (Math.round(volumeResult * 100)) / 100);
         }
     }
 
+    /**
+     * Methode zur Berechnung des Volumens eines Quaders.
+     */
     public void VolumeCalculateCuboid() {
         String length = view.GetCuboidLength();
         String width = view.GetCuboidWidth();
@@ -211,10 +196,12 @@ public class Controller {
             double volume = (double) (Math.round(volumeResult * 100)) / 100;
             String volumeString = (Double.toString(volume)).replace ('.', ',');
             view.VolumeOutput(2,volumeString);
-            //volumeCalculate.setText("" + (double) (Math.round(volumeResult * 100)) / 100);
         }
     }
 
+    /**
+     * Methode zur Berechnung des Volumens eines Zylinders.
+     */
     public void VolumeCalculateCylinder() {
         String radius = view.GetCylinderRadius();
         String height = view.GetCylinderHeight();
@@ -222,17 +209,20 @@ public class Controller {
         double volumeHeight = Double.parseDouble(height.replace(',', '.'));
         if (volumeRadius <= 0 || volumeHeight <= 0) {
             view.VolumeOutput(3,"Ung\u00FCltige Eingabe");
-        } else {
+        }
+        else {
             double volumeResult = Math.PI * volumeRadius * volumeRadius * volumeHeight;
             System.out.println("" + volumeResult);
             double volume = (double) (Math.round(volumeResult * 100)) / 100;
             String volumeString = (Double.toString(volume)).replace('.', ',');
             view.VolumeOutput(3,volumeString);
-            //volumeCalculate.setText("" + (double) (Math.round(volumeResult * 100)) / 100);
         }
 
     }
 
+    /**
+     * Methode zur Berechnung des Volumens einer Kugel.
+     */
     public void VolumeCalculateSphere() {
         String radius = view.GetSphereRadius();
         double volumeRadius = Double.parseDouble(radius.replace(',','.'));
@@ -245,7 +235,6 @@ public class Controller {
             double volume = (double) (Math.round(volumeResult * 100)) / 100;
             String volumeString = (Double.toString(volume)).replace ('.', ',');
             view.VolumeOutput(4,volumeString);
-            //volumeCalculate.setText("" + (double) (Math.round(volumeResult * 100)) / 100);
         }
     }
 
