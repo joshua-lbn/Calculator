@@ -1,14 +1,18 @@
 package Calculator.view.main;
 
+// Java-Imports
+import java.awt.event.ActionListener;
+
 /*
- * ProcessButtonInput-Klasse zum Auswerten der Interaktionen mit der grafischen Hauptoberflaeche.
+ * ProcessMenuInput-Klasse zum Auswerten der Menue-Interaktionen mit der grafischen Hauptoberflaeche.
  * Programmtechnisch an die View-Klasse gegliedert.
  */
-public class ProcessMenuInput implements java.awt.event.ActionListener {
+public class ProcessMenuInput implements ActionListener {
+    // Referenz auf die View-Instanz
     private View view;
 
     /**
-     * Konstruktor: übergebene View-Instanz speichern.
+     * Konstruktor: uebergebene View-Instanz speichern.
      * @param v View-Instanz
      */
     public ProcessMenuInput(View v) {
@@ -16,12 +20,12 @@ public class ProcessMenuInput implements java.awt.event.ActionListener {
     }
 
     /**
-     * Methode, welche bei Druecken auf Menueeintraege aufgerufen wird.
+     * Methode, welche bei Druecken auf Menue-Eintraege aufgerufen wird.
      * @param e Das "Event" bzw. Ereignis, welches verarbeitet werden soll
      */
     public void actionPerformed(java.awt.event.ActionEvent e) {
         if (e.getSource() == view.GetJMenuItemSettings()) {
-            // Die jeweilige Methode in der View ausfuehren
+            // Die Anzeige ueber Methoden in der View aktualisieren
             view.SetSettings();
         }
         else if (e.getSource() == view.GetJMenuItemHelp()) {
@@ -42,21 +46,9 @@ public class ProcessMenuInput implements java.awt.event.ActionListener {
         else if (e.getSource() == view.GetJMenuItemSphere()) {
             view.SetVolume(4);
         }
-        /*
-        else if (e.getSource() == view.GetJMenuItemDecimal()) {
-            view.SetNumeralSystem();
-        }
-
-         */
         else if (e.getSource() == view.GetJMenuItemOpenNumeralSystem()) {
             view.SetNumeralSystem();
         }
-        /*
-        else if (e.getSource() == view.GetJMenuItemBinary()) {
-            view.SetNumeralSystem();
-        }
-
-         */
         else if (e.getSource() == view.GetJMenuItemCurrency()) {
             view.SetCurrency();
         }

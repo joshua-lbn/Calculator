@@ -2,14 +2,18 @@ package Calculator.model;
 
 // Java-Imports
 import java.io.*;
+import java.math.BigDecimal;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.URL;
-import java.nio.charset.Charset;
 import java.util.LinkedList;
 import java.util.Scanner;
 // Import weiterer Programmklassen
 import Calculator.controller.Controller;
 import Calculator.view.main.View;
-// Import des JSON-Packages
+// Imports des JSON-Packages
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
@@ -443,54 +447,48 @@ public class Model {
     }
 
     /**
-     * Methode, um JSON-Informationen einer Webseite zu speichern.
-     * @param url URL-Daten der Webseite
-     * @return Resultierendes JSON-Objekt
+     * Methode, um Waehrungsumrechnungskurse der EZB zu erhalten.
+     * @param code Dreistelliger Waehrungscode, welche gegenueber dem Euro verglichen wird
+     * @return Umrechnungskurs als Double
      */
-    private JSONObject ReadJSONFromUrl(String url) {
-        InputStream is;
+    public Double GetExchangeRate(String code) {
         try {
-            is = new URL(url).openStream();
+            // URL anfragen
+            URL url = new URL("https://sdw-wsrest.ecb.europa.eu/service/data/EXR/D." + code + ".EUR.SP00.A?" +
+                    "lastNObservations=1&format=jsondata");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.connect();
+            // Pruefen, ob Anfrage durchgegangen
+            int responsecode = conn.getResponseCode();
+            if (responsecode != 200) {
+                return null;
+            } else {
+                // JSON-Datei einlesen
+                String data = "";
+                Scanner scanner = new Scanner(url.openStream());
+                while (scanner.hasNext()) {
+                    data = data + scanner.nextLine();
+                }
+                scanner.close();
+                // Umrechnungskurs extrahieren
+                JSONObject dataObject = new JSONObject(data);
+                JSONArray dataSets = (JSONArray) dataObject.get("dataSets");
+                JSONObject object0_1 = (JSONObject) dataSets.get(0);
+                JSONObject series = (JSONObject) object0_1.get("series");
+                JSONObject object00000 = (JSONObject) series.get("0:0:0:0:0");
+                JSONObject observations = (JSONObject) object00000.get("observations");
+                JSONArray object0_2 = (JSONArray) observations.get("0");
+                BigDecimal exchangeRate = (BigDecimal) object0_2.get(0);
+                return exchangeRate.doubleValue();
+            }
+        } catch (MalformedURLException e) {
+            return null;
+        } catch (ProtocolException e) {
+            return null;
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            return null;
         }
-        try {
-            BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
-            String jsonText = ReadAll(rd);
-            JSONObject json = new JSONObject(jsonText);
-            return json;
-        } finally {
-            try {
-                is.close();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-    }
-
-    private String ReadAll(Reader rd) {
-        StringBuilder sb = new StringBuilder();
-        int cp;
-        while (true) {
-            try {
-                if (!((cp = rd.read()) != -1)) break;
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            sb.append((char) cp);
-        }
-        return sb.toString();
-    }
-
-    /**
-     * Methode, um die Waehrungsdaten aus dem JSON als String zu erhalten.
-     * @return String der Waehrungsdaten
-     */
-    public String GetCurrenciesAsString() {
-        // JSON speichern
-        JSONObject json = ReadJSONFromUrl("https://www.currency-api.com/rates?base=USD");
-        // Umwandeln und zurueckgeben
-        return json.toString();
     }
 
     /**

@@ -1,110 +1,104 @@
 package Calculator.view.currency;
 
+// Java-Imports
 import javax.swing.*;
 import java.awt.*;
-import java.lang.*;
-import java.util.StringJoiner;
-import java.io.*;
-import java.net.*;
-import java.nio.charset.*;
-
+import java.math.BigDecimal;
+import java.util.Objects;
+// Imports weiterer Programmklassen
 import Calculator.view.main.View;
-import org.json.*;
 
 /**
  * ViewCurrencyOld-Klasse mit Waehrungsunterfenster.
  * Verwendet, um Abstraktion zwischen View-Oberklasse und den Unter-Darstellungen zu schaffen.
  */
 public class ViewCurrency extends JRootPane {
-    // Strings
-    private String[] c;
-    private String[] c01;
-    private String[] c1;
-    private String[] c2;
-    private String[] c3;
-    private String[] c31;
+    // Referenzen auf weitere Instanzen
+    private View view;
     // Graphische Oberflaeche
+    private JLabel label1;
     private JComboBox eingabeCB;
     private JComboBox ausgabeCB;
-    private JLabel label1;
     private JTextField textInput;
-    // Eingabeverarbeitung
+    // Eingabeverarbeitung des textInput-JTextField und der eingabeCB- und ausgabeCB-JComboBoxes
     private ProcessCurrencyInput processCurrencyInput;
-    // JSON
-    String json;
-    View view;
 
     /**
-     * Konstruktor:
+     * Konstruktor: Referenz auf View-Instanz setzen, Waehrungsarray initialisieren, Oberflaeche erstellen und
+     * Eingabeverarbeitung hinzufuegen.
      */
     public ViewCurrency (View v)  {
+        // Referenz setzen
         view = v;
-        json = view.GetCurrenciesAsString();
-        // Arrays initialisieren
-        c1 = new String[json.length()-42];
-        c2 = new String[3];
-        c3 = new String[32];
-        c31 = new String[c3.length];
-        // Arrays zusammenfuehren
-        StringJoiner joiner1 = new StringJoiner("");
-        for (int i = 0; i < json.length()-42; i++) {
-            char u;
-            u = json.charAt(i + 29);
-            c1[i] = String.valueOf(u);
-        }
-        for (int i = 0; i < json.length()-43; i++) {
-            joiner1.add(c1[i]);
-        }
-        String str1 = joiner1.toString();
-        for (int n = 0; n < c3.length; n++) {
-            StringJoiner joiner2 = new StringJoiner("");
-            for (int i = 0; i < c2.length; i++) {
-                char p;
-                p = str1.charAt(str1.indexOf("\"") + i + 1);
-                c2[i] = String.valueOf(p);
-            }
-            for (int i = 0; i < c2.length; i++) {
-                joiner2.add(c2[i]);
-            }
-            String str2 = joiner2.toString();
-            c3[n] = str2;
-            int Position = str1.indexOf("\"");
-            str1 = str1.substring(0,0) + str1.substring(Position+6);
-        }
-        for (int e = 0; e < c3.length; e++) {
-            c31[e] = c3[e];
-        }
-        // Oberflaeche erstellen
-        eingabeCB = new JComboBox(c3);
-        eingabeCB.setEditable(true);
-        this.getContentPane().add(eingabeCB, BorderLayout.WEST );
-        ausgabeCB = new JComboBox(c31);
-        ausgabeCB.setEditable(true);
-        this.getContentPane().add(ausgabeCB, BorderLayout.EAST );
-        textInput = new JTextField();
+        // Array mit Waehrungen erstellen
+        String[] currencyNames = new String[]{"Argentinischer Peso", "Australischer Dollar", "Lew",
+                "Brasilianischer Real", "Kanadischer Dollar", "Schweizer Franken", "Chinesischer Renminbi Yuan",
+                "Zypern-Pfund", "Tschechische Krone", "D\u00E4nische Krone", "Algerischer Dinar", "Estnische Krone",
+                "Pfund Sterling", "Hongkong-Dollar", "Kroatische Kuna", "Forint", "Indonesische Rupiah",
+                "Neuer Schekel", "Indische Rupie", "Isl\u00E4ndische Krone", "Yen", "S\u00FCdkoreanischer Won",
+                "Litas", "Lettische Lats", "Marokkanischer Dirham", "Maltesische Lira", "Mexikanischer Peso",
+                "Malaysischer Ringgit", "Norwegische Krone", "Neuseeland-Dollar", "Philippinischer Peso",
+                "Zloty", "Rum\u00E4nischer Leu", "Russischer Rubel", "Schwedische Krone", "Singapur-Dollar",
+                "Slowenischer Tolar", "Slowakische Krone", "Baht", "Neue Lira", "Taiwan-Dollar", "US-Dollar",
+                "S\u00FCdafrikanischer Rand"};
+        // Eingabeverarbeitungsinstanz kreieren
         processCurrencyInput = new ProcessCurrencyInput(this);
-        textInput.addActionListener(processCurrencyInput);
+        // Oberflaeche erstellen
+        eingabeCB = new JComboBox(currencyNames);
+        eingabeCB.setEditable(false);
+        eingabeCB.addPropertyChangeListener(processCurrencyInput);
+        getContentPane().add(eingabeCB, BorderLayout.WEST);
+        ausgabeCB = new JComboBox(currencyNames);
+        ausgabeCB.setEditable(false);
+        ausgabeCB.addPropertyChangeListener(processCurrencyInput);
+        getContentPane().add(ausgabeCB, BorderLayout.EAST);
+        textInput = new JTextField();
+        textInput.getDocument().addDocumentListener(processCurrencyInput);
+        getContentPane().add(textInput, BorderLayout.NORTH);
         label1 = new JLabel("Umgerechnete W\u00E4hrung");
-        this.getContentPane().add(textInput, BorderLayout.NORTH);
-        this.getContentPane().add(label1, BorderLayout.CENTER);
+        getContentPane().add(label1, BorderLayout.CENTER);
     }
 
-    public JTextField GetTextInput() {
-        return textInput;
-    }
-
-    public double ConvertCurrency(double input) {
-        return view.ConvertCurrency(input, (String) eingabeCB.getSelectedItem(), (String) ausgabeCB.getSelectedItem());
-    }
-
-    public void SetResult(double output) {
-        label1.setText(Double.toString(output));
+    /**
+     * Methode, um die Waehrungsumrechnung anzustossen.
+     */
+    protected void ConvertCurrency() {
+        Double input;
+        try {
+            // Input in Double umzuwandeln versuchen
+            input = Double.parseDouble(textInput.getText().replace(",", "."));
+        } catch (NumberFormatException e) {
+            // Bei Umwandlungsfehler: Fehler ausgeben
+            label1.setText("Fehlerhafte Eingabe");
+            return;
+        }
+        if(input < 0) {
+            // Bei zu kleinem Wert: Fehler ausgeben
+            label1.setText("Fehlerhafte Eingabe");
+            return;
+        }
+        else {
+            // Umrechnung im Controller anstossen
+            Double output = view.ConvertCurrency(input, (String) eingabeCB.getSelectedItem(),
+                    (String) ausgabeCB.getSelectedItem());
+            // Falls null: Fehler ausgeben
+            if(Objects.isNull(output)) {
+                label1.setText("Fehler");
+            }
+            else {
+                // Runden auf zwei Nachkommastellen
+                output = Math.round(output * 100.0) / 100.0;
+                // Formatiert anzeigen
+                label1.setText(Double.toString(output).replace(".", ","));
+            }
+        }
     }
 
     /**
      * Methode, um den hellen Modus zu setzen.
      */
     public void SetLightmode() {
+        label1.setForeground(Color.black);
         label1.setBackground(Color.white);
         eingabeCB.setForeground(Color.black);
         eingabeCB.setBackground(Color.white);
@@ -112,12 +106,14 @@ public class ViewCurrency extends JRootPane {
         ausgabeCB.setBackground(Color.white);
         textInput.setForeground(Color.black);
         textInput.setBackground(Color.white);
+        getContentPane().setBackground(Color.white);
     }
 
     /**
-     * Methode, um den hellen Modus zu setzen.
+     * Methode, um den dunklen Modus zu setzen.
      */
     public void SetDarkmode() {
+        label1.setForeground(Color.white);
         label1.setBackground(Color.black);
         eingabeCB.setForeground(Color.white);
         eingabeCB.setBackground(Color.black);
@@ -125,5 +121,6 @@ public class ViewCurrency extends JRootPane {
         ausgabeCB.setBackground(Color.black);
         textInput.setForeground(Color.white);
         textInput.setBackground(Color.black);
+        getContentPane().setBackground(Color.black);
     }
 }

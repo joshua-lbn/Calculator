@@ -1,36 +1,39 @@
 package Calculator.view.main;
 
+// Java-Imports
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 /**
  * ProcessKeyInput-Klasse zum Auswerten der Interaktionen mit der grafischen Taschenrechneroberflaeche
  * ueber die Tastatur.
- * Programmtechnisch an die View-Klasse gegliedert.
+ * Programmtechnisch de-facto an die View-Klasse gegliedert, theoretisch jedoch der ViewCalculator zugehoerig.
  */
 public class ProcessKeyInput implements KeyListener {
+    // Referenz auf die View-Instanz
     private View view;
-    // Boolean, ob Listener aktiv
+    // Boolean, ob Listener aktiv (bei Auswahl anderer Unterfenster deaktivieren)
     boolean active;
 
     /**
-     * Konstruktor: View-Referenz speichern.
+     * Konstruktor: View-Referenz speichern und Listener deaktivieren.
      * @param v Referenz auf View
      */
     public ProcessKeyInput(View v) {
         view = v;
-        // Sicherheitshalber deaktiveren
         active = false;
     }
 
     /**
      * Methode, um die bei Tastaturtastendruck aufgerufen wird und diesen an die View weitergibt.
-     * @param e "Event" bzw. Ereignis des Tastendruckes
+     * @param e "Event" bzw. Ereignis des Tastaturtastendruckes
      */
     public void keyPressed(KeyEvent e) {
         if (active) {
             if (e.isShiftDown() && (e.getKeyCode() == KeyEvent.VK_7 || e.getKeyCode() ==KeyEvent.VK_PERIOD)) {
+                // Eingabe an Controller (ueber View) leiten
                 view.UpdateExpression("\u00F7");
+                // Anzeige ueber View aktualisieren
                 view.UpdateCalculator();
             } else if (e.isShiftDown() && e.getKeyCode() == KeyEvent.VK_8) {
                 view.UpdateExpression("(");
@@ -147,14 +150,14 @@ public class ProcessKeyInput implements KeyListener {
 
     /**
      * Methode, um den Listener zu pausieren.
-     * Hilfreich, wenn andere Unterfenster aktiv sind.
+     * Hilfreich, wenn andere Unterfenster aktiv sind und zufaellige Eingaben nicht verarbeitet werden sollen.
      */
     public void Deactivate()
     {
         active = false;
     }
 
-    // Vervollstaendigung der Implementierung, jedoch nicht benoetigt
+    // Vervollstaendigung der Implementierung durch Methoden, welche jedoch nicht benoetigt werden
     @Override
     public void keyReleased(KeyEvent e) {}
     @Override

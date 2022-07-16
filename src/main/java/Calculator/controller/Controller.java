@@ -1,6 +1,7 @@
 package Calculator.controller;
 
 // Java-Imports
+import java.util.HashMap;
 import java.util.Objects;
 import java.util.StringJoiner;
 // Import weiterer Projektklassen
@@ -21,20 +22,62 @@ public class Controller {
     private View view;
     // Expression des Packages, um mathematischen Ausdruck auszuwerten
     Expression e;
-    // Objekte, um Waehrungen umzurechnen
-    private String[] c;
-    private String[] c01;
-    double in1;
-    double in2;
-    StringJoiner joiner;
-    String currencies;
+    // HashMap der Waehrungen und deren Codes
+    HashMap<String, String> currencyNames;
+
 
     /**
-     * Konstruktor: Expression und Joiner initialisieren.
+     * Konstruktor: Expression und Waehrungshashmap initialisieren.
      */
     public Controller() {
+        // Expression initialisieren
         e = new Expression();
-        joiner = new StringJoiner("");
+        // Waehrungsnamenhashmap initialisieren
+        currencyNames = new HashMap<String, String>();
+        // Waehrungsnamenhashmap befuellen
+        currencyNames.put("Argentinischer Peso", "ARS");
+        currencyNames.put("Australischer Dollar", "AUD");
+        currencyNames.put("Lew", "BGN");
+        currencyNames.put("Brasilianischer Real", "BRL");
+        currencyNames.put("Kanadischer Dollar", "CAD");
+        currencyNames.put("Schweizer Franken", "CHF");
+        currencyNames.put("Chinesischer Renminbi Yuan", "CNY");
+        currencyNames.put("Zypern-Pfund", "CYP");
+        currencyNames.put("Tschechische Krone", "CZK");
+        currencyNames.put("D\u00E4nische Krone", "DKK");
+        currencyNames.put("Algerischer Dinar", "DZD");
+        currencyNames.put("Estnische Krone", "EEK");
+        currencyNames.put("Pfund Sterling", "GBP");
+        currencyNames.put("Hongkong-Dollar", "HKD");
+        currencyNames.put("Kroatische Kuna", "HRK");
+        currencyNames.put("Forint", "HUF");
+        currencyNames.put("Indonesische Rupiah", "IDR");
+        currencyNames.put("Neuer Schekel", "ILS");
+        currencyNames.put("Indische Rupie", "INR");
+        currencyNames.put("Isl\u00E4ndische Krone", "ISK");
+        currencyNames.put("Yen", "JPY");
+        currencyNames.put("S\u00FCdkoreanischer Won", "KRW");
+        currencyNames.put("Litas", "LTL");
+        currencyNames.put("Lettische Lats", "LVL");
+        currencyNames.put("Marokkanischer Dirham", "MAD");
+        currencyNames.put("Maltesische Lira", "MTL");
+        currencyNames.put("Mexikanischer Peso", "MXN");
+        currencyNames.put("Malaysischer Ringgit", "MYR");
+        currencyNames.put("Norwegische Krone", "NOK");
+        currencyNames.put("Neuseeland-Dollar", "NZD");
+        currencyNames.put("Philippinischer Peso", "PHP");
+        currencyNames.put("Zloty", "PLN");
+        currencyNames.put("Rum\u00E4nischer Leu", "RON");
+        currencyNames.put("Russischer Rubel", "RUB");
+        currencyNames.put("Schwedische Krone", "SEK");
+        currencyNames.put("Singapur-Dollar", "SGD");
+        currencyNames.put("Slowenischer Tolar", "SIT");
+        currencyNames.put("Slowakische Krone", "SKK");
+        currencyNames.put("Baht", "THB");
+        currencyNames.put("Neue Lira", "TRY");
+        currencyNames.put("Taiwan-Dollar", "TWD");
+        currencyNames.put("US-Dollar", "USD");
+        currencyNames.put("S\u00FCdafrikanischer Rand", "ZAR");
     }
 
     /**
@@ -372,51 +415,38 @@ public class Controller {
      * @param outputCurrency Waehrung der Ausgabe als String
      * @return Umgewandelter Zahlenwert als Double
      */
-    public double ConvertCurrency(double input, String inputCurrency, String outputCurrency) {
-        // Falls kleiner 0: auf 0 setzen
-        if (input < 0) {
-            return 0.0;
-        } else {
-            // Array erstellen
-            c = new String[4];
-            // Falls Eingabewaehrung US-Dollar: Faktor 1
-            if (((String) Objects.requireNonNull(inputCurrency)).equals("USD")) {
-                in1 = 1.0;
-            // Bei anderer Eingabewaehrung: suchen und Faktor setzen
-            } else {
-                for (int i = 0; i < 4; i++) {
-                    char s;
-                    s = currencies.charAt(currencies.indexOf((String) Objects.requireNonNull(inputCurrency)) + i + 5);
-                    c[i] = String.valueOf(s);
-                }
-                for (int i = 0; i < c.length; i++) {
-                    joiner.add(c[i]);
-                }
-                String str = joiner.toString();
-                in1 = Double.parseDouble(str);
-            }
-            // Neues Array und neuen StringJoiner erstellen
-            c01 = new String[4];
-            StringJoiner joiner01 = new StringJoiner("");
-            // Falls Eingabewaehrung US-Dollar: Faktor 1
-            if (((String) Objects.requireNonNull(outputCurrency)).equals("USD")) {
-                in2 = 1.0;
-            // Bei anderer Eingabewaehrung: suchen und Faktor setzen
-            } else {
-                for (int i = 0; i < 4; i++) {
-                    char s;
-                    s = currencies.charAt(currencies.indexOf((String) Objects.requireNonNull(outputCurrency)) + i + 5);
-                    c01[i] = String.valueOf(s);
-                }
-                for (int i = 0; i < c01.length; i++) {
-                    joiner01.add(c01[i]);
-                }
-                String str01 = joiner01.toString();
-                in2 = Double.parseDouble(str01);
-            }
-            // Eingabe mit Faktoren verrechnen und zurueckgeben
-            return input * (in2 / in1);
+    public Double ConvertCurrency(double input, String inputCurrency, String outputCurrency) {
+        // Waehrungen in Codes umwandeln
+        inputCurrency = currencyNames.get(inputCurrency);
+        outputCurrency = currencyNames.get(outputCurrency);
+        // Falls Eingabe in EUR: Umrechnungsrate 1 setzen, da dann EUR zu EUR
+        Double inRate;
+        if(inputCurrency.equals("EUR")) {
+            inRate = 1.0;
         }
+        // Sonst durch Model erhalten
+        else {
+            inRate = model.GetExchangeRate(inputCurrency);
+            // Falls Fehler: Rueckgabe von null
+            if(Objects.isNull(inRate)) {
+                return null;
+            }
+        }
+        // Falls Ausgabe in EUR: Umrechnungsrate 1 setzen
+        Double outRate;
+        if(outputCurrency.equals("EUR")) {
+            outRate = 1.0;
+        }
+        // Sonst durch Model erhalten
+        else {
+            outRate = model.GetExchangeRate(outputCurrency);
+            // Falls Fehler: Rueckgabe von null
+            if(Objects.isNull(outRate)) {
+                return null;
+            }
+        }
+        // Eingabe mit Faktoren verrechnen und zurueckgeben
+        return input * (inRate / outRate);
     }
 
     /**
@@ -436,6 +466,6 @@ public class Controller {
          */
         model.SetState(CalculatorState.CALCULATION);
         view.UpdateCalculator();
-        currencies = view.GetCurrenciesAsString();
+        //currencies = view.GetCurrenciesAsString();
     }
 }

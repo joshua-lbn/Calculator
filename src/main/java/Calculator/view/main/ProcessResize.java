@@ -1,5 +1,6 @@
 package Calculator.view.main;
 
+// Java-Imports
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 
@@ -21,24 +22,21 @@ public class ProcessResize implements ComponentListener {
 
     /**
      * Methode, um bei Groessenaenderung ein Update der Oberflaeche anzustossen.
-     * Es wird die ViewCalculator- und ViewHelp-Instanz aktualisiert.
      * @param e Ereignis bzw. "Event", das verarbeitet werden soll
      */
     @Override
     public void componentResized(ComponentEvent e) {
+        // Taschenrechner-Oberflaeche updaten, da dort die Schriftgroesse geaendert werden muss
         view.UpdateCalculator();
+        // Hilfe-Oberflaeche updaten, da dort die Textskalierung geaendert werden muss
         view.UpdateHelp();
     }
 
-    // Weitere ungenutzte Methoden, um Implementierung zu vervollstaendigen
+    // Weitere Methoden, um Implementierung zu vervollstaendigen, welche jedoch nicht genutzt werden
     @Override
-    public void componentMoved(ComponentEvent e) {
-    }
+    public void componentMoved(ComponentEvent e) {}
     @Override
-    public void componentShown(ComponentEvent e) {
-    }
+    public void componentShown(ComponentEvent e) {}
     @Override
-    public void componentHidden(ComponentEvent e) {
-    }
-
+    public void componentHidden(ComponentEvent e) {}
 }

@@ -1,18 +1,18 @@
 package Calculator.view.currency;
 
 // Java-Imports
-import java.awt.event.ActionListener;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 /*
  * ProcessCurrencyInput-Klasse zum Auswerten der Interaktionen mit der grafischen Oberflaeche des Waehrungsrechners.
  * Programmtechnisch an die ViewCurrency-Klasse gegliedert.
  */
-public class ProcessCurrencyInput implements ActionListener {
+public class ProcessCurrencyInput implements DocumentListener, PropertyChangeListener {
     // Referenz auf die zugehoerige ViewCurrency-Instanz
     private ViewCurrency viewCurrency;
-    // Verwendete Werte
-    double input;
-    double output;
 
     /**
      * Konstruktor: Referenz auf zugehoerige ViewCurrency-Instanz setzen.
@@ -23,15 +23,42 @@ public class ProcessCurrencyInput implements ActionListener {
     }
 
     /**
-     * Methode, welche den Knopfdruck verarbeitet.
-     * @param e Zu verarbeitendes Ereignis
+     * Implementiere Methode, welche das Hinzufuegen von Text in das JTextField verarbeitet.
+     * @param e Ereignis, welches verarbeitet wird
      */
-    public void actionPerformed(java.awt.event.ActionEvent e) {
-        // Eingabe aus Feld in Double umwandeln
-        input = Double.parseDouble(viewCurrency.GetTextInput().getText());
-        // Ausgabe in Controller (ueber ViewCurrency- und dann View-Instanz) berechnen
-        output = viewCurrency.ConvertCurrency(input);
-        // Ergebnis im Fenster anzeigen
-        viewCurrency.SetResult(output);
+    @Override
+    public void insertUpdate(DocumentEvent e) {
+        // Nur das JTextField kann dieses Ereignis ausloesen, daher keine Abfrage noetig
+        viewCurrency.ConvertCurrency();
+    }
+
+    /**
+     * Implementiere Methode, welche das Loeschen von Text in das JTextField verarbeitet.
+     * @param e Ereignis, welches verarbeitet wird
+     */
+    @Override
+    public void removeUpdate(DocumentEvent e) {
+        // Nur das JTextField kann dieses Ereignis ausloesen, daher keine Abfrage noetig
+        viewCurrency.ConvertCurrency();
+    }
+
+    /**
+     * Implementiere Methode, welche das Aendern von Text in das JTextField verarbeitet.
+     * @param e Ereignis, welches verarbeitet wird
+     */
+    @Override
+    public void changedUpdate(DocumentEvent e) {
+        // Nur das JTextField kann dieses Ereignis ausloesen, daher keine Abfrage noetig
+        viewCurrency.ConvertCurrency();
+    }
+
+    /**
+     * Implementiere Methode, welche die Auswahlaenderung in den JComboBoxes verarbeitet.
+     * @param evt Ereignis, welches verarbeitet wird
+     */
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        // Nur die JComboBoxes koennen dieses Ereignis ausloesen, daher keine Abfrage noetig
+        viewCurrency.ConvertCurrency();
     }
 }

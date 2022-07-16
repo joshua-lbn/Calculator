@@ -1,5 +1,9 @@
 package Calculator.view.main;
 
+// Java-Imports
+import javax.swing.*;
+import java.awt.*;
+// Imports anderer Programmklassen
 import Calculator.controller.Controller;
 import Calculator.model.Model;
 import Calculator.view.currency.ViewCurrency;
@@ -12,38 +16,34 @@ import Calculator.view.volume.ViewCylinder;
 import Calculator.view.volume.ViewSphere;
 import Calculator.view.calculator.ViewCalculator;
 
-import javax.swing.*;
-import java.awt.*;
-
 /**
- * View-Klasse, die die Hauptoberflaeche inklusive Reiter verwaltet.
+ * View-Klasse, die die Hauptoberflaeche inklusive Menue verwaltet.
  */
 public class View extends JFrame {
+    // Referenzen auf andere Klassen
     private Model model;
     private Controller controller;
     // Instanz der Beiklasse "ProcessMenuInput", um auf Menuedrucke zu reagieren
     private ProcessMenuInput processMenuInput;
     // Instanz der Beiklasse "ProcessKeyInput", um ViewCalculator-Instanz die Tastatureingaben zu uebergeben
     private ProcessKeyInput processKeyInput;
-    // Obermenue mit Reitern
+    // Menue mit Reitern
     private javax.swing.JMenuBar bar = new javax.swing.JMenuBar();
-    private javax.swing.JMenu general = new javax.swing.JMenu();
+    private javax.swing.JMenu miscellaneous = new javax.swing.JMenu();
     private javax.swing.JMenu calculator = new javax.swing.JMenu();
-    private javax.swing.JMenu numeralSystems = new javax.swing.JMenu();
+    private javax.swing.JMenu numeralSystem = new javax.swing.JMenu();
     private javax.swing.JMenu volumes = new javax.swing.JMenu();
     private javax.swing.JMenu currency = new javax.swing.JMenu();
     private javax.swing.JMenuItem settingsItem = new javax.swing.JMenuItem();
     private javax.swing.JMenuItem helpItem = new javax.swing.JMenuItem();
     private javax.swing.JMenuItem calculatorItem = new javax.swing.JMenuItem();
-    //private javax.swing.JMenuItem binary = new javax.swing.JMenuItem();
-    //private javax.swing.JMenuItem decimal = new javax.swing.JMenuItem();
-    private javax.swing.JMenuItem OpenNumeralSystem = new javax.swing.JMenuItem();
+    private javax.swing.JMenuItem numeralSystemItem = new javax.swing.JMenuItem();
     private javax.swing.JMenuItem cone = new javax.swing.JMenuItem();
     private javax.swing.JMenuItem cuboid = new javax.swing.JMenuItem();
     private javax.swing.JMenuItem cylinder = new javax.swing.JMenuItem();
     private javax.swing.JMenuItem sphere = new javax.swing.JMenuItem();
     private javax.swing.JMenuItem currencyItem = new javax.swing.JMenuItem();
-    // Unterfenster
+    // Instanzen der Unterfenster
     private ViewSettings viewSettings;
     private ViewHelp viewHelp;
     private ViewCalculator viewCalculator;
@@ -57,65 +57,59 @@ public class View extends JFrame {
     boolean darkmodeActive;
 
     /**
-     * Konstruktor: Initialisierung der Reiter.
-     * Hinzufuegen der Menueinteraktionsverarbeitung.
+     * Konstruktor: Initialisierung der Reiter und Instanzen der Unterfenster sowie Menueinteraktionsverarbeitung.
+     * Soweit noetig, manche Variablen setzen.
      */
     public View() {
-        // Bei Schliessen Programm beenden
+        // Bei Schliessen des Fensters Programm beenden
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         // Instanz der Beiklasse "ProcessButtonInput", um auf Knopfdrucke zu reagieren
         processMenuInput = new ProcessMenuInput(this);
-        // Instanz der Beiklasse "ProcessKeyInput", um auf Tastatureingaben zu reagieren; sowie Voraussetzungen dafuer
+        // Instanz der Beiklasse "ProcessKeyInput", um auf Tastatureingaben zu reagieren
         processKeyInput = new ProcessKeyInput(this);
+        // Tastatureingaben ermoeglichen
         addKeyListener(processKeyInput);
         setFocusable(true);
-        // Erstellung des Obermenues: Instanziierung
+        // Erstellung des Menues: Eintraege erstellen
         bar = new JMenuBar();
-        general = new JMenu("Allgemein");
+        miscellaneous = new JMenu("Allgemein");
         calculator = new JMenu("Rechner");
-        numeralSystems = new JMenu("Zahlensystem ");
+        numeralSystem = new JMenu("Zahlensystem ");
         currency = new JMenu("W\u00E4hrungen");
         settingsItem = new JMenuItem("Einstellungen");
         helpItem = new JMenuItem("Hilfe");
         calculatorItem = new JMenuItem("\u00D6ffnen");
-        //binary = new JMenuItem("Bin\u00E4r");
-        //decimal = new JMenuItem("Dezimal");
-        //Anzeige nicht noetig //@Martin
-        OpenNumeralSystem = new JMenuItem("\u00D6ffnen");
+        numeralSystemItem = new JMenuItem("\u00D6ffnen");
         volumes = new JMenu("Volumen ");
         cone = new JMenuItem("Kegel");
         cuboid = new JMenuItem("Quader");
         cylinder = new JMenuItem("Zylinder");
         sphere = new JMenuItem("Kugel");
         currencyItem = new JMenuItem("\u00D6ffnen");
-        // Erstellung des Obermenues: Listener hinzufuegen
+        // Erstellung des Menues: Listener hinzufuegen
         settingsItem.addActionListener(processMenuInput);
         helpItem.addActionListener(processMenuInput);
         calculatorItem.addActionListener(processMenuInput);
-        //binary.addActionListener(processMenuInput);
-        //decimal.addActionListener(processMenuInput);
-        OpenNumeralSystem.addActionListener(processMenuInput);
+        numeralSystemItem.addActionListener(processMenuInput);
         cone.addActionListener(processMenuInput);
         cuboid.addActionListener(processMenuInput);
         cylinder.addActionListener(processMenuInput);
         sphere.addActionListener(processMenuInput);
         currencyItem.addActionListener(processMenuInput);
-        // Erstellung des Obermenues: Hinzufuegen der Eintraege in die JMenus
-        general.add(settingsItem);
-        general.add(helpItem);
+        // Erstellung des Menues: Hinzufuegen der Eintraege in die JMenus
+        miscellaneous.add(settingsItem);
+        miscellaneous.add(helpItem);
         calculator.add(calculatorItem);
-        //numeralSystems.add(decimal);
-        //numeralSystems.add(binary);
-        numeralSystems.add(OpenNumeralSystem);
+        numeralSystem.add(numeralSystemItem);
         volumes.add(cone);
         volumes.add(cuboid);
         volumes.add(cylinder);
         volumes.add(sphere);
         currency.add(currencyItem);
-        // Erstellung des Obermenues: Hinzufuegen der JMenus in die Leiste
-        bar.add(general);
+        // Erstellung des Menues: Hinzufuegen der JMenus in die Leiste
+        bar.add(miscellaneous);
         bar.add(calculator);
-        bar.add(numeralSystems);
+        bar.add(numeralSystem);
         bar.add(volumes);
         bar.add(currency);
         // Hinzufuegen des Reiters in RootPane (das "Fenster")
@@ -239,8 +233,8 @@ public class View extends JFrame {
         // Menue setzen
         bar.setForeground(Color.black);
         bar.setBackground(Color.white);
-        general.setForeground(Color.black);
-        general.setBackground(Color.white);
+        miscellaneous.setForeground(Color.black);
+        miscellaneous.setBackground(Color.white);
         settingsItem.setForeground(Color.black);
         settingsItem.setBackground(Color.white);
         helpItem.setForeground(Color.black);
@@ -249,14 +243,14 @@ public class View extends JFrame {
         calculator.setBackground(Color.white);
         calculatorItem.setForeground(Color.black);
         calculatorItem.setBackground(Color.white);
-        numeralSystems.setForeground(Color.black);
-        numeralSystems.setBackground(Color.white);
+        numeralSystem.setForeground(Color.black);
+        numeralSystem.setBackground(Color.white);
         //binary.setForeground(Color.black);
         //binary.setBackground(Color.white);
         //decimal.setForeground(Color.black);
         //decimal.setBackground(Color.white);
-        OpenNumeralSystem.setForeground(Color.black);
-        OpenNumeralSystem.setBackground(Color.white);
+        numeralSystemItem.setForeground(Color.black);
+        numeralSystemItem.setBackground(Color.white);
         volumes.setForeground(Color.black);
         volumes.setBackground(Color.white);
         cone.setForeground(Color.black);
@@ -295,8 +289,8 @@ public class View extends JFrame {
         // Obermenue setzen
         bar.setForeground(Color.white);
         bar.setBackground(Color.black);
-        general.setForeground(Color.white);
-        general.setBackground(Color.black);
+        miscellaneous.setForeground(Color.white);
+        miscellaneous.setBackground(Color.black);
         settingsItem.setForeground(Color.white);
         settingsItem.setBackground(Color.black);
         helpItem.setForeground(Color.white);
@@ -305,14 +299,14 @@ public class View extends JFrame {
         calculator.setBackground(Color.black);
         calculatorItem.setForeground(Color.white);
         calculatorItem.setBackground(Color.black);
-        numeralSystems.setForeground(Color.white);
-        numeralSystems.setBackground(Color.black);
+        numeralSystem.setForeground(Color.white);
+        numeralSystem.setBackground(Color.black);
         //binary.setForeground(Color.white);
         //binary.setBackground(Color.black);
         //decimal.setForeground(Color.white);
         //decimal.setBackground(Color.black);
-        OpenNumeralSystem.setForeground(Color.white);
-        OpenNumeralSystem.setBackground(Color.black);
+        numeralSystemItem.setForeground(Color.white);
+        numeralSystemItem.setBackground(Color.black);
         volumes.setForeground(Color.white);
         volumes.setBackground(Color.black);
         cone.setForeground(Color.white);
@@ -425,7 +419,7 @@ public class View extends JFrame {
      * @return JMenuItem OpenNumeralSystem
      */
     protected JMenuItem GetJMenuItemOpenNumeralSystem() {
-        return OpenNumeralSystem;
+        return numeralSystemItem;
     }
 
 
@@ -566,12 +560,15 @@ public class View extends JFrame {
         }
     }
 
-    public String GetCurrenciesAsString() {
-        return model.GetCurrenciesAsString();
-    }
-
-    public double ConvertCurrency(double input, String inputCurrency, String outputCurrency) {
+    /**
+     * Methode, um von einer in eine andere Waehrung umzuwandeln.
+     * Passiert im Controller.
+     * @param input Eingabewert als double
+     * @param inputCurrency Eingabewaehrung als dreistelliger Code
+     * @param outputCurrency Ausgabewaehrung als dreistelliger Code
+     * @return Ausgabewert als Double
+     */
+    public Double ConvertCurrency(double input, String inputCurrency, String outputCurrency) {
         return controller.ConvertCurrency(input, inputCurrency, outputCurrency);
     }
-
 }
