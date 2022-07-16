@@ -2,8 +2,11 @@ package Calculator.model;
 
 import Calculator.controller.Controller;
 import Calculator.view.main.View;
+import org.json.JSONObject;
 
 import java.io.*;
+import java.net.URL;
+import java.nio.charset.Charset;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -38,6 +41,12 @@ public class Model {
     private Scanner fileScanner;
     private File folder;
     private BufferedWriter bufferedWriter;
+    // Objekte,
+    private StringBuilder sb;
+    private InputStream is;
+    private BufferedReader rd;
+    // JSON, um aktuelle Daten aus dem Internet zu speichern
+    private JSONObject json;
 
     /**
      * Konstruktor: Ausdruecke als leer initialisieren.
@@ -406,6 +415,47 @@ public class Model {
         else {
             return false;
         }
+    }
+
+
+    private JSONObject ReadJSONFromUrl(String url) {
+        InputStream is;
+        try {
+            is = new URL(url).openStream();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
+            String jsonText = ReadAll(rd);
+            JSONObject json = new JSONObject(jsonText);
+            return json;
+        } finally {
+            try {
+                is.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    private String ReadAll(Reader rd) {
+        StringBuilder sb = new StringBuilder();
+        int cp;
+        while (true) {
+            try {
+                if (!((cp = rd.read()) != -1)) break;
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            sb.append((char) cp);
+        }
+        return sb.toString();
+    }
+
+    public String GetCurrenciesAsString() {
+        JSONObject json = ReadJSONFromUrl("https://www.currency-api.com/rates?base=USD");
+        return json.toString();
     }
 
 

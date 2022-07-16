@@ -2,6 +2,7 @@ package Calculator.view.main;
 
 import Calculator.controller.Controller;
 import Calculator.model.Model;
+import Calculator.view.currency.ViewCurrency;
 import Calculator.view.general.ViewSettings;
 import Calculator.view.general.ViewHelp;
 import Calculator.view.viewVolume.viewCone;
@@ -10,7 +11,6 @@ import Calculator.view.general.ViewNumeralSystem;
 import Calculator.view.viewVolume.viewCylinder;
 import Calculator.view.viewVolume.viewSphere;
 import Calculator.view.calculator.ViewCalculator;
-import Calculator.view.currency.ViewCurrency;
 
 import javax.swing.*;
 import java.awt.*;
@@ -498,7 +498,7 @@ public class View extends JFrame {
         viewCuboid = new viewCuboid(controller);
         viewCylinder = new viewCylinder(controller);
         viewSphere = new viewSphere(controller);
-        viewCurrency = new ViewCurrency();
+        viewCurrency = new ViewCurrency(this);
         // Fenster auf Taschenrechner setzen
         SetCalculator();
         // Darstellungsmodus aus Datei auslesen und setzen
@@ -564,6 +564,14 @@ public class View extends JFrame {
                 viewSphere.VolumeOutput(output);
                 break;
         }
+    }
+
+    public String GetCurrenciesAsString() {
+        return model.GetCurrenciesAsString();
+    }
+
+    public double ConvertCurrency(double input, String inputCurrency, String outputCurrency) {
+        return controller.ConvertCurrency(input, inputCurrency, outputCurrency);
     }
 
 }

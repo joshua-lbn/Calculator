@@ -28,9 +28,9 @@ public class ViewNumeralSystem extends JRootPane {
         //jpanel1 = new javax.swing.JPanel();
         DecLabel = new javax.swing.JLabel("   Dezimal:");
         DecTextField = new javax.swing.JTextField();
-        HexaLabel = new javax.swing.JLabel("    Hexadezimal:");
+        HexaLabel = new javax.swing.JLabel("   Hexadezimal:");
         HexaTextField = new javax.swing.JTextField();
-        BinLabel = new javax.swing.JLabel("   Binär:");
+        BinLabel = new javax.swing.JLabel("   Bin\u00E4r:");
         BinTextField = new javax.swing.JTextField();
         convertDec = new javax.swing.JButton("=");
         convertHex = new javax.swing.JButton("=");
