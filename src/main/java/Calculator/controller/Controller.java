@@ -165,8 +165,15 @@ public class Controller {
     public void VolumeCalculateCone() {
         String radius = view.GetConeRadius();
         String height = view.GetConeHeight();
-        double volumeRadius = Double.parseDouble(radius.replace(',','.'));
-        double volumeHeight = Double.parseDouble(height.replace(',','.'));
+        double volumeRadius = -1;
+        double volumeHeight = -1;
+        try {
+            volumeRadius = Double.parseDouble(radius.replace(',', '.'));
+            volumeHeight = Double.parseDouble(height.replace(',', '.'));
+        }
+        catch (NumberFormatException e){
+            view.VolumeOutput(1,"Ung\u00FCltige Eingabe");
+        }
         if (volumeRadius <= 0 || volumeHeight <= 0) {
             view.VolumeOutput(1,"Ung\u00FCltige Eingabe");
         }
@@ -185,9 +192,17 @@ public class Controller {
         String length = view.GetCuboidLength();
         String width = view.GetCuboidWidth();
         String height = view.GetCuboidHeight();
-        double volumeLength = Double.parseDouble(length.replace(',','.'));
-        double volumeWidth = Double.parseDouble(width.replace(',','.'));
-        double volumeHeight = Double.parseDouble(height.replace(',','.'));
+        double volumeLength = -1;
+        double volumeWidth = -1;
+        double volumeHeight = -1;
+        try {
+            volumeLength = Double.parseDouble(length.replace(',', '.'));
+            volumeWidth = Double.parseDouble(width.replace(',', '.'));
+            volumeHeight = Double.parseDouble(height.replace(',', '.'));
+        }
+        catch (NumberFormatException e){
+            view.VolumeOutput(2,"Ung\u00FCltige Eingabe");
+        }
         if (volumeLength <= 0 || volumeWidth <= 0 || volumeHeight <= 0) {
             view.VolumeOutput(2,"Ung\u00FCltige Eingabe");
         }
@@ -205,8 +220,15 @@ public class Controller {
     public void VolumeCalculateCylinder() {
         String radius = view.GetCylinderRadius();
         String height = view.GetCylinderHeight();
-        double volumeRadius = Double.parseDouble(radius.replace(',', '.'));
-        double volumeHeight = Double.parseDouble(height.replace(',', '.'));
+        double volumeRadius = -1;
+        double volumeHeight = -1;
+        try {
+            volumeRadius = Double.parseDouble(radius.replace(',', '.'));
+            volumeHeight = Double.parseDouble(height.replace(',', '.'));
+        }
+        catch (NumberFormatException e) {
+            view.VolumeOutput(3,"Ung\u00FCltige Eingabe");
+        }
         if (volumeRadius <= 0 || volumeHeight <= 0) {
             view.VolumeOutput(3,"Ung\u00FCltige Eingabe");
         }
@@ -225,7 +247,13 @@ public class Controller {
      */
     public void VolumeCalculateSphere() {
         String radius = view.GetSphereRadius();
-        double volumeRadius = Double.parseDouble(radius.replace(',','.'));
+        double volumeRadius = -1;
+        try {
+            volumeRadius = Double.parseDouble(radius.replace(',', '.'));
+        }
+        catch (NumberFormatException e) {
+            view.VolumeOutput(4,"Ung\u00FCltige Eingabe");
+        }
         if (volumeRadius <= 0) {
             view.VolumeOutput(4,"Ung\u00FCltige Eingabe");
         }

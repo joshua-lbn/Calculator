@@ -116,6 +116,7 @@ public class viewCuboid extends JRootPane implements ViewVolume{
         spacer3.setForeground(Color.black);
         spacer3.setBackground(Color.white);
     }
+
     public JButton getCalculate() {
         return calculate;
     }

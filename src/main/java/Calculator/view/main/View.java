@@ -7,8 +7,6 @@ import Calculator.view.general.ViewHelp;
 import Calculator.view.viewVolume.viewCone;
 import Calculator.view.viewVolume.viewCuboid;
 import Calculator.view.general.ViewNumeralSystem;
-import Calculator.view.volumeCone;
-import Calculator.view.volumeCuboid;
 import Calculator.view.viewVolume.viewCylinder;
 import Calculator.view.viewVolume.viewSphere;
 import Calculator.view.calculator.ViewCalculator;

@@ -44,9 +44,6 @@ public class viewCone extends JRootPane implements ViewVolume {
         calculate.addActionListener(processVolumeInput);
         this.setVisible(true);
     }
-    public static void main(String[] args) {
-        new Calculator.view.volumeCone().setVisible(true);
-    }
 
     /**
      * Methode, um den hellen Modus zu setzen.
