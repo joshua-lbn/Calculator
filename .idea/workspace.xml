@@ -4,17 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e01ba51-84bb-425d-83d7-45271fdd1757" name="Changes" comment="Kürzen des Codes und Kommentieren">
+    <list default="true" id="6e01ba51-84bb-425d-83d7-45271fdd1757" name="Changes" comment="MVC (ViewNumeralSystem), Currency folgt badlig, Anpassen der Reiter bei Zahlensystem-Menüpunkt">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_07_2022_17_44__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_07_2022_17_44__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_07_2022_17_48__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_07_2022_17_48__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/controller/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/main/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/main/View.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/viewVolume/ViewVolume.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/viewVolume/ViewVolume.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/viewVolume/viewCone.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/viewVolume/viewCone.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/viewVolume/viewCuboid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/viewVolume/viewCuboid.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/volumeCone.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/volumeCuboid.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/volumeCylinder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/volumeSphere.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/general/ViewNumeralSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/general/ViewNumeralSystem.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

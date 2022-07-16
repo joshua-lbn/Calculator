@@ -261,31 +261,39 @@ public class Controller {
         }
     }
 
+    /**
+     * rechnet vom Dezimal in das Hexadezimal- und Binaerzahlensystem um
+     * @param decimalString
+     * @return
+     */
 
-    //Rechnet vom Dezimal-Zahlensystem in die beiden anderen um
     public String[] DectoHex_Bin(String decimalString) {
-        int decimalNumber = Integer.parseInt(decimalString);
+        double decimalNumber = Double.parseDouble(decimalString);
+        //Runden auf eine ganzzahlige Zahl
         double decimalNumberRounded = ((double) Math.round(decimalNumber * 1));
         int decInt = (int) decimalNumberRounded;
-        //Erstellung eines Feldes: Zwei Werte werden übergegeben, einmal Hexa (1.) und einmal Binaer (2.)
+        //Erstellung eines Feldes: Hexa- und Binaerwert werden gespeichert
         String[] ArrayHex_Bin = new String[2];
         if (decimalNumber < 0) {
             decInt = Math.abs(decInt);
-            ArrayHex_Bin[0] = "-" + Integer.toHexString(decInt);
+            ArrayHex_Bin[0] = "-" + Double.toHexString(decInt);
             ArrayHex_Bin[1] = "-" + Integer.toBinaryString(decInt);
             System.out.println(ArrayHex_Bin);
             return ArrayHex_Bin;
         } else {
-            //Umrechnung vom Dezimalsystem in die anderen beiden Zahlensysteme
             ArrayHex_Bin[0] = Integer.toHexString(decInt);
             ArrayHex_Bin[1] = Integer.toBinaryString(decInt);
             return ArrayHex_Bin;
         }
     }
 
-    //Rechnet vom Hexa-Zahlensystem in die beiden anderen um
+    /**
+     * rechnet vom Hexadezimal in Binaer und Dezimal um
+     * @param HexNumber
+     * @return
+     */
+
     public String[] HextoDec_Bin(String HexNumber) {
-        // Feld: s.oben
         String[] ArrayDec_Bin = new String[2];
         //int für if-Bedingung (nicht in Hexa umgerechnet)
         if (HexNumber.indexOf("-") == 0) {
@@ -302,23 +310,27 @@ public class Controller {
         }
     }
 
-    //Rechnet vom Binaer-Zahlensystem in die beiden anderen um
+    /**
+     * Rechnet vom Binaersystem in Hexadezimal und Dezimal um
+     * @param BinString
+     * @return
+     */
+
     public String[] BintoDec_Hex(String BinString) {
-        int BinNumberInt = Integer.parseInt(BinString);
+        double BinNumberInt = Double.parseDouble(BinString);
         String[] ArrayDec_Hex = new String[2];
         if (BinString.indexOf("-") == 0) {
-            int decIntNeg = Integer.parseInt(BinString, 2);
-            ArrayDec_Hex[0] = "-" + Integer.toString(decIntNeg);
-            ArrayDec_Hex[1] = "-" + Integer.toHexString(decIntNeg);
+            long decIntNeg = Integer.parseInt(BinString, 2);
+            ArrayDec_Hex[0] = "-" + Long.toString(decIntNeg);
+            ArrayDec_Hex[1] = "-" + Long.toHexString(decIntNeg);
             return ArrayDec_Hex;
         } else {
-            int decInt = Integer.parseInt(BinString, 2);
-            ArrayDec_Hex[0] = Integer.toString(decInt);
-            ArrayDec_Hex[1] = Integer.toHexString(decInt);
+            long decInt = Long.parseLong(BinString, 2);
+            ArrayDec_Hex[0] = Long.toString(decInt);
+            ArrayDec_Hex[1] = Long.toHexString(decInt);
             return ArrayDec_Hex;
         }
     }
-    //NumeralSystemConverter dann noch herauszulöschen
 
     public double ConvertCurrency(double input, String inputCurrency, String outputCurrency) {
         if (input < 0) {
