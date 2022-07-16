@@ -1,21 +1,22 @@
 package Calculator.view.calculator;
 
+// Java-Import
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /*
  * ProcessButtonInput-Klasse zum Auswerten der Interaktionen mit der grafischen Oberflaeche des Taschenrechners.
  * Programmtechnisch an die ViewCalculator-Klasse gegliedert.
  */
-public class ProcessButtonInput implements java.awt.event.ActionListener {
+public class ProcessButtonInput implements ActionListener {
     // Referenz auf Oberklasse
     private ViewCalculator viewCalculator;
 
     /**
-     * Konstruktor: übergebene ViewCalculator-Instanz speichern und lokale Attribute aus derselben erhalten.
+     * Konstruktor: uebergebene ViewCalculator-Instanz speichern.
      * @param vC ViewCalculator-Instanz
      */
     public ProcessButtonInput(ViewCalculator vC) {
-        // View speichern
         viewCalculator = vC;
     }
 
@@ -30,7 +31,7 @@ public class ProcessButtonInput implements java.awt.event.ActionListener {
          * hinzugefuegt werden koennen.
          * der viewCalculator der Befehl gegeben, nach Änderung der Interna (durch den Controller) die Darstellung zu
          * aktualisieren.
-         * der viewCalculator der Befehl gegeben, die Tastatureingabe zu ermoeglichen.
+         * der viewCalculator der Befehl gegeben, die Tastatureingabe durch Setzung des Fokus zu ermoeglichen.
          * die weitere Ausfuehrung der Methode aus Effizienzgruenden abgebrochen.
          */
         for (int i = 0; i < viewCalculator.GetJButtonsNumber().length; i++) {

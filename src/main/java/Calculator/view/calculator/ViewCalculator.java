@@ -1,12 +1,12 @@
 package Calculator.view.calculator;
 
+// Java-Imports
+import javax.swing.*;
+import java.awt.*;
+// Imports anderer Projektklassen
 import Calculator.controller.Controller;
 import Calculator.model.Model;
 import Calculator.view.main.View;
-import Calculator.model.ColorMode;
-
-import javax.swing.*;
-import java.awt.*;
 
 /**
  * ViewCalculator-Klasse mit grafischer Benutzeroberflaeche des Taschenrechners.
@@ -18,11 +18,11 @@ public class ViewCalculator extends JRootPane {
     private View view;
     private Controller controller;
     // JPanels fuer das Layout
-    private javax.swing.JPanel spacer1 = new javax.swing.JPanel();
-    private javax.swing.JPanel jPanel1 = new javax.swing.JPanel();
-    private javax.swing.JPanel jPanelRight = new javax.swing.JPanel();
-    private javax.swing.JPanel jPanelMiddle = new javax.swing.JPanel();
-    private javax.swing.JPanel jPanelLeft = new javax.swing.JPanel();
+    private javax.swing.JPanel spacer1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanelRight;
+    private javax.swing.JPanel jPanelMiddle;
+    private javax.swing.JPanel jPanelLeft;
     // JTextPane mit Ausgabe bzw. Anzeige des Ausdruckes, in JScrollBar gehuellt
     private javax.swing.JTextPane jTextPane;
     private JScrollPane jScrollPane;
@@ -39,14 +39,15 @@ public class ViewCalculator extends JRootPane {
     private ProcessButtonInput processButtonInput;
 
     /**
-     * Konstruktor: Initialisierung der Oberflaeche.
-     * Hinzufuegen der Eingabeverarbeitung.
+     * Konstruktor: Initialisierung der Oberflaeche, inklusive Hinzufuegen der Eingabeverarbeitung.
      */
     public ViewCalculator(Model m, View v, Controller c) {
+        // Referenzen setzen
         model = m;
         view = v;
         controller = c;
         // Erstellung des Layouts durch Schachtelung der Panels und Hinzufuegen des JTextPane
+        spacer1 = new JPanel();
         spacer1.setLayout(new GridLayout(2, 1));
         jTextPane = new JTextPane();
         jTextPane.setContentType("text/html");
@@ -54,15 +55,19 @@ public class ViewCalculator extends JRootPane {
         jTextPane.setFocusable(false);
         jScrollPane = new JScrollPane (jTextPane);
         spacer1.add(jScrollPane);
+        jPanel1 = new JPanel();
         jPanel1.setLayout(new GridLayout(1, 3));
         spacer1.add(jPanel1);
+        jPanelRight = new JPanel();
         jPanelRight.setLayout(new GridLayout(4, 3));
         jPanel1.add(jPanelRight);
+        jPanelMiddle = new JPanel();
         jPanelMiddle.setLayout(new GridLayout(4, 3));
         jPanel1.add(jPanelMiddle);
+        jPanelLeft = new JPanel();
         jPanelLeft.setLayout(new GridLayout(4, 2));
         jPanel1.add(jPanelLeft);
-        // Definierung der Beschriftungen und Deklarierung der Button-Arrays nach Anzahl der Texte
+        // Definierung der Beschriftungen und Deklarierung der Button-Array-Groessen nach Anzahl der Texte
         jButtonsNumber = new JButton[10];
         textsLeft = new String[]{"\u2190", "\u2192", "\u002B", "\u2212", "\u00D7", "\u00F7", "(", ")"};
         jButtonsLeft = new JButton[textsLeft.length];
@@ -73,8 +78,9 @@ public class ViewCalculator extends JRootPane {
         jButtonsRight = new JButton[textsRight.length];
         // Instanz der Beiklasse "ProcessButtonInput", um auf Knopfdrucke zu reagieren
         processButtonInput = new ProcessButtonInput(this);
-        // Generierung der einzelnen Knoepfe: ueber jeder Knopf-Array iterieren und dabei Knoepfe mit Beschriftungen aus
-        // Texte-Array erstellen, ProcessButtonInput uebergeben und Knoepfe ins Layout hinzufuegen
+        /* Generierung der einzelnen Knoepfe: ueber jeder Knopf-Array iterieren und dabei Knoepfe mit Beschriftungen aus
+         * Texte-Array erstellen, ProcessButtonInput-Instanz uebergeben und Knoepfe ins Layout hinzufuegen
+        */
         for (int i = 0; i < jButtonsNumber.length; i++) {
             jButtonsNumber[i] = new javax.swing.JButton(Integer.toString((Integer) i));
             jButtonsNumber[i].addActionListener(processButtonInput);
@@ -95,12 +101,68 @@ public class ViewCalculator extends JRootPane {
             jButtonsRight[i].addActionListener(processButtonInput);
             jPanelRight.add(jButtonsRight[i]);
         }
-        // Hinzufuegen des Gesamtlayouts in die ContentPane (das "Fenster")
+        // Hinzufuegen des Gesamtlayouts in die ContentPane
         this.getContentPane().add(spacer1);
     }
 
     /**
-     * Methode zur Uebergabe des neu hinzugefuegten Zeichens (aus dem ProcessButtonInput) an den Controller.
+     * Getter-Methode fuer JButton[] jButtonsNumber.
+     * @return JButton[] jButtonsNumber
+     */
+    protected JButton[] GetJButtonsNumber() {
+        return jButtonsNumber;
+    }
+
+    /**
+     * Getter-Methode fuer JButton[] jButtonsLeft.
+     * @return JButton[] jButtonsLeft
+     */
+    protected JButton[] GetJButtonsLeft() {
+        return jButtonsLeft;
+    }
+
+    /**
+     * Getter-Methode fuer String[] textsLeft.
+     * @return String[] textsLeft
+     */
+    protected String[] GetTextsLeft() {
+        return textsLeft;
+    }
+
+    /**
+     * Getter-Methode fuer JButton[] jButtonsMiddle.
+     * @return JButton[] jButtonsMiddle
+     */
+    protected JButton[] GetJButtonsMiddle() {
+        return jButtonsMiddle;
+    }
+
+    /**
+     * Getter-Methode fuer String[] textsMiddle.
+     * @return String[] textsMiddle
+     */
+    protected String[] GetTextsMiddle() {
+        return textsMiddle;
+    }
+
+    /**
+     * Getter-Methode fuer JButton[] jButtonsRight.
+     * @return JButton[] jButtonsRight
+     */
+    protected JButton[] GetJButtonsRight() {
+        return jButtonsRight;
+    }
+
+    /**
+     * Getter-Methode fuer String[] textsRight.
+     * @return String[] textsRight
+     */
+    protected String[] GetTextsRight() {
+        return textsRight;
+    }
+
+    /**
+     * Methode zur Uebergabe des neu hinzugefuegten Zeichens (aus ProcessButtonInput-Instanz) an den Controller.
      * @param s Neues Zeichen
      */
     public void Update(String s) {
@@ -111,7 +173,7 @@ public class ViewCalculator extends JRootPane {
      * Methode, um den neue HTML-Ausdruck aus dem Model ins Fenster einzufuegen.
      */
     public void UpdateView() {
-        // Text (aus Model) in HTML-Darstellung anzeigen
+        // HTML-Ausdruck (aus Model) in HTML-Darstellung anzeigen
         jTextPane.setText(model.GetHTMLExpression());
         // Cursor-Position berechnen und setzen
         SwingUtilities.invokeLater(new Runnable() {
@@ -128,18 +190,6 @@ public class ViewCalculator extends JRootPane {
      */
     public void UpdateFocus() {
         view.UpdateFocus();
-    }
-
-    /**
-     * Methode, um den Farbmodus zu wechseln.
-     */
-    protected void SwitchMode() {
-        if (model.GetColorMode() == ColorMode.DARKMODE) {
-            SetLightmode();
-        }
-        else {
-            SetDarkmode();
-        }
     }
 
     /**
@@ -206,74 +256,5 @@ public class ViewCalculator extends JRootPane {
             jButtonsRight[i].setBackground(Color.black);
             jButtonsRight[i].setForeground(Color.white);
         }
-    }
-
-    /**
-     * Getter-Methode fuer JButton[] jButtonsNumber.
-     * @return JButton[] jButtonsNumber
-     */
-    protected JButton[] GetJButtonsNumber() {
-        return jButtonsNumber;
-    }
-
-    /**
-     * Getter-Methode fuer JButton[] jButtonsLeft.
-     * @return JButton[] jButtonsLeft
-     */
-    protected JButton[] GetJButtonsLeft() {
-        return jButtonsLeft;
-    }
-
-    /**
-     * Getter-Methode fuer String[] textsLeft.
-     * @return String[] textsLeft
-     */
-    protected String[] GetTextsLeft() {
-        return textsLeft;
-    }
-
-    /**
-     * Getter-Methode fuer JButton[] jButtonsMiddle.
-     * @return JButton[] jButtonsMiddle
-     */
-    protected JButton[] GetJButtonsMiddle() {
-        return jButtonsMiddle;
-    }
-
-    /**
-     * Getter-Methode fuer String[] textsMiddle.
-     * @return String[] textsMiddle
-     */
-    protected String[] GetTextsMiddle() {
-        return textsMiddle;
-    }
-
-    /**
-     * Getter-Methode fuer JButton[] jButtonsRight.
-     * @return JButton[] jButtonsRight
-     */
-    protected JButton[] GetJButtonsRight() {
-        return jButtonsRight;
-    }
-
-    /**
-     * Getter-Methode fuer String[] textsRight.
-     * @return String[] textsRight
-     */
-    protected String[] GetTextsRight() {
-        return textsRight;
-    }
-
-    /**
-     * Methode zur Setzung der Referenzen auf Model und Controller in Main.
-     * Zudem Methoden, die eigentlich im Konstruktor waeren, jedoch Referenzen auf andere Klassen benoetigen und daher
-     * erst hier ausgefuehrt werden koennen.
-     * @param m Model-Instanz
-     * @param c Controller-Instanz
-     */
-    public void UpdateLinks(Model m, Controller c) {
-        model = m;
-        controller = c;
-        SetLightmode();
     }
 }

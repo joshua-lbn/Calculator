@@ -1,20 +1,37 @@
 package Calculator.view.currency;
 
-import java.util.Objects;
-import java.util.StringJoiner;
+// Java-Imports
+import java.awt.event.ActionListener;
 
-public class ProcessCurrencyInput implements java.awt.event.ActionListener {
+/*
+ * ProcessCurrencyInput-Klasse zum Auswerten der Interaktionen mit der grafischen Oberflaeche des Waehrungsrechners.
+ * Programmtechnisch an die ViewCurrency-Klasse gegliedert.
+ */
+public class ProcessCurrencyInput implements ActionListener {
+    // Referenz auf die zugehoerige ViewCurrency-Instanz
     private ViewCurrency viewCurrency;
-    double norm;
+    // Verwendete Werte
+    double input;
     double output;
+
+    /**
+     * Konstruktor: Referenz auf zugehoerige ViewCurrency-Instanz setzen.
+     * @param vc ViewCurrency-Instanz
+     */
     public ProcessCurrencyInput(ViewCurrency vc) {
         viewCurrency = vc;
     }
+
+    /**
+     * Methode, welche den Knopfdruck verarbeitet.
+     * @param e Zu verarbeitendes Ereignis
+     */
     public void actionPerformed(java.awt.event.ActionEvent e) {
-        // Noch prüfen Buchstaben + leere Eingabe
-        // Parse Double, da nicht möglich String direkt in Zahl umwandeln
-        norm = Double.parseDouble(viewCurrency.GetTextInput().getText());
-        output = viewCurrency.ConvertCurrency(norm);
+        // Eingabe aus Feld in Double umwandeln
+        input = Double.parseDouble(viewCurrency.GetTextInput().getText());
+        // Ausgabe in Controller (ueber ViewCurrency- und dann View-Instanz) berechnen
+        output = viewCurrency.ConvertCurrency(input);
+        // Ergebnis im Fenster anzeigen
         viewCurrency.SetResult(output);
     }
 }
