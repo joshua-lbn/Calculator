@@ -1,102 +1,108 @@
 package Calculator.view.numeralSystem;
-import Calculator.controller.Controller;
 
+// Java-Imports
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+// Imports anderer Programmklassen
+import Calculator.controller.Controller;
 
 /**
- * Erstellung eines neuen Panels für die Umrechnung in die verschiedenen Zahlensystem
+ * ViewNumeralSystem-Klasse mit grafischer Benutzeroberflaeche des Zahlensystemsrechners.
+ * Verwendet, um Abstraktion zwischen View-Oberklasse und den Unter-Darstellungen zu schaffen.
  */
 public class ViewNumeralSystem extends JRootPane {
-    //Hauptpanel
-    private javax.swing.JPanel JPanel = new javax.swing.JPanel();
-    //Buttons
-    private javax.swing.JButton convertDec = new javax.swing.JButton();
-    private javax.swing.JButton convertHex = new javax.swing.JButton();
-    private javax.swing.JButton convertBin = new javax.swing.JButton();
-    //Textfelder
-    private javax.swing.JTextField DecTextField = new javax.swing.JTextField();
-    private javax.swing.JTextField HexaTextField = new javax.swing.JTextField();
-    private javax.swing.JTextField BinTextField = new javax.swing.JTextField();
-    //
-    private javax.swing.JLabel DecLabel = new javax.swing.JLabel();
-    private javax.swing.JLabel HexaLabel = new javax.swing.JLabel();
-    private javax.swing.JLabel BinLabel = new javax.swing.JLabel();
+    // Referenz auf Controller-Instanz
+    Controller controller;
+    // Hauptpanel mit der ganzen Oberflaeche
+    private javax.swing.JPanel jPanel;
+    // Knoepfe
+    private javax.swing.JButton convertDec;
+    private javax.swing.JButton convertHex;
+    private javax.swing.JButton convertBin;
+    // Textfelder
+    private javax.swing.JTextField decTextField;
+    private javax.swing.JTextField hexaTextField;
+    private javax.swing.JTextField binTextField;
+    // Labels mit angezeigtem Text
+    private javax.swing.JLabel decLabel;
+    private javax.swing.JLabel hexaLabel;
+    private javax.swing.JLabel binLabel;
 
-    //Hinzufügen des Rechners
-    Controller controller = new Controller();
-
-    public ViewNumeralSystem () {
-        //setzt Layout fest
-        JPanel.setLayout(new GridLayout(3, 3));
-        DecLabel = new javax.swing.JLabel("   Dezimal:");
-        DecTextField = new javax.swing.JTextField();
-        HexaLabel = new javax.swing.JLabel("   Hexadezimal:");
-        HexaTextField = new javax.swing.JTextField();
-        BinLabel = new javax.swing.JLabel("   Bin\u00E4r:");
-        BinTextField = new javax.swing.JTextField();
+    /**
+     * Konstruktor: Referenz auf Controller-Instanz setzen, Oberflaeche erstellen und Eingabeverarbeitungs-
+     * Instanzen hinzufuegen.
+     * @param c Controller-Instanz
+     */
+    public ViewNumeralSystem (Controller c) {
+        // Referenz auf Controller-Instanz setzen
+        controller = c;
+        // Panel erstellen und Layout setzen
+        jPanel = new JPanel();
+        jPanel.setLayout(new GridLayout(3, 3));
+        // Restliche Elemente erstellen
+        decLabel = new javax.swing.JLabel("   Dezimal:");
+        decTextField = new javax.swing.JTextField();
+        hexaLabel = new javax.swing.JLabel("   Hexadezimal:");
+        hexaTextField = new javax.swing.JTextField();
+        binLabel = new javax.swing.JLabel("   Bin\u00E4r:");
+        binTextField = new javax.swing.JTextField();
         convertDec = new javax.swing.JButton("=");
         convertHex = new javax.swing.JButton("=");
         convertBin = new javax.swing.JButton("=");
-        JPanel.add(DecLabel);
-        JPanel.add(DecTextField);
-
-        JPanel.add(convertDec);
-        JPanel.add(HexaLabel);
-        JPanel.add(HexaTextField);
-
-        JPanel.add(convertHex);
-        JPanel.add(BinLabel);
-        JPanel.add(BinTextField);
-
-        JPanel.add(convertBin);
-        this.getContentPane().add(JPanel);
-        setVisible(true);
-        setSize(600, 300);
-        this.setVisible(true);
-        /**
-         * im Folgenden werden ButtonListener zu den drei Umrechnungsbuttons hinzugefügt
-         */
+        // Alle Elemente zum Panel hinzufuegen
+        jPanel.add(decLabel);
+        jPanel.add(decTextField);
+        jPanel.add(convertDec);
+        jPanel.add(hexaLabel);
+        jPanel.add(hexaTextField);
+        jPanel.add(convertHex);
+        jPanel.add(binLabel);
+        jPanel.add(binTextField);
+        jPanel.add(convertBin);
+        // Panel in ContentPane hinzufuegen
+        this.getContentPane().add(jPanel);
+        
+        // ButtonListener als anonyme Subklassen hinzufuegen
         convertDec.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //Feld zum Speichern des übergegeben Feldes
                 String[] ConvertedNumbers = new String[2];
                 //Uebergabe des Wertes an den controller
-                ConvertedNumbers = controller.DectoHex_Bin(DecTextField.getText().replace(',', '.'));
+                ConvertedNumbers = controller.DectoHex_Bin(decTextField.getText().replace(',', '.'));
                 //Ausgabe des Feldes
                 if (ConvertedNumbers[0] == "Fehler") {
-                    DecTextField.setText("Ung\u00FCltige Eingabe");
+                    decTextField.setText("Ung\u00FCltige Eingabe");
                 } else {
-                    HexaTextField.setText(ConvertedNumbers[0]);
-                    BinTextField.setText(ConvertedNumbers[1]);
+                    hexaTextField.setText(ConvertedNumbers[0]);
+                    binTextField.setText(ConvertedNumbers[1]);
                 }
             }
         });
         convertHex.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String HexString = HexaTextField.getText();
+                String HexString = hexaTextField.getText();
                 String ConvertedNumbers[] = new String[2];
                 ConvertedNumbers = controller.HextoDec_Bin(HexString);
-                DecTextField.setText(ConvertedNumbers[0]);
-                BinTextField.setText(ConvertedNumbers[1]);
+                decTextField.setText(ConvertedNumbers[0]);
+                binTextField.setText(ConvertedNumbers[1]);
             }
         });
         convertBin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                String BinString = BinTextField.getText();
+                String BinString = binTextField.getText();
                 String ConvertedNumbers[] = new String[2];
                 ConvertedNumbers = controller.BintoDec_Hex(BinString);
                 if (ConvertedNumbers[0] == "Fehler") {
-                    BinTextField.setText("Ung\u00FCltige Eingabe");
+                    binTextField.setText("Ung\u00FCltige Eingabe");
                 } else {
-                    DecTextField.setText(ConvertedNumbers[0]);
-                    HexaTextField.setText(ConvertedNumbers[1]);
+                    decTextField.setText(ConvertedNumbers[0]);
+                    hexaTextField.setText(ConvertedNumbers[1]);
                 }
             }
         });
@@ -106,19 +112,19 @@ public class ViewNumeralSystem extends JRootPane {
      * Methode, um den hellen Modus zu setzen.
      */
     public void SetLightmode() {
-        JPanel.setBackground(Color.white);
-        DecLabel.setForeground(Color.black);
-        DecLabel.setBackground(Color.white);
-        HexaLabel.setForeground(Color.black);
-        HexaLabel.setBackground(Color.white);
-        BinLabel.setForeground(Color.black);
-        BinLabel.setBackground(Color.white);
-        DecTextField.setForeground(Color.black);
-        DecTextField.setBackground(Color.white);
-        HexaTextField.setForeground(Color.black);
-        HexaTextField.setBackground(Color.white);
-        BinTextField.setForeground(Color.black);
-        BinTextField.setBackground(Color.white);
+        jPanel.setBackground(Color.white);
+        decLabel.setForeground(Color.black);
+        decLabel.setBackground(Color.white);
+        hexaLabel.setForeground(Color.black);
+        hexaLabel.setBackground(Color.white);
+        binLabel.setForeground(Color.black);
+        binLabel.setBackground(Color.white);
+        decTextField.setForeground(Color.black);
+        decTextField.setBackground(Color.white);
+        hexaTextField.setForeground(Color.black);
+        hexaTextField.setBackground(Color.white);
+        binTextField.setForeground(Color.black);
+        binTextField.setBackground(Color.white);
         convertDec.setForeground(Color.black);
         convertDec.setBackground(Color.white);
         convertHex.setForeground(Color.black);
@@ -131,19 +137,19 @@ public class ViewNumeralSystem extends JRootPane {
      * Methode, um den dunklen Modus zu setzen.
      */
     public void SetDarkmode() {
-        JPanel.setBackground(Color.black);
-        DecLabel.setForeground(Color.white);
-        DecLabel.setBackground(Color.black);
-        HexaLabel.setForeground(Color.white);
-        HexaLabel.setBackground(Color.black);
-        BinLabel.setForeground(Color.white);
-        BinLabel.setBackground(Color.black);
-        DecTextField.setForeground(Color.white);
-        DecTextField.setBackground(Color.black);
-        HexaTextField.setForeground(Color.white);
-        HexaTextField.setBackground(Color.black);
-        BinTextField.setForeground(Color.white);
-        BinTextField.setBackground(Color.black);
+        jPanel.setBackground(Color.black);
+        decLabel.setForeground(Color.white);
+        decLabel.setBackground(Color.black);
+        hexaLabel.setForeground(Color.white);
+        hexaLabel.setBackground(Color.black);
+        binLabel.setForeground(Color.white);
+        binLabel.setBackground(Color.black);
+        decTextField.setForeground(Color.white);
+        decTextField.setBackground(Color.black);
+        hexaTextField.setForeground(Color.white);
+        hexaTextField.setBackground(Color.black);
+        binTextField.setForeground(Color.white);
+        binTextField.setBackground(Color.black);
         convertDec.setForeground(Color.white);
         convertDec.setBackground(Color.black);
         convertHex.setForeground(Color.white);

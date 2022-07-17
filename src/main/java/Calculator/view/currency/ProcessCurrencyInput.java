@@ -3,14 +3,14 @@ package Calculator.view.currency;
 // Java-Imports
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /*
  * ProcessCurrencyInput-Klasse zum Auswerten der Interaktionen mit der grafischen Oberflaeche des Waehrungsrechners.
  * Programmtechnisch an die ViewCurrency-Klasse gegliedert.
  */
-public class ProcessCurrencyInput implements DocumentListener, PropertyChangeListener {
+public class ProcessCurrencyInput implements DocumentListener, ActionListener {
     // Referenz auf die zugehoerige ViewCurrency-Instanz
     private ViewCurrency viewCurrency;
 
@@ -54,10 +54,10 @@ public class ProcessCurrencyInput implements DocumentListener, PropertyChangeLis
 
     /**
      * Implementiere Methode, welche die Auswahlaenderung in den JComboBoxes verarbeitet.
-     * @param evt Ereignis, welches verarbeitet wird
+     * @param e Ereignis, welches verarbeitet wird
      */
     @Override
-    public void propertyChange(PropertyChangeEvent evt) {
+    public void actionPerformed(ActionEvent e) {
         // Nur die JComboBoxes koennen dieses Ereignis ausloesen, daher keine Abfrage noetig
         viewCurrency.ConvertCurrency();
     }

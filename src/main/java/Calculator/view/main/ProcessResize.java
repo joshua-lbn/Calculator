@@ -26,13 +26,13 @@ public class ProcessResize implements ComponentListener {
      */
     @Override
     public void componentResized(ComponentEvent e) {
-        // Taschenrechner-Oberflaeche updaten, da dort die Schriftgroesse geaendert werden muss
-        view.UpdateCalculator();
+        // Rechner-Oberflaeche updaten, da dort die Schriftgroesse geaendert werden muss
+        view.UpdateViewCalculator();
         // Hilfe-Oberflaeche updaten, da dort die Textskalierung geaendert werden muss
-        view.UpdateHelp();
+        view.UpdateViewHelp();
     }
 
-    // Weitere Methoden, um Implementierung zu vervollstaendigen, welche jedoch nicht genutzt werden
+    // Weitere Methoden, um die Implementierung zu vervollstaendigen, welche jedoch nicht genutzt werden
     @Override
     public void componentMoved(ComponentEvent e) {}
     @Override

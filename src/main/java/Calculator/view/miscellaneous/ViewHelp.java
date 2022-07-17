@@ -1,10 +1,15 @@
 package Calculator.view.miscellaneous;
 
+// Java-Imports
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * ViewHelp-Klasse mit Hilfe-Unterfenster.
+ * Verwendet, um Abstraktion zwischen View-Oberklasse und den Unter-Darstellungen zu schaffen.
+ */
 public class ViewHelp extends JRootPane {
-    // Panel mit Inhalt und ScrollPane dazu
+    // Panel mit ScrollPane
     private JPanel panel;
     private JScrollPane jScrollPane;
     // JTextArea mit den Hilfstexten
@@ -14,7 +19,7 @@ public class ViewHelp extends JRootPane {
      * Konstruktor: Texte definieren, in JTextArea einfuegen und in das Panel tun.
      */
     public ViewHelp() {
-        // Panel definieren
+        // Panel definieren und Layout setzen
         panel = new JPanel();
         panel.setLayout(new BorderLayout());
         // Text hinzufuegen
@@ -25,18 +30,16 @@ public class ViewHelp extends JRootPane {
                 "Dies k\u00F6nnten die 'Einstellungen' sein.\n");
         text.append("Im Taschenrechnermodus gibt man einen Ausdruck \u00FCber die Tastatur oder die Kn\u00F6pfe ein. " +
                 "Durch den '='-Knopf oder die 'Enter'-Taste st\u00F6\u00DFt man die Berechnung an. Das Ergebnis " +
-                "wird anschlie\u00DFend angezeigt, au\u00DFer die Eingabe erg\u00E4be etwas zu gro\u00DFes " +
-                "(Anzeige: 'Unendlich') oder ist mathematisch nicht korrekt (Anzeige: 'Kein g\u00FCltiger Ausdruck')." +
-                " Durch erneute Eingabe beginnt eine neue Berechnung.\n");
+                "wird anschlie\u00DFend angezeigt. Durch erneute Eingabe beginnt eine neue Berechnung.\n");
         text.append("Im Zahlensystemsmodus gibt man in eines der drei Eingabefelder eine Zahl im angegebenen System " +
                 "ein. Danach bet\u00E4tigt man den danebenstehenden Knopf. Die Ergebnisse werden in den anderen " +
                 "Systemen in den urspr\u00FCnglich leeren Textfeldern erg\u00E4nzt.\n");
         text.append("In einem der Volumenmodi f\u00FCllt man alle Textfelder mit den ben\u00F6tigten Informationen " +
-                "und dr\u00FCckt den Knopf. Das berechnete Ergebnis erscheint unten.\n");
-        text.append("Im W\u00E4hrungsmodus w\u00E4hlt man im ersten Men\u00FC die Ausgangsw\u00E4hrung und gibt den " +
-                "umzurechnenden Betrag in das Textfeld darunter ein. Danach w\u00E4hlt man die Zielw\u00E4hrung im " +
-                "zweiten Men\u00FC aus. Dann bet\u00E4tigt man die 'Enter'-Taste. Das Ergebnis erscheint im zweiten " +
-                "Textfeld.");
+                "aus und dr\u00FCckt den Knopf. Das berechnete Ergebnis erscheint unten.\n");
+        text.append("Im W\u00E4hrungsmodus w\u00E4hlt man im Drop-Down-Men\u00FC links die Ausgangsw\u00E4hrung und " +
+                "gibt den umzurechnenden Betrag in das Textfeld oben ein. Danach w\u00E4hlt man die Zielw\u00E4hrung " +
+                "im zweiten Drop-Down-Men\u00FC rechts aus. Die Berechnung wird durch die Eingabe oder Auswahl im " +
+                "Men\u00FC angesto\u00DFen. Das Ergebnis erscheint im zweiten Textfeld in der Mitte.");
         // Eigenschaften der JTextArea setzen
         text.setEditable(false);
         text.setLineWrap(true);

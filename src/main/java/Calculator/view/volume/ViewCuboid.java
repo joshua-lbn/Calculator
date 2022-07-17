@@ -1,29 +1,44 @@
 package Calculator.view.volume;
 
+// Java-Imports
 import javax.swing.*;
 import java.awt.*;
+// Imports anderer Klassen
 import Calculator.controller.Controller;
 
-
+/**
+ * ViewCuboid-Klasse mit grafischer Benutzeroberflaeche des Quader-Volumenberechnungs-Unterfenster.
+ * Verwendet, um Abstraktion zwischen View-Oberklasse und den Unter-Darstellungen zu schaffen.
+ */
 public class ViewCuboid extends JRootPane implements ViewVolume{
+    // Elemente der Oberflaeche
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton calculate;
+    private javax.swing.JTextField lengthTextField;
+    private javax.swing.JTextField widthTextField;
+    private javax.swing.JTextField heightTextField;
+    private javax.swing.JLabel length;
+    private javax.swing.JLabel width;
+    private javax.swing.JLabel height;
+    private javax.swing.JLabel volume;
+    private javax.swing.JLabel volumeCalculate;
+    private javax.swing.JLabel spacer1;
+    private javax.swing.JLabel spacer2;
+    private javax.swing.JLabel spacer3;
+    // Instanz der Beiklasse "ProcessVolumeInput", um auf Drucke auf den Knopf zu reagieren
     private ProcessVolumeInput processVolumeInput;
-    private javax.swing.JPanel jpanel1 = new javax.swing.JPanel();
-    private javax.swing.JButton calculate = new javax.swing.JButton();
-    private javax.swing.JTextField lengthTextField = new javax.swing.JTextField();
-    private javax.swing.JTextField widthTextField = new javax.swing.JTextField();
-    private javax.swing.JTextField heightTextField = new javax.swing.JTextField();
-    private javax.swing.JLabel length = new javax.swing.JLabel();
-    private javax.swing.JLabel width = new javax.swing.JLabel();
-    private javax.swing.JLabel height = new javax.swing.JLabel();
-    private javax.swing.JLabel volume = new javax.swing.JLabel();
-    private javax.swing.JLabel volumeCalculate = new javax.swing.JLabel();
-    private javax.swing.JLabel spacer1 = new javax.swing.JLabel();
-    private javax.swing.JLabel spacer2 = new javax.swing.JLabel();
-    private javax.swing.JLabel spacer3 = new javax.swing.JLabel();
 
+    /**
+     * Konstruktor: Oberflaeche erstellen und Eingabeverarbeitungsinstanz hinzufuegen.
+     * @param c Controller-Instanz
+     */
     public ViewCuboid(Controller c) {
+        // Eingabeverarbeitung instanziieren und Controller uebergeben
         processVolumeInput = new ProcessVolumeInput(this, c);
-        jpanel1.setLayout(new GridLayout(4,3));
+        // Panel erstellen und Layout setzen
+        jPanel1 = new JPanel();
+        jPanel1.setLayout(new GridLayout(4,3));
+        // Weitere Elemente der Oberflaeche erstellen
         length = new javax.swing.JLabel("   Länge:");
         lengthTextField = new javax.swing.JTextField();
         spacer1 = new javax.swing.JLabel();
@@ -36,30 +51,70 @@ public class ViewCuboid extends JRootPane implements ViewVolume{
         volume = new javax.swing.JLabel("   Volumen");
         volumeCalculate = new javax.swing.JLabel();
         spacer3 = new javax.swing.JLabel();
-        jpanel1.add(length);
-        jpanel1.add(lengthTextField);
-        jpanel1.add(spacer1);
-        jpanel1.add(width);
-        jpanel1.add(widthTextField);
-        jpanel1.add(spacer2);
-        jpanel1.add(height);
-        jpanel1.add(heightTextField);
-        jpanel1.add(calculate);
-        jpanel1.add(volume);
-        jpanel1.add(volumeCalculate);
-        jpanel1.add(spacer3);
-        this.getContentPane().add(jpanel1);
-        setVisible(true);
-        setSize(600,300);
-        this.setVisible(true);
+        // Elemente in Panel einfuegen
+        jPanel1.add(length);
+        jPanel1.add(lengthTextField);
+        jPanel1.add(spacer1);
+        jPanel1.add(width);
+        jPanel1.add(widthTextField);
+        jPanel1.add(spacer2);
+        jPanel1.add(height);
+        jPanel1.add(heightTextField);
+        jPanel1.add(calculate);
+        jPanel1.add(volume);
+        jPanel1.add(volumeCalculate);
+        jPanel1.add(spacer3);
+        // Panel in ContentPane einfuegen
+        this.getContentPane().add(jPanel1);
+        // Eingabeverarbeitung hinzufuegen
         calculate.addActionListener(processVolumeInput);
     }
 
     /**
-     * Methode, um den hellen Modus zu setzen.
+     * Methode, um das Ergebnis der Berechnung zu setzen.
+     * @param volume Ergebnis als String
+     */
+    public void VolumeOutput(String volume) {
+        volumeCalculate.setText(volume);
+    }
+
+    /**
+     * Getter-Methode fuer den JButton getCalculate.
+     * @return JButton getCalculate
+     */
+    public JButton getCalculate() {
+        return calculate;
+    }
+
+    /**
+     * Getter-Methode fuer den Text des Laenge-Textfeldes.
+     * @return Eingabe des Laenge-Textfeldes als String
+     */
+    public String GetTextLength() {
+        return lengthTextField.getText();
+    }
+
+    /**
+     * Getter-Methode fuer den Text des Breite-Textfeldes.
+     * @return Eingabe des Breite-Textfeldes als String
+     */
+    public String GetTextWidth() {
+        return widthTextField.getText();
+    }
+
+    /**
+     * Getter-Methode fuer den Text des Hoehe-Textfeldes.
+     * @return Eingabe des Hoehe-Textfeldes als String
+     */
+    public String GetTextHeight() {
+        return heightTextField.getText();
+    }
+
+    /**
+     * Methode, um den hellen Modus zu aktivieren.
      */
     public void SetLightmode() {
-        jpanel1.setBackground(Color.white);
+        jPanel1.setBackground(Color.white);
         calculate.setForeground(Color.black);
         calculate.setBackground(Color.white);
         lengthTextField.setForeground(Color.black);
@@ -87,10 +142,10 @@ public class ViewCuboid extends JRootPane implements ViewVolume{
     }
 
     /**
-     * Methode, um den dunklen Modus zu setzen.
+     * Methode, um den dunklen Modus zu aktivieren.
      */
     public void SetDarkmode() {
-        jpanel1.setBackground(Color.black);
+        jPanel1.setBackground(Color.black);
         calculate.setForeground(Color.white);
         calculate.setBackground(Color.black);
         lengthTextField.setForeground(Color.white);
@@ -116,25 +171,4 @@ public class ViewCuboid extends JRootPane implements ViewVolume{
         spacer3.setForeground(Color.black);
         spacer3.setBackground(Color.white);
     }
-
-    public JButton getCalculate() {
-        return calculate;
-    }
-
-    public String GetTextLength() {
-        return lengthTextField.getText();
-    }
-
-    public String GetTextWidth() {
-        return widthTextField.getText();
-    }
-
-    public String GetTextHeight() {
-        return heightTextField.getText();
-    }
-
-    public void VolumeOutput(String volume) {
-        volumeCalculate.setText(volume);
-    }
-
 }

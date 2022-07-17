@@ -3,13 +3,10 @@ package Calculator.controller;
 // Java-Imports
 import java.util.HashMap;
 import java.util.Objects;
-import java.util.StringJoiner;
 // Import weiterer Projektklassen
 import Calculator.model.Model;
 import Calculator.model.CalculatorState;
 import Calculator.view.main.View;
-import Calculator.view.volume.ViewCone;
-import Calculator.view.volume.ViewCuboid;
 // Import des Rechen-Packages
 import org.mariuszgromada.math.mxparser.Expression;
 
@@ -17,7 +14,7 @@ import org.mariuszgromada.math.mxparser.Expression;
  * Controller-Klasse mit Programmierlogik.
  */
 public class Controller {
-    // Referenz auf Model und View
+    // Referenz auf Model- und View-Instanz
     private Model model;
     private View view;
     // Expression des Packages, um mathematischen Ausdruck auszuwerten
@@ -27,7 +24,7 @@ public class Controller {
 
 
     /**
-     * Konstruktor: Expression und Waehrungshashmap initialisieren.
+     * Konstruktor: Expression und Waehrungshashmap initialisieren bzw. befuellen.
      */
     public Controller() {
         // Expression initialisieren
@@ -42,11 +39,9 @@ public class Controller {
         currencyNames.put("Kanadischer Dollar", "CAD");
         currencyNames.put("Schweizer Franken", "CHF");
         currencyNames.put("Chinesischer Renminbi Yuan", "CNY");
-        currencyNames.put("Zypern-Pfund", "CYP");
         currencyNames.put("Tschechische Krone", "CZK");
         currencyNames.put("D\u00E4nische Krone", "DKK");
         currencyNames.put("Algerischer Dinar", "DZD");
-        currencyNames.put("Estnische Krone", "EEK");
         currencyNames.put("Pfund Sterling", "GBP");
         currencyNames.put("Hongkong-Dollar", "HKD");
         currencyNames.put("Kroatische Kuna", "HRK");
@@ -57,10 +52,7 @@ public class Controller {
         currencyNames.put("Isl\u00E4ndische Krone", "ISK");
         currencyNames.put("Yen", "JPY");
         currencyNames.put("S\u00FCdkoreanischer Won", "KRW");
-        currencyNames.put("Litas", "LTL");
-        currencyNames.put("Lettische Lats", "LVL");
         currencyNames.put("Marokkanischer Dirham", "MAD");
-        currencyNames.put("Maltesische Lira", "MTL");
         currencyNames.put("Mexikanischer Peso", "MXN");
         currencyNames.put("Malaysischer Ringgit", "MYR");
         currencyNames.put("Norwegische Krone", "NOK");
@@ -71,8 +63,6 @@ public class Controller {
         currencyNames.put("Russischer Rubel", "RUB");
         currencyNames.put("Schwedische Krone", "SEK");
         currencyNames.put("Singapur-Dollar", "SGD");
-        currencyNames.put("Slowenischer Tolar", "SIT");
-        currencyNames.put("Slowakische Krone", "SKK");
         currencyNames.put("Baht", "THB");
         currencyNames.put("Neue Lira", "TRY");
         currencyNames.put("Taiwan-Dollar", "TWD");
@@ -135,7 +125,7 @@ public class Controller {
             model.AddSquareRoot();
         }
         // Trigonometrie: modifiziert in Expression und HTML
-        if (input.equals("sin") || input.equals("cos") || input.equals("tan")) {
+        else if (input.equals("sin") || input.equals("cos") || input.equals("tan")) {
             model.ExtendExpression(input + "(");
             model.ExtendHTML(input + "(");
         }
@@ -158,7 +148,7 @@ public class Controller {
         // Ans: in beide Strings Dezimalwert aus Antwortspeicher einfuegen
         else if (input.equals("Ans")) {
             model.ExtendExpression(model.GetAnswer());
-            model.ExtendHTML(model.GetAnswer());
+            model.ExtendHTML(model.GetAnswer().replace(".", ","));
         }
         // Einfachkorrektur: in beiden Strings das zuletzt eingefuegte Element durch Methoden entfernen
         else if (input.equals("DEL")) {
@@ -181,7 +171,7 @@ public class Controller {
             // Ergebnis berechnen und im Model setzen
             model.SetAnswer(CalculateCalculator());
             // Anzeige aktualisieren
-            view.UpdateCalculator();
+            view.UpdateViewCalculator();
             // Zustand auf Loesungsanzeige setzen
             model.SetState(CalculatorState.SOLUTION);
         }
@@ -338,7 +328,7 @@ public class Controller {
         String[] ArrayHex_Bin = new String[2];
         try {
             double decimalDouble = Double.parseDouble(decimalString);
-            //Runden auf eine ganzzahlige Zahl
+            // Runden auf eine ganzzahlige Zahl
             double decimalNumberRounded = ((double) Math.round(decimalDouble * 1));
             long decInt =  (long) decimalNumberRounded;
 
@@ -352,7 +342,7 @@ public class Controller {
                 ArrayHex_Bin[1] = Long.toBinaryString(decInt);
                 return ArrayHex_Bin;
             }
-
+        // Bei Umwandlungsfehler: ausgeben
         } catch (NumberFormatException e) {
             ArrayHex_Bin[0] = "Fehler";
             return ArrayHex_Bin;
@@ -367,19 +357,26 @@ public class Controller {
     public String[] HextoDec_Bin(String HexNumber) {
         // Erstellung eines Feldes: Binaer- und Dezimalwert werden gespeichert
         String[] ArrayDec_Bin = new String[2];
-        // int für if-Bedingung (nicht in Hexa umgerechnet)
-        if (HexNumber.indexOf("-") == 0) {
-            HexNumber = HexNumber.replace("-", "");
-            long decIntNeg = Long.parseLong(HexNumber, 16);
-            ArrayDec_Bin[0] = "-" + Long.toString(decIntNeg);
-            ArrayDec_Bin[1] = "-" + Long.toBinaryString(decIntNeg);
-            return ArrayDec_Bin;
-        } else {
-            long decInt = Long.parseLong(HexNumber, 16);
-            ArrayDec_Bin[0] = Long.toString(decInt);
-            ArrayDec_Bin[1] = Long.toBinaryString(decInt);
+        try {
+            // int für if-Bedingung (nicht in Hexa umgerechnet)
+            if (HexNumber.indexOf("-") == 0) {
+                HexNumber = HexNumber.replace("-", "");
+                long decIntNeg = Long.parseLong(HexNumber, 16);
+                ArrayDec_Bin[0] = "-" + Long.toString(decIntNeg);
+                ArrayDec_Bin[1] = "-" + Long.toBinaryString(decIntNeg);
+                return ArrayDec_Bin;
+            } else {
+                long decInt = Long.parseLong(HexNumber, 16);
+                ArrayDec_Bin[0] = Long.toString(decInt);
+                ArrayDec_Bin[1] = Long.toBinaryString(decInt);
+                return ArrayDec_Bin;
+            }
+        // Bei Umwandlungsfehler: ausgeben
+        } catch (NumberFormatException e) {
+            ArrayDec_Bin[0] = "Fehler";
             return ArrayDec_Bin;
         }
+
     }
 
     /**
@@ -403,6 +400,7 @@ public class Controller {
                 ArrayDec_Hex[1] = Long.toHexString(decInt);
                 return ArrayDec_Hex;
             }
+        // Bei Umwandlungsfehler: ausgeben
         } catch (NumberFormatException e){
             ArrayDec_Hex[0] = "Fehler";
             return ArrayDec_Hex;
@@ -447,7 +445,7 @@ public class Controller {
             }
         }
         // Eingabe mit Faktoren verrechnen und zurueckgeben
-        return input * (inRate / outRate);
+        return input * (outRate / inRate);
     }
 
     /**
@@ -463,10 +461,8 @@ public class Controller {
         /* Fortgefuehrter Konstruktor
          * Zustand des Rechners auf "rechnend" setzen
          * Oberflaeche des Rechners aktualisieren
-         * Waehrungsdaten als String erhalten
          */
         model.SetState(CalculatorState.CALCULATION);
-        view.UpdateCalculator();
-        //currencies = view.GetCurrenciesAsString();
+        view.UpdateViewCalculator();
     }
 }

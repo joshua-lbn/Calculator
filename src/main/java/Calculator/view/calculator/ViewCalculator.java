@@ -204,6 +204,7 @@ public class ViewCalculator extends JRootPane {
         jPanelLeft.setBackground(Color.white);
         // HTML-Darstellung setzen
         jTextPane.setBackground(Color.white);
+        UpdateView();
         // Scrollbar setzen
         jScrollPane.getHorizontalScrollBar().setBackground(Color.white);
         // Knoepfe setzen
@@ -237,6 +238,7 @@ public class ViewCalculator extends JRootPane {
         jPanelLeft.setBackground(Color.black);
         // HTML-Darstellung setzen
         jTextPane.setBackground(Color.black);
+        UpdateView();
         // Scrollbar setzen
         jScrollPane.getHorizontalScrollBar().setBackground(Color.black);
         // Knoepfe setzen

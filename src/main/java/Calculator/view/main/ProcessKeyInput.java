@@ -25,116 +25,116 @@ public class ProcessKeyInput implements KeyListener {
     }
 
     /**
-     * Methode, um die bei Tastaturtastendruck aufgerufen wird und diesen an die View weitergibt.
+     * Methode, die bei Tastaturtastendruck aufgerufen wird und diesen an die View weitergibt.
      * @param e "Event" bzw. Ereignis des Tastaturtastendruckes
      */
     public void keyPressed(KeyEvent e) {
         if (active) {
-            if (e.isShiftDown() && (e.getKeyCode() == KeyEvent.VK_7 || e.getKeyCode() ==KeyEvent.VK_PERIOD)) {
+            if (e.isShiftDown() && (e.getKeyCode() == KeyEvent.VK_7 || e.getKeyCode() == KeyEvent.VK_PERIOD)) {
                 // Eingabe an Controller (ueber View) leiten
-                view.UpdateExpression("\u00F7");
-                // Anzeige ueber View aktualisieren
-                view.UpdateCalculator();
+                view.UpdateCalculatorExpression("\u00F7");
+                // Anzeige des Calculator-Unterfensters ueber View aktualisieren
+                view.UpdateViewCalculator();
             } else if (e.isShiftDown() && e.getKeyCode() == KeyEvent.VK_8) {
-                view.UpdateExpression("(");
-                view.UpdateCalculator();
+                view.UpdateCalculatorExpression("(");
+                view.UpdateViewCalculator();
             } else if (e.isShiftDown() && e.getKeyCode() == KeyEvent.VK_9) {
-                view.UpdateExpression(")");
-                view.UpdateCalculator();
+                view.UpdateCalculatorExpression(")");
+                view.UpdateViewCalculator();
             } else if (e.isShiftDown() && e.getKeyCode() == KeyEvent.VK_PLUS) {
-                view.UpdateExpression("\u00D7");
-                view.UpdateCalculator();
+                view.UpdateCalculatorExpression("\u00D7");
+                view.UpdateViewCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_PLUS) {
-                view.UpdateExpression("\u002B");
-                view.UpdateCalculator();
+                view.UpdateCalculatorExpression("\u002B");
+                view.UpdateViewCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_MINUS) {
-                view.UpdateExpression("\u2212");
-                view.UpdateCalculator();
+                view.UpdateCalculatorExpression("\u2212");
+                view.UpdateViewCalculator();
             } else if (e.isShiftDown() && e.getKeyCode() == KeyEvent.VK_0) {
-                view.UpdateExpression("\u003D");
-                view.UpdateCalculator();
+                view.UpdateCalculatorExpression("\u003D");
+                view.UpdateViewCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                view.UpdateExpression("\u2192");
-                view.UpdateCalculator();
+                view.UpdateCalculatorExpression("\u2192");
+                view.UpdateViewCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                view.UpdateExpression("\u2190");
-                view.UpdateCalculator();
+                view.UpdateCalculatorExpression("\u2190");
+                view.UpdateViewCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_0 || e.getKeyCode() == KeyEvent.VK_NUMPAD0) {
-                view.UpdateExpression("" + 0 + "");
-                view.UpdateCalculator();
+                view.UpdateCalculatorExpression("" + 0 + "");
+                view.UpdateViewCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_1 || e.getKeyCode() == KeyEvent.VK_NUMPAD1) {
-                view.UpdateExpression("" + 1 + "");
-                view.UpdateCalculator();
+                view.UpdateCalculatorExpression("" + 1 + "");
+                view.UpdateViewCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_2 || e.getKeyCode() == KeyEvent.VK_NUMPAD2) {
-                view.UpdateExpression("" + 2 + "");
-                view.UpdateCalculator();
+                view.UpdateCalculatorExpression("" + 2 + "");
+                view.UpdateViewCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_3 || e.getKeyCode() == KeyEvent.VK_NUMPAD3) {
-                view.UpdateExpression("" + 3 + "");
-                view.UpdateCalculator();
+                view.UpdateCalculatorExpression("" + 3 + "");
+                view.UpdateViewCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_4 || e.getKeyCode() == KeyEvent.VK_NUMPAD4) {
-                view.UpdateExpression("" + 4 + "");
-                view.UpdateCalculator();
+                view.UpdateCalculatorExpression("" + 4 + "");
+                view.UpdateViewCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_5 || e.getKeyCode() == KeyEvent.VK_NUMPAD5) {
-                view.UpdateExpression("" + 5 + "");
-                view.UpdateCalculator();
+                view.UpdateCalculatorExpression("" + 5 + "");
+                view.UpdateViewCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_6 || e.getKeyCode() == KeyEvent.VK_NUMPAD6) {
-                view.UpdateExpression("" + 6 + "");
-                view.UpdateCalculator();
+                view.UpdateCalculatorExpression("" + 6 + "");
+                view.UpdateViewCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_7 || e.getKeyCode() == KeyEvent.VK_NUMPAD7) {
-                view.UpdateExpression("" + 7 + "");
-                view.UpdateCalculator();
+                view.UpdateCalculatorExpression("" + 7 + "");
+                view.UpdateViewCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_8 || e.getKeyCode() == KeyEvent.VK_NUMPAD8) {
-                view.UpdateExpression("" + 8 + "");
-                view.UpdateCalculator();
+                view.UpdateCalculatorExpression("" + 8 + "");
+                view.UpdateViewCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_9 || e.getKeyCode() == KeyEvent.VK_NUMPAD9) {
-                view.UpdateExpression("" + 9 + "");
-                view.UpdateCalculator();
+                view.UpdateCalculatorExpression("" + 9 + "");
+                view.UpdateViewCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_S) {
-                view.UpdateExpression("sin");
-                view.UpdateCalculator();
+                view.UpdateCalculatorExpression("sin");
+                view.UpdateViewCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_C) {
-                view.UpdateExpression("cos");
-                view.UpdateCalculator();
+                view.UpdateCalculatorExpression("cos");
+                view.UpdateViewCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_T) {
-                view.UpdateExpression("tan");
-                view.UpdateCalculator();
+                view.UpdateCalculatorExpression("tan");
+                view.UpdateViewCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_L) {
-                view.UpdateExpression("\u33D2");
-                view.UpdateCalculator();
+                view.UpdateCalculatorExpression("\u33D2");
+                view.UpdateViewCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-                view.UpdateExpression("DEL");
-                view.UpdateCalculator();
+                view.UpdateCalculatorExpression("DEL");
+                view.UpdateViewCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_DELETE) {
-                view.UpdateExpression("AC");
-                view.UpdateCalculator();
+                view.UpdateCalculatorExpression("AC");
+                view.UpdateViewCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                view.UpdateExpression("=");
-                view.UpdateCalculator();
+                view.UpdateCalculatorExpression("=");
+                view.UpdateViewCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_DEAD_CIRCUMFLEX) {
-                view.UpdateExpression("\u207F");
-                view.UpdateCalculator();
+                view.UpdateCalculatorExpression("\u207F");
+                view.UpdateViewCalculator();
             } else if (e.getKeyCode() == KeyEvent.VK_COMMA || e.getKeyCode() == KeyEvent.VK_PERIOD) {
-                view.UpdateExpression("\u002C");
-                view.UpdateCalculator();
+                view.UpdateCalculatorExpression("\u002C");
+                view.UpdateViewCalculator();
             } else if(e.getKeyCode() == KeyEvent.VK_A) {
-                view.UpdateExpression("Ans");
-                view.UpdateCalculator();
+                view.UpdateCalculatorExpression("Ans");
+                view.UpdateViewCalculator();
             } else if(e.getKeyCode() == KeyEvent.VK_B) {
                 view.SetLightmode();
             } else if(e.getKeyCode() == KeyEvent.VK_D) {
                 view.SetDarkmode();
             } else if(e.getKeyCode() == KeyEvent.VK_P) {
-                view.UpdateExpression("\u03C0");
-                view.UpdateCalculator();
+                view.UpdateCalculatorExpression("\u03C0");
+                view.UpdateViewCalculator();
             } else if(e.getKeyCode() == KeyEvent.VK_E) {
-                view.UpdateExpression("\u212F");
-                view.UpdateCalculator();
+                view.UpdateCalculatorExpression("\u212F");
+                view.UpdateViewCalculator();
             } else if(e.getKeyCode() == KeyEvent.VK_G) {
-                view.UpdateExpression("\u03D5");
-                view.UpdateCalculator();
+                view.UpdateCalculatorExpression("\u03D5");
+                view.UpdateViewCalculator();
             } else if(e.getKeyCode() == KeyEvent.VK_W) {
-                view.UpdateExpression("\u221A");
-                view.UpdateCalculator();
+                view.UpdateCalculatorExpression("\u221A");
+                view.UpdateViewCalculator();
             }
         }
     }

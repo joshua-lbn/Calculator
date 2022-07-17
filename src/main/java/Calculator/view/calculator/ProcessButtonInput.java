@@ -1,6 +1,6 @@
 package Calculator.view.calculator;
 
-// Java-Import
+// Java-Imports
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -31,7 +31,7 @@ public class ProcessButtonInput implements ActionListener {
          * hinzugefuegt werden koennen.
          * der viewCalculator der Befehl gegeben, nach Änderung der Interna (durch den Controller) die Darstellung zu
          * aktualisieren.
-         * der viewCalculator der Befehl gegeben, die Tastatureingabe durch Setzung des Fokus zu ermoeglichen.
+         * der viewCalculator der Befehl gegeben, die Tastatureingabe durch Setzung des Fokus wieder zu ermoeglichen.
          * die weitere Ausfuehrung der Methode aus Effizienzgruenden abgebrochen.
          */
         for (int i = 0; i < viewCalculator.GetJButtonsNumber().length; i++) {

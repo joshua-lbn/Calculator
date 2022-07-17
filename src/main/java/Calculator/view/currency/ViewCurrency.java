@@ -3,13 +3,12 @@ package Calculator.view.currency;
 // Java-Imports
 import javax.swing.*;
 import java.awt.*;
-import java.math.BigDecimal;
 import java.util.Objects;
 // Imports weiterer Programmklassen
 import Calculator.view.main.View;
 
 /**
- * ViewCurrencyOld-Klasse mit Waehrungsunterfenster.
+ * ViewCurrency-Klasse mit Waehrungs-Unterfenster.
  * Verwendet, um Abstraktion zwischen View-Oberklasse und den Unter-Darstellungen zu schaffen.
  */
 public class ViewCurrency extends JRootPane {
@@ -24,8 +23,8 @@ public class ViewCurrency extends JRootPane {
     private ProcessCurrencyInput processCurrencyInput;
 
     /**
-     * Konstruktor: Referenz auf View-Instanz setzen, Waehrungsarray initialisieren, Oberflaeche erstellen und
-     * Eingabeverarbeitung hinzufuegen.
+     * Konstruktor: Referenz auf View-Instanz setzen, Waehrungsarray initialisieren und befuellen, Oberflaeche
+     * erstellen und Eingabeverarbeitung hinzufuegen.
      */
     public ViewCurrency (View v)  {
         // Referenz setzen
@@ -33,24 +32,22 @@ public class ViewCurrency extends JRootPane {
         // Array mit Waehrungen erstellen
         String[] currencyNames = new String[]{"Argentinischer Peso", "Australischer Dollar", "Lew",
                 "Brasilianischer Real", "Kanadischer Dollar", "Schweizer Franken", "Chinesischer Renminbi Yuan",
-                "Zypern-Pfund", "Tschechische Krone", "D\u00E4nische Krone", "Algerischer Dinar", "Estnische Krone",
-                "Pfund Sterling", "Hongkong-Dollar", "Kroatische Kuna", "Forint", "Indonesische Rupiah",
-                "Neuer Schekel", "Indische Rupie", "Isl\u00E4ndische Krone", "Yen", "S\u00FCdkoreanischer Won",
-                "Litas", "Lettische Lats", "Marokkanischer Dirham", "Maltesische Lira", "Mexikanischer Peso",
-                "Malaysischer Ringgit", "Norwegische Krone", "Neuseeland-Dollar", "Philippinischer Peso",
-                "Zloty", "Rum\u00E4nischer Leu", "Russischer Rubel", "Schwedische Krone", "Singapur-Dollar",
-                "Slowenischer Tolar", "Slowakische Krone", "Baht", "Neue Lira", "Taiwan-Dollar", "US-Dollar",
-                "S\u00FCdafrikanischer Rand"};
+                "Tschechische Krone", "D\u00E4nische Krone", "Algerischer Dinar", "Pfund Sterling", "Hongkong-Dollar",
+                "Kroatische Kuna", "Forint", "Indonesische Rupiah", "Neuer Schekel", "Indische Rupie",
+                "Isl\u00E4ndische Krone", "Yen", "S\u00FCdkoreanischer Won", "Marokkanischer Dirham",
+                "Mexikanischer Peso", "Malaysischer Ringgit", "Norwegische Krone", "Neuseeland-Dollar",
+                "Philippinischer Peso", "Zloty", "Rum\u00E4nischer Leu", "Russischer Rubel", "Schwedische Krone",
+                "Singapur-Dollar", "Baht", "Neue Lira", "Taiwan-Dollar", "US-Dollar", "S\u00FCdafrikanischer Rand"};
         // Eingabeverarbeitungsinstanz kreieren
         processCurrencyInput = new ProcessCurrencyInput(this);
         // Oberflaeche erstellen
         eingabeCB = new JComboBox(currencyNames);
         eingabeCB.setEditable(false);
-        eingabeCB.addPropertyChangeListener(processCurrencyInput);
+        eingabeCB.addActionListener(processCurrencyInput);
         getContentPane().add(eingabeCB, BorderLayout.WEST);
         ausgabeCB = new JComboBox(currencyNames);
         ausgabeCB.setEditable(false);
-        ausgabeCB.addPropertyChangeListener(processCurrencyInput);
+        ausgabeCB.addActionListener(processCurrencyInput);
         getContentPane().add(ausgabeCB, BorderLayout.EAST);
         textInput = new JTextField();
         textInput.getDocument().addDocumentListener(processCurrencyInput);
@@ -73,7 +70,7 @@ public class ViewCurrency extends JRootPane {
             return;
         }
         if(input < 0) {
-            // Bei zu kleinem Wert: Fehler ausgeben
+            // Bei zu kleinem Wert (kleiner 0): Fehler ausgeben
             label1.setText("Fehlerhafte Eingabe");
             return;
         }

@@ -383,7 +383,7 @@ public class Model {
     }
 
     /**
-     * Methode, um den hellen Modus zu setzen.
+     * Methode, um den dunklen Modus zu setzen.
      * Tatsaechliche Umsetzung in der View.
      */
     public void SetDarkmode()
