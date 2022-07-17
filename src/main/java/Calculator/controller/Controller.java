@@ -340,15 +340,16 @@ public class Controller {
             double decimalDouble = Double.parseDouble(decimalString);
             //Runden auf eine ganzzahlige Zahl
             double decimalNumberRounded = ((double) Math.round(decimalDouble * 1));
-            int decInt = (int) decimalNumberRounded;
+            long decInt =  (long) decimalNumberRounded;
+
             if (decimalDouble < 0) {
                 decInt = Math.abs(decInt);
-                ArrayHex_Bin[0] = "-" + Integer.toHexString(decInt);
-                ArrayHex_Bin[1] = "-" + Integer.toBinaryString(decInt);
+                ArrayHex_Bin[0] = "-" + Long.toHexString(decInt);
+                ArrayHex_Bin[1] = "-" + Long.toBinaryString(decInt);
                 return ArrayHex_Bin;
             } else {
-                ArrayHex_Bin[0] = Integer.toHexString(decInt);
-                ArrayHex_Bin[1] = Integer.toBinaryString(decInt);
+                ArrayHex_Bin[0] = Long.toHexString(decInt);
+                ArrayHex_Bin[1] = Long.toBinaryString(decInt);
                 return ArrayHex_Bin;
             }
 
@@ -369,14 +370,14 @@ public class Controller {
         // int für if-Bedingung (nicht in Hexa umgerechnet)
         if (HexNumber.indexOf("-") == 0) {
             HexNumber = HexNumber.replace("-", "");
-            int decIntNeg = Integer.parseInt(HexNumber, 16);
-            ArrayDec_Bin[0] = "-" + Integer.toString(decIntNeg);
-            ArrayDec_Bin[1] = "-" + Integer.toBinaryString(decIntNeg);
+            long decIntNeg = Long.parseLong(HexNumber, 16);
+            ArrayDec_Bin[0] = "-" + Long.toString(decIntNeg);
+            ArrayDec_Bin[1] = "-" + Long.toBinaryString(decIntNeg);
             return ArrayDec_Bin;
         } else {
-            int decInt = Integer.parseInt(HexNumber, 16);
-            ArrayDec_Bin[0] = Integer.toString(decInt);
-            ArrayDec_Bin[1] = Integer.toBinaryString(decInt);
+            long decInt = Long.parseLong(HexNumber, 16);
+            ArrayDec_Bin[0] = Long.toString(decInt);
+            ArrayDec_Bin[1] = Long.toBinaryString(decInt);
             return ArrayDec_Bin;
         }
     }

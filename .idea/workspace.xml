@@ -4,19 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e01ba51-84bb-425d-83d7-45271fdd1757" name="Changes" comment="Änderung der Währungsrechnung auf EZB-Server, Verbesserungen">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_07_2022_17_44__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_07_2022_17_44__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_07_2022_17_48__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_07_2022_17_48__Changes_.xml" afterDir="false" />
+    <list default="true" id="6e01ba51-84bb-425d-83d7-45271fdd1757" name="Changes" comment="Soweit fertigstellen aller Zahlensystemmethoden">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/controller/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/model/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/currency/ProcessCurrencyInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/currency/ProcessCurrencyInput.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/currency/ViewCurrency.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/currency/ViewCurrency.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/main/ProcessKeyInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/main/ProcessKeyInput.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/main/ProcessMenuInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/main/ProcessMenuInput.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/main/ProcessResize.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/main/ProcessResize.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/main/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/main/View.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator/view/numeralSystem/ViewNumeralSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator/view/numeralSystem/ViewNumeralSystem.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +42,6 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/main/java/Calculator/controller/Controller.java" root0="SKIP_INSPECTION" />
@@ -473,10 +463,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="Änderung der Währungsrechnung auf EZB-Server, Verbesserungen" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Calculator$Calculator_Main.ic" NAME="Calculator.Main Coverage Results" MODIFIED="1656782262692" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Calculator$Main.ic" NAME="Main Coverage Results" MODIFIED="1656866699393" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>Calculator.controller.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Calculator$Main.ic" NAME="Main Coverage Results" MODIFIED="1656866699393" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Calculator$Calculator_Main.ic" NAME="Calculator.Main Coverage Results" MODIFIED="1656782262692" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>Calculator.controller.*</FILTER>
     </SUITE>
   </component>

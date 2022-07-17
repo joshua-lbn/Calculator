@@ -6,25 +6,31 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Erstellung eines neuen Panels für die Umrechnung in die verschiedenen Zahlensystem
+ */
 public class ViewNumeralSystem extends JRootPane {
+    //Hauptpanel
     private javax.swing.JPanel JPanel = new javax.swing.JPanel();
+    //Buttons
     private javax.swing.JButton convertDec = new javax.swing.JButton();
     private javax.swing.JButton convertHex = new javax.swing.JButton();
     private javax.swing.JButton convertBin = new javax.swing.JButton();
+    //Textfelder
     private javax.swing.JTextField DecTextField = new javax.swing.JTextField();
     private javax.swing.JTextField HexaTextField = new javax.swing.JTextField();
     private javax.swing.JTextField BinTextField = new javax.swing.JTextField();
+    //
     private javax.swing.JLabel DecLabel = new javax.swing.JLabel();
     private javax.swing.JLabel HexaLabel = new javax.swing.JLabel();
     private javax.swing.JLabel BinLabel = new javax.swing.JLabel();
-    //hinzufügen des Rechners
+
+    //Hinzufügen des Rechners
     Controller controller = new Controller();
 
     public ViewNumeralSystem () {
-        //setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        //setzt Layout fest
         JPanel.setLayout(new GridLayout(3, 3));
-
-        //jpanel1 = new javax.swing.JPanel();
         DecLabel = new javax.swing.JLabel("   Dezimal:");
         DecTextField = new javax.swing.JTextField();
         HexaLabel = new javax.swing.JLabel("   Hexadezimal:");
@@ -34,7 +40,6 @@ public class ViewNumeralSystem extends JRootPane {
         convertDec = new javax.swing.JButton("=");
         convertHex = new javax.swing.JButton("=");
         convertBin = new javax.swing.JButton("=");
-        //ggf. noch set Size
         JPanel.add(DecLabel);
         JPanel.add(DecTextField);
 
@@ -48,12 +53,12 @@ public class ViewNumeralSystem extends JRootPane {
 
         JPanel.add(convertBin);
         this.getContentPane().add(JPanel);
-        //pack();
         setVisible(true);
         setSize(600, 300);
         this.setVisible(true);
-
-
+        /**
+         * im Folgenden werden ButtonListener zu den drei Umrechnungsbuttons hinzugefügt
+         */
         convertDec.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

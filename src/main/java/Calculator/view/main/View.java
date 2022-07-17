@@ -74,7 +74,7 @@ public class View extends JFrame {
         bar = new JMenuBar();
         miscellaneous = new JMenu("Allgemein");
         calculator = new JMenu("Rechner");
-        numeralSystem = new JMenu("Zahlensystem ");
+        numeralSystem = new JMenu("Zahlensysteme");
         currency = new JMenu("W\u00E4hrungen");
         settingsItem = new JMenuItem("Einstellungen");
         helpItem = new JMenuItem("Hilfe");
