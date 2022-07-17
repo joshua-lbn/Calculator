@@ -334,7 +334,7 @@ public class Model {
         }
         // Falls beides gleich (sprich: noch nichts von beidem hinzugefuegt): hoch
         else {
-            ExtendExpression("(");
+            ExtendExpression("^(");
             ExtendHTML("<sup>");
         }
     }
