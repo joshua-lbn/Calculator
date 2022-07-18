@@ -5,6 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 // Imports anderer Programmklassen
 import Calculator.controller.Controller;
 
@@ -87,8 +88,12 @@ public class ViewNumeralSystem extends JRootPane {
                 String HexString = hexaTextField.getText();
                 String ConvertedNumbers[] = new String[2];
                 ConvertedNumbers = controller.HextoDec_Bin(HexString);
-                decTextField.setText(ConvertedNumbers[0]);
-                binTextField.setText(ConvertedNumbers[1]);
+                if (ConvertedNumbers[0] == "Fehler") {
+                    hexaTextField.setText("Ung\u00FCltige Eingabe");
+                } else {
+                    decTextField.setText(ConvertedNumbers[0]);
+                    binTextField.setText(ConvertedNumbers[1]);
+                }
             }
         });
         convertBin.addActionListener(new ActionListener() {

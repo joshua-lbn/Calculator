@@ -279,7 +279,6 @@ public class Controller {
         } else {
             // Ergebnis berechnen
             double volumeResult = Math.PI * volumeRadius * volumeRadius * volumeHeight;
-            System.out.println("" + volumeResult);
             double volume = (double) (Math.round(volumeResult * 100)) / 100;
             // Ergebnis zu String mit Komma statt Punkt
             String volumeString = (Double.toString(volume)).replace('.', ',');
@@ -309,7 +308,6 @@ public class Controller {
         } else {
             // Ergebnis berechnen
             double volumeResult = (4.0 / 3.0) * Math.PI * volumeRadius * volumeRadius * volumeRadius;
-            System.out.println("" + volumeResult);
             double volume = (double) (Math.round(volumeResult * 100)) / 100;
             // Ergebnis zu String mit Komma statt Punkt
             String volumeString = (Double.toString(volume)).replace('.', ',');
@@ -355,14 +353,13 @@ public class Controller {
      * @return Array mit dezimaler und binaerer Ausgabe
      */
     public String[] HextoDec_Bin(String HexNumber) {
-        // Erstellung eines Feldes: Binaer- und Dezimalwert werden gespeichert
         String[] ArrayDec_Bin = new String[2];
+        // int fuer if-Bedingung (nicht in Hexa umgerechnet)
         try {
-            // int für if-Bedingung (nicht in Hexa umgerechnet)
             if (HexNumber.indexOf("-") == 0) {
                 HexNumber = HexNumber.replace("-", "");
                 long decIntNeg = Long.parseLong(HexNumber, 16);
-                ArrayDec_Bin[0] = "-" + Long.toString(decIntNeg);
+                ArrayDec_Bin[0] = "-" + Double.toString(decIntNeg);
                 ArrayDec_Bin[1] = "-" + Long.toBinaryString(decIntNeg);
                 return ArrayDec_Bin;
             } else {
@@ -371,12 +368,10 @@ public class Controller {
                 ArrayDec_Bin[1] = Long.toBinaryString(decInt);
                 return ArrayDec_Bin;
             }
-        // Bei Umwandlungsfehler: ausgeben
         } catch (NumberFormatException e) {
             ArrayDec_Bin[0] = "Fehler";
             return ArrayDec_Bin;
         }
-
     }
 
     /**
